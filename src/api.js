@@ -7,6 +7,6 @@ export const userLogin=async (data)=>{
 export const googleLogin=async (data)=>{
     return await axios.post("/auth/signin",{credentials:  data});
 }
-export const userSignup=async (data)=>{
+export const signup=async (data)=>{
     return await axios.post("/auth/signup",{credentials:  data});
 }
