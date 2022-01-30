@@ -22,6 +22,7 @@ export class Header extends Component {
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
 
+    token = localStorage.getItem("token")
     render() {        
         return (
                 
@@ -108,10 +109,21 @@ export class Header extends Component {
                                         <div className="header_btn">
                                             <a href={'/signup'} className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill
                                             ttm-icon-btn-left ttm-btn-color-skincolor d-flex align-items-center">
-                                                <i className="far fa-user fa-sm"></i><Link className="alert-heading" to='/signup'>sign up </Link>
+                                                {(!this.token)?
+                                               <> <i className="far fa-user fa-sm"></i><Link className="alert-heading" to='/signup'>sign up </Link>
                                                 <span className="ml-10 mr-10">/</span> 
-                                                <i className="ti ti-lock fa-sm"></i><Link className="alert-heading" to='/login'>login </Link>
-                                            </a>
+                                            </>: 
+                                            <>
+                                            <i className="ti ti-lock fa-sm"></i><Link className="alert-heading" to='/login'
+                                            onClick={()=>{
+                                                localStorage.removeItem("token");
+                                                localStorage.removeItem("status");
+                                                window.location.reload();
+                                            }}
+                                            >sign out </Link>                                            
+                                            </>
+                                            }
+                                                </a>
                                         </div>
                                     </div>{/* site-navigation end */}
                                 </div>

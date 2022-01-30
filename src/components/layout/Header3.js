@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 export class Header extends Component {
-    
+
     componentDidMount() {
         window.addEventListener('scroll', this.isSticky);
     }
@@ -16,18 +16,19 @@ export class Header extends Component {
         window.removeEventListener('scroll', this.isSticky);
     }
 
-    isSticky = (e)=>{
+    isSticky = (e) => {
         const header = document.querySelector('header');
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
 
-    render() {        
+    token = localStorage.getItem("token")
+    render() {
         return (
-                
+
             <header id="masthead" className="header ttm-header-style-03">
                 {/* topbar */}
-               <div className="top_bar bg-theme-GreyColor clearfix">
+                <div className="top_bar bg-theme-GreyColor clearfix">
                     <div className="container">
                         <div className="row">
                             <div className="col-xl-12">
@@ -37,19 +38,19 @@ export class Header extends Component {
                                             <div className="top_bar_icon">
                                                 <i className="flaticon flaticon-phone-call"></i>
                                             </div>
-                                            <span>(+01)123 456 789</span>  
+                                            <span>(+01)123 456 789</span>
                                         </div>
                                         <div className="top_bar_contact_item">
                                             <div className="top_bar_icon">
                                                 <i className="flaticon flaticon-email"></i>
                                             </div>
-                                            <span><a href="mailto:info@example.com">info@example.com</a></span>  
+                                            <span><a href="mailto:info@example.com">info@example.com</a></span>
                                         </div>
                                         <div className="top_bar_contact_item">
                                             <div className="top_bar_icon">
                                                 <i className="flaticon flaticon-placeholder"></i>
                                             </div>
-                                            <span>Suite 20 Golden Street USA</span>  
+                                            <span>Suite 20 Golden Street USA</span>
                                         </div>
                                     </div>
                                     <div className="ttm-bg ttm-col-bgcolor-yes ttm-right-span bg-theme-GreyColor pl-20 ms-auto">
@@ -58,7 +59,7 @@ export class Header extends Component {
                                             <div className="media-block">
                                                 <ul className="social-icons">
                                                     <li>
-                                                        <a  className="facebook" href="/" rel="noopener" aria-label="facebook">
+                                                        <a className="facebook" href="/" rel="noopener" aria-label="facebook">
                                                             <i className="ti ti-facebook"></i>
                                                         </a>
                                                     </li>
@@ -97,23 +98,30 @@ export class Header extends Component {
                                     <div className="site-navigation d-flex align-items-center justify-content-between">
                                         {/* site-branding */}
                                         <div className="site-branding">
-                                            <Logo/>
+                                            <Logo />
                                         </div>
                                         {/* site-branding end */}
                                         <div className="border-box-block ms-auto mr-20">
                                             <div className=" d-flex align-items-center justify-content-between">
                                                 {/* menu */}
-                                                <Menu/>
-                                                <div className="mobile-menu"><Mobile_menu/></div>
+                                                <Menu />
+                                                <div className="mobile-menu"><Mobile_menu /></div>
                                                 {/* menu end */}
                                             </div>
                                         </div>
                                         <div className="header_btn">
                                             <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border
                                             ttm-icon-btn-left ttm-btn-color-grey text-theme-DarkColor d-flex align-items-center">
-                                                <i className="far fa-user fa-sm text-theme-DarkColor"></i><Link to='/signup'>sign up </Link>
-                                                <span className="ml-10 mr-10 alert-heading">/</span> 
-                                                <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link to='/login'>login </Link>
+                                                {(!this.token) ? <>
+                                                    <i className="far fa-user fa-sm text-theme-DarkColor"></i><Link exact to={'/signup'}>Sign Up </Link>
+                                                    <span className="ml-10 mr-10 alert-heading">/</span>
+                                                    <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/login'}>Login </Link></> : 
+                                                    <><i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
+                                                        localStorage.removeItem("token");
+                                                        localStorage.removeItem("status");
+                                                        window.location.reload();
+                                                    }}>Sign Out </Link></>
+                                                    }
                                             </a>
                                         </div>
                                     </div>{/* site-navigation end */}
@@ -151,9 +159,9 @@ export class Header extends Component {
                             </div>
                         </form>
                     </div>
-                </div>            
-            </header> 
-            
+                </div>
+            </header>
+
         )
     }
 }

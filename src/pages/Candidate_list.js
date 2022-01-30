@@ -1,39 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
+import { allApplicants } from '../api';
 
 
-export class Candidate_list extends Component {
+const Candidate_list = () => {
 
-    constructor() {
-        super();
-        this.state = {
-          name: "React"
-        };
-        this.onChangeValue = this.onChangeValue.bind(this);
 
-    }
-    
-    onChangeValue(event) {
-        console.log(event.target.value);
-    }
 
-    render() {
-        return (
+    const [allcandidates, setallcandidates] = useState([]);
+    useEffect(() => {
+        Promise.resolve(allApplicants()).then((res) => {
+            // console.log(res.data);
+            setallcandidates(res.data)
+        }).catch((e) => {
+            console.log(e);
+        })
+    }, [])
+
+    return (
+        <div className="site-main">
+            <Header />
+
+            {/* PageHeader */}
+            <PageHeader
+                title="Volunteers"
+                breadcrumb="volunteers"
+            />
+            {/* PageHeader end */}
 
             <div className="site-main">
-                <Header/>
-            
-                {/* PageHeader */} 
-                <PageHeader
-                    title="Volunteers"
-                    breadcrumb="volunteers"
-                />
-                {/* PageHeader end */}
-
-
                 <div className="ttm-row sidebar job-sidebar clearfix">
                     <div className="container">
                         {/* row */}
@@ -43,56 +41,56 @@ export class Candidate_list extends Component {
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3>
                                         <form id="list1" className="list-filter">
-                                            <div onChange={this.onChangeValue} >
+                                            <div>
                                                 <label className="radio">
                                                     <input type="radio" value="Today" name="post_date" />Today
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Last 7 days" defaultChecked  name="post_date" />Last 7 days 
+                                                    <input type="radio" value="Last 7 days" defaultChecked name="post_date" />Last 7 days
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Last 14 days" name="post_date" />Last 14 days 
+                                                    <input type="radio" value="Last 14 days" name="post_date" />Last 14 days
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Last 21 days" name="post_date" />Last 21 days 
+                                                    <input type="radio" value="Last 21 days" name="post_date" />Last 21 days
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Last 30 days" name="post_date" />Last 30 days 
+                                                    <input type="radio" value="Last 30 days" name="post_date" />Last 30 days
                                                 </label>
                                             </div>
                                         </form>
                                     </aside>
                                     <aside className="widget job-widget">
-                                        <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>                                        
-                                        <form id="list2" onSubmit={this.formSubmit} className="list-filter">
-                                            <div onChange={this.onChangeValue} >
+                                        <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>
+                                        <form id="list2" className="list-filter">
+                                            <div  >
                                                 <label className="radio">
                                                     <input type="radio" value="Digital Marketing" defaultChecked name="categories" />Digital Marketing
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Charity & Voluntary" name="categories" />Charity & Voluntary 
+                                                    <input type="radio" value="Charity & Voluntary" name="categories" />Charity & Voluntary
                                                 </label>
                                                 <label className="radio">
                                                     <input type="radio" value="IT Contractor" name="categories" />IT Contractor
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Estate Agency" name="categories" />Estate Agency 
+                                                    <input type="radio" value="Estate Agency" name="categories" />Estate Agency
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="Graduate"name="categories" />Graduate
+                                                    <input type="radio" value="Graduate" name="categories" />Graduate
                                                 </label>
                                             </div>
                                         </form>
                                     </aside>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-expert"></i>Experince</h3>
-                                        <form id="list3" onSubmit={this.formSubmit} className="list-filter">
-                                            <div onChange={this.onChangeValue} >
+                                        <form id="list3" className="list-filter">
+                                            <div>
                                                 <label className="radio">
                                                     <input type="radio" value="0Year to 1Year" name="ex_year" />0Year to 1Year
                                                 </label>
                                                 <label className="radio">
-                                                    <input type="radio" value="1Year to 2Year" name="ex_year" />1Year to 2Year 
+                                                    <input type="radio" value="1Year to 2Year" name="ex_year" />1Year to 2Year
                                                 </label>
                                                 <label className="radio">
                                                     <input type="radio" value="2Year to 3Year" name="ex_year" />2Year to 3Year
@@ -130,9 +128,9 @@ export class Candidate_list extends Component {
                                         <div className="showing-result-block d-sm-flex align-items-center justify-content-between">
                                             <span className="showing-result">Showing 1–10 of 50 Applicant Results :</span>
                                             <form>
-                                                <div className="sort-by">Sort By: 
+                                                <div className="sort-by">Sort By:
                                                     <select defaultValue="">
-                                                    <option value="" disabled>A to Z</option>
+                                                        <option value="" disabled>A to Z</option>
                                                         <option value="popularity">a</option>
                                                         <option value="rating">b</option>
                                                         <option value="date">c</option>
@@ -145,285 +143,116 @@ export class Candidate_list extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
+                                {allcandidates.map((user) => (
                                     <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-01.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Jimmy Divison</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        to='/candidate_details'>view Profile</Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-02.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Jessica & Alexuis Costa</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-03.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Anne Smith</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
                                         <div className="featured-imagebox featured-imagebox-candidate">
                                             <div className="featured-thumbnail">
                                                 <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3>Rafael Briggs</h3>
+                                                    <h3>{user.name}</h3>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
+                                                        {user.skills.map(skill => (
+                                                            <span className="skill-tag">{skill}</span>
+                                                        ))}
                                                     </div>
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>{user.city}</span>
                                                     </div>
                                                     <div className="view-block">
                                                         <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={'/candidate_details'}>view Profile</a>
+                                                        ttm-btn-color-dark"
+                                                            href={'/candidate_details'}>view Profile</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-01.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Jimmy Divison</h3>
-                                                    <span>web designer</span>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-02.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Jessica & Alexuis Costa</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-03.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Anne Smith</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-candidate">
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>Rafael Briggs</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>{/* featured-imagebox end */}
-                                    </div>
-                                    <div className="col-lg-12">
-                                        <div className="job-pagination-block">
-                                            <a className="page-nav-link">prev</a>
-                                            <a className="page-nav-link current">1</a>
-                                            <a className="page-nav-link" href="#">2</a>
-                                            <a className="page-nav-link" href="#">3</a>
-                                            <a className="page-nav-link" href="#">....</a>
-                                            <a className="page-nav-link">next</a>
                                         </div>
                                     </div>
-                                </div>{/* row end */}
-                            </div>
-                        </div>{/* row end */}
-                    </div>
-                </div>
-
-
-                {/* action-section */}
-                <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="d-lg-flex align-items-center justify-content-between">
-                                    {/* featured-icon-box */}
-                                    <div className="featured-icon-box icon-align-before-content style2">
-                                        <div className="featured-icon">
-                                            <div className="ttm-icon ttm-icon_element-onlytxt ttm-icon_element-color-white ttm-icon_element-size-xl">
-                                                <i className="flaticon flaticon-recruitment-5"></i>
-                                            </div>
+                                ))}
+                                <div className="col-lg-12">
+                                    <div className="featured-imagebox featured-imagebox-candidate">
+                                        <div className="featured-thumbnail">
+                                            <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
                                         </div>
                                         <div className="featured-content">
                                             <div className="featured-title">
-                                                <h3>Incredible Recruitment & Staffing Agency</h3>
+                                                <h3>Rafael Briggs</h3>
                                             </div>
-                                            <div className="featured-desc">
-                                                <p>We have over 30 years experience oft Business porro qusquam dol ipsum quia dolor sit amet.</p>
+                                            <div className="featured-bottom">
+                                                <div className="job-skill">
+                                                    <span className="skill-tag">bootstrap</span>
+                                                    <span className="skill-tag">JavaScript</span>
+                                                </div>
+                                                <div className="job-meta">
+                                                    <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
+                                                    <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
+                                                </div>
+                                                <div className="view-block">
+                                                    <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark"
+                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>{/* featured-icon-box end */}
-                                    <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white" 
-                                    href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
+                                    </div>
                                 </div>
+                                <div className="col-lg-12">
+                                    <div className="job-pagination-block">
+                                        <a className="page-nav-link">prev</a>
+                                        <a className="page-nav-link current">1</a>
+                                        <a className="page-nav-link" href="#">2</a>
+                                        <a className="page-nav-link" href="#">3</a>
+                                        <a className="page-nav-link" href="#">....</a>
+                                        <a className="page-nav-link">next</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>{/* row end */}
+                </div>
+            </div>
+
+
+            {/* action-section */}
+            <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="d-lg-flex align-items-center justify-content-between">
+                                {/* featured-icon-box */}
+                                <div className="featured-icon-box icon-align-before-content style2">
+                                    <div className="featured-icon">
+                                        <div className="ttm-icon ttm-icon_element-onlytxt ttm-icon_element-color-white ttm-icon_element-size-xl">
+                                            <i className="flaticon flaticon-recruitment-5"></i>
+                                        </div>
+                                    </div>
+                                    <div className="featured-content">
+                                        <div className="featured-title">
+                                            <h3>Incredible Recruitment & Staffing Agency</h3>
+                                        </div>
+                                        <div className="featured-desc">
+                                            <p>We have over 30 years experience oft Business porro qusquam dol ipsum quia dolor sit amet.</p>
+                                        </div>
+                                    </div>
+                                </div>{/* featured-icon-box end */}
+                                <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white"
+                                    href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
                             </div>
                         </div>
                     </div>
-                </section>
-                {/* action-section end */}
+                </div>
+            </section>
+            {/* action-section end */}
 
-                
-            <Footer/>
-                        
-            </div>
-          )
-      }
-   }
+
+            <Footer />
+
+        </div>
+    )
+}
 
 export default Candidate_list;

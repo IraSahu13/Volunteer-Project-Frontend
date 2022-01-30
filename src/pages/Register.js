@@ -3,7 +3,8 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {userSignup} from './../api.js';
+import {signup} from './../api.js';
+import { useHistory } from 'react-router-dom';
 
 // export class Register extends Component {
 //     constructor(props) {
@@ -15,49 +16,79 @@ import {userSignup} from './../api.js';
 //     }
     
 const Register = () => {  
-        const [candidateOn, setCandidateOn]= useState("false");
-        const [employerOn, setEmployerOn]= useState("false");
+
+        const history = useHistory();
+        const [username, setusername] = useState("");
+        const [useremail, setuseremail] = useState("");
+        const [userpass, setuserpass] = useState("");
+        const [userphone, setuserphone] = useState();
+        const [usercnfpass, setusercnfpass] = useState("");
         const CandidateSignup = async(e) =>{
+            if(usercnfpass!==userpass){
+                alert("password and confirm password does not match");
+                return;
+            }
+            if(username==="" || useremail===""){
+                alert("enter username and email");
+                return
+            }
             e.preventDefault();
-            console.log("ok");
-            // const password = response.profileObj.googleId
-            // const email = response.profileObj.email
-            // const name = response.profileObj.name
-            // console.log(email);
-            Promise.resolve(userSignup({ name : "Ira Sahu", email: "email@gmail.com" , password: "password" , status: "user"})).then(res => {
-                localStorage.setItem("token",res.data.token)
-                // localStorage.setItem("googlePhoto", response.profileObj.imageUrl);
-                // localStorage.setItem("user", JSON.stringify(res.data.details))
-                // setloggedIn(true);
-                // history.push(loggedIn);
-                // history.push("/");
-                // window.location.reload();
+            Promise.resolve(signup(
+                { 
+                    name : username, 
+                    email: useremail , 
+                    password: userpass , 
+                    status: "user",
+                    phoneNumber: userphone
+                })).then(res => {
+                console.log(res);
+                localStorage.setItem("token",res.data.token);
+                localStorage.setItem("status",res.data.status);
+                history.push("/");
+                window.location.reload();
             }).catch((e) => {
                 console.log(e.response);
-                setInterval(() => {
-                   
+                setTimeout(() => {
+                    alert('hey')
                   }, 5000);
             })
         }; 
+
+        const [companyname, setcompanyname] = useState("");
+        const [companytitle, setcompanytitle] = useState("");
+        const [companyemail, setcompanyemail] = useState("");
+        const [companypass, setcompanypass] = useState("");
+        const [companyphone, setcompanyphone] = useState();
+        const [companycnfpass, setcompanycnfpass] = useState("");
+
         const EmployerSignup = async(e) =>{
+            if(companycnfpass!==companypass){
+                alert("password and confirm password does not match");
+                return;
+            }
+            if(companyname==="" || companyemail==="" || companytitle===""){
+                alert("enter username, title and email");
+                return ;
+            }
             e.preventDefault();
-            console.log("okay");
-            // const password = response.profileObj.googleId
-            // const email = response.profileObj.email
-            // const name = response.profileObj.name
-            // console.log(email);
-            Promise.resolve(userSignup({ name : "Ira Sahu", email: "email@gmail.com" , password: "password" , status: "user"})).then(res => {
-                localStorage.setItem("token",res.data.token)
-                // localStorage.setItem("googlePhoto", response.profileObj.imageUrl);
-                // localStorage.setItem("user", JSON.stringify(res.data.details))
-                // setloggedIn(true);
-                // history.push(loggedIn);
-                // history.push("/");
-                // window.location.reload();
+            Promise.resolve(signup(
+                { 
+                    name : companyname, 
+                    status: "company",
+                    title: companytitle , 
+                    email: companyemail , 
+                    password: companypass , 
+                    phoneNumber: companyphone
+                })).then(res => {
+                console.log(res);
+                localStorage.setItem("token",res.data.token);
+                localStorage.setItem("status",res.data.status);
+                history.push("/");
+                window.location.reload();
             }).catch((e) => {
                 console.log(e.response);
-                setInterval(() => {
-                   
+                setTimeout(() => {
+                    alert('hey')
                   }, 5000);
             })
         }; 
@@ -108,31 +139,41 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-user"></i>
-                                                                        <input name="requiredField" ref={({ required: true })} type="text" id="txtname" placeholder="Username" />
+                                                                        <input value={username} onChange={(e)=>{
+                                                                            setusername(e.target.value)
+                                                                        }} name="requiredField" required ref={({ required: true })} type="text" id="txtname" placeholder="Username" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
-                                                                        <input type="email" id="txtemail" placeholder="Email Address" />
+                                                                        <input value={useremail} onChange={(e)=>{
+                                                                            setuseremail(e.target.value)
+                                                                        }} type="email" required id="txtemail" placeholder="Email Address" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input type="password" id="password" placeholder="Password"/>
+                                                                        <input value={userpass} onChange={(e)=>{
+                                                                            setuserpass(e.target.value)
+                                                                        }} type="password" id="password" placeholder="Password"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input type="password" id="cpassword" placeholder="Confirm Password *"/>
+                                                                        <input value={usercnfpass} onChange={(e)=>{
+                                                                            setusercnfpass(e.target.value)
+                                                                        }} type="password" id="cpassword" placeholder="Confirm Password *"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className="ti ti-mobile"></i>
-                                                                        <input type="tel" id="txtphone" placeholder="Phone Number"/>
+                                                                        <input value={userphone} onChange={(e)=>{
+                                                                            setuserphone(e.target.value)
+                                                                        }} type="tel" id="txtphone" placeholder="Phone Number"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
@@ -166,37 +207,49 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-bar-chart"></i>
-                                                                        <input type="title" id="title" placeholder="Company Title"/>
+                                                                        <input value={companytitle} onChange={(e)=>{
+                                                                            setcompanytitle(e.target.value)
+                                                                        }}  type="title" id="title" placeholder="Company Title"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-user"></i>
-                                                                        <input type="text" id="txtname" placeholder="Username" />
+                                                                        <input value={companyname} onChange={(e)=>{
+                                                                            setcompanyname(e.target.value)
+                                                                        }}  type="text" id="txtname" placeholder="Username" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
-                                                                        <input type="email" id="txtemail" placeholder="Email Address" />
+                                                                        <input value={companyemail} onChange={(e)=>{
+                                                                            setcompanyemail(e.target.value)
+                                                                        }}  type="email" id="txtemail" placeholder="Email Address" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-mobile"></i>
-                                                                        <input type="tel" id="txtphone" placeholder="Phone Number"/>
+                                                                        <input value={companyphone} onChange={(e)=>{
+                                                                            setcompanyphone(e.target.value)
+                                                                        }}  type="tel" id="txtphone" placeholder="Phone Number"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input type="password" id="password" placeholder="Password"/>
+                                                                        <input value={companypass} onChange={(e)=>{
+                                                                            setcompanypass(e.target.value)
+                                                                        }}  type="password" id="password" placeholder="Password"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input type="password" id="cpassword" placeholder="Confirm Password *"/>
+                                                                        <input value={companycnfpass} onChange={(e)=>{
+                                                                            setcompanycnfpass(e.target.value)
+                                                                        }}  type="password" id="cpassword" placeholder="Confirm Password *"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">

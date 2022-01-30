@@ -136,7 +136,6 @@ export class Home2 extends Component {
 
 
     handleAfterChange = (index) => {
-        console.log("after change", index);
         this.setState({
         currentSlide: index
         });
@@ -146,7 +145,6 @@ export class Home2 extends Component {
         const { photoIndex, isOpen } = this.state;
         const settings = {
             beforeChange: function (currentSlide, nextSlide) {
-              console.log("before change", currentSlide, nextSlide);
             },
             afterChange: this.handleAfterChange
           };
