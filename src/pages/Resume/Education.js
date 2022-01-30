@@ -39,11 +39,11 @@ class Profile extends Component {
 
     return (
     <>
-      <Header />
+      {/* <Header />
       <PageHeader
         title= "Resume"
         breadcrumb="education"
-      />
+      /> */}
       <div>
         <Card>
           <CardHeader title="Education Details" />
@@ -83,9 +83,10 @@ class Profile extends Component {
                   onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
+                        <InputAdornment position="start">
                         {/* <DateRangeIcon /> */}
-                      </InputAdornment>
+                        </InputAdornment>
+                      
                     ),
                   }}
                 />
@@ -175,7 +176,7 @@ class Profile extends Component {
                   InputProps={{
                     endAdornment: (
                     <>
-                      <p>From:</p>
+                      
                       <InputAdornment position="start">
                         {/* <DateRangeIcon /> */}
                       </InputAdornment>
@@ -267,7 +268,7 @@ class Profile extends Component {
         </Container>
         <p className="text-center text-muted">Page 2</p>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
     );
   }

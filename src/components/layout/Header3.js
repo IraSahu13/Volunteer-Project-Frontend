@@ -144,8 +144,8 @@ export class Header extends Component {
                             </div>
                             <div className="col-lg-2">
                                 <label>
-                                    <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill 
-                                    ttm-btn-color-grey" type="submit">Find Job</button>
+                                    <button className="submit ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-fill 
+                                    ttm-btn-color-grey" type="submit">Search</button>
                                 </label>
                             </div>
                             </div>

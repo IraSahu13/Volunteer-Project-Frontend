@@ -5,14 +5,19 @@ import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { userLogin } from '../api';
 import { Link } from 'react-router-dom';
+import FacebookLogin from 'react-facebook-login';
+import { GoogleLogin } from 'react-google-login';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
     const [candidateOn, setCandidateOn]= useState(false);
     const [employerOn, setEmployerOn]= useState(false);
+    const history= useHistory();
     const CandidateLogin = async (e) => {
         e.preventDefault();
         setCandidateOn(true);
         console.log("response");
+        history.push('/homevolunteer')
         Promise.resolve(userLogin({ name : "Ira Sahu", email: "email@gmail.com" , password: "password" , status: "user"})).then(res => {
             localStorage.setItem("token",res.data.token)
             
@@ -27,6 +32,7 @@ const Login = () => {
         e.preventDefault();
         setEmployerOn(true);
         console.log("response");
+        history.push('/homeemployer')
         Promise.resolve(userLogin({ name : "Ira Sahu", email: "email@gmail.com" , password: "password" , status: "user"})).then(res => {
             localStorage.setItem("token",res.data.token)
             
@@ -36,8 +42,15 @@ const Login = () => {
                
               }, 5000);
         })
+        
     }
-    
+    const responseFacebook = (response) => {
+        console.log(response);
+    }
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+
     return (
 
             <div className="site-main">
@@ -155,12 +168,26 @@ const Login = () => {
                                                     <button id="login-with-facebook" className="social-account-button w-100 facebook-button"
                                                       
                                                     >
-                                                        <i className="ti ti-facebook"></i><span>Login With facebook</span>
+                                                        <FacebookLogin
+                                                          appId="951777148793990"
+                                                          autoLoad={true}
+                                                          fields="name,email,picture"
+                                                          callback={responseFacebook}
+                                                          cssClass=""
+                                                          icon="fa-facebook"
+                                                        />
                                                     </button>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <button id="login-with-google" className="social-account-button w-100 google-button">
-                                                        <i className="ti ti-google"></i><span>Login With Google</span>
+                                                    <GoogleLogin method="POST"
+                                                        clientId="430560948108-l48c3dssgupp977dti4au6g5vc3dsfp6.apps.googleusercontent.com"
+                                                        
+                                                        onSuccess={responseGoogle}
+                                                        onFailure={responseGoogle}
+                                                        cookiePolicy={'single_host_origin'}
+                                                        isSignedIn={true}
+                                                    />,
                                                     </button>
                                                 </div>
                                             </div>

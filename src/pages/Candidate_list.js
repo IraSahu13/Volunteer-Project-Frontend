@@ -28,8 +28,8 @@ export class Candidate_list extends Component {
             
                 {/* PageHeader */} 
                 <PageHeader
-                    title="candidate list"
-                    breadcrumb="candidate"
+                    title="Volunteers"
+                    breadcrumb="volunteers"
                 />
                 {/* PageHeader end */}
 
@@ -41,7 +41,7 @@ export class Candidate_list extends Component {
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                                 <div className="job_list-widget">
                                     <aside className="widget job-widget">
-                                        <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Posted</h3>
+                                        <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3>
                                         <form id="list1" className="list-filter">
                                             <div onChange={this.onChangeValue} >
                                                 <label className="radio">
@@ -63,7 +63,7 @@ export class Candidate_list extends Component {
                                         </form>
                                     </aside>
                                     <aside className="widget job-widget">
-                                        <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Categories</h3>                                        
+                                        <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>                                        
                                         <form id="list2" onSubmit={this.formSubmit} className="list-filter">
                                             <div onChange={this.onChangeValue} >
                                                 <label className="radio">
@@ -103,7 +103,7 @@ export class Candidate_list extends Component {
                                             </div>
                                         </form>
                                     </aside>
-                                    <aside className="widget job-widget">
+                                    {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
                                         <form id="list4" onSubmit={this.formSubmit} className="list-filter">
                                             <div onChange={this.onChangeValue} >
@@ -115,35 +115,20 @@ export class Candidate_list extends Component {
                                                 </label>
                                             </div>
                                         </form>
-                                    </aside>
+                                    </aside> */}
                                 </div>
-                                <aside className="widget widget-download">
+                                {/* <aside className="widget widget-download">
                                     <ul className="download">
                                         <li><a href="#">Download.pdf</a><i className="ti ti-files"></i></li>
                                         <li><a href="#">Download.txt</a><i className="ti ti-files"></i></li>
                                     </ul>
-                                </aside>
-                                <aside className="widget widget-banner text-theme-WhiteColor">
-                                    <div className="ttm-col-bgcolor-yes bg-theme-DarkColor text-theme-WhitColor col-bg-img-seven ttm-col-bgimage-yes ttm-bg p-40">
-                                        <div className="ttm-col-wrapper-bg-layer ttm-bg-layer bg-theme-DarkColor" style={{ backgroundImage: '' }}>
-                                            <div className="ttm-col-wrapper-bg-layer-inner bg-theme-DarkColor"></div>
-                                        </div>
-                                        <div className="layer-content text-center">
-                                            <div className="widget-banner-inner">
-                                                <h3 className="mb-15">Make a Difference with Online Resume!</h3>
-                                                <p className="mb-30">Your Resume in Minutes with Jobs Resume Assistant is Ready!</p>
-                                                <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
-                                                href={process.env.PUBLIC_URL + '/'}>appoinments!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </aside>
+                                </aside> */}
                             </div>
                             <div className="col-lg-8 content-area">
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="showing-result-block d-sm-flex align-items-center justify-content-between">
-                                            <span className="showing-result">Showing 1–10 of 50 Jobs Results :</span>
+                                            <span className="showing-result">Showing 1–10 of 50 Applicant Results :</span>
                                             <form>
                                                 <div className="sort-by">Sort By: 
                                                     <select defaultValue="">
@@ -266,7 +251,7 @@ export class Candidate_list extends Component {
                                                     <div className="view-block">
                                                         <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark" 
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
+                                                        href={'/candidate_details'}>view Profile</a>
                                                     </div>
                                                 </div>
                                             </div>

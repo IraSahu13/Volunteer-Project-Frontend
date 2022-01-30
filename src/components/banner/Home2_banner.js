@@ -76,7 +76,7 @@ export class Banner extends Component {
                             </div>
                             <div data-animation="animate__fadeInUp" data-delay="1.4">
                                 <Link className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
-                                to='/job_list'>Find Your Dream Job!</Link>
+                                to='/job_list'>Find the best Projects!</Link>
                             </div>
                             </div>
                         </div>

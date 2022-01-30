@@ -28,8 +28,8 @@ export class Job_list extends Component {
             
                 {/* PageHeader */} 
                 <PageHeader
-                    title="job list"
-                    breadcrumb="job"
+                    title="Projects"
+                    breadcrumb="projects"
                     className="pb-65 pb-lg-0"
                 />
                 {/* PageHeader end */}
@@ -46,13 +46,13 @@ export class Job_list extends Component {
                                         <form id="search_Form" className="search_Form wrap-form" method="post" action="#" data-mailchimp="true">
                                             <label>
                                                 <i className="ti ti-search"></i>
-                                                <input type="text" id="filter" placeholder="Job Title or Keywords"/>
+                                                <input type="text" id="filter" placeholder="Project Title or Keywords"/>
                                             </label>
                                             <label>
                                                 <i className="ti ti-location-pin"></i>
                                                 <input type="text" name="location" id="filterlocation" placeholder="location" />
                                             </label>
-                                            <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" type="submit">Find Jobs</button>
+                                            <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" type="submit">Find Work</button>
                                         </form>
                                     </div>
                                 </div>
@@ -132,6 +132,22 @@ export class Job_list extends Component {
                                             </div>
                                         </form>
                                     </aside>
+                                    <aside className="widget job-widget">
+                                        <h3 className="widget-title"><i className="flaticon flaticon-expert"></i>Work Type</h3>
+                                        <form id="list3" onSubmit={this.formSubmit} className="list-filter">
+                                            <div onChange={this.onChangeValue} >
+                                                <label className="radio">
+                                                    <input type="radio" value="0Year to 1Year" name="ex_year" />Full Time
+                                                </label>
+                                                <label className="radio">
+                                                    <input type="radio" value="1Year to 2Year" name="ex_year" />Internship 
+                                                </label>
+                                                <label className="radio">
+                                                    <input type="radio" value="2Year to 3Year" name="ex_year" />Voluntary
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </aside>
                                     {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
                                         <form id="list4" onSubmit={this.formSubmit} className="list-filter">
@@ -145,7 +161,23 @@ export class Job_list extends Component {
                                             </div>
                                         </form>
                                     </aside> */}
+                                    
                                 </div>
+                                <aside className="widget widget-banner text-theme-WhiteColor">
+                                    <div className="ttm-col-bgcolor-yes bg-theme-DarkColor text-theme-WhitColor col-bg-img-seven ttm-col-bgimage-yes ttm-bg p-40">
+                                        <div className="ttm-col-wrapper-bg-layer ttm-bg-layer bg-theme-DarkColor" style={{ backgroundImage: '' }}>
+                                            <div className="ttm-col-wrapper-bg-layer-inner bg-theme-DarkColor"></div>
+                                        </div>
+                                        <div className="layer-content text-center">
+                                            <div className="widget-banner-inner">
+                                                <h3 className="mb-15">Make a Difference with Online Resume!</h3>
+                                                <p className="mb-30">Your Resume in Minutes with Jobs Resume Assistant is Ready!</p>
+                                                <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
+                                                href={'/resume'}>Build Resume</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
                                 {/* <aside className="widget widget-download">
                                     <ul className="download">
                                         <li><a href="#">Download.pdf</a><i className="ti ti-files"></i></li>
@@ -172,7 +204,7 @@ export class Job_list extends Component {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="showing-result-block d-sm-flex align-items-center justify-content-between">
-                                            <span className="showing-result">Showing 1–10 of 50 Jobs Results :</span>
+                                            <span className="showing-result">Showing 1–10 of 50 Project Results :</span>
                                             <form>
                                                 <div className="sort-by">Sort By: 
                                                     <select defaultValue="">

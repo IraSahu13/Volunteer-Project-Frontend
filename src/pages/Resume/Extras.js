@@ -52,19 +52,21 @@ class Experience extends Component {
         console.log (err);
       });
   };
-
+  handlesubmit = () => {
+    console.log("e");
+  }
   render () {
     const {values} = this.props;
     const {classes} = this.props;
 
     return (
     <>
-        <Header />
+        {/* <Header />
         <PageHeader 
             title="Resume"
             breadcrumb="skills"
         />
-    
+     */}
       <Paper className={classes.padding}>
         <Card>
           <CardHeader title="Extra Details" />
@@ -294,12 +296,11 @@ class Experience extends Component {
             <Col lg={1} xs={2}>
               <Button
                 variant="contained"
-                disabled
-                color="secondary"
-                onClick={this.continue}
-                endIcon={<NavigateNextIcon />}
+                type= "submit"
+                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
+                onClick={this.handlesubmit}
               >
-                Next
+                Submit
               </Button>
             </Col>
             <Col xs={4} />
@@ -316,7 +317,7 @@ class Experience extends Component {
         </Container>
         <p className="text-center text-muted">Page 5</p>
       </Paper>
-      <Footer />
+      {/* <Footer /> */}
     </>
     );
   }

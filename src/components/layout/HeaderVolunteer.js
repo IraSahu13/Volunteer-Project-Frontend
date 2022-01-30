@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Menu from './Menu';
-import Mobile_menu from './Mobile_menu';
+import MenuVolunteer from './MenuVolunteer';
 import Logo from './Logo'
-import Header_search from './Header_search'
+import MobileMenuVolunteer from './MobileMenuVolunteer';
 
 
-export class Header extends Component {
+
+export class HeaderVolunteer extends Component {
     
     componentDidMount() {
         window.addEventListener('scroll', this.isSticky);
@@ -58,8 +58,8 @@ export class Header extends Component {
                                         <div className="border-box-block">
                                             <div className=" d-flex align-items-center justify-content-between">
                                                 {/* menu */}
-                                                <Menu/>
-                                                <div className="mobile-menu"><Mobile_menu/></div>
+                                                <MenuVolunteer/>
+                                                <div className="mobile-menu"><MobileMenuVolunteer/></div>
                                                 {/* menu end */}
                                                 <div className="header_extra ml-auto d-flex align-items-center">
                                                     {/* <Header_search/> */}
@@ -85,10 +85,39 @@ export class Header extends Component {
                     </div>
                 </div>
                 {/* site-header-menu end */}
+                <div className="serach_bar bg-theme-SkinColor pt-20">
+                    <div className="container">
+                        <form id="b_search_Form" className="b_search_Form wrap-form d-block" method="post" action="#" data-mailchimp="true">
+                            <div className="row row-equal-height ttm-boxes-spacing-20px">
+                            <div className="col-md">
+                                <label>
+                                    <input type="text" id="keywords" placeholder="Keywords (e.g. Job Title)"/>
+                                </label>
+                            </div>
+                            <div className="col-md">
+                                <label>
+                                    <input type="text" id="locations" placeholder="Locations (e.g. City, Counter)"/>
+                                </label>
+                            </div>
+                            <div className="col-md">
+                                <label>
+                                    <input type="text" id="industry" placeholder="Industry (e.g. Design, Art)"/>
+                                </label>
+                            </div>
+                            <div className="col-lg-2">
+                                <label>
+                                    <button className="submit ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-fill 
+                                    ttm-btn-color-grey" type="submit">Search</button>
+                                </label>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </header> 
             
         )
     }
 }
 
-export default Header;
+export default HeaderVolunteer;

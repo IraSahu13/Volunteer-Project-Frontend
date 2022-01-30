@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
 
-export class Menu extends Component {
+export class MenuEmployer extends Component {
     state = {
             show: false,
     }
@@ -28,7 +28,7 @@ export class Menu extends Component {
                             </ul> */}
                         {/* </li> */}
                         {/* <li className="mega-menu-item"> */}
-                        <Link className="alert-heading ml-10" exact to={'/job_list'} >Opportunities</Link>
+                        {/* <Link className="alert-heading ml-10" to='/job_list' >Opportunities</Link> */}
                             {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/job_list'}>Job List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/job_details'}>Job Details</a></li>
@@ -64,4 +64,4 @@ export class Menu extends Component {
     }
 }
 
-export default Menu;
+export default MenuEmployer;

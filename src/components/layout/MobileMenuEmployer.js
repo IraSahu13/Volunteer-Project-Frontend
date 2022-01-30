@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
 
-class Mobile_menu extends Component {
+class MobileMenuEmployer extends Component {
   state = {
     collapse1: false,
     collapseID: ''
@@ -64,16 +64,16 @@ class Mobile_menu extends Component {
                     {/* </MDBDropdown> */}
 
                 </MDBNavItem> 
-                <MDBNavItem className="mb-3">
+                {/* <MDBNavItem className="mb-3">
                   <MDBDropdown href={'/jobs_list'}>
-                   <Link className="ml-10 pl-0.5 pb-1" exact to={'/job_list'}>Opportunities</Link>
-                      {/* <MDBDropdownToggle nav caret>Jobs</MDBDropdownToggle>
+                   <a className="ml-10 pl-0.5 pb-1" href={'/job_list'}>Opportunities</a>
+                      <MDBDropdownToggle nav caret>Jobs</MDBDropdownToggle>
                       <MDBDropdownMenu>
                         <MDBDropdownItem href={process.env.PUBLIC_URL + '/job_list'}>Job List</MDBDropdownItem>
                         <MDBDropdownItem href={process.env.PUBLIC_URL + '/job_details'}>Job Details</MDBDropdownItem>
-                    </MDBDropdownMenu> */}
+                    </MDBDropdownMenu>
                   </MDBDropdown>
-                </MDBNavItem>
+                </MDBNavItem> */}
                 <MDBNavItem className="mb-4">
                 <Link className="ml-10 pl-0.5 pb-1 mb-4" exact to={'/candidate_list'}>Volunteer/Intern</Link>
                     {/* <MDBDropdown>
@@ -111,4 +111,4 @@ class Mobile_menu extends Component {
   }
 }
 
-export default Mobile_menu;
+export default MobileMenuEmployer;
