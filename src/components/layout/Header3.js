@@ -113,10 +113,10 @@ export class Header extends Component {
                                             <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border
                                             ttm-icon-btn-left ttm-btn-color-grey text-theme-DarkColor d-flex align-items-center">
                                                 {(!this.token) ? <>
-                                                    <i className="far fa-user fa-sm text-theme-DarkColor"></i><Link to='/signup'>Sign Up </Link>
+                                                    <i className="far fa-user fa-sm text-theme-DarkColor"></i><Link exact to={'/signup'}>Sign Up </Link>
                                                     <span className="ml-10 mr-10 alert-heading">/</span>
-                                                    <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link to='/login'>Login </Link></> : 
-                                                    <><i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link to='/login' onClick={()=>{
+                                                    <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/login'}>Login </Link></> : 
+                                                    <><i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
                                                         localStorage.removeItem("token");
                                                         localStorage.removeItem("status");
                                                         window.location.reload();
