@@ -25,13 +25,13 @@ const Login = () => {
                 localStorage.setItem("status",res.data.status);
                 history.push('/');
                 // window.location.reload();
-        }).catch((e) => {
-            console.log(e.response);
-            setInterval(() => {
-                
-            }, 5000);
-        })
-    }
+            }).catch((e) => {
+                console.log(e.response);
+                setInterval(() => {
+                    
+                }, 5000);
+            })
+        }
     }
     const EmployerLogin = async (e) => {
         if(companyemail===""){
@@ -42,6 +42,7 @@ const Login = () => {
         Promise.resolve(login({ email: companyemail , password: companypass , status: "company"})).then(res => {
             console.log(res);
             localStorage.setItem("token",res.data.token)
+            localStorage.setItem("status",res.data.status);
             history.push('/');
             // window.location.reload();
         }).catch((e) => {

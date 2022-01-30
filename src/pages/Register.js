@@ -42,7 +42,8 @@ const Register = () => {
                     phoneNumber: userphone
                 })).then(res => {
                 console.log(res);
-                localStorage.setItem("token",res.data.token)
+                localStorage.setItem("token",res.data.token);
+                localStorage.setItem("status",res.data.status);
                 history.push("/");
                 window.location.reload();
             }).catch((e) => {
@@ -80,7 +81,8 @@ const Register = () => {
                     phoneNumber: companyphone
                 })).then(res => {
                 console.log(res);
-                localStorage.setItem("token",res.data.token)
+                localStorage.setItem("token",res.data.token);
+                localStorage.setItem("status",res.data.status);
                 history.push("/");
                 window.location.reload();
             }).catch((e) => {
