@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import Menu from './Menu';
-import Mobile_menu from './Mobile_menu';
+import MenuEmployer from './MenuEmployer';
 import Logo from './Logo'
-import Header_search from './Header_search'
+import MobileMenuEmployer from './MobileMenuEmployer';
 
 
-export class Header extends Component {
+export class HeaderEmployer extends Component {
     
     componentDidMount() {
         window.addEventListener('scroll', this.isSticky);
@@ -58,8 +57,8 @@ export class Header extends Component {
                                         <div className="border-box-block">
                                             <div className=" d-flex align-items-center justify-content-between">
                                                 {/* menu */}
-                                                <Menu/>
-                                                <div className="mobile-menu"><Mobile_menu/></div>
+                                                <MenuEmployer/>
+                                                <div className="mobile-menu"><MobileMenuEmployer/></div>
                                                 {/* menu end */}
                                                 <div className="header_extra ml-auto d-flex align-items-center">
                                                     {/* <Header_search/> */}
@@ -91,4 +90,4 @@ export class Header extends Component {
     }
 }
 
-export default Header;
+export default HeaderEmployer;

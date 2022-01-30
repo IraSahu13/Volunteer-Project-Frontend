@@ -102,7 +102,7 @@ export class Employers_list extends Component {
                                             </div>
                                         </form>
                                     </aside>
-                                    <aside className="widget job-widget">
+                                    {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
                                         <form id="list4" onSubmit={this.formSubmit} className="list-filter">
                                             <div onChange={this.onChangeValue} >
@@ -114,7 +114,7 @@ export class Employers_list extends Component {
                                                 </label>
                                             </div>
                                         </form>
-                                    </aside>
+                                    </aside> */}
                                 </div>
                                 <aside className="widget widget-download">
                                     <ul className="download">

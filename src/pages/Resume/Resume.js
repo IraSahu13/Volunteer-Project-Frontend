@@ -234,7 +234,13 @@ export class Resume extends Component {
         );
       case 2:
         return (
-          <div className="App mt-3">
+          <>
+           <Header />
+           <PageHeader
+            title="Resume"
+            breadcrumb="education"
+           />
+           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center">
               <Education
                 nextStep={this.nextStep}
@@ -243,10 +249,18 @@ export class Resume extends Component {
                 values={values}
               />
             </div>
-          </div>
+           </div>
+           <Footer />
+         </>
         );
       case 3:
         return (
+          <>
+           <Header />
+           <PageHeader
+            title="Resume"
+            breadcrumb="projects"
+           />
           <div className="App mt-3">
             <div className="container col-lg-8 mx-auto text-center">
               <Projects
@@ -257,9 +271,17 @@ export class Resume extends Component {
               />
             </div>
           </div>
+          <Footer />
+         </>
         );
       case 4:
         return (
+          <>
+           <Header />
+           <PageHeader
+            title="Resume"
+            breadcrumb="experience"
+           />
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center">
               <Experience
@@ -270,10 +292,18 @@ export class Resume extends Component {
               />
             </div>
           </div>
+          <Footer />
+         </>
         );
       case 5:
         return (
-          <div className="App mt-3">
+          <>
+           <Header />
+           <PageHeader
+            title="Resume"
+            breadcrumb="skills"
+           />
+           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center">
               <Extras
                 prevStep={this.prevStep}
@@ -281,7 +311,9 @@ export class Resume extends Component {
                 values={values}
               />
             </div>
-          </div>
+           </div>
+          <Footer />
+         </>
          
         );
       default: return <div/>;

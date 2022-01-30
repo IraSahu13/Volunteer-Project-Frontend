@@ -1,3 +1,4 @@
+import { Link } from '@material-ui/core';
 import React from 'react';
 
 const PageHeader = ({title,content,breadcrumb,className}) => {
@@ -12,7 +13,7 @@ const PageHeader = ({title,content,breadcrumb,className}) => {
                                     <h2>{title}</h2>
                                     <div>{content}</div>
                                     <div className="breadcrumb-wrapper">
-                                        <span><a href={'/'} title="Homepage"><i className="ti ti-home" />&nbsp;&nbsp;Home</a></span>
+                                        <span><Link exact to={'/'} title="Homepage"><i className="ti ti-home" />&nbsp;&nbsp;Home</Link></span>
                                         <span className="bread-sep">&nbsp;/&nbsp;</span>                                        
                                         {breadcrumb}
                                     </div>

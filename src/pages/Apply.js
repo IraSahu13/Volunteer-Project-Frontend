@@ -37,7 +37,7 @@ function Apply() {
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className=""></i>
-                                                                        <input type="text" id="description" placeholder="Why you should get Hired?"/>
+                                                                        <input type="text" id="description" placeholder="Why you should get selected?"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">

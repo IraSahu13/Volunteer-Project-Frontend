@@ -62,11 +62,11 @@ class Experience extends Component {
 
     return (
     <>
-      <Header />
+      {/* <Header />
       <PageHeader 
           title= "Resume"
           breadcrumb="experience"
-      />
+      /> */}
       <Paper className={classes.padding}>
         <Card>
           <CardHeader title="Experience Details" />
@@ -295,7 +295,7 @@ class Experience extends Component {
         </Container>
         <p className="text-center text-muted">Page 4</p>
       </Paper>
-      <Footer />
+      {/* <Footer /> */}
     </>
     );
   }

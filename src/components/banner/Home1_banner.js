@@ -107,7 +107,7 @@ export class Banner extends Component {
                                         <div className="col-lg-3">
                                           <label>
                                               <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill 
-                                              ttm-btn-color-skincolor" type="submit">Find Jobs</button>
+                                              ttm-btn-color-skincolor" type="submit">Find Work/Project</button>
                                           </label>
                                         </div>
                                       </div>

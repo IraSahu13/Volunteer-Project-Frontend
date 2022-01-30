@@ -60,12 +60,12 @@ class Projects extends Component {
 
     return (
     <>
-        <Header />
+        {/* <Header />
         <PageHeader 
             title= "Resume"
             breadcrumb= "project"
         />
-    
+     */}
       <Paper className={classes.padding}>
         <Card>
           <CardHeader title="Projects Developed" />
@@ -294,7 +294,7 @@ class Projects extends Component {
         </Container>
         <p className="text-center text-muted">Page 3</p>
       </Paper>
-      <Footer />
+      {/* <Footer /> */}
     </>
     );
   }

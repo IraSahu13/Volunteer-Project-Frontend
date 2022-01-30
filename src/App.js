@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './css/vendor/flaticon.css';
@@ -9,7 +9,7 @@ import './css/vendor/themify-icons.css';
 import Home from './pages/Home';
 import Home2 from './pages/Home2';
 import Home3 from './pages/Home3';
-
+import Function from './pages/Function'
 import About_us from './pages/About_us';
 import Services from './pages/Services';
 import Services_details from './pages/Services_details';
@@ -34,6 +34,10 @@ import Resume from './pages/Resume/Resume';
 import ScrollToTop from './components/layout/Gotop';
 import Apply from './pages/Apply';
 import PasswordResetForm from './pages/PasswordResetForm';
+import Field from './pages/Field';
+import HomeVolunteer from './pages/HomeVolunteer';
+import HomeEmployer from './pages/HomeEmployer';
+import { history } from './history';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.params = {};
@@ -43,9 +47,11 @@ function App() {
  
   return (
     <div className="page">
-      <Router> 
-        
+      <Router history={history}>
+       <Switch> 
         <Route exact path={`/`} component={ Home2 } />
+        <Route exact path={`/homevolunteer`} component={ HomeVolunteer } />
+        <Route exact path={`/homeemployer`} component={ HomeEmployer } />
         {/* <Route exact path={`${process.env.PUBLIC_URL + '/Home2'}`} component={ Home2 } /> 
         <Route exact path={`${process.env.PUBLIC_URL + '/Home3'}`} component={ Home3 } />  */}
 
@@ -70,8 +76,10 @@ function App() {
         <Route exact path={`/signup`} component={ Register } />
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
+        <Route exact path={`/field`} component={ Function } />
         <Route exact path={'/passreset'} component={PasswordResetForm} />
         <ScrollToTop />
+        </Switch>
       </Router>
     </div>
   );
