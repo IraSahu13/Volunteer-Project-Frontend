@@ -43,8 +43,8 @@ const Register = () => {
                 })).then(res => {
                 console.log(res);
                 localStorage.setItem("token",res.data.token)
-                // history.push("/");
-                // window.location.reload();
+                history.push("/");
+                window.location.reload();
             }).catch((e) => {
                 console.log(e.response);
                 setTimeout(() => {
@@ -81,8 +81,8 @@ const Register = () => {
                 })).then(res => {
                 console.log(res);
                 localStorage.setItem("token",res.data.token)
-                // history.push("/");
-                // window.location.reload();
+                history.push("/");
+                window.location.reload();
             }).catch((e) => {
                 console.log(e.response);
                 setTimeout(() => {

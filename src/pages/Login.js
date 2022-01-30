@@ -3,33 +3,47 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { userLogin } from '../api';
-import { Link } from 'react-router-dom';
+import { login } from '../api';
+import { Link, useHistory } from 'react-router-dom';
 
 const Login = () => {
-    const [candidateOn, setCandidateOn]= useState(false);
-    const [employerOn, setEmployerOn]= useState(false);
+
+    const [useremail, setuseremail] = useState("");
+    const [userpass, setuserpass] = useState("");
+
+    const [companyemail, setcompanyemail] = useState("");
+    const [companypass, setcompanypass] = useState("");
+
+    const history = useHistory();
     const CandidateLogin = async (e) => {
-        e.preventDefault();
-        setCandidateOn(true);
-        console.log("response");
-        Promise.resolve(userLogin({ name : "Ira Sahu", email: "email@gmail.com" , password: "password" , status: "user"})).then(res => {
-            localStorage.setItem("token",res.data.token)
+        if(useremail!==""){
             
+            e.preventDefault();
+            Promise.resolve(login({ email: useremail , password: userpass , status: "user"})).then(res => {
+                console.log(res);
+                localStorage.setItem("token",res.data.token);
+                localStorage.setItem("status",res.data.status);
+                history.push('/');
+                // window.location.reload();
         }).catch((e) => {
             console.log(e.response);
             setInterval(() => {
-               
-              }, 5000);
+                
+            }, 5000);
         })
     }
+    }
     const EmployerLogin = async (e) => {
+        if(companyemail===""){
+            return ;
+        }
         e.preventDefault();
-        setEmployerOn(true);
         console.log("response");
-        Promise.resolve(userLogin({ name : "Ira Sahu", email: "email@gmail.com" , password: "password" , status: "user"})).then(res => {
+        Promise.resolve(login({ email: companyemail , password: companypass , status: "company"})).then(res => {
+            console.log(res);
             localStorage.setItem("token",res.data.token)
-            
+            history.push('/');
+            // window.location.reload();
         }).catch((e) => {
             console.log(e.response);
             setInterval(() => {
@@ -85,13 +99,17 @@ const Login = () => {
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
-                                                                        <input type="email" id="txtemail" placeholder="Email Address" />
+                                                                        <input value={useremail} onChange={(e)=>{
+                                                                            setuseremail(e.target.value)
+                                                                        }} type="email" id="txtemail" placeholder="Email Address" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input type="password" id="password" placeholder="Password"/>
+                                                                        <input value={userpass} onChange={(e)=>{
+                                                                            setuserpass(e.target.value)
+                                                                        }} type="password" id="password" placeholder="Password"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
@@ -99,14 +117,14 @@ const Login = () => {
                                                                         <div className="forgot-pwd text-center mt-5">
                                                                             <p><a href="#" className="text-theme-SkinColor">Forgot Password?</a></p>
                                                                             <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
-                                                                            <span>Remember Password</span>
+                                                                            <span>Remember Me for a month</span>
                                                                             <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor">Sign Up here</Link></p>
                                                                         </div>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-6 mx-auto">
                                                                     <label className="mb-0">
-                                                                        <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" type="submit" onClick={CandidateLogin}>Sign in</button>
+                                                                        <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" type="submit" onClick={CandidateLogin}>Login</button>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -118,13 +136,17 @@ const Login = () => {
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
-                                                                        <input type="email" id="txtemail" placeholder="Email Address" />
+                                                                        <input value={companyemail} onChange={(e)=>{
+                                                                            setcompanyemail(e.target.value)
+                                                                        }} type="email" id="txtemail" placeholder="Email Address" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input type="password" id="password" placeholder="Password"/>
+                                                                        <input value={companypass} onChange={(e)=>{
+                                                                            setcompanypass(e.target.value)
+                                                                        }} type="password" id="password" placeholder="Password"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
@@ -132,7 +154,7 @@ const Login = () => {
                                                                         <div className="forgot-pwd text-center mt-5">
                                                                             <p><a href="#" className="text-theme-SkinColor">Forgot Password?</a></p>
                                                                             <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
-                                                                            <span>Remember Me</span>
+                                                                            <span>Remember me for a month</span>
                                                                             <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor">Sign Up here</Link></p>
                                                                         </div>
                                                                     </label>
