@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/layout/Header';
 import PageHeader from '../components/layout/PageHeader';
 import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { jobApply } from '../api';
 
 function Apply() {
+
+    const [question, setquestion] = useState('');
+    const [title, settitle] = useState('');
+
+    const handleSubmit= async (e)=>{
+        e.preventDefault();
+        Promise.resolve(jobApply({title: title, question: question})).then((res)=>{
+            console.log(res);
+            setquestion("")
+            settitle("")
+        }).catch((e)=>{
+            console.log(e);
+        })
+    }
   return (
      <>
         <Header /> 
@@ -31,13 +46,17 @@ function Apply() {
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className=""></i>
-                                                                        <input type="text" id="title_apply" placeholder="Title" />
+                                                                        <input type="text" value={title} onChange={(e)=>{
+                                                                            settitle(e.target.value)
+                                                                        }} id="title_apply" placeholder="Title" />
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <i className=""></i>
-                                                                        <input type="text" id="description" placeholder="Why you should get selected?"/>
+                                                                        <input type="text" value={question} onChange={(e)=>{
+                                                                            setquestion(e.target.value)
+                                                                        }} id="description" placeholder="Why you should get selected?"/>
                                                                     </label>
                                                                 </div>
                                                                 <div className="col-lg-12">
@@ -66,7 +85,7 @@ function Apply() {
                                                                 </div>
                                                                 <div className="col-lg-6 mx-auto">
                                                                     <label className="mb-0">
-                                                                        <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" type="submit" >Apply</button>
+                                                                        <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" type="submit" onClick={handleSubmit}>Apply</button>
                                                                     </label>
                                                                 </div>
                                                             </div>
