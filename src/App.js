@@ -38,6 +38,7 @@ import Field from './pages/Field';
 import HomeVolunteer from './pages/HomeVolunteer';
 import HomeEmployer from './pages/HomeEmployer';
 import { history } from './history';
+import PostJob from './pages/PostJob.js/PostJob';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.params = {};
@@ -76,7 +77,7 @@ function App() {
         <Route exact path={`/signup`} component={ Register } />
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
-        <Route exact path={`/field`} component={ Function } />
+        <Route exact path={`/field`} component={ PostJob } />
         <Route exact path={'/passreset'} component={PasswordResetForm} />
         <ScrollToTop />
         </Switch>
