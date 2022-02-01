@@ -1,22 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
+import { getIntern } from '../api';
 
 
-export class Job_details extends Component {
+const Job_details = () => {
 
-    constructor(props) {
-        super(props);
-     
-        this.state = {
-          photoIndex: 0,
-          isOpen: false,
-        };
-    }
-    render() {
+    const [intern, setIntern] = useState([]);
+    const [company, setCompany] = useState([]);
+    useEffect(() => {
+        const url = localStorage.getItem("url")
+        Promise.resolve(getIntern(url)).then((res) => {
+            console.log(res);
+            setIntern(res.data.intern)
+            setCompany(res.data.company)
+        }).catch((e) => {
+            console.log(e);
+        })
+    }, [])
+
+    {
         var slick_slider = {
             dots: false,
             arrow: false,
@@ -28,7 +34,7 @@ export class Job_details extends Component {
             rows: 1,
 
             responsive: [{
-        
+
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
@@ -47,9 +53,9 @@ export class Job_details extends Component {
         return (
 
             <div className="site-main">
-                <Header/>
-            
-                {/* PageHeader */} 
+                <Header />
+
+                {/* PageHeader */}
                 <PageHeader
                     title="job details"
                     breadcrumb="job"
@@ -66,14 +72,15 @@ export class Job_details extends Component {
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Job Informations</h3>
                                         <ul>
-                                            <li className="d-flex"><b className="mr-5">Job Type:</b>Part Time</li>
-                                            <li className="d-flex"><b className="mr-5">Location:</b>California</li>
-                                            <li className="d-flex"><b className="mr-5">Offered Salary:</b>$22k - $34k</li>
-                                            <li className="d-flex"><b className="mr-5">Posted:</b>1 Week Ago</li>
-                                            <li className="d-flex"><b className="mr-5">Experience:</b>3 Years</li>
-                                            <li className="d-flex"><b className="mr-5">Industry:</b>Design</li>
-                                            <li className="d-flex"><b className="mr-5">Qualification:</b>Associate Degree</li>
-                                            <li className="d-flex"><b className="mr-5">position:</b>2</li>
+                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.jobType}</li>
+                                            <li className="d-flex"><b className="mr-5">Location:</b>{intern.location}</li>
+                                            <li className="d-flex"><b className="mr-5">Offered Salary:</b>{intern.stipend}</li>
+                                            <li className="d-flex"><b className="mr-5">Posted on:</b> {intern.createdAt?.substr(0, 10)}</li>
+                                            <li className="d-flex"><b className="mr-5">Experience:</b>{intern.experienceNeeded}</li>
+                                            <li className="d-flex"><b className="mr-5">Category:</b>{intern.category}</li>
+                                            <li className="d-flex"><b className="mr-5">Qualification:</b>{intern.qualificationNeeded}</li>
+                                            <li className="d-flex"><b className="mr-5">position:</b>{intern.position}</li>
+                                            <li className="d-flex"><b className="mr-5">no. of candidates hired:</b>{intern.users?.length}</li>
                                         </ul>
                                     </aside>
                                     <aside className="widget form-widget">
@@ -116,18 +123,18 @@ export class Job_details extends Component {
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3><Link a='/job_details'>Vacancy For the Charted Account</Link></h3>
+                                                    <h3><Link a='/job_details'>{intern.name}</Link></h3>
                                                 </div>
                                                 <div className="featured-desc">
-                                                    <p>Published 2Days Ago.</p>
+                                                    <p>Published on {intern.createdAt?.substr(0, 10)}</p>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>California</span>
-                                                        <span><i className="fa fa-filter"></i>Automotive Jobs</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>{company?.city}</span>
+                                                        <span><i className="fa fa-filter"></i>{company?.name}</span>
                                                     </div>
                                                     <div className="job-time">
-                                                        <span className="green">full time</span>
+                                                        <span className="green">{intern.jobType}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,12 +146,12 @@ export class Job_details extends Component {
                                                 <h5>Job Description :</h5>
                                             </div>
                                             <div className="desc">
-                                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                                     labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra 
-                                                     maecenas accumsan lacus vel facilisis. ”</p>
-                                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                                     labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra 
-                                                     maecenas accumsan lacus vel facilisis. ”</p>
+                                                {(intern.description) ? <p>{intern.description}</p> : <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                    labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                    maecenas accumsan lacus vel facilisis.
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                    labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                    maecenas accumsan lacus vel facilisis. ”</p>}
                                             </div>
                                         </div>
                                         <div className="overview-box">
@@ -153,26 +160,13 @@ export class Job_details extends Component {
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have at least 3 years’ experience working as a Product Designer.</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have experience using Sketch and InVision or Framer X</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You are familiar using Jira and Confluence in your workflow</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have some previous experience working in an agile environment </div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You are familiar using Jira and Confluence in your workflow</div>
-                                                    </li>
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have at least 3 years’ experience working as a Product Designer.</div>
-                                                    </li>
+                                                    {(intern.qualificationNeeded?.length===0 && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.qualificationNeeded?.map((data) => (
+                                                        <li>
+                                                            <i className="ti ti-check-box"></i>
+                                                            <div className="ttm-list-li-content">{data}</div>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
@@ -182,37 +176,24 @@ export class Job_details extends Component {
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">HTML, CSS & Scss</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Javascript</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">PHP</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Photoshop</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Illustrator</div>
-                                                    </li>
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Wordpress & elementor</div>
-                                                    </li>
+                                                {(intern.skillsNeeded?.length===0 && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.skillsNeeded?.map((data) => (
+                                                        <li>
+                                                            <i className="ti ti-check-box"></i>
+                                                            <div className="ttm-list-li-content">{data}</div>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
                                         <div className="justify-center mt-20 mb-60">
-                                           <div className="col-lg-12">
+                                            <div className="col-lg-12">
                                                 <label className="mb-0">
-                                                    <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
-                                                        ><a href={'/apply'}>Apply</a></button>
+                                                    <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                    ><a href={'/apply'}>Apply</a></button>
                                                 </label>
                                             </div>
-                                           </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -351,8 +332,8 @@ export class Job_details extends Component {
                                             </div>
                                         </div>
                                     </div>{/* featured-icon-box end */}
-                                    <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white" 
-                                    href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
+                                    <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white"
+                                        href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
                                 </div>
                             </div>
                         </div>
@@ -360,9 +341,9 @@ export class Job_details extends Component {
                 </section>
                 {/* action-section end */}
 
-                
-            <Footer/>
-                        
+
+                <Footer />
+
             </div>
         )
     }

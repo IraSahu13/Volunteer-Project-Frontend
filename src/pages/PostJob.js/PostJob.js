@@ -83,6 +83,7 @@ export class PostJob extends Component {
   };
 
   handleChange = ({target: {value, name}}) => {
+    console.log(value);
     this.setState ({[name]: value});
   };
 
@@ -208,6 +209,7 @@ export class PostJob extends Component {
       interest5,
       interest6,
     };
+    // console.log(company);
     switch (step) {
       case 1:
         return (

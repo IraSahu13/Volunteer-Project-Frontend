@@ -36,7 +36,7 @@ class Profile extends Component {
     return (
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Jod Details" />
+          <CardHeader title="Job Details" />
         </Card>
         <CardContent>
           <div className={classes.margin}>

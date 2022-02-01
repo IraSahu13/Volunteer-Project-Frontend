@@ -65,7 +65,7 @@ function App() {
         <Route exact path={`${process.env.PUBLIC_URL + '/Contact_01'}`} component={ Contact_01 } />
         <Route exact path={`${process.env.PUBLIC_URL + '/Contact_02'}`} component={ Contact_02 } /> */}
         <Route exact path={`/job_list`} component={ Job_list } />
-        <Route exact path={`/job_details`} component={ Job_details } />
+        <Route path={`/job_details`} component={ Job_details } />
         {/* <Route exact path={`${process.env.PUBLIC_URL + '/Carrer_01'}`} component={ Carrer_01 } />
         <Route exact path={`${process.env.PUBLIC_URL + '/Error_404'}`} component={ Error_404 } />
         <Route exact path={`${process.env.PUBLIC_URL + '/Error_405'}`} component={ Error_405 } />
@@ -77,7 +77,7 @@ function App() {
         <Route exact path={`/signup`} component={ Register } />
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
-        <Route exact path={`/field`} component={ PostJob } />
+        <Route exact path={`/post_job`} component={ PostJob } />
         <Route exact path={'/passreset'} component={PasswordResetForm} />
         <ScrollToTop />
         </Switch>

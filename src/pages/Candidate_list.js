@@ -4,7 +4,7 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
 import { allApplicants } from '../api';
-
+import { CircularProgress } from '@material-ui/core';
 
 const Candidate_list = () => {
 
@@ -13,7 +13,7 @@ const Candidate_list = () => {
     const [allcandidates, setallcandidates] = useState([]);
     useEffect(() => {
         Promise.resolve(allApplicants()).then((res) => {
-            // console.log(res.data);
+            console.log(res.data);
             setallcandidates(res.data)
         }).catch((e) => {
             console.log(e);
@@ -143,7 +143,37 @@ const Candidate_list = () => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                {allcandidates.map((user) => (
+
+                                    {allcandidates.map((user) => (
+                                        (user) ? <div className="col-lg-12">
+                                            <div className="featured-imagebox featured-imagebox-candidate">
+                                                <div className="featured-thumbnail">
+                                                    <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
+                                                </div>
+                                                <div className="featured-content">
+                                                    <div className="featured-title">
+                                                        <h3>{(user) && user.name}</h3>
+                                                    </div>
+                                                    <div className="featured-bottom">
+                                                        <div className="job-skill">
+                                                            {(user) && user.skills.map(skill => (
+                                                                <span className="skill-tag">{(user) && skill}</span>
+                                                            ))}
+                                                        </div>
+                                                        <div className="job-meta">
+                                                            <span><i className="fa fa-map-marker-alt"></i>{(user) && user.city}</span>
+                                                        </div>
+                                                        <div className="view-block">
+                                                            <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                    ttm-btn-color-dark"
+                                                                href={'/candidate_details'}>view Profile</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> : <div><CircularProgress/></div>
+                                    ))}
+                                    
                                     <div className="col-lg-12">
                                         <div className="featured-imagebox featured-imagebox-candidate">
                                             <div className="featured-thumbnail">
@@ -151,65 +181,37 @@ const Candidate_list = () => {
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3>{user.name}</h3>
+                                                    <h3>Rafael Briggs</h3>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-skill">
-                                                        {user.skills.map(skill => (
-                                                            <span className="skill-tag">{skill}</span>
-                                                        ))}
+                                                        <span className="skill-tag">bootstrap</span>
+                                                        <span className="skill-tag">JavaScript</span>
                                                     </div>
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>{user.city}</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
+                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
                                                     </div>
                                                     <div className="view-block">
                                                         <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
-                                                            href={'/candidate_details'}>view Profile</a>
+                                                            href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                                <div className="col-lg-12">
-                                    <div className="featured-imagebox featured-imagebox-candidate">
-                                        <div className="featured-thumbnail">
-                                            <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
-                                        </div>
-                                        <div className="featured-content">
-                                            <div className="featured-title">
-                                                <h3>Rafael Briggs</h3>
-                                            </div>
-                                            <div className="featured-bottom">
-                                                <div className="job-skill">
-                                                    <span className="skill-tag">bootstrap</span>
-                                                    <span className="skill-tag">JavaScript</span>
-                                                </div>
-                                                <div className="job-meta">
-                                                    <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                    <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
-                                                </div>
-                                                <div className="view-block">
-                                                    <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark"
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
-                                                </div>
-                                            </div>
+                                    <div className="col-lg-12">
+                                        <div className="job-pagination-block">
+                                            <a className="page-nav-link">prev</a>
+                                            <a className="page-nav-link current">1</a>
+                                            <a className="page-nav-link" href="#">2</a>
+                                            <a className="page-nav-link" href="#">3</a>
+                                            <a className="page-nav-link" href="#">....</a>
+                                            <a className="page-nav-link">next</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-12">
-                                    <div className="job-pagination-block">
-                                        <a className="page-nav-link">prev</a>
-                                        <a className="page-nav-link current">1</a>
-                                        <a className="page-nav-link" href="#">2</a>
-                                        <a className="page-nav-link" href="#">3</a>
-                                        <a className="page-nav-link" href="#">....</a>
-                                        <a className="page-nav-link">next</a>
-                                    </div>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>{/* row end */}

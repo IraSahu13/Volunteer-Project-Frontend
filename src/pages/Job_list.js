@@ -4,16 +4,18 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
 import { allInterns } from '../api';
+import { CircularProgress } from '@material-ui/core';
 
 
 // export class Job_list extends Component {
 const Job_list = () => {
 
     const [AllInterns, setallInterns] = useState([]);
+    const [loading, setloading] = useState(true);
     useEffect(() => {
         Promise.resolve(allInterns()).then((res) => {
-            // console.log(res.data);
             setallInterns(res.data)
+            setloading(false);
         }).catch((e) => {
             console.log(e);
         })
@@ -222,6 +224,9 @@ const Job_list = () => {
                                 </div>
                             </div>
                             <div className="row">
+                                {
+                                    (loading) && <CircularProgress/>
+                                }
                                 {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
                                 {
                                     AllInterns.map((intern) => (
@@ -229,19 +234,22 @@ const Job_list = () => {
                                             <div className="flex featured-imagebox featured-imagebox-job bg-theme-GreyColor">
                                                 <div className="featured-content">
                                                     <div className="featured-title">
-                                                        <h3><Link to='/job_details'>{intern.name}</Link></h3>
+                                                        <h3><Link onClick={()=>{
+                                                            localStorage.setItem("url", intern._id)
+                                                        }} to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
                                                     </div>
                                                     <div className="featured-desc">
                                                         <p>{intern.duration}</p>
+                                                        <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
                                                     </div>
                                                     <div className="featured-bottom">
                                                         <div className="job-meta">
                                                             <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
-                                                            <span><i className="fa fa-filter"></i>Automotive Jobs</span>
+                                                            <span><i className="fa fa-filter"></i>Company Name</span>
                                                         </div>
-                                                        <div className="job-time">
-                                                            <span className="green">full time</span>
-                                                        </div>
+                                                        {intern?.jobType && <div className="job-time">
+                                                            <span className="green">{intern.jobType}</span>
+                                                        </div>}
                                                     </div>
                                                 </div>
 
