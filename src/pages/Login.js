@@ -3,11 +3,13 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { login, useFormFields } from '../api';
+import { login} from '../api';
 import { Link, useHistory } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
 import { Box, Button, Modal, TextField, Typography } from '@material-ui/core';
+import { useForm } from 'use-form-fields';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -21,7 +23,7 @@ const style = {
     p: 4,
   };
 const Login = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -170,8 +172,8 @@ const Login = () => {
                                                                                     label="Email"
                                                                                     style={{width: '80%', marginTop:'10%'}}
                                                                                     required
-                                                                                    value={fields.email}
-                                                                                    onChange={handleFieldChange}
+                                                                                    // value={fields.email}
+                                                                                    // onChange={handleFieldChange}
                                                                                   />
                                                                                   <TextField
                                                                                     margin="dense"
@@ -180,8 +182,8 @@ const Login = () => {
                                                                                     label="New Password"
                                                                                     style={{width: '80%'}}
                                                                                     required
-                                                                                    // value={values.company}
-                                                                                    // onChange={this.props.handleChange}
+                                                                                    // value={fields.password}
+                                                                                    // onChange={handleFieldChange}
                                                                                   />
                                                                                   <TextField
                                                                                     margin="dense"
@@ -190,11 +192,11 @@ const Login = () => {
                                                                                     label="Confirm Password"
                                                                                     style={{width: '80%'}}
                                                                                     required
-                                                                                    // value={values.company}
-                                                                                    // onChange={this.props.handleChange}
+                                                                                    // value={fields.confirmPassword}
+                                                                                    // onChange={handleFieldChange}
                                                                                   />
                                                                                   <div className="justify-center mt-2">
-                                                                                     <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor">Submit</button>
+                                                                                     <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" onClick={handleClose}>Submit</button>
                                                                                   </div>
                                                                               </Box>
                                                                             </Modal>
@@ -251,8 +253,8 @@ const Login = () => {
                                                                                     label="Email"
                                                                                     style={{width: '80%', marginTop:'10%'}}
                                                                                     required
-                                                                                    // value={values.company}
-                                                                                    // onChange={this.props.handleChange}
+                                                                                    // value={fields.email}
+                                                                                    // onChange={handleFieldChange}
                                                                                   />
                                                                                   <TextField
                                                                                     margin="dense"
@@ -261,8 +263,8 @@ const Login = () => {
                                                                                     label="New Password"
                                                                                     style={{width: '80%'}}
                                                                                     required
-                                                                                    // value={values.company}
-                                                                                    // onChange={this.props.handleChange}
+                                                                                    // value={fields.password}
+                                                                                    // onChange={handleFieldChange}
                                                                                   />
                                                                                   <TextField
                                                                                     margin="dense"
@@ -271,11 +273,11 @@ const Login = () => {
                                                                                     label="Confirm Password"
                                                                                     style={{width: '80%'}}
                                                                                     required
-                                                                                    // value={values.company}
-                                                                                    // onChange={this.props.handleChange}
+                                                                                    // value={fields.confirmPassword}
+                                                                                    // onChange={handleFieldChange}
                                                                                   />
                                                                                   <div className="justify-center mt-2">
-                                                                                     <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor">Submit</button>
+                                                                                     <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" onClick={handleClose}>Submit</button>
                                                                                   </div>
                                                                               </Box>
                                                                             </Modal>

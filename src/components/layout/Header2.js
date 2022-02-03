@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Menu from './Menu';
+import Menu from './HeaderMenu';
 import Mobile_menu from './Mobile_menu';
 import Logo_white from './Logo_white'
 import Header_search from './Header_search'
@@ -110,9 +110,15 @@ export class Header extends Component {
                                             <a href={'/signup'} className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill
                                             ttm-icon-btn-left ttm-btn-color-skincolor d-flex align-items-center">
                                                 {(!this.token)?
-                                               <> <i className="far fa-user fa-sm"></i><Link className="alert-heading" to='/signup'>sign up </Link>
-                                                <span className="ml-10 mr-10">/</span> 
-                                            </>: 
+                                                    <div className="view-block">
+                                                      <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
+                                                        exact to={'/candidate_details'}>Contact</Link>
+                                                      <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark"
+                                                        exact to={'/candidate_details'}>view Profile</Link></span>
+                                                    
+                                                    </div>: 
                                             <>
                                             <i className="ti ti-lock fa-sm"></i><Link className="alert-heading" to='/login'
                                             onClick={()=>{

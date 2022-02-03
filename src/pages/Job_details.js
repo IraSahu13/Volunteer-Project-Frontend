@@ -6,6 +6,7 @@ import { Footer } from '../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
 import { getIntern } from '../api';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
+import ActionSection from '../components/layout/ActionSection';
 
 
 const Job_details = () => {
@@ -75,7 +76,7 @@ const Job_details = () => {
         const handleClose = () => setOpen(false);
         const [anchorEl, setAnchorEl] = useState(null);
         const [selectedIndex, setSelectedIndex] = useState(1);
-        const listOpen = Boolean('false');
+        const listOpen = Boolean(anchorEl);
         const handleClickListItem = (event) => {
             setAnchorEl(event.currentTarget);
         };
@@ -88,6 +89,9 @@ const Job_details = () => {
             setAnchorEl(null);
         };
 
+        const handleApply = (e) => {
+            console.log(e);
+        }
         return (
 
             <div className="site-main">
@@ -276,7 +280,7 @@ const Job_details = () => {
                                                                 <Menu
                                                                     id="lock-menu"
                                                                     anchorEl={anchorEl}
-                                                                    open={open}
+                                                                    open={listOpen}
                                                                     onClick={handleMenuClose}
                                                                     MenuListProps={{
                                                                         'aria-labelledby': 'lock-button',
@@ -298,6 +302,15 @@ const Job_details = () => {
                                                             <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
                                                             >Apply</button>
                                                             {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+
+                                                                  </Menu>
+                                                                </div>
+                                                                <button 
+                                                                type="submit"
+                                                                className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
+                                                                onClick={handleClose}
+                                                                 >Apply</button>
+                                                       {/* <Typography id="modal-modal-title" variant="h6" component="h2">
                                                          Text in a modal
                                                        </Typography>
                                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -425,34 +438,8 @@ const Job_details = () => {
 
 
                 {/* action-section */}
-                < section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix" >
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="d-md-flex align-items-center justify-content-between">
-                                    {/* featured-icon-box */}
-                                    <div className="featured-icon-box icon-align-before-content style2">
-                                        <div className="featured-icon">
-                                            <div className="ttm-icon ttm-icon_element-onlytxt ttm-icon_element-color-white ttm-icon_element-size-xl">
-                                                <i className="flaticon flaticon-recruitment-5"></i>
-                                            </div>
-                                        </div>
-                                        <div className="featured-content">
-                                            <div className="featured-title">
-                                                <h3>Incredible Recruitment & Staffing Agency</h3>
-                                            </div>
-                                            <div className="featured-desc">
-                                                <p>We have over 30 years experience oft Business porro qusquam dol ipsum quia dolor sit amet.</p>
-                                            </div>
-                                        </div>
-                                    </div>{/* featured-icon-box end */}
-                                    <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white"
-                                        href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section >
+
+                <ActionSection />
                 {/* action-section end */}
 
 

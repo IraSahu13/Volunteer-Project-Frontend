@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
 
 
-const Menu = () => {
+const HeaderMenu = () => {
 
     let status = localStorage.getItem("status");
     {
@@ -29,6 +29,7 @@ const Menu = () => {
                     {/* </li> */}
                     {/* <li className="mega-menu-item"> */}
                     {status==="user" && <Link className="alert-heading ml-40" exact to={'/job_list'}  >Opportunities</Link>}
+                    {status==="company" && <Link className="alert-heading ml-40" exact to={'/posted_field'}  >Posted Fields</Link>}
                     {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/job_list'}>Job List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/job_details'}>Job Details</a></li>
@@ -64,4 +65,4 @@ const Menu = () => {
     }
 }
 
-export default Menu;
+export default HeaderMenu;
