@@ -1,16 +1,12 @@
-import React, { Component, useState, useEffect } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { allApplicants } from '../api';
+import { Footer } from '../components/layout/Footer';
+import Header from '../components/layout/Header';
+import PageHeader from '../components/layout/PageHeader';
 
-
-const Candidate_list = () => {
-
-
-
-    const [allcandidates, setallcandidates] = useState([]);
+const Applications = () => {
+  const [allcandidates, setallcandidates] = useState([]);
     useEffect(() => {
         Promise.resolve(allApplicants()).then((res) => {
             // console.log(res.data);
@@ -26,8 +22,8 @@ const Candidate_list = () => {
 
             {/* PageHeader */}
             <PageHeader
-                title="Volunteers"
-                breadcrumb="volunteers"
+                title="Applicants"
+                breadcrumb="applicants"
             />
             {/* PageHeader end */}
 
@@ -163,10 +159,15 @@ const Candidate_list = () => {
                                                         <span><i className="fa fa-map-marker-alt"></i>{user.city}</span>
                                                     </div>
                                                     <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                      <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
+                                                        exact to={'/candidate_details'}>Contact</Link>
+                                                      <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
-                                                            href={'/candidate_details'}>view Profile</a>
+                                                        exact to={'/candidate_details'}>view Profile</Link></span>
+                                                    
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -191,10 +192,18 @@ const Candidate_list = () => {
                                                     <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
                                                 </div>
                                                 <div className="view-block">
-                                                    <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                    <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
+                                                        exact to={'/candidate_details'}>Contact</Link>
+                                                    <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
-                                                        href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
+                                                        exact to={'/candidate_details'}>view Profile</Link></span>
+                                                    
                                                 </div>
+                                                {/* <div >
+                                                    
+                                                    
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
@@ -219,6 +228,6 @@ const Candidate_list = () => {
 
         </div>
     )
-}
+};
 
-export default Candidate_list;
+export default Applications;

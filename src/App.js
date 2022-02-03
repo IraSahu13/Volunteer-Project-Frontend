@@ -34,12 +34,10 @@ import Resume from './pages/Resume/Resume';
 import ScrollToTop from './components/layout/Gotop';
 import Apply from './pages/Apply';
 import PasswordResetForm from './pages/PasswordResetForm';
-import Field from './pages/Field';
-import HomeVolunteer from './pages/HomeVolunteer';
-import HomeEmployer from './pages/HomeEmployer';
 import { history } from './history';
 import PostJob from './pages/PostJob.js/PostJob';
-import AccountMenu from './pages/xxx'
+import Posted_Jobs from './pages/Posted_Jobs';
+import Applications from './pages/Applicants';
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.params = {};
 
@@ -51,8 +49,7 @@ function App() {
       <Router history={history}>
        <Switch> 
         <Route exact path={`/`} component={ Home2 } />
-        <Route exact path={`/homevolunteer`} component={ HomeVolunteer } />
-        <Route exact path={`/homeemployer`} component={ HomeEmployer } />
+       
         {/* <Route exact path={`${process.env.PUBLIC_URL + '/Home2'}`} component={ Home2 } /> 
         <Route exact path={`${process.env.PUBLIC_URL + '/Home3'}`} component={ Home3 } />  */}
 
@@ -78,8 +75,8 @@ function App() {
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
         <Route exact path={`/field`} component={ PostJob } />
-        <Route exact path={'/passreset'} component={PasswordResetForm} />
-        <Route exact path={'/test'} component={AccountMenu} />
+        <Route exact path={'/applications'} component={Applications} />
+        <Route exact path={'/posted_field'} component={Posted_Jobs} />
         <ScrollToTop />
         </Switch>
       </Router>

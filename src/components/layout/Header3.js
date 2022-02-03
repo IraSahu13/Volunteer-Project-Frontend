@@ -1,13 +1,13 @@
 import React, { Component, useState } from 'react'
-import Menu from './Menu';
 import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'
 import { Link } from 'react-router-dom';
-import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip } from '@material-ui/core';
+import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip, Menu } from '@material-ui/core';
 import Logout from '@mui/icons-material/Logout';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
+import HeaderMenu from './HeaderMenu';
 
 const Header = () => {
 
@@ -26,7 +26,7 @@ const Header = () => {
     };
     
     // const token = localStorage.getItem("token")
-    const token = 'true';
+    const token = null;
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -115,7 +115,7 @@ const Header = () => {
                                         <div className="border-box-block ms-auto mr-20">
                                             <div className=" d-flex align-items-center justify-content-between">
                                                 {/* menu */}
-                                                <Menu />
+                                                <HeaderMenu />
                                                 <div className="mobile-menu"><Mobile_menu /></div>
                                                 {/* menu end */}
                                             </div>
@@ -123,10 +123,14 @@ const Header = () => {
                                         <div className="header_btn">
                                             {/* <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border
                                             ttm-icon-btn-left ttm-btn-color-grey text-theme-DarkColor d-flex align-items-center"> */}
-                                                {(!token) ? <>
-                                                    <i className="far fa-user fa-sm text-theme-DarkColor"></i><Link exact to={'/signup'}>Sign Up </Link>
-                                                    <span className="ml-10 mr-10 alert-heading">/</span>
-                                                    <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/login'}>Login </Link> </> : 
+                                                {(!token) ?
+                                                    <div className="view-block"  style={{padding: '0.75rem', backgroundColor: 'transparent', border: '1px solid currentColor'}}>
+                                                        <i className="far fa-user fa-sm"></i><Link exact to={'/signup'}>Sign Up </Link>
+                                                        <span className="ml-10 mr-10 alert-heading">/</span>
+                                                        <i className="ti ti-lock fa-sm"></i><Link exact to={'/login'}>Login </Link>
+                                                    </div> 
+                                                    
+                                                    : 
                                                     <React.Fragment>
                                                     <Tooltip title="Account settings">
                                                       <IconButton
@@ -194,9 +198,15 @@ const Header = () => {
                                                         </ListItemIcon>
                                                         Settings
                                                       </MenuItem>
-                                                      <MenuItem>
+                                                      <MenuItem
+                                                        onClick={()=>{
+                                                           localStorage.removeItem("token");
+                                                           localStorage.removeItem("status");
+                                                           window.location.reload();
+                                                           console.log("response");
+                                                        }}>
                                                         <ListItemIcon>
-                                                          <Logout fontSize="small" />
+                                                          <Logout fontSize="small"/>
                                                         </ListItemIcon>
                                                         Logout
                                                       </MenuItem>

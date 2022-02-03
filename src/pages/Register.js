@@ -186,7 +186,7 @@ const Register = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
-                                                                                <p>Already registered?<a href={'/login'} className="text-theme-SkinColor"> Login here</a></p>
+                                                                                <p>Already registered?<a href={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</a></p>
                                                                             </div>
                                                                         </div>
                                                                     </label>
@@ -262,7 +262,7 @@ const Register = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
-                                                                                <p>Already registered?<a href={'/login'} className="text-theme-SkinColor"> Login here</a></p>
+                                                                                <p>Already registered?<a href={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</a></p>
                                                                             </div>
                                                                         </div>
                                                                     </label>
