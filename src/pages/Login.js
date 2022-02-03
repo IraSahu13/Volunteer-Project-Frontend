@@ -36,8 +36,7 @@ const Login = () => {
     
     const history = useHistory();
 
-    const [fields, handleFieldChange] = useFormFields({
-        
+    const [fields, handleFieldChange] = useState({ 
         email: "",
         password: "",
         confirmPassword: "",

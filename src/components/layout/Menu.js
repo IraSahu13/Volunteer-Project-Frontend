@@ -42,7 +42,7 @@ const Menu = () => {
                             </ul>
                         </li> */}
                     {/* <li className="mega-menu-item"> */}
-                    {status==="company" && <Link exact to={'/candidate_list'}  className="alert-heading ml-40">Volunteer/Internn</Link>}
+                    {status==="company" && <Link exact to={'/candidate_list'}  className="alert-heading ml-40">My Interns</Link>}
                     {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_list'}>Candidate List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_details'}>Candidate Details</a></li>

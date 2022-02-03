@@ -5,7 +5,6 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
 import { getIntern } from '../api';
-import { Link } from 'react-router-dom';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 
 
