@@ -1,30 +1,41 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import Menu from './Menu';
 import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'
 import { Link } from 'react-router-dom';
+import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip } from '@material-ui/core';
+import Logout from '@mui/icons-material/Logout';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
 
+const Header = () => {
 
-export class Header extends Component {
-
-    componentDidMount() {
+    const componentDidMount = () => {
         window.addEventListener('scroll', this.isSticky);
     }
 
-    componentWillUnmount() {
+    const componentWillUnmount = () => {
         window.removeEventListener('scroll', this.isSticky);
     }
 
-    isSticky = (e) => {
+    const isSticky = (e) => {
         const header = document.querySelector('header');
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
-
-    token = localStorage.getItem("token")
-    render() {
-        return (
+    
+    // const token = localStorage.getItem("token")
+    const token = 'true';
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    return (
 
             <header id="masthead" className="header ttm-header-style-03">
                 {/* topbar */}
@@ -110,19 +121,94 @@ export class Header extends Component {
                                             </div>
                                         </div>
                                         <div className="header_btn">
-                                            <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border
-                                            ttm-icon-btn-left ttm-btn-color-grey text-theme-DarkColor d-flex align-items-center">
-                                                {(!this.token) ? <>
+                                            {/* <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border
+                                            ttm-icon-btn-left ttm-btn-color-grey text-theme-DarkColor d-flex align-items-center"> */}
+                                                {(!token) ? <>
                                                     <i className="far fa-user fa-sm text-theme-DarkColor"></i><Link exact to={'/signup'}>Sign Up </Link>
                                                     <span className="ml-10 mr-10 alert-heading">/</span>
-                                                    <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/login'}>Login </Link></> : 
-                                                    <><i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
+                                                    <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/login'}>Login </Link> </> : 
+                                                    <React.Fragment>
+                                                    <Tooltip title="Account settings">
+                                                      <IconButton
+                                                        onClick={handleClick}
+                                                        size="small"
+                                                        sx={{ ml: 2 }}
+                                                        aria-controls={open ? 'account-menu' : undefined}
+                                                        aria-haspopup="true"
+                                                        aria-expanded={open ? 'true' : undefined}
+                                                      >
+                                                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                                                      </IconButton>
+                                                    </Tooltip>
+                                                    <Menu
+                                                      anchorEl={anchorEl}
+                                                      id="account-menu"
+                                                      open={open}
+                                                      onClose={handleClose}
+                                                      onClick={handleClose}
+                                                      PaperProps={{
+                                                        elevation: 0,
+                                                        sx: {
+                                                          overflow: 'visible',
+                                                          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                                          mt: 1.5,
+                                                          '& .MuiAvatar-root': {
+                                                            width: 32,
+                                                            height: 32,
+                                                            ml: -0.5,
+                                                            mr: 1,
+                                                          },
+                                                          '&:before': {
+                                                            content: '""',
+                                                            display: 'block',
+                                                            position: 'absolute',
+                                                            top: 0,
+                                                            right: 14,
+                                                            width: 10,
+                                                            height: 10,
+                                                            bgcolor: 'background.paper',
+                                                            transform: 'translateY(-50%) rotate(45deg)',
+                                                            zIndex: 0,
+                                                          },
+                                                        },
+                                                      }}
+                                                      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                                      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                                                    >
+                                                      <MenuItem>
+                                                        <Avatar /> Profile
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <Avatar /> My account
+                                                      </MenuItem>
+                                                      <Divider />
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          <PersonAdd fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Add another account
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          <Settings fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Settings
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          <Logout fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Logout
+                                                      </MenuItem>
+                                                    </Menu>
+                                                    {/* <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
                                                         localStorage.removeItem("token");
                                                         localStorage.removeItem("status");
                                                         window.location.reload();
-                                                    }}>Sign Out </Link></>
+                                                    }}>Sign Out </Link> */}
+                                                    </React.Fragment>
                                                     }
-                                            </a>
+                                            {/* </a> */}
                                         </div>
                                     </div>{/* site-navigation end */}
                                 </div>
@@ -164,6 +250,6 @@ export class Header extends Component {
 
         )
     }
-}
+
 
 export default Header;

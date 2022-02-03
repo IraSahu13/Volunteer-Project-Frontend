@@ -39,7 +39,7 @@ export class Candidate_details extends Component {
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget">
+                                <div className="job_list-widget" style={{backgroundColor:'#ece3f4'}}>
                                     <aside className="widget candidate-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Candidate Informations</h3>
                                         <ul>
@@ -78,7 +78,7 @@ export class Candidate_details extends Component {
                                         <li><a href="#">Download Cv</a><i className="ti ti-files"></i></li>
                                     </ul>
                                 </aside> */}
-                                <div className="overview-box">
+                                <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
                                     <div className="title">
                                         <div className="d-sm-flex justify-content-between align-items-center mb_10">
                                             <p className="mb-10 fw-bold">Social Links :</p>
@@ -97,7 +97,7 @@ export class Candidate_details extends Component {
                             <div className="col-lg-8 content-area">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <div className="candidate-data">
+                                        <div className="candidate-data" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="candidate-img">
                                                 <img src="https://via.placeholder.com/200x200?text=200x200+candidate-01.jpg" />
                                             </div>
@@ -114,7 +114,7 @@ export class Candidate_details extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-lg-12 col-md-12">
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="title">
                                                 <h5>About me</h5>
                                             </div>
@@ -126,7 +126,7 @@ export class Candidate_details extends Component {
                                                     et dolore magna aliqua.  </p>
                                             </div>
                                         </div>
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="title">
                                                 <h5>Education Details</h5>
                                             </div>
@@ -168,7 +168,7 @@ export class Candidate_details extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="title">
                                                 <h5>Education Details</h5>
                                             </div>
@@ -210,7 +210,7 @@ export class Candidate_details extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="title">
                                                 <h5>Skills</h5>
                                             </div>

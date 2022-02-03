@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class Footer extends Component {
     render() {
         return (
-            <footer className="footer widget-footer bg-theme-DarkColor text-theme-WhiteColor clearfix">
+            <footer className="footer widget-footer bg-theme-SkinColor text-theme-SkinColor clearfix">
                 <div className="second-footer">
                     <div className="container">
                         <div className="row">
@@ -12,7 +12,7 @@ export class Footer extends Component {
                                     <div className="footer-logo">
                                         <img id="footer-logo-img" className="img-fluid auto_size" height="40" width="162" src="images/footer-logo.svg" alt="footer-logo" />
                                     </div>
-                                    <p>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
+                                    <p style={{color:'#ee77a6'}}>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
                                         Our customized recruiting process delivers fast & accurate results</p>
                                     <div className="d-flex align-items-center pt-15 pb-25">
                                         <h6 className="fw-normal">Social Share: </h6>
@@ -66,14 +66,14 @@ export class Footer extends Component {
                                 <div className="widget widget-contact clearfix">
                                     <h3 className="widget-title">Quick Contact!</h3>
                                     <ul className="widget_contact_wrapper">
-                                        <li>
-                                            <i className="ttm-textcolor-skincolor flaticon-phone-call"></i>
+                                        <li style={{color:'#f08ab3'}}>
+                                            <i className=" flaticon-phone-call" ></i>
                                             <h3>Call Us On:</h3>+92 777 555 0000</li>
-                                        <li>
-                                            <i className="ttm-textcolor-skincolor flaticon-placeholder"></i>
+                                        <li style={{color:'#f08ab3'}}>
+                                            <i className=" flaticon-placeholder"></i>
                                             <h3>Address:</h3>Suite 20 Golden Street USA</li>
-                                        <li>
-                                            <i className="ttm-textcolor-skincolor flaticon-email"></i>
+                                        <li style={{color:'#f08ab3'}}>
+                                            <i className=" flaticon-email"></i>
                                             <h3>Email:</h3><a href="mailto:info@example.com">info@example.com</a>
                                         </li>
                                     </ul>

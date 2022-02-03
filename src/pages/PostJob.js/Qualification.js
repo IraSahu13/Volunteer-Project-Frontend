@@ -69,7 +69,7 @@ class Qualification extends Component {
       /> */}
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Qualifications Required" />
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Qualifications Required" />
         </Card>
         <CardContent>
           <div className={classes.margin}>

@@ -393,7 +393,7 @@ export class Employers_list extends Component {
 
 
                 {/* action-section */}
-                <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
+                <section className="ttm-row action-section text-theme-WhiteColor clearfix" style={{backgroundColor:'#e86f9e'}}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">

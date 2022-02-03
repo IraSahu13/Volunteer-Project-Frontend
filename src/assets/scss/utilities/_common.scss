@@ -87,7 +87,7 @@ Button Style
 -----------------------*/
 .btn {
   &-brand {
-    background-color: $brandColor;
+    background-color: #e0d1ed;
     border-radius: 100px;
     color: $white;
     padding: 16px 40px;
@@ -105,7 +105,7 @@ Button Style
   }
 
   &-outline {
-    border: 2px solid $brandColor;
+    border: 2px solid #e0d1ed;
     border-radius: 100px;
     color: $paragraph;
     display: inline-block;
@@ -126,7 +126,7 @@ Button Style
 
 
     &:hover {
-      background-color: $brandColor;
+      background-color: #e0d1ed;
       color: $white;
     }
   }
@@ -163,7 +163,7 @@ Slick Index
     margin-right: 10px;
 
     button {
-      border: 2px solid $brandColor;
+      border: 2px solid #e0d1ed;
       border-radius: 50%;
       text-indent: -100000px;
       height: 12px;
@@ -172,7 +172,7 @@ Slick Index
 
     &.slick-active {
       button {
-        background-color: $brandColor;
+        background-color: #e0d1ed;
       }
     }
   }
@@ -209,7 +209,7 @@ Slick Index
 Scroll Top Button
 ----------------------------------*/
 .btn-scroll-top {
-  background-color: $brandColor;
+  background-color: #e0d1ed;
   border-radius: 50%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
   color: $white;

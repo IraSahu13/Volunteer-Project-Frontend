@@ -221,7 +221,7 @@ export class Resume extends Component {
               
          
           <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+            <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Profile
                 nextStep={this.nextStep}
                 handleChange={this.handleChange}
@@ -241,7 +241,7 @@ export class Resume extends Component {
             breadcrumb="education"
            />
            <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+            <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Education
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -262,7 +262,7 @@ export class Resume extends Component {
             breadcrumb="projects"
            />
           <div className="App mt-3">
-            <div className="container col-lg-8 mx-auto text-center">
+            <div className="container col-lg-8 mx-auto text-center  mb-4">
               <Projects
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -283,7 +283,7 @@ export class Resume extends Component {
             breadcrumb="experience"
            />
           <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+            <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Experience
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -303,8 +303,8 @@ export class Resume extends Component {
             title="Resume"
             breadcrumb="skills"
            />
-           <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+           <div className="App mt-3 mb-5">
+            <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Extras
                 prevStep={this.prevStep}
                 handleChange={this.handleChange}

@@ -3,7 +3,7 @@ import React from 'react';
 
 const PageHeader = ({title,content,breadcrumb,className}) => {
     return (
-        <div className="page-header-area bg-img" style={{backgroundImage: '' }}>
+        <div className="page-header-area " style={{backgroundColor: '#e0d1ed' }}>
             <div className="page-header-area-inner">
                 <div className="container">
                     <div className="row">

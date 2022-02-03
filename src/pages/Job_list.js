@@ -36,7 +36,7 @@ const Job_list = () => {
 
 
                 {/* form */}
-                <div className="form-section clearfix">
+                <div className="form-section clearfix" >
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -69,7 +69,7 @@ const Job_list = () => {
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget">
+                                <div className="job_list-widget" style={{backgroundColor:'#ece3f4'}}>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Posted</h3>
                                         <form id="list1" className="list-filter">
@@ -173,8 +173,8 @@ const Job_list = () => {
                                             <div className="widget-banner-inner">
                                                 <h3 className="mb-15">Make a Difference with Online Resume!</h3>
                                                 <p className="mb-30">Your Resume in Minutes with Jobs Resume Assistant is Ready!</p>
-                                                <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
-                                                href={'/resume'}>Build Resume</a>
+                                                <Link className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
+                                                exact to={'/resume'}>Build Resume</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@ const Job_list = () => {
                             <div className="col-lg-8 content-area">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between">
+                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between" style={{backgroundColor:'#ece3f4'}}>
                                             <span className="showing-result">Showing 1–10 of 50 Project Results :</span>
                                             <form>
                                                 <div className="sort-by">Sort By: 
@@ -226,7 +226,7 @@ const Job_list = () => {
                                 {
                                     AllInterns.map((intern) => (
                                         <div className="col-lg-12 col-md-12">
-                                            <div className="flex featured-imagebox featured-imagebox-job bg-theme-GreyColor">
+                                            <div className="flex featured-imagebox featured-imagebox-job" style={{backgroundColor:'#ece3f4'}}>
                                                 <div className="featured-content">
                                                     <div className="featured-title">
                                                         <h3><Link to='/job_details'>{intern.name}</Link></h3>

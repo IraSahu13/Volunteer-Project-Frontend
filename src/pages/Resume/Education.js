@@ -46,8 +46,8 @@ class Profile extends Component {
       /> */}
       <div>
         <Card>
-          <CardHeader title="Education Details" />
-        </Card>
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Education Details" />
+        
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} className="ml-0" lg={12}>
@@ -267,6 +267,7 @@ class Profile extends Component {
           </Row>
         </Container>
         <p className="text-center text-muted">Page 2</p>
+      </Card>
       </div>
       {/* <Footer /> */}
     </>
