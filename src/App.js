@@ -39,6 +39,7 @@ import HomeVolunteer from './pages/HomeVolunteer';
 import HomeEmployer from './pages/HomeEmployer';
 import { history } from './history';
 import PostJob from './pages/PostJob.js/PostJob';
+import Company_interns from './pages/Company_interns';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.params = {};
@@ -71,13 +72,14 @@ function App() {
         <Route exact path={`${process.env.PUBLIC_URL + '/Error_405'}`} component={ Error_405 } />
         <Route exact path={`${process.env.PUBLIC_URL + '/Employers_list'}`} component={ Employers_list } />
         <Route exact path={`${process.env.PUBLIC_URL + '/Employers_details'}`} component={ Employers_details } /> */}
-        <Route exact path={`/candidate_list`} component={ Candidate_list } />
-        <Route exact path={`/candidate_details`} component={ Candidate_details } />
+        <Route path={`/candidate_list`} component={ Candidate_list } />
+        <Route path={`/candidate_details`} component={ Candidate_details } />
         <Route exact path={ `/login`} component={ Login } />
         <Route exact path={`/signup`} component={ Register } />
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
         <Route exact path={`/post_job`} component={ PostJob } />
+        <Route exact path={`/company_interns`} component={ Company_interns } />
         <Route exact path={'/passreset'} component={PasswordResetForm} />
         <ScrollToTop />
         </Switch>

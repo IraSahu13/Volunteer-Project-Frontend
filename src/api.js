@@ -13,14 +13,25 @@ export const googleLogin=async (data)=>{
 export const signup=async (data)=>{
     return await axios.post("/auth/signup",{credentials:  data});
 }
+export const getUser=async (id)=>{
+    return await axios.get(`/user/getuser/${id}`);
+}
 export const allInterns=async (data)=>{
     return await axios.get("/intern/allinterns");
 }
-export const allApplicants=async (data)=>{
-    return await axios.get("/intern/getapplicants/61f6fe2575b4ff5389fb06dd");
+export const allApplicants=async (id)=>{
+    return await axios.get(`/intern/getapplicants/${id}`);
 }
 export const getIntern=async (id)=>{
-    return await axios.get(`intern/getintern/${id}`);
+    return await axios.get(`/intern/getintern/${id}`);
+}
+export const companyInterns=async ()=>{
+    return await axios.get(`/company/getinterns`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
 }
 export const jobApply=async (data, token)=>{
     return await axios.post("/user/jobapply/61f6fe2575b4ff5389fb06dd", {credentials: data}, 

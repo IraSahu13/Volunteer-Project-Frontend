@@ -2,17 +2,17 @@ import React, { Component, useState, useEffect } from 'react';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { allApplicants } from '../api';
 import { CircularProgress } from '@material-ui/core';
 
 const Candidate_list = () => {
 
-
-
     const [allcandidates, setallcandidates] = useState([]);
+    const location = useLocation();
     useEffect(() => {
-        Promise.resolve(allApplicants()).then((res) => {
+        const id = location.pathname.substring(16,)
+        Promise.resolve(allApplicants(id)).then((res) => {
             console.log(res.data);
             setallcandidates(res.data)
         }).catch((e) => {
@@ -152,7 +152,7 @@ const Candidate_list = () => {
                                                 </div>
                                                 <div className="featured-content">
                                                     <div className="featured-title">
-                                                        <h3>{(user) && user.name}</h3>
+                                                        <Link to={`/candidate_details/${user._id}`}><h3>{(user) && user.name}</h3></Link>
                                                     </div>
                                                     <div className="featured-bottom">
                                                         <div className="job-skill">
@@ -166,7 +166,7 @@ const Candidate_list = () => {
                                                         <div className="view-block">
                                                             <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                     ttm-btn-color-dark"
-                                                                href={'/candidate_details'}>view Profile</a>
+                                                            href={`/candidate_details/${user._id}`}>view Profile</a>
                                                         </div>
                                                     </div>
                                                 </div>

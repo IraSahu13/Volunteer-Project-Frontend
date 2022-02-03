@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getIntern } from '../api';
 
 
@@ -11,10 +11,10 @@ const Job_details = () => {
 
     const [intern, setIntern] = useState([]);
     const [company, setCompany] = useState([]);
+    const location = useLocation();
     useEffect(() => {
-        const url = localStorage.getItem("url")
-        Promise.resolve(getIntern(url)).then((res) => {
-            console.log(res);
+        const id = location.pathname.substring(13,);
+        Promise.resolve(getIntern(id)).then((res) => {
             setIntern(res.data.intern)
             setCompany(res.data.company)
         }).catch((e) => {
