@@ -304,8 +304,7 @@ const Login = () => {
                                         <div className="login-social-buttons">
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <button id="login-with-facebook" className="social-account-button w-100 facebook-button"
-
+                                                    <button id="login-with-facebook" className="social-account-button facebook-button ml-100"
                                                     >
                                                         <FacebookLogin
                                                             appId="951777148793990"
@@ -318,7 +317,7 @@ const Login = () => {
                                                     </button>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <button id="login-with-google" className="social-account-button w-100 ">
+                                                    <button id="login-with-google" className="mt-20 google-button">
                                                         <GoogleLogin method="POST"
                                                             clientId="430560948108-l48c3dssgupp977dti4au6g5vc3dsfp6.apps.googleusercontent.com"
 

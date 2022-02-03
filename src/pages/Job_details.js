@@ -1,31 +1,51 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
+import { Link, useLocation } from 'react-router-dom';
+import { getIntern } from '../api';
 import { Link } from 'react-router-dom';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 import ActionSection from '../components/layout/ActionSection';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 'auto',
-    
-    bgcolor: '#ece3f4',
-    border: '2px round #000',
-    boxShadow: 24,
-    p: 4,
-  };
-  const options = [
-    'Resume_1',
-    'Resume_2',
-    'Resume_3',
-    'Resume_4',
-  ];
+
 const Job_details = () => {
+
+    const [intern, setIntern] = useState([]);
+    const [company, setCompany] = useState([]);
+    const location = useLocation();
+    useEffect(() => {
+        const id = location.pathname.substring(13,);
+        Promise.resolve(getIntern(id)).then((res) => {
+            setIntern(res.data.intern)
+            setCompany(res.data.company)
+        }).catch((e) => {
+            console.log(e);
+        })
+    }, [])
+
+    {
+
+        const style = {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 'auto',
+
+            bgcolor: '#ece3f4',
+            border: '2px round #000',
+            boxShadow: 24,
+            p: 4,
+        };
+        const options = [
+            'Resume_1',
+            'Resume_2',
+            'Resume_3',
+            'Resume_4',
+        ];
+
         var slick_slider = {
             dots: false,
             arrow: false,
@@ -37,7 +57,7 @@ const Job_details = () => {
             rows: 1,
 
             responsive: [{
-        
+
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
@@ -59,25 +79,26 @@ const Job_details = () => {
         const [selectedIndex, setSelectedIndex] = useState(1);
         const listOpen = Boolean(anchorEl);
         const handleClickListItem = (event) => {
-              setAnchorEl(event.currentTarget);
+            setAnchorEl(event.currentTarget);
         };
         const handleMenuItemClick = (event, index) => {
             setSelectedIndex(index);
             setAnchorEl(null);
         };
-        
+
         const handleMenuClose = () => {
             setAnchorEl(null);
         };
+
         const handleApply = (e) => {
             console.log(e);
         }
         return (
 
             <div className="site-main">
-                <Header/>
-            
-                {/* PageHeader */} 
+                <Header />
+
+                {/* PageHeader */}
                 <PageHeader
                     title="job details"
                     breadcrumb="job"
@@ -90,18 +111,19 @@ const Job_details = () => {
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget" style={{backgroundColor:'#ece3f4'}}>
+                                <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Job Informations</h3>
                                         <ul>
-                                            <li className="d-flex"><b className="mr-5">Job Type:</b>Part Time</li>
-                                            <li className="d-flex"><b className="mr-5">Location:</b>California</li>
-                                            <li className="d-flex"><b className="mr-5">Offered Salary:</b>$22k - $34k</li>
-                                            <li className="d-flex"><b className="mr-5">Posted:</b>1 Week Ago</li>
-                                            <li className="d-flex"><b className="mr-5">Experience:</b>3 Years</li>
-                                            <li className="d-flex"><b className="mr-5">Industry:</b>Design</li>
-                                            <li className="d-flex"><b className="mr-5">Qualification:</b>Associate Degree</li>
-                                            <li className="d-flex"><b className="mr-5">position:</b>2</li>
+                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.jobType}</li>
+                                            <li className="d-flex"><b className="mr-5">Location:</b>{intern.location}</li>
+                                            <li className="d-flex"><b className="mr-5">Offered Salary:</b>{intern.stipend}</li>
+                                            <li className="d-flex"><b className="mr-5">Posted on:</b> {intern.createdAt?.substr(0, 10)}</li>
+                                            <li className="d-flex"><b className="mr-5">Experience:</b>{intern.experienceNeeded}</li>
+                                            <li className="d-flex"><b className="mr-5">Category:</b>{intern.category}</li>
+                                            <li className="d-flex"><b className="mr-5">Qualification:</b>{intern.qualificationNeeded}</li>
+                                            <li className="d-flex"><b className="mr-5">position:</b>{intern.position}</li>
+                                            <li className="d-flex"><b className="mr-5">no. of candidates hired:</b>{intern.users?.length}</li>
                                         </ul>
                                     </aside>
                                     <aside className="widget form-widget">
@@ -136,107 +158,81 @@ const Job_details = () => {
                             </div>
                             <div className="col-lg-8 content-area">
                                 <div className="row">
-                                    <div className="col-lg-12 col-md-12" style={{backgroundColor:'#ece3f4'}}>
+                                    <div className="col-lg-12 col-md-12" style={{ backgroundColor: '#ece3f4' }}>
                                         {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-job  m-0" style={{backgroundColor:'#ece3f4'}}>
+                                        <div className="featured-imagebox featured-imagebox-job  m-0" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="featured-thumbnail">
                                                 <img src="https://via.placeholder.com/210x204?text=210x204+job-01.png" />
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3><Link a='/job_details'>Vacancy For the Charted Account</Link></h3>
+                                                    <h3><Link a='/job_details'>{intern.name}</Link></h3>
                                                 </div>
                                                 <div className="featured-desc">
-                                                    <p>Published 2Days Ago.</p>
+                                                    <p>Published on {intern.createdAt?.substr(0, 10)}</p>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>California</span>
-                                                        <span><i className="fa fa-filter"></i>Automotive Jobs</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>{company?.city}</span>
+                                                        <span><i className="fa fa-filter"></i>{company?.name}</span>
                                                     </div>
                                                     <div className="job-time">
-                                                        <span className="green">full time</span>
+                                                        <span className="green">{intern.jobType}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>{/* featured-imagebox end */}
                                     </div>
                                     <div className="col-lg-12 col-md-12">
-                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
+                                        <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
                                                 <h5>Job Description :</h5>
                                             </div>
                                             <div className="desc">
-                                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                                     labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra 
-                                                     maecenas accumsan lacus vel facilisis. ”</p>
-                                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                                     labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra 
-                                                     maecenas accumsan lacus vel facilisis. ”</p>
+                                                {(intern.description) ? <p>{intern.description}</p> : <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                    labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                    maecenas accumsan lacus vel facilisis.
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                    labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                    maecenas accumsan lacus vel facilisis. ”</p>}
                                             </div>
                                         </div>
-                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
+                                        <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
                                                 <h5>Required Knowledge, Skills, and Abilities :</h5>
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have at least 3 years’ experience working as a Product Designer.</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have experience using Sketch and InVision or Framer X</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You are familiar using Jira and Confluence in your workflow</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have some previous experience working in an agile environment </div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You are familiar using Jira and Confluence in your workflow</div>
-                                                    </li>
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">You have at least 3 years’ experience working as a Product Designer.</div>
-                                                    </li>
+                                                    {(intern.qualificationNeeded?.length === 0 && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.qualificationNeeded?.map((data) => (
+                                                        <li>
+                                                            <i className="ti ti-check-box"></i>
+                                                            <div className="ttm-list-li-content">{data}</div>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
+                                        <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
                                                 <h5>Skills Required</h5>
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">HTML, CSS & Scss</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Javascript</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">PHP</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Photoshop</div>
-                                                    </li>
-                                                    <li><i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Illustrator</div>
-                                                    </li>
-                                                    <li>
-                                                        <i className="ti ti-check-box"></i>
-                                                        <div className="ttm-list-li-content">Wordpress & elementor</div>
-                                                    </li>
+                                                    {(intern.skillsNeeded?.length === 0 && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.skillsNeeded?.map((data) => (
+                                                        <li>
+                                                            <i className="ti ti-check-box"></i>
+                                                            <div className="ttm-list-li-content">{data}</div>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
                                         <div className="justify-center mt-20 mb-60">
-                                           <div className="col-lg-12">
+                                            <div className="col-lg-12">
                                                 <label className="mb-0">
-                                                    <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
+                                                    <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
                                                         onClick={handleOpen}>Apply</button>
                                                     <Modal
                                                         open={open}
@@ -244,64 +240,70 @@ const Job_details = () => {
                                                         aria-labelledby="modal-modal-title"
                                                         aria-describedby="modal-modal-description"
                                                     >
-                                                      <Box sx={style}>
-                                                                <h2>Job Title</h2>
-                                                                <Typography>2 lines of the description 2 lines of the description 2 lines of the description 2 lines of the description
+                                                        <Box sx={style}>
+                                                            <h2>Job Title</h2>
+                                                            <Typography>2 lines of the description 2 lines of the description 2 lines of the description 2 lines of the description
                                                                 2 lines of the description 2 lines of the description</Typography>
-                                                                <div className="col-lg-12">
-                                                                    <label className="mt-2 justify-center">
-                                                                        <i className=""></i>
-                                                                        {/* <input type="textarea" id="title_apply" placeholder="Why should we hire you?" /> */}
-                                                                        <textarea
-                                                                          
-                                                                          rows={5}
-                                                                          cols={50}
-                                                                        >
+                                                            <div className="col-lg-12">
+                                                                <label className="mt-2 justify-center">
+                                                                    <i className=""></i>
+                                                                    {/* <input type="textarea" id="title_apply" placeholder="Why should we hire you?" /> */}
+                                                                    <textarea
+
+                                                                        rows={5}
+                                                                        cols={50}
+                                                                    >
                                                                         Why should we hire you?
-                                                                        </textarea>
-                                                                    </label>
-                                                                </div>
-                                                                <div>
-                                                                  <List
+                                                                    </textarea>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <List
                                                                     component="nav"
                                                                     aria-label="Device settings"
                                                                     sx={{ bgcolor: 'background.paper' }}
-                                                                  >
+                                                                >
                                                                     <ListItem
-                                                                      button
-                                                                      id="lock-button"
-                                                                      aria-haspopup="listbox"
-                                                                      aria-controls="lock-menu"
-                                                                      aria-label="Select Resume"
-                                                                      aria-expanded={listOpen ? 'true' : undefined}
-                                                                      onClick={handleClickListItem}
+                                                                        button
+                                                                        id="lock-button"
+                                                                        aria-haspopup="listbox"
+                                                                        aria-controls="lock-menu"
+                                                                        aria-label="Select Resume"
+                                                                        aria-expanded={listOpen ? 'true' : undefined}
+                                                                        onClick={handleClickListItem}
                                                                     >
-                                                                      <ListItemText
-                                                                        primary="Select Resume"
-                                                                        secondary={options[selectedIndex]}
-                                                                      />
+                                                                        <ListItemText
+                                                                            primary="Select Resume"
+                                                                            secondary={options[selectedIndex]}
+                                                                        />
                                                                     </ListItem>
-                                                                  </List>
-                                                                  <Menu
+                                                                </List>
+                                                                <Menu
                                                                     id="lock-menu"
                                                                     anchorEl={anchorEl}
                                                                     open={listOpen}
                                                                     onClick={handleMenuClose}
                                                                     MenuListProps={{
-                                                                      'aria-labelledby': 'lock-button',
-                                                                      role: 'listbox',
+                                                                        'aria-labelledby': 'lock-button',
+                                                                        role: 'listbox',
                                                                     }}
-                                                                  >
+                                                                >
                                                                     {options.map((option, index) => (
-                                                                      <MenuItem
-                                                                        key={option}
-                                                                        disabled={index === 0}
-                                                                        selected={index === selectedIndex}
-                                                                        onClick={(event) => handleMenuItemClick(event, index)}
-                                                                      >
-                                                                        {option}
-                                                                      </MenuItem>
+                                                                        <MenuItem
+                                                                            key={option}
+                                                                            disabled={index === 0}
+                                                                            selected={index === selectedIndex}
+                                                                            onClick={(event) => handleMenuItemClick(event, index)}
+                                                                        >
+                                                                            {option}
+                                                                        </MenuItem>
                                                                     ))}
+                                                                </Menu>
+                                                            </div>
+                                                            <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                            >Apply</button>
+                                                            {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+
                                                                   </Menu>
                                                                 </div>
                                                                 <button 
@@ -315,13 +317,13 @@ const Job_details = () => {
                                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                                                        </Typography> */}
-                                                      </Box>
+                                                        </Box>
                                                     </Modal>
-                                                </label>
-                                            </div>
-                                           </div>
-                                    </div>
-                                </div>
+                                                </label >
+                                            </div >
+                                        </div >
+                                    </div >
+                                </div >
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <h5>Related Jobs :</h5>
@@ -430,21 +432,24 @@ const Job_details = () => {
                                         </div>{/* featured-imagebox end */}
                                     </div>
                                 </Slider>{/* row end */}
-                            </div>
-                        </div>{/* row end */}
-                    </div>
-                </div>
+                            </div >
+                        </div > {/* row end */}
+                    </div >
+                </div >
 
 
                 {/* action-section */}
+
                 <ActionSection />
                 {/* action-section end */}
 
-                
-            <Footer/>
-                        
-            </div>
+
+                < Footer />
+
+            </div >
         );
+    }
+
 }
 
 

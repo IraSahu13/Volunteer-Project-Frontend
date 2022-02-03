@@ -1,26 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component,useState, useEffect } from 'react';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import ProgressBar from 'react-animated-progress-bar';
+import { useLocation } from 'react-router-dom';
+import { getUser } from '../api';
 
 
-export class Candidate_details extends Component {
+const Candidate_details=()=> {
 
-    constructor() {
-        super();
-        this.state = {
-          name: "React"
-        };
-        this.onChangeValue = this.onChangeValue.bind(this);
-
-    }
+    const location = useLocation()
+    const [candidate, setcandidate] = useState([]);
     
-    onChangeValue(event) {
-        console.log(event.target.value);
-    }
+    useEffect(() => {
+        const id = location.pathname.substring(19,);
+        Promise.resolve(getUser(id)).then((res) => {
+            console.log(res.data);
+            setcandidate(res.data)
+        }).catch((e) => {
+            console.log({e});
+        })
+    }, [])
 
-    render() {
+
+    {
         return (
 
             <div className="site-main">
@@ -43,10 +46,9 @@ export class Candidate_details extends Component {
                                     <aside className="widget candidate-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Candidate Informations</h3>
                                         <ul>
-                                            <li className="d-flex"><b className="mr-5">Category:</b><span>Webdesigner / Webdevloper</span></li>
+                                            <li className="d-flex"><b className="mr-5">Category:</b><span>{candidate?.title}</span></li>
                                             <li className="d-flex"><b className="mr-5">Experience:</b><span>3 to 5 Years</span></li>
                                             <li className="d-flex"><b className="mr-5">Expected Salary:</b><span>$ 20k To $ 30k</span></li>
-                                            <li className="d-flex"><b className="mr-5">Marital status:</b><span>Singal</span></li>
                                             <li className="d-flex"><b className="mr-5">Experience:</b><span>3 Years</span></li>
                                             <li className="d-flex"><b className="mr-5">Language:</b><span>English, French</span></li>
                                             <li className="d-flex"><b className="mr-5">Qualification:</b><span>Associate Degree</span></li>
@@ -102,10 +104,9 @@ export class Candidate_details extends Component {
                                                 <img src="https://via.placeholder.com/200x200?text=200x200+candidate-01.jpg" />
                                             </div>
                                             <div className="candidate-caption">
-                                                <h5>Jimmy Divison</h5>
-                                                <span>Web Designer Ul/Ux</span>
+                                                <h5>{candidate?.name}</h5>
+                                                <span>{candidate?.title}</span>
                                                 <div className="meta-line">
-                                                    <span><i className="ti ti-bag"></i> UX/UI Designer</span>
                                                     <span><i className="ti ti-headphone"></i> (+01)123 456 789</span>
                                                 </div>
                                             </div>
@@ -119,11 +120,9 @@ export class Candidate_details extends Component {
                                                 <h5>About me</h5>
                                             </div>
                                             <div className="desc">
-                                                <p>Dolor sed viverra ipsum nunc. In ornare quam viverra orci. Id diam maecenas ultricies mi eget mauris
+                                                {candidate?.description? <p>{candidate?.description}</p> : <p>Dolor sed viverra ipsum nunc. In ornare quam viverra orci. Id diam maecenas ultricies mi eget mauris
                                                     pharetra et ultrices. Non diam phasellus vestibulum lorem sed risus ultricies. Lacinia at quis 
-                                                    risus sed vulputate odio ut enim blandit. Suspendisse ultrices gravida dictum fusce ut.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                                                    et dolore magna aliqua.  </p>
+                                                    risus sed vulputate odio ut enim blandit. Suspendisse ultrices gravida dictum fusce ut.</p>}
                                             </div>
                                         </div>
                                         <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
@@ -216,22 +215,10 @@ export class Candidate_details extends Component {
                                             </div>
                                             <div className="desc pb-30">
                                                 {/* ttm-progress-bar */}
+                                                {candidate?.skills?.map((data)=>(
                                                 <div className="ttm-progress-bar clearfix">
-                                                    <h3 className="progressbar-title">Recruitment Outsourcing</h3>
-                                                    <ProgressBar  rect  percentage="90" />
-                                                </div>
-                                                {/* ttm-progress-bar end */}
-                                                {/* ttm-progress-bar */}
-                                                <div className="ttm-progress-bar clearfix">
-                                                    <h3 className="progressbar-title">Contingency Recruitment</h3>
-                                                    <ProgressBar  rect  percentage="70" />
-                                                </div>
-                                                {/* ttm-progress-bar end */}
-                                                {/* ttm-progress-bar */}
-                                                <div className="ttm-progress-bar clearfix">
-                                                    <h3 className="progressbar-title">On-demand Recruitment</h3>
-                                                    <ProgressBar  rect  percentage="80" />
-                                                </div>{/* ttm-progress-bar end */}
+                                                    <h3 className="progressbar-title">{data}</h3>
+                                                </div>))}
                                             </div>
                                         </div>
                                     </div>
