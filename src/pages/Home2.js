@@ -732,7 +732,7 @@ export class Home2 extends Component {
                         </div>
                         <div className="col-lg-6 col-md-4">
                             <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-dark mb-15"
-                             href={'/'}>Get Started</a>
+                             href={'/login'}>Get Started</a>
                         </div>
                         <div className="col-lg-6">
                             <div className="featuredbox-number pr-30 pr-lg-0 pb-lg-50 pt-md-20">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Menu from './Menu';
+import Menu from './HeaderMenu';
 import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'

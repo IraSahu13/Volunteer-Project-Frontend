@@ -42,6 +42,4 @@ export const jobApply=async (data, token)=>{
     });
 }
 
-export const useFormFields=async (data)=>{
-    return await axios.get("/intern/getapplicants/61f38e56f544c8df5b405d30");
-}
+
