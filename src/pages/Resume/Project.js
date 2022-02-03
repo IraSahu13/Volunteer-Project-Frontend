@@ -68,7 +68,7 @@ class Projects extends Component {
      */}
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Projects Developed" />
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Projects Developed" />
         </Card>
         <CardContent>
           <div className={classes.margin}>

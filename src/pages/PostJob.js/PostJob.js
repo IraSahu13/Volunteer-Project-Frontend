@@ -222,7 +222,7 @@ export class PostJob extends Component {
               
          
           <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+            <div className="container col-lg-10 mx-auto text-center mb-4">
               <Profile
                 nextStep={this.nextStep}
                 handleChange={this.handleChange}
@@ -241,8 +241,8 @@ export class PostJob extends Component {
             title="Post a Vacancy"
             breadcrumb="post"
            />
-           <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+           <div className="App mt-3 ">
+            <div className="container col-lg-10 mx-auto text-center mb-4">
               <Description
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -263,7 +263,7 @@ export class PostJob extends Component {
             breadcrumb="post"
            />
           <div className="App mt-3">
-            <div className="container col-lg-8 mx-auto text-center">
+            <div className="container col-lg-8 mx-auto text-center mb-4">
               <Qualification
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -284,7 +284,7 @@ export class PostJob extends Component {
             breadcrumb="post"
            />
           <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto text-center">
+            <div className="container col-lg-10 mx-auto text-center mb-4">
               <Skills
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}

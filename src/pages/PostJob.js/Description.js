@@ -46,8 +46,7 @@ class Description extends Component {
       /> */}
       <div>
         <Card>
-          <CardHeader title="Project Description" />
-        </Card>
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Project Description" />
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} className="ml-0" lg={12}>
@@ -96,6 +95,7 @@ class Description extends Component {
           </Row>
         </Container>
         <p className="text-center text-muted">Page 2</p>
+       </Card>
       </div>
       {/* <Footer /> */}
     </>

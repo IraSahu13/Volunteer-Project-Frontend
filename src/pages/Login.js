@@ -3,12 +3,27 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { login } from '../api';
+import { login, useFormFields } from '../api';
 import { Link, useHistory } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
-
+import { Box, Button, Modal, TextField, Typography } from '@material-ui/core';
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: '#e0d1ed',
+    border: '2px solid #000',
+    boxShadow: 24,
+    borderRadius: '10px',
+    p: 4,
+  };
 const Login = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const [useremail, setuseremail] = useState("");
     const [userpass, setuserpass] = useState("");
@@ -20,6 +35,16 @@ const Login = () => {
     const [employerOn, setEmployerOn] = useState(false);
     
     const history = useHistory();
+
+    const [fields, handleFieldChange] = useFormFields({
+        
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    const [confirmed, setConfirmed] = useState(false);
+    const [isConfirming, setIsConfirming] = useState(false);
+    const [isSendingCode, setIsSendingCode] = useState(false);
 
     const CandidateLogin = async (e) => {
         if (useremail !== "") {
@@ -129,10 +154,54 @@ const Login = () => {
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <div className="forgot-pwd text-center mt-5">
-                                                                            <p><a href="#" className="text-theme-SkinColor">Forgot Password?</a></p>
+                                                                        <p onClick={handleOpen}>Forgot Password</p>  
+                                                                            <Modal
+                                                                              open={open}
+                                                                              onClose={handleClose}
+                                                                              aria-labelledby="modal-modal-title"
+                                                                              aria-describedby="modal-modal-description"
+                                                                            >
+                                                                              <Box sx={style}>
+                                                                                <Typography id="modal-modal-title" variant="h5" component="h2">
+                                                                                  Reset Password</Typography>
+                                                                                  <TextField
+                                                                                    margin="dense"
+                                                                                    variant="outlined"
+                                                                                    name="email"
+                                                                                    label="Email"
+                                                                                    style={{width: '80%', marginTop:'10%'}}
+                                                                                    required
+                                                                                    value={fields.email}
+                                                                                    onChange={handleFieldChange}
+                                                                                  />
+                                                                                  <TextField
+                                                                                    margin="dense"
+                                                                                    variant="outlined"
+                                                                                    name="pass"
+                                                                                    label="New Password"
+                                                                                    style={{width: '80%'}}
+                                                                                    required
+                                                                                    // value={values.company}
+                                                                                    // onChange={this.props.handleChange}
+                                                                                  />
+                                                                                  <TextField
+                                                                                    margin="dense"
+                                                                                    variant="outlined"
+                                                                                    name="passcheck"
+                                                                                    label="Confirm Password"
+                                                                                    style={{width: '80%'}}
+                                                                                    required
+                                                                                    // value={values.company}
+                                                                                    // onChange={this.props.handleChange}
+                                                                                  />
+                                                                                  <div className="justify-center mt-2">
+                                                                                     <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor">Submit</button>
+                                                                                  </div>
+                                                                              </Box>
+                                                                            </Modal>
                                                                             <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
                                                                             <span>Remember Me for a month</span>
-                                                                            <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor">Sign Up here</Link></p>
+                                                                            <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor" style={{fontWeight:'bold'}}>Sign Up here</Link></p>
                                                                         </div>
                                                                     </label>
                                                                 </div>
@@ -166,10 +235,54 @@ const Login = () => {
                                                                 <div className="col-lg-12">
                                                                     <label>
                                                                         <div className="forgot-pwd text-center mt-5">
-                                                                            <p><a href="#" className="text-theme-SkinColor">Forgot Password?</a></p>
+                                                                        <p onClick={handleOpen}>Forgot Password</p>  
+                                                                            <Modal
+                                                                              open={open}
+                                                                              onClose={handleClose}
+                                                                              aria-labelledby="modal-modal-title"
+                                                                              aria-describedby="modal-modal-description"
+                                                                            >
+                                                                              <Box sx={style}>
+                                                                                <Typography id="modal-modal-title" variant="h5" component="h2">
+                                                                                  Reset Password</Typography>
+                                                                                  <TextField
+                                                                                    margin="dense"
+                                                                                    variant="outlined"
+                                                                                    name="email"
+                                                                                    label="Email"
+                                                                                    style={{width: '80%', marginTop:'10%'}}
+                                                                                    required
+                                                                                    // value={values.company}
+                                                                                    // onChange={this.props.handleChange}
+                                                                                  />
+                                                                                  <TextField
+                                                                                    margin="dense"
+                                                                                    variant="outlined"
+                                                                                    name="pass"
+                                                                                    label="New Password"
+                                                                                    style={{width: '80%'}}
+                                                                                    required
+                                                                                    // value={values.company}
+                                                                                    // onChange={this.props.handleChange}
+                                                                                  />
+                                                                                  <TextField
+                                                                                    margin="dense"
+                                                                                    variant="outlined"
+                                                                                    name="passcheck"
+                                                                                    label="Confirm Password"
+                                                                                    style={{width: '80%'}}
+                                                                                    required
+                                                                                    // value={values.company}
+                                                                                    // onChange={this.props.handleChange}
+                                                                                  />
+                                                                                  <div className="justify-center mt-2">
+                                                                                     <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor">Submit</button>
+                                                                                  </div>
+                                                                              </Box>
+                                                                            </Modal>
                                                                             <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
                                                                             <span>Remember me for a month</span>
-                                                                            <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor">Sign Up here</Link></p>
+                                                                            <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor " style={{fontWeight:'bold'}}>Sign Up here</Link></p>
                                                                         </div>
                                                                     </label>
                                                                 </div>

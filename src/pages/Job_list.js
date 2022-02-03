@@ -38,7 +38,7 @@ const Job_list = () => {
 
 
                 {/* form */}
-                <div className="form-section clearfix">
+                <div className="form-section clearfix" >
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -71,7 +71,7 @@ const Job_list = () => {
                     {/* row */}
                     <div className="row">
                         <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                            <div className="job_list-widget">
+                            <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
                                 <aside className="widget job-widget">
                                     <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Posted</h3>
                                     <form id="list1" className="list-filter">
@@ -175,8 +175,8 @@ const Job_list = () => {
                                         <div className="widget-banner-inner">
                                             <h3 className="mb-15">Make a Difference with Online Resume!</h3>
                                             <p className="mb-30">Your Resume in Minutes with Jobs Resume Assistant is Ready!</p>
-                                            <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                href={'/resume'}>Build Resume</a>
+                                            <Link className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                exact to={'/resume'}>Build Resume</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -202,12 +202,12 @@ const Job_list = () => {
                                         </div>
                                     </div>
                                 </aside> */}
-                        </div>
+                            </div>
                         <div className="col-lg-8 content-area">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <div className="showing-result-block d-sm-flex align-items-center justify-content-between">
-                                        <span className="showing-result">Showing 1-10 of 50 Project Results :</span>
+                                    <div className="showing-result-block d-sm-flex align-items-center justify-content-between" style={{ backgroundColor: '#ece3f4' }}>
+                                        <span className="showing-result">Showing 1–10 of 50 Project Results :</span>
                                         <form>
                                             <div className="sort-by">Sort By:
                                                 <select defaultValue="">
@@ -231,7 +231,7 @@ const Job_list = () => {
                                 {
                                     AllInterns.map((intern) => (
                                         <div className="col-lg-12 col-md-12">
-                                            <div className="flex featured-imagebox featured-imagebox-job bg-theme-GreyColor">
+                                            <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
                                                 <div className="featured-content">
                                                     <div className="featured-title">
                                                         <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
@@ -492,46 +492,46 @@ const Job_list = () => {
                                 </div>
                             </div>{/* row end */}
                         </div>
-                    </div>{/* row end */}
-                </div>
+                </div>{/* row end */}
             </div>
+        </div>
 
 
-            {/* action-section */}
-            <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="d-md-flex align-items-center justify-content-between">
-                                {/* featured-icon-box */}
-                                <div className="featured-icon-box icon-align-before-content style2">
-                                    <div className="featured-icon">
-                                        <div className="ttm-icon ttm-icon_element-onlytxt ttm-icon_element-color-white ttm-icon_element-size-xl">
-                                            <i className="flaticon flaticon-recruitment-5"></i>
-                                        </div>
+        {/* action-section */}
+        <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="d-md-flex align-items-center justify-content-between">
+                            {/* featured-icon-box */}
+                            <div className="featured-icon-box icon-align-before-content style2">
+                                <div className="featured-icon">
+                                    <div className="ttm-icon ttm-icon_element-onlytxt ttm-icon_element-color-white ttm-icon_element-size-xl">
+                                        <i className="flaticon flaticon-recruitment-5"></i>
                                     </div>
-                                    <div className="featured-content">
-                                        <div className="featured-title">
-                                            <h3>Incredible Recruitment & Staffing Agency</h3>
-                                        </div>
-                                        <div className="featured-desc">
-                                            <p>We have over 30 years experience oft Business porro qusquam dol ipsum quia dolor sit amet.</p>
-                                        </div>
+                                </div>
+                                <div className="featured-content">
+                                    <div className="featured-title">
+                                        <h3>Incredible Recruitment & Staffing Agency</h3>
                                     </div>
-                                </div>{/* featured-icon-box end */}
-                                <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white"
-                                    href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
-                            </div>
+                                    <div className="featured-desc">
+                                        <p>We have over 30 years experience oft Business porro qusquam dol ipsum quia dolor sit amet.</p>
+                                    </div>
+                                </div>
+                            </div>{/* featured-icon-box end */}
+                            <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border ttm-btn-color-white"
+                                href={process.env.PUBLIC_URL + '/'}>Hiring Now!</a>
                         </div>
                     </div>
                 </div>
-            </section>
-            {/* action-section end */}
+            </div>
+        </section>
+        {/* action-section end */}
 
 
-            <Footer />
+        <Footer />
 
-        </div>
+    </div>
     )
 }
 

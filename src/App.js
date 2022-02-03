@@ -41,6 +41,7 @@ import { history } from './history';
 import PostJob from './pages/PostJob.js/PostJob';
 import Company_interns from './pages/Company_interns';
 
+import AccountMenu from './pages/xxx'
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.params = {};
 
@@ -81,6 +82,7 @@ function App() {
         <Route exact path={`/post_job`} component={ PostJob } />
         <Route exact path={`/company_interns`} component={ Company_interns } />
         <Route exact path={'/passreset'} component={PasswordResetForm} />
+        <Route exact path={'/test'} component={AccountMenu} />
         <ScrollToTop />
         </Switch>
       </Router>

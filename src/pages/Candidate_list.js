@@ -32,12 +32,12 @@ const Candidate_list = () => {
             {/* PageHeader end */}
 
             <div className="site-main">
-                <div className="ttm-row sidebar job-sidebar clearfix">
+                <div className="ttm-row sidebar job-sidebar clearfix" >
                     <div className="container">
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget">
+                                <div className="job_list-widget" style={{backgroundColor:'#ece3f4'}}>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3>
                                         <form id="list1" className="list-filter">
@@ -125,7 +125,7 @@ const Candidate_list = () => {
                             <div className="col-lg-8 content-area">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between">
+                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between" style={{backgroundColor:'#ece3f4'}}>
                                             <span className="showing-result">Showing 1–10 of 50 Applicant Results :</span>
                                             <form>
                                                 <div className="sort-by">Sort By:
@@ -146,7 +146,7 @@ const Candidate_list = () => {
 
                                     {allcandidates.map((user) => (
                                         (user) ? <div className="col-lg-12">
-                                            <div className="featured-imagebox featured-imagebox-candidate">
+                                            <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
                                                 <div className="featured-thumbnail">
                                                     <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
                                                 </div>
@@ -175,7 +175,7 @@ const Candidate_list = () => {
                                     ))}
                                     
                                     <div className="col-lg-12">
-                                        <div className="featured-imagebox featured-imagebox-candidate">
+                                        <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="featured-thumbnail">
                                                 <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
                                             </div>
@@ -220,7 +220,7 @@ const Candidate_list = () => {
 
 
             {/* action-section */}
-            <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
+            <section className="ttm-row action-section text-theme-WhiteColor clearfix " style={{backgroundColor:'#e86f9e'}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">

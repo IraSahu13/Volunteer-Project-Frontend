@@ -36,7 +36,11 @@ class Profile extends Component {
     return (
       <Paper className={classes.padding}>
         <Card>
+<<<<<<< HEAD
           <CardHeader title="Job Details" />
+=======
+          <CardHeader  style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Jod Details" />
+>>>>>>> 2f72ba1fd12a7b0c5bf3642994e257a98a1cfc89
         </Card>
         <CardContent>
           <div className={classes.margin}>

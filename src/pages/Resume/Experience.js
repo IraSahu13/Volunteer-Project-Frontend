@@ -69,7 +69,7 @@ class Experience extends Component {
       /> */}
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Experience Details" />
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Experience Details" />
         </Card>
         <CardContent>
           <div className={classes.margin}>

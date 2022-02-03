@@ -69,7 +69,7 @@ class Skills extends Component {
      */}
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Skills Required" />
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Skills Required" />
         </Card>
         <CardContent>
           <div className={classes.margin}>

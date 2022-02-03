@@ -5,6 +5,8 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
 import { getIntern } from '../api';
+import { Link } from 'react-router-dom';
+import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 
 
 const Job_details = () => {
@@ -23,6 +25,26 @@ const Job_details = () => {
     }, [])
 
     {
+
+        const style = {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 'auto',
+
+            bgcolor: '#ece3f4',
+            border: '2px round #000',
+            boxShadow: 24,
+            p: 4,
+        };
+        const options = [
+            'Resume_1',
+            'Resume_2',
+            'Resume_3',
+            'Resume_4',
+        ];
+
         var slick_slider = {
             dots: false,
             arrow: false,
@@ -49,6 +71,23 @@ const Job_details = () => {
                 }
             }]
         };
+        const [open, setOpen] = useState(false);
+        const handleOpen = () => setOpen(true);
+        const handleClose = () => setOpen(false);
+        const [anchorEl, setAnchorEl] = useState(null);
+        const [selectedIndex, setSelectedIndex] = useState(1);
+        const listOpen = Boolean('false');
+        const handleClickListItem = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+        const handleMenuItemClick = (event, index) => {
+            setSelectedIndex(index);
+            setAnchorEl(null);
+        };
+
+        const handleMenuClose = () => {
+            setAnchorEl(null);
+        };
 
         return (
 
@@ -68,7 +107,7 @@ const Job_details = () => {
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget">
+                                <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Job Informations</h3>
                                         <ul>
@@ -115,9 +154,9 @@ const Job_details = () => {
                             </div>
                             <div className="col-lg-8 content-area">
                                 <div className="row">
-                                    <div className="col-lg-12 col-md-12">
+                                    <div className="col-lg-12 col-md-12" style={{ backgroundColor: '#ece3f4' }}>
                                         {/* featured-imagebox */}
-                                        <div className="featured-imagebox featured-imagebox-job bg-theme-GreyColor m-0">
+                                        <div className="featured-imagebox featured-imagebox-job  m-0" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="featured-thumbnail">
                                                 <img src="https://via.placeholder.com/210x204?text=210x204+job-01.png" />
                                             </div>
@@ -141,7 +180,7 @@ const Job_details = () => {
                                         </div>{/* featured-imagebox end */}
                                     </div>
                                     <div className="col-lg-12 col-md-12">
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
                                                 <h5>Job Description :</h5>
                                             </div>
@@ -154,13 +193,13 @@ const Job_details = () => {
                                                     maecenas accumsan lacus vel facilisis. ”</p>}
                                             </div>
                                         </div>
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
                                                 <h5>Required Knowledge, Skills, and Abilities :</h5>
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    {(intern.qualificationNeeded?.length===0 && <p>No Prerequisites Reuired</p>)}
+                                                    {(intern.qualificationNeeded?.length === 0 && <p>No Prerequisites Reuired</p>)}
                                                     {intern.qualificationNeeded?.map((data) => (
                                                         <li>
                                                             <i className="ti ti-check-box"></i>
@@ -170,13 +209,13 @@ const Job_details = () => {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className="overview-box">
+                                        <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
                                                 <h5>Skills Required</h5>
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                {(intern.skillsNeeded?.length===0 && <p>No Prerequisites Reuired</p>)}
+                                                    {(intern.skillsNeeded?.length === 0 && <p>No Prerequisites Reuired</p>)}
                                                     {intern.skillsNeeded?.map((data) => (
                                                         <li>
                                                             <i className="ti ti-check-box"></i>
@@ -189,13 +228,89 @@ const Job_details = () => {
                                         <div className="justify-center mt-20 mb-60">
                                             <div className="col-lg-12">
                                                 <label className="mb-0">
-                                                    <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                    ><a href={'/apply'}>Apply</a></button>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                        onClick={handleOpen}>Apply</button>
+                                                    <Modal
+                                                        open={open}
+                                                        onClose={handleClose}
+                                                        aria-labelledby="modal-modal-title"
+                                                        aria-describedby="modal-modal-description"
+                                                    >
+                                                        <Box sx={style}>
+                                                            <h2>Job Title</h2>
+                                                            <Typography>2 lines of the description 2 lines of the description 2 lines of the description 2 lines of the description
+                                                                2 lines of the description 2 lines of the description</Typography>
+                                                            <div className="col-lg-12">
+                                                                <label className="mt-2 justify-center">
+                                                                    <i className=""></i>
+                                                                    {/* <input type="textarea" id="title_apply" placeholder="Why should we hire you?" /> */}
+                                                                    <textarea
+
+                                                                        rows={5}
+                                                                        cols={50}
+                                                                    >
+                                                                        Why should we hire you?
+                                                                    </textarea>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <List
+                                                                    component="nav"
+                                                                    aria-label="Device settings"
+                                                                    sx={{ bgcolor: 'background.paper' }}
+                                                                >
+                                                                    <ListItem
+                                                                        button
+                                                                        id="lock-button"
+                                                                        aria-haspopup="listbox"
+                                                                        aria-controls="lock-menu"
+                                                                        aria-label="Select Resume"
+                                                                        aria-expanded={listOpen ? 'true' : undefined}
+                                                                        onClick={handleClickListItem}
+                                                                    >
+                                                                        <ListItemText
+                                                                            primary="Select Resume"
+                                                                            secondary={options[selectedIndex]}
+                                                                        />
+                                                                    </ListItem>
+                                                                </List>
+                                                                <Menu
+                                                                    id="lock-menu"
+                                                                    anchorEl={anchorEl}
+                                                                    open={open}
+                                                                    onClick={handleMenuClose}
+                                                                    MenuListProps={{
+                                                                        'aria-labelledby': 'lock-button',
+                                                                        role: 'listbox',
+                                                                    }}
+                                                                >
+                                                                    {options.map((option, index) => (
+                                                                        <MenuItem
+                                                                            key={option}
+                                                                            disabled={index === 0}
+                                                                            selected={index === selectedIndex}
+                                                                            onClick={(event) => handleMenuItemClick(event, index)}
+                                                                        >
+                                                                            {option}
+                                                                        </MenuItem>
+                                                                    ))}
+                                                                </Menu>
+                                                            </div>
+                                                            <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                            >Apply</button>
+                                                            {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                         Text in a modal
+                                                       </Typography>
+                                                       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                                           Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                                                       </Typography> */}
+                                                        </Box>
+                                                    </Modal>
+                                                </label >
+                                            </div >
+                                        </div >
+                                    </div >
+                                </div >
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <h5>Related Jobs :</h5>
@@ -304,14 +419,14 @@ const Job_details = () => {
                                         </div>{/* featured-imagebox end */}
                                     </div>
                                 </Slider>{/* row end */}
-                            </div>
-                        </div>{/* row end */}
-                    </div>
-                </div>
+                            </div >
+                        </div > {/* row end */}
+                    </div >
+                </div >
 
 
                 {/* action-section */}
-                <section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix">
+                < section className="ttm-row action-section bg-theme-SkinColor text-theme-WhiteColor clearfix" >
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -338,15 +453,17 @@ const Job_details = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section >
                 {/* action-section end */}
 
 
-                <Footer />
+                < Footer />
 
-            </div>
-        )
+            </div >
+        );
     }
+
 }
+
 
 export default Job_details;
