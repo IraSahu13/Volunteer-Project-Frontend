@@ -5,7 +5,6 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
 import { getIntern } from '../api';
-import { Link } from 'react-router-dom';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 import ActionSection from '../components/layout/ActionSection';
 
@@ -301,7 +300,7 @@ const Job_details = () => {
                                                                 </Menu>
                                                             </div>
                                                             <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                            >Apply</button>
+                                                            onClick={handleClose}>Apply</button>
                                                             {/* <Typography id="modal-modal-title" variant="h6" component="h2">
 
                                                                   </Menu>
