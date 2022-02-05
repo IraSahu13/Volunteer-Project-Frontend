@@ -33,7 +33,6 @@ import axios from 'axios';
 import Resume from './pages/Resume/Resume';
 import ScrollToTop from './components/layout/Gotop';
 import Apply from './pages/Apply';
-import PasswordResetForm from './pages/PasswordResetForm';
 import { history } from './history';
 import PostJob from './pages/PostJob.js/PostJob';
 
