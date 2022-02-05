@@ -38,13 +38,11 @@ const Login = () => {
     
     const history = useHistory();
 
-    // const [fields, handleFieldChange] = useForm({
-        
-    //     email: " ",
-    //     password: " ",
-    //     confirmPassword: " ",
-    //   });
-    
+    const [fields, handleFieldChange] = useState({ 
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     const [confirmed, setConfirmed] = useState(false);
     const [isConfirming, setIsConfirming] = useState(false);
     const [isSendingCode, setIsSendingCode] = useState(false);

@@ -33,6 +33,14 @@ export const companyInterns=async ()=>{
         }
     });
 }
+export const PostJob=async ()=>{
+    return await axios.post(`/company/postjob`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
 export const jobApply=async (data, token)=>{
     return await axios.post("/user/jobapply/61f6fe2575b4ff5389fb06dd", {credentials: data}, 
     {
