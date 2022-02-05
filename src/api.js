@@ -41,8 +41,8 @@ export const PostJob=async ()=>{
         }
     });
 }
-export const jobApply=async (data, token)=>{
-    return await axios.post("/user/jobapply/61f6fe2575b4ff5389fb06dd", {credentials: data}, 
+export const jobApply=async (data, internId)=>{
+    return await axios.post(`/user/jobapply/${internId}`, {credentials: data}, 
     {
         headers:{ 
             token: localStorage.getItem("token")
