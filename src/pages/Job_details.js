@@ -4,7 +4,7 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
-import { getIntern } from '../api';
+import { getIntern, jobApply } from '../api';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 import ActionSection from '../components/layout/ActionSection';
 
@@ -13,16 +13,35 @@ const Job_details = () => {
 
     const [intern, setIntern] = useState([]);
     const [company, setCompany] = useState([]);
+    const [question, setquestion] = useState('');
     const location = useLocation();
+    const internId = location.pathname.substring(13,);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(1);
+    const listOpen = Boolean(anchorEl);
+        
     useEffect(() => {
-        const id = location.pathname.substring(13,);
-        Promise.resolve(getIntern(id)).then((res) => {
+        Promise.resolve(getIntern(internId)).then((res) => {
             setIntern(res.data.intern)
             setCompany(res.data.company)
         }).catch((e) => {
-            console.log(e);
+            console.log({e});
         })
     }, [])
+    
+    const ApplyHandleClick=()=>{
+        Promise.resolve(jobApply({question},internId)).then((res)=>{
+            console.log(res.data);
+            alert(res.data);
+            setOpen(false);
+        }).catch((e)=>{
+            console.log(e);
+            alert(e)
+        })
+    }
 
     {
 
@@ -71,12 +90,7 @@ const Job_details = () => {
                 }
             }]
         };
-        const [open, setOpen] = useState(false);
-        const handleOpen = () => setOpen(true);
-        const handleClose = () => setOpen(false);
-        const [anchorEl, setAnchorEl] = useState(null);
-        const [selectedIndex, setSelectedIndex] = useState(1);
-        const listOpen = Boolean(anchorEl);
+        
         const handleClickListItem = (event) => {
             setAnchorEl(event.currentTarget);
         };
@@ -165,7 +179,7 @@ const Job_details = () => {
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3><Link a='/job_details'>{intern.name}</Link></h3>
+                                                    <h3><Link a='/job_details'>{intern?.name}</Link></h3>
                                                 </div>
                                                 <div className="featured-desc">
                                                     <p>Published on {intern.createdAt?.substr(0, 10)}</p>
@@ -176,7 +190,7 @@ const Job_details = () => {
                                                         <span><i className="fa fa-filter"></i>{company?.name}</span>
                                                     </div>
                                                     <div className="job-time">
-                                                        <span className="green">{intern.jobType}</span>
+                                                        <span className="green">{intern?.jobType}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,19 +254,18 @@ const Job_details = () => {
                                                         aria-describedby="modal-modal-description"
                                                     >
                                                         <Box sx={style}>
-                                                            <h2>Job Title</h2>
-                                                            <Typography>2 lines of the description 2 lines of the description 2 lines of the description 2 lines of the description
-                                                                2 lines of the description 2 lines of the description</Typography>
+                                                            <h2>{intern?.name}</h2>
+                                                            <Typography>{intern.description?.slice(0,50)}</Typography>
                                                             <div className="col-lg-12">
                                                                 <label className="mt-2 justify-center">
                                                                     <i className=""></i>
                                                                     {/* <input type="textarea" id="title_apply" placeholder="Why should we hire you?" /> */}
                                                                     <textarea
-
+                                                                        placeholder='Why should we hire you?'
                                                                         rows={5}
                                                                         cols={50}
-                                                                    >
-                                                                        Why should we hire you?
+                                                                        onChange={(e)=>{setquestion(e.target.value)}}
+                                                                    >                                                                       
                                                                     </textarea>
                                                                 </label>
                                                             </div>
@@ -299,8 +312,8 @@ const Job_details = () => {
                                                                     ))}
                                                                 </Menu>
                                                             </div>
-                                                            <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                            onClick={handleClose}>Apply</button>
+                                                            <button onClick={ApplyHandleClick} className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                            >Apply</button>
                                                             {/* <Typography id="modal-modal-title" variant="h6" component="h2">
 
                                                                   </Menu>
