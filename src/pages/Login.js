@@ -26,6 +26,7 @@ const Login = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [aMonth, setAMonth] = useState(false);
 
     const [useremail, setuseremail] = useState("");
     const [userpass, setuserpass] = useState("");
@@ -38,6 +39,9 @@ const Login = () => {
     
     const history = useHistory();
 
+    const rememberPass = () => {
+        setAMonth(true);
+    }
     const [fields, handleFieldChange] = useState({ 
         email: "",
         password: "",
@@ -52,7 +56,7 @@ const Login = () => {
                 e.preventDefault();
                 setCandidateOn(true);
                 e.preventDefault();
-                Promise.resolve(login({ email: useremail, password: userpass, status: "user" })).then(res => {
+                Promise.resolve(login({ email: useremail, password: userpass, status: "user", aMonth: aMonth })).then(res => {
                     console.log(res);
                     localStorage.setItem("token", res.data.token);
                     localStorage.setItem("status", res.data.status);
@@ -71,7 +75,7 @@ const Login = () => {
                 return;
             }
             e.preventDefault();
-            Promise.resolve(login({ email: companyemail, password: companypass, status: "company" })).then(res => {
+            Promise.resolve(login({ email: companyemail, password: companypass, status: "company", aMonth: aMonth })).then(res => {
                 console.log(res);
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("status", res.data.status);
@@ -91,7 +95,7 @@ const Login = () => {
         const responseGoogle = (response) => {
             console.log(response);
         }
-
+        
         return (
 
             <div className="site-main">
@@ -200,7 +204,7 @@ const Login = () => {
                                                                                   </div>
                                                                               </Box>
                                                                             </Modal>
-                                                                            <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
+                                                                            <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" onClick={rememberPass}/>
                                                                             <span>Remember Me for a month</span>
                                                                             <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor" style={{fontWeight:'bold'}}>Sign Up here</Link></p>
                                                                         </div>
@@ -301,12 +305,13 @@ const Login = () => {
                                         </div>
                                         <div className="login-social-buttons">
                                             <div className="row">
-                                                <div className="col-md-6">
+                                                <div className="col-lg-2"></div>
+                                                <div className="col-lg-4 flex">
                                                     <button id="login-with-facebook" className="social-account-button facebook-button ml-100"
                                                     >
                                                         <FacebookLogin
                                                             appId="951777148793990"
-                                                            autoLoad={true}
+                                                            autoLoad={false}
                                                             fields="name,email,picture"
                                                             callback={responseFacebook}
                                                             cssClass=""
@@ -314,8 +319,8 @@ const Login = () => {
                                                         />
                                                     </button>
                                                 </div>
-                                                <div className="col-md-6">
-                                                    <button id="login-with-google" className="mt-20 google-button">
+                                                <div className="col-lg-4 flex">
+                                                    <button id="login-with-google" className="mt-25 ml-50 google-button">
                                                         <GoogleLogin method="POST"
                                                             clientId="430560948108-l48c3dssgupp977dti4au6g5vc3dsfp6.apps.googleusercontent.com"
 

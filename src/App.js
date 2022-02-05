@@ -39,7 +39,7 @@ import PostJob from './pages/PostJob.js/PostJob';
 import Company_interns from './pages/Company_interns';
 import Posted_Jobs from './pages/Posted_Jobs';
 import Applications from './pages/Applicants';
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
 axios.defaults.params = {};
 
 

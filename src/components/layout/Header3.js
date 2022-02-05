@@ -25,8 +25,8 @@ const Header = () => {
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
     
-    // const token = localStorage.getItem("token")
-    const token = null;
+    const token = localStorage.getItem("token")
+    // const token = null;
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {

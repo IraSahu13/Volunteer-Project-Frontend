@@ -4,7 +4,8 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {signup} from './../api.js';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
 
 // export class Register extends Component {
 //     constructor(props) {
@@ -23,35 +24,54 @@ const Register = () => {
         const [userpass, setuserpass] = useState("");
         const [userphone, setuserphone] = useState();
         const [usercnfpass, setusercnfpass] = useState("");
+        const [error, setError] = useState(false);
+        const [text, setText] = useState("");
+        const [success, setSuccess] = useState(false);
+
         const CandidateSignup = async(e) =>{
-            if(usercnfpass!==userpass){
-                alert("password and confirm password does not match");
+            e.preventDefault();
+            if(username==="" || useremail===""){
+                setError(true);
+                setText("Missing Credentials");
                 return;
             }
-            if(username==="" || useremail===""){
-                alert("enter username and email");
-                return
+            else if(usercnfpass!==userpass){
+                setError(true);
+                setText("Password and Confirmed password doesn't match!");
+                return;
             }
-            e.preventDefault();
-            Promise.resolve(signup(
-                { 
-                    name : username, 
-                    email: useremail , 
-                    password: userpass , 
-                    status: "user",
-                    phoneNumber: userphone
-                })).then(res => {
-                console.log(res);
-                localStorage.setItem("token",res.data.token);
-                localStorage.setItem("status",res.data.status);
-                history.push("/");
-                window.location.reload();
-            }).catch((e) => {
-                console.log(e.response);
-                setTimeout(() => {
-                    alert('hey')
-                  }, 5000);
-            })
+            else{
+                Promise.resolve(signup(
+                    { 
+                        name : username, 
+                        email: useremail , 
+                        password: userpass , 
+                        status: "user",
+                        phoneNumber: userphone
+                    })).then(res => {
+                    console.log(res);
+                    setSuccess(true);
+                    setText("SignUp Successfull")
+                    localStorage.setItem("token",res.data.token);
+                    localStorage.setItem("status",res.data.status);
+                    setTimeout(() => {
+                        history.push("/");
+                        window.location.reload();
+                    }, 2000);
+                   
+                }).catch((e) => {
+                    console.log(e.response.data.error);
+                    setError(true);
+                    setText(e.response.data.error);
+                })
+
+            }
+            setTimeout(() => {
+                setError(false);
+                setText("");
+            }, 5000);
+            
+            
         }; 
 
         const [companyname, setcompanyname] = useState("");
@@ -60,15 +80,16 @@ const Register = () => {
         const [companypass, setcompanypass] = useState("");
         const [companyphone, setcompanyphone] = useState();
         const [companycnfpass, setcompanycnfpass] = useState("");
+        
 
         const EmployerSignup = async(e) =>{
             if(companycnfpass!==companypass){
-                alert("password and confirm password does not match");
-                return;
+                setError(true);
+                setText("Password and Confirmed password doesn't match!")
             }
             if(companyname==="" || companyemail==="" || companytitle===""){
                 alert("enter username, title and email");
-                return ;
+                
             }
             e.preventDefault();
             Promise.resolve(signup(
@@ -83,13 +104,14 @@ const Register = () => {
                 console.log(res);
                 localStorage.setItem("token",res.data.token);
                 localStorage.setItem("status",res.data.status);
-                history.push("/");
-                window.location.reload();
+                setTimeout(() => {
+                    history.push("/");
+                    window.location.reload();
+                }, 2000);
             }).catch((e) => {
                 console.log(e.response);
-                setTimeout(() => {
-                    alert('hey')
-                  }, 5000);
+                setError(true);
+                setText(e.response.data.error);
             })
         }; 
         return (
@@ -132,7 +154,9 @@ const Register = () => {
                                                         </a>
                                                     </Tab>
                                                 </TabList> 
-                                                <div className="content-tab">                                
+                                                {error && <Alerterror text={text} /> }
+                                                {success && <Alertsuccess text={text} /> }
+                                                <div className="content-tab">    
                                                     <TabPanel>
                                                         <form id="login_form" className="login_form wrap-form">
                                                             <div className="row">
@@ -182,7 +206,7 @@ const Register = () => {
                                                                             <div className="cookies-checkbox mt-15">
                                                                                 <div className="d-flex flex-row justify-content-start">
                                                                                     <input className="w-auto mr-10 mt-5" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
-                                                                                    <span>you accept our Terms and Conditions and Privacy Policy</span>
+                                                                                    <span>Accept our <Link style={{textDecorationLine: true}} exact to={'/terms'}>Terms and Conditions and Privacy Policy</Link></span>
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
@@ -202,6 +226,7 @@ const Register = () => {
                                                         </form>
                                                     </TabPanel>
                                                     <TabPanel>
+                                                        
                                                         <form id="login_form" className="login_form wrap-form">
                                                             <div className="row">
                                                                 <div className="col-lg-6">
