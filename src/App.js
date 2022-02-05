@@ -75,7 +75,6 @@ function App() {
         <Route exact path={`/signup`} component={ Register } />
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
-        <Route exact path={`/post_job`} component={ PostJob } />
         <Route exact path={`/company_interns`} component={ Company_interns } />
         <Route exact path={`/field`} component={ PostJob } />
         <Route exact path={'/applications'} component={Applications} />
