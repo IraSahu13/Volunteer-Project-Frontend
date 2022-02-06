@@ -124,10 +124,10 @@ const Header = () => {
                                             {/* <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-border
                                             ttm-icon-btn-left ttm-btn-color-grey text-theme-DarkColor d-flex align-items-center"> */}
                                                 {(!token) ?
-                                                    <div className="view-block"  style={{padding: '0.75rem', backgroundColor: 'transparent', border: '1px solid currentColor'}}>
-                                                        <i className="far fa-user fa-sm"></i><Link exact to={'/signup'}>Sign Up </Link>
-                                                        <span className="ml-10 mr-10 alert-heading">/</span>
-                                                        <i className="ti ti-lock fa-sm"></i><Link exact to={'/login'}>Login </Link>
+                                                    <div className="view-block ttm-btn-color-dark ttm-btn-style-border"  style={{padding: '0.75rem', backgroundColor: 'transparent', border: '1px solid #e63c80'}}>
+                                                        <i className="far fa-user fa-sm text-theme-SkinColor"></i><Link exact to={'/signup'}>Sign Up </Link>
+                                                        <span className="ml-10 mr-10 alert-heading text-theme-SkinColor">/</span>
+                                                        <i className="ti ti-lock fa-sm text-theme-SkinColor"></i><Link exact to={'/login'}>Login </Link>
                                                     </div> 
                                                     
                                                     : 
@@ -150,6 +150,7 @@ const Header = () => {
                                                       open={open}
                                                       onClose={handleClose}
                                                       onClick={handleClose}
+                                                      className="bg-theme-white"
                                                       PaperProps={{
                                                         elevation: 0,
                                                         sx: {
@@ -170,7 +171,8 @@ const Header = () => {
                                                             right: 14,
                                                             width: 10,
                                                             height: 10,
-                                                            bgcolor: 'background.paper',
+                                                            bgcolor: '#e0d1ed',
+                                                            borderRadius: '10px',
                                                             transform: 'translateY(-50%) rotate(45deg)',
                                                             zIndex: 0,
                                                           },

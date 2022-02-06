@@ -9,6 +9,7 @@ import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
 import { Box, Button, Modal, TextField, Typography } from '@material-ui/core';
 import { useForm } from 'use-form-fields';
+import { Alerterror } from '../components/layout/Alerts';
 
 const style = {
     position: 'absolute',
@@ -27,7 +28,9 @@ const Login = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [aMonth, setAMonth] = useState(false);
-
+    const [user, setUser] = useState(true);
+    const [employer, setEmployer] = useState(true);
+   
     const [useremail, setuseremail] = useState("");
     const [userpass, setuserpass] = useState("");
 
@@ -36,9 +39,12 @@ const Login = () => {
 
     const [candidateOn, setCandidateOn] = useState(false);
     const [employerOn, setEmployerOn] = useState(false);
-    
-    const history = useHistory();
 
+    const [error, setError] = useState(false);
+    const [text, setText] = useState("");
+
+    const history = useHistory();
+    
     const rememberPass = () => {
         setAMonth(true);
     }
@@ -52,10 +58,16 @@ const Login = () => {
     const [isSendingCode, setIsSendingCode] = useState(false);
 
     const CandidateLogin = async (e) => {
+        e.preventDefault();
+        if (useremail === "") {
+            setError(true);
+            setText("Missing Credentials");
+            return;
+        }
+        
         if (useremail !== "") {
-                e.preventDefault();
+                
                 setCandidateOn(true);
-                e.preventDefault();
                 Promise.resolve(login({ email: useremail, password: userpass, status: "user", aMonth: aMonth })).then(res => {
                     console.log(res);
                     localStorage.setItem("token", res.data.token);
@@ -72,6 +84,8 @@ const Login = () => {
         }
         const EmployerLogin = async (e) => {
             if (companyemail === "") {
+                setError(true);
+                setText("Missing Credentials");
                 return;
             }
             e.preventDefault();
@@ -123,7 +137,7 @@ const Login = () => {
                                         <div className="ttm-tabs ttm-tab-style-02">
                                             <Tabs>
                                                 <TabList className="tabs">
-                                                    <Tab className="tab">
+                                                    <Tab className="tab" >
                                                         <a>
                                                             <i className="flaticon flaticon-research"></i>
                                                             <span>Candidate</span><h5>Login as a Candidate</h5>
@@ -137,6 +151,7 @@ const Login = () => {
                                                     </Tab>
                                                 </TabList>
                                                 <div className="content-tab">
+                                                   {error && <Alerterror text={text} /> }
                                                     <TabPanel>
                                                         <form id="login_form" className="login_form wrap-form">
                                                             <div className="row">

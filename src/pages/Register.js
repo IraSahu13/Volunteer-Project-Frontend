@@ -27,7 +27,18 @@ const Register = () => {
         const [error, setError] = useState(false);
         const [text, setText] = useState("");
         const [success, setSuccess] = useState(false);
-
+        const[term, setTerm]= useState(false);
+        const Termclicked = () => {
+            setTerm(true);
+        }
+        const handleEnter = (event) => {
+            if (event.key.toLowerCase() === "enter") {
+              const form = event.target.form;
+              const index = [...form].indexOf(event.target);
+              form.elements[index + 1].focus();
+              event.preventDefault();
+            }
+        };
         const CandidateSignup = async(e) =>{
             e.preventDefault();
             if(username==="" || useremail===""){
@@ -40,6 +51,11 @@ const Register = () => {
                 setText("Password and Confirmed password doesn't match!");
                 return;
             }
+            else if(!term){
+                setError(true);
+                setText("Please accept our terms and conditions");
+                return;
+            }
             else{
                 Promise.resolve(signup(
                     { 
@@ -50,6 +66,7 @@ const Register = () => {
                         phoneNumber: userphone
                     })).then(res => {
                     console.log(res);
+                    setError(false);
                     setSuccess(true);
                     setText("SignUp Successfull")
                     localStorage.setItem("token",res.data.token);
@@ -83,13 +100,21 @@ const Register = () => {
         
 
         const EmployerSignup = async(e) =>{
-            if(companycnfpass!==companypass){
+            
+            if(companyname==="" || companyemail==="" || companytitle===""){
+                setError(true);
+                setText("Please re-enter the correct credentials");
+                return;
+                
+            }
+            else if(companycnfpass!==companypass){
                 setError(true);
                 setText("Password and Confirmed password doesn't match!")
             }
-            if(companyname==="" || companyemail==="" || companytitle===""){
-                alert("enter username, title and email");
-                
+            else if(!term){
+                setError(true);
+                setText("Please accept our terms and conditions");
+                return;
             }
             e.preventDefault();
             Promise.resolve(signup(
@@ -104,6 +129,9 @@ const Register = () => {
                 console.log(res);
                 localStorage.setItem("token",res.data.token);
                 localStorage.setItem("status",res.data.status);
+                setError(false);
+                setSuccess(true);
+                setText("SignUp Successfull")
                 setTimeout(() => {
                     history.push("/");
                     window.location.reload();
@@ -163,7 +191,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-user"></i>
-                                                                        <input value={username} onChange={(e)=>{
+                                                                        <input value={username} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setusername(e.target.value)
                                                                         }} name="requiredField" required ref={({ required: true })} type="text" id="txtname" placeholder="Username" />
                                                                     </label>
@@ -171,7 +199,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
-                                                                        <input value={useremail} onChange={(e)=>{
+                                                                        <input value={useremail} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setuseremail(e.target.value)
                                                                         }} type="email" required id="txtemail" placeholder="Email Address" />
                                                                     </label>
@@ -179,7 +207,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input value={userpass} onChange={(e)=>{
+                                                                        <input value={userpass} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setuserpass(e.target.value)
                                                                         }} type="password" id="password" placeholder="Password"/>
                                                                     </label>
@@ -187,7 +215,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input value={usercnfpass} onChange={(e)=>{
+                                                                        <input value={usercnfpass} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setusercnfpass(e.target.value)
                                                                         }} type="password" id="cpassword" placeholder="Confirm Password *"/>
                                                                     </label>
@@ -197,6 +225,7 @@ const Register = () => {
                                                                         <i className="ti ti-mobile"></i>
                                                                         <input value={userphone} onChange={(e)=>{
                                                                             setuserphone(e.target.value)
+                                                                            // onkeydown={handleEnter}
                                                                         }} type="tel" id="txtphone" placeholder="Phone Number"/>
                                                                     </label>
                                                                 </div>
@@ -205,7 +234,7 @@ const Register = () => {
                                                                         <div className="d-md-flex align-items-center justify-content-between">
                                                                             <div className="cookies-checkbox mt-15">
                                                                                 <div className="d-flex flex-row justify-content-start">
-                                                                                    <input className="w-auto mr-10 mt-5" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
+                                                                                    <input className="w-auto mr-10 mt-5" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" onClick={Termclicked}/>
                                                                                     <span>Accept our <Link style={{textDecorationLine: true}} exact to={'/terms'}>Terms and Conditions and Privacy Policy</Link></span>
                                                                                 </div>
                                                                             </div>
@@ -232,7 +261,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-bar-chart"></i>
-                                                                        <input value={companytitle} onChange={(e)=>{
+                                                                        <input value={companytitle} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanytitle(e.target.value)
                                                                         }}  type="title" id="title" placeholder="Company Title"/>
                                                                     </label>
@@ -240,7 +269,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-user"></i>
-                                                                        <input value={companyname} onChange={(e)=>{
+                                                                        <input value={companyname} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanyname(e.target.value)
                                                                         }}  type="text" id="txtname" placeholder="Username" />
                                                                     </label>
@@ -248,7 +277,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
-                                                                        <input value={companyemail} onChange={(e)=>{
+                                                                        <input value={companyemail} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanyemail(e.target.value)
                                                                         }}  type="email" id="txtemail" placeholder="Email Address" />
                                                                     </label>
@@ -256,7 +285,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-mobile"></i>
-                                                                        <input value={companyphone} onChange={(e)=>{
+                                                                        <input value={companyphone} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanyphone(e.target.value)
                                                                         }}  type="tel" id="txtphone" placeholder="Phone Number"/>
                                                                     </label>
@@ -264,7 +293,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input value={companypass} onChange={(e)=>{
+                                                                        <input value={companypass} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanypass(e.target.value)
                                                                         }}  type="password" id="password" placeholder="Password"/>
                                                                     </label>
@@ -272,7 +301,7 @@ const Register = () => {
                                                                 <div className="col-lg-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
-                                                                        <input value={companycnfpass} onChange={(e)=>{
+                                                                        <input value={companycnfpass} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanycnfpass(e.target.value)
                                                                         }}  type="password" id="cpassword" placeholder="Confirm Password *"/>
                                                                     </label>
@@ -282,8 +311,8 @@ const Register = () => {
                                                                         <div className="d-md-flex align-items-center justify-content-between">
                                                                             <div className="cookies-checkbox mt-15">
                                                                                 <div className="d-flex flex-row justify-content-start">
-                                                                                    <input className="w-auto mr-10 mt-5" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
-                                                                                    <span>you accept our Terms and Conditions and Privacy Policy</span>
+                                                                                    <input className="w-auto mr-10 mt-5" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" onClick={Termclicked}/>
+                                                                                    <span>Accept our <Link style={{textDecorationLine: true}} exact to={'/terms'}>Terms and Conditions and Privacy Policy</Link></span>
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
