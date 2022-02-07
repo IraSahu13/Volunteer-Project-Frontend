@@ -310,7 +310,7 @@ export class Resume extends Component {
                 handleChange={this.handleChange}
                 values={values}
               />
-            </div>
+            </div>  
            </div>
           <Footer />
          </>
