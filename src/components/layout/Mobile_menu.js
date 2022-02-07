@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 
 
 class Mobile_menu extends Component {
+
+  status = localStorage.getItem("status");
+
   state = {
     collapse1: false,
     collapseID: ''
@@ -64,7 +67,7 @@ class Mobile_menu extends Component {
                     {/* </MDBDropdown> */}
 
                 </MDBNavItem> 
-                <MDBNavItem className="mb-3">
+                {this.status==="user" && <MDBNavItem className="mb-3">
                   <MDBDropdown href={'/jobs_list'}>
                    <Link className="ml-10 pl-0.5 pb-1" exact to={'/job_list'}>Opportunities</Link>
                       {/* <MDBDropdownToggle nav caret>Jobs</MDBDropdownToggle>
@@ -73,8 +76,8 @@ class Mobile_menu extends Component {
                         <MDBDropdownItem href={process.env.PUBLIC_URL + '/job_details'}>Job Details</MDBDropdownItem>
                     </MDBDropdownMenu> */}
                   </MDBDropdown>
-                </MDBNavItem>
-                <MDBNavItem className="mb-4">
+                </MDBNavItem>}
+                { this.status === "company" && <MDBNavItem className="mb-4">
                 <Link className="ml-10 pl-0.5 pb-1 mb-4" exact to={'/candidate_list'}>Volunteer/Intern</Link>
                     {/* <MDBDropdown>
                       <MDBDropdownToggle nav caret>Employers</MDBDropdownToggle>
@@ -83,7 +86,7 @@ class Mobile_menu extends Component {
                           <MDBDropdownItem href={process.env.PUBLIC_URL + '/employers_details'}>Employers Details</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown> */}
-                </MDBNavItem>
+                </MDBNavItem>}
                 {/* <MDBNavItem>
                     <MDBDropdown>
                       <MDBDropdownToggle nav caret>Candidates</MDBDropdownToggle>
