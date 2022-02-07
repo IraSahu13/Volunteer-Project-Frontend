@@ -39,6 +39,7 @@ import PostJob from './pages/PostJob.js/PostJob';
 import Company_interns from './pages/Company_interns';
 import Posted_Jobs from './pages/Posted_Jobs';
 import Applications from './pages/Applicants';
+import Terms from './pages/Terms';
 axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
 axios.defaults.params = {};
 
@@ -77,7 +78,7 @@ function App() {
         <Route exact path={`/resume`} component={ Resume } />
         <Route exact path={`/company_interns`} component={ Company_interns } />
        
-        {/* <Route exact path={'/test'} component={AccountMenu} /> */}
+        <Route exact path={'/terms'} component={Terms} />
         <Route exact path={`/field`} component={ PostJob } />
         <Route exact path={'/applications'} component={Applications} />
         <Route exact path={'/posted_field'} component={Posted_Jobs} />

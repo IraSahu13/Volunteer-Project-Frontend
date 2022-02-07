@@ -8,7 +8,7 @@ const HeaderMenu = () => {
     {
         return (
             <div>
-                <nav style={{fontWeight: 400}} className="main-menu">         
+                <nav style={{fontWeight: 400}} className="main-menu text-theme-SkinColor">         
                     {/* <ul style={{fontWeight: 400}}className="menu ml-auto font-bold featured-title"> */}
                         <Link className= "alert-heading" exact to={'/'}>Home</Link>
                         {/* <l1> className="mega-menu-item"> */}

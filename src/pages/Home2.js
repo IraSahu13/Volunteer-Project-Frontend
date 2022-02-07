@@ -213,9 +213,9 @@ export class Home2 extends Component {
                                 </div>
                             </div>{/* section title end */}
                             <div className="mb-35">
-                                <ul className="ttm-list ttm-list-style-icon ttm-list-icon-color-skincolor text-theme-DarkColor">
+                                <ul className="ttm-list ttm-list-style-icon ttm-list-icon-color-skincolor text-theme-black">
                                     <li><i className="far fa-check-circle"></i>
-                                        <div className="ttm-list-li-content">The most progressive and expert staffing arrangement worldwide</div>
+                                        <div className="ttm-list-li-content ">The most progressive and expert staffing arrangement worldwide</div>
                                     </li>
                                     <li><i className="far fa-check-circle"></i>
                                         <div className="ttm-list-li-content">With over 2,000 offices & thousands of recruiters through overseas</div>
