@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { Footer } from '../../components/layout/Footer';
 import Header from '../../components/layout/Header';
 import PageHeader from '../../components/layout/PageHeader';
@@ -8,8 +8,8 @@ import Projects from './Project';
 import Experience from './Experience';
 import Extras from './Extras';
 
-export class Resume extends Component {
-  state = {
+const Resume = () => {
+  const [state, setState] = useState({
     step: 1,
     // Personal Profile Details...
     firstname: '',
@@ -67,28 +67,32 @@ export class Resume extends Component {
     interest4: '',
     interest5: '',
     interest6: '',
-  };
+  });
 
-  nextStep = () => {
-    const {step} = this.state;
-    this.setState ({
+  const nextStep = () => {
+    const {step} = state;
+    setState ({
       step: step + 1,
     });
   };
 
-  prevStep = () => {
-    const {step} = this.state;
-    this.setState ({
+  const prevStep = () => {
+    const {step} = state;
+    setState ({
       step: step - 1,
     });
   };
 
-  handleChange = ({target: {value, name}}) => {
-    this.setState ({[name]: value});
+  const handleChange = (e) => {
+    e.preventDefault();
+    const val= e.target.value;
+    console.log(val);
+    setState ({
+      ...state,
+      [e.target.name]: val});
   };
 
-  render () {
-    const {step} = this.state;
+    const {step} = state;
     const {
       // Profile-Information
       firstname,
@@ -148,7 +152,8 @@ export class Resume extends Component {
       interest4,
       interest5,
       interest6,
-    } = this.state;
+    } = state;
+
     const values = {
       // Profile-Information
       firstname,
@@ -223,8 +228,8 @@ export class Resume extends Component {
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Profile
-                nextStep={this.nextStep}
-                handleChange={this.handleChange}
+                nextStep={nextStep}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
@@ -243,9 +248,9 @@ export class Resume extends Component {
            <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Education
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
@@ -264,9 +269,9 @@ export class Resume extends Component {
           <div className="App mt-3">
             <div className="container col-lg-8 mx-auto text-center  mb-4">
               <Projects
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
@@ -285,9 +290,9 @@ export class Resume extends Component {
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Experience
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
@@ -306,8 +311,29 @@ export class Resume extends Component {
            <div className="App mt-3 mb-5">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Extras
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                prevStep={prevStep}
+                handleChange={handleChange}
+                values={values}
+              />
+            </div>
+           </div>
+          <Footer />
+         </>
+         
+        );
+        case 6:
+        return (
+          <>
+           <Header />
+           <PageHeader
+            title="Resume"
+            breadcrumb="review"
+           />
+           <div className="App mt-3 mb-5">
+            <div className="container col-lg-10 mx-auto text-center  mb-4">
+              <Extras
+                prevStep={prevStep}
+                handleChange={handleChange}
                 values={values}
               />
             </div>  
@@ -316,9 +342,9 @@ export class Resume extends Component {
          </>
          
         );
+          
       default: return <div/>;
       }
   }
-}
 
 export default Resume;

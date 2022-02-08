@@ -32,7 +32,7 @@ import Register from './pages/Register';
 import axios from 'axios';
 import Resume from './pages/Resume/Resume';
 import ScrollToTop from './components/layout/Gotop';
-import Apply from './pages/Apply';
+import Apply from './pages/Application';
 import { history } from './history';
 import PostJob from './pages/PostJob.js/PostJob';
 
@@ -40,6 +40,7 @@ import Company_interns from './pages/Company_interns';
 import Posted_Jobs from './pages/Posted_Jobs';
 import Applications from './pages/Applicants';
 import Terms from './pages/Terms';
+import Applied_Jobs from './pages/Applied_Jobs';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 // axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
@@ -79,10 +80,11 @@ function App() {
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
         <Route exact path={`/company_interns`} component={ Company_interns } />
-       
+        <Route exact path={'/applied'} component={Applied_Jobs} />
         <Route exact path={'/terms'} component={Terms} />
         <Route exact path={`/field`} component={ PostJob } />
         <Route exact path={'/applications'} component={Applications} />
+        <Route exact path={'/application'} component={Apply} />
         <Route exact path={'/posted_field'} component={Posted_Jobs} />
         <ScrollToTop />
         </Switch>

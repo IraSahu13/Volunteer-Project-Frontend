@@ -8,9 +8,57 @@ import Logout from '@mui/icons-material/Logout';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import HeaderMenu from './HeaderMenu';
+import { styled, alpha } from '@mui/material/styles';
+
+const StyledMenu = styled((props) => (
+    <Menu
+      elevation={0}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    '& .MuiPaper-root': {
+      borderRadius: 6,
+      marginTop: theme.spacing(1),
+      minWidth: 180,
+      color:
+        theme.palette.mode === 'dark' ? 'rgb(55, 65, 81)' : theme.palette.grey[500],
+      boxShadow:
+        'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+      '& .MuiMenu-list': {
+        padding: '4px 0',
+      },
+      '& .MuiMenuItem-root': {
+        '& .MuiSvgIcon-root': {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        '&:active': {
+          backgroundColor: 'pink',
+          // alpha(
+          //   theme.palette.primary.main,
+          //   theme.palette.action.selectedOpacity,
+          // ),
+        },
+      },
+    },
+  }));
+const styles = theme => ({
+    menuPaper: {
+        backgroundColor: 'black',
+      }
+  });
 
 const Header = () => {
-
+    const classes= styles();
     const componentDidMount = () => {
         window.addEventListener('scroll', this.isSticky);
     }
@@ -144,61 +192,45 @@ const Header = () => {
                                                         <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
                                                       </IconButton>
                                                     </Tooltip>
-                                                    <Menu
+                                                    <StyledMenu
                                                       anchorEl={anchorEl}
                                                       id="account-menu"
                                                       open={open}
                                                       onClose={handleClose}
                                                       onClick={handleClose}
-                                                      className="bg-theme-white"
-                                                      PaperProps={{
-                                                        elevation: 0,
-                                                        sx: {
-                                                          overflow: 'visible',
-                                                          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                                                          mt: 1.5,
-                                                          '& .MuiAvatar-root': {
-                                                            width: 32,
-                                                            height: 32,
-                                                            ml: -0.5,
-                                                            mr: 1,
-                                                          },
-                                                          '&:before': {
-                                                            content: '""',
-                                                            display: 'block',
-                                                            position: 'absolute',
-                                                            top: 0,
-                                                            right: 14,
-                                                            width: 10,
-                                                            height: 10,
-                                                            bgcolor: '#e0d1ed',
-                                                            borderRadius: '10px',
-                                                            transform: 'translateY(-50%) rotate(45deg)',
-                                                            zIndex: 0,
-                                                          },
-                                                        },
-                                                      }}
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
                                                       <MenuItem>
-                                                        <Avatar /> Profile
+                                                        <ListItemIcon>
+                                                          <Avatar />
+                                                        </ListItemIcon>
+                                                        <Link>Profile</Link>
                                                       </MenuItem>
                                                       <MenuItem>
-                                                        <Avatar /> My account
+                                                      <ListItemIcon>
+                                                          <Avatar />
+                                                        </ListItemIcon>
+                                                        <Link>My Account</Link>
                                                       </MenuItem>
                                                       <Divider />
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           <PersonAdd fontSize="small" />
                                                         </ListItemIcon>
-                                                        Add another account
+                                                        <Link>Add another account</Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/resume'}>Resume </Link>
                                                       </MenuItem>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           <Settings fontSize="small" />
                                                         </ListItemIcon>
-                                                        Settings
+                                                        <Link>Settings</Link>
                                                       </MenuItem>
                                                       <MenuItem
                                                         onClick={()=>{
@@ -210,9 +242,9 @@ const Header = () => {
                                                         <ListItemIcon>
                                                           <Logout fontSize="small"/>
                                                         </ListItemIcon>
-                                                        Logout
+                                                        <Link>Logout</Link>
                                                       </MenuItem>
-                                                    </Menu>
+                                                    </StyledMenu>
                                                     {/* <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
                                                         localStorage.removeItem("token");
                                                         localStorage.removeItem("status");
