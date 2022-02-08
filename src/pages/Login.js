@@ -96,10 +96,9 @@ const Login = () => {
                 history.push('/');
                 // window.location.reload();
             }).catch((e) => {
-                console.log(e.response);
-                setInterval(() => {
-
-                }, 5000);
+                console.log(e.response.data.error);
+                setError(true);
+                setText(e.response.data.error);
             })
 
         }

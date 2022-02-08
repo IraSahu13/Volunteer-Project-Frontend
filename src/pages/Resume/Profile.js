@@ -17,25 +17,23 @@ import {Paper, withStyles, Grid} from '@material-ui/core';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit * 1,
+    margin: '1.5rem',
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: '1.5rem',  
   },
 });
 
-class Profile extends Component {
-  continue = e => {
+const Profile = (props) => {
+  const Continue = (e) => {
     e.preventDefault ();
-    this.props.nextStep ();
+    props.nextStep ();
   };
-
-  render () {
-    const {values} = this.props;
-    const {classes} = this.props;
+  const classes = styles();
+  const values = [];
     return (
-      <Paper className={classes.padding}>
-        <Card>
+      <Paper className={classes.padding} >
+        <Card className="bg-theme-GreyColor">
           <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Personal Details" />
         </Card>
         <CardContent>
@@ -50,7 +48,7 @@ class Profile extends Component {
                   style={{width: '80%'}}
                   required
                   value={values.firstname}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                 />
               </Grid>
               <Grid item md={6} sm={12} xs={12} lg={6}>
@@ -62,7 +60,7 @@ class Profile extends Component {
                   name="lastname"
                   required
                   value={values.lastname}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                 />
               </Grid>
 
@@ -75,7 +73,7 @@ class Profile extends Component {
                   required
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.email}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -94,7 +92,7 @@ class Profile extends Component {
                   name="phone"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.phone}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -113,7 +111,7 @@ class Profile extends Component {
                   name="website"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.website}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -131,7 +129,7 @@ class Profile extends Component {
                   name="github"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.github}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -149,7 +147,7 @@ class Profile extends Component {
                   name="linkedin"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.linkedin}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -167,7 +165,7 @@ class Profile extends Component {
                   name="twitter"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.twitter}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -185,7 +183,7 @@ class Profile extends Component {
                   name="facebook"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.facebook}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -203,7 +201,7 @@ class Profile extends Component {
                   name="instagram"
                   style={{alignItems: 'left', width: '80%'}}
                   value={values.instagram}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -214,14 +212,13 @@ class Profile extends Component {
                 />
               </Grid>
             </Grid>
-            <Container className={classes.margin}>
+            <Container className={classes.margin} style={{marginTop: '2rem'}}>
               <Row>
                 <Col lg={4} xs={4} />
                 <Col lg={2} xs={2}>
                   <Button
                     variant="contained"
                     color="secondary"
-                    onClick={this.nextStep}
                     disabled
                     startIcon={<NavigateBeforeIcon />}
                   >
@@ -232,7 +229,7 @@ class Profile extends Component {
                   <Button
                     variant="contained"
                     className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                    onClick={this.continue}
+                    onClick={Continue}
                     endIcon={<NavigateNextIcon />}
                   >
                     Next
@@ -254,7 +251,7 @@ class Profile extends Component {
         <p className="text-center text-muted">Page 1 </p>
       </Paper>
     );
-  }
 }
 
-export default withStyles (styles) (Profile);
+
+export default Profile;

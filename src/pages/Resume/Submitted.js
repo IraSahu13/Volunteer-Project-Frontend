@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: '1.5rem',  
   },
 });
-const Profile = (props) => {
+const Submitted = (props) => {
   const Continue = (e) => {
     e.preventDefault ();
     props.nextStep ();
@@ -272,4 +272,4 @@ const Profile = (props) => {
     );
   }
 
-export default Profile;
+export default Submitted;
