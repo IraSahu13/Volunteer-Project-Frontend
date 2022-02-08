@@ -11,7 +11,7 @@ export const googleLogin=async (data)=>{
     return await axios.post("/auth/signin",{credentials:  data});
 }
 export const signup=async (data)=>{
-    return await axios.post("/auth/signup",{credentials:  data});
+    return await axios.post("/auth/signup",data);
 }
 export const getUser=async (id)=>{
     return await axios.get(`/user/getuser/${id}`);
