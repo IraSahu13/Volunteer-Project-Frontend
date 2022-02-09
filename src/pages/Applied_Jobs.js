@@ -38,47 +38,7 @@ const Applied_Jobs = () => {
                 <div className="row m-4">
                     {AllApplications?.map((data)=>(
                         <div className="col-lg-12">
-                        <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-                            <div className="featured-content">
-                                <div className="featured-title">
-                                    <h3>{data?.name}</h3>
-                                </div>
-                                <div className="featured-bottom">
-                                    <div className="job-skill">
-                                        <p style={{color: 'grey'}}>{data.date}</p>
-                                    </div>
-
-                                    <div className="view-block">
-                                        <KeyboardArrowDownIcon
-                                            id="demo-customized-button"
-                                            aria-controls={open ? 'demo-customized-menu' : undefined}
-                                            aria-haspopup="true"
-                                            aria-expanded={open ? 'true' : undefined}
-                                            variant="contained"
-                                            disableElevation
-                                            onClick={open ? handleClose : handleClick}
-                                          ></KeyboardArrowDownIcon>
-                                        
-                                    </div>
-                                    {open &&
-                                    <div className="mt-10">
-                                        <p>{data?.description?.slice(0,50)}...</p>
-                                        <div >
-                                           <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                           ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>Review Application</Link>
-                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                           ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>View Job</Link>
-                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                           ttm-btn-color-dark"
-                                            exact to={'/application'}>View Progress</Link>
-                                        </div>
-                                    </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     ))}
                     <div className="col-lg-12">
@@ -120,10 +80,10 @@ const Applied_Jobs = () => {
                                         <div >
                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>Review Application</Link>
+                                            exact to={'/application'} >Review Application</Link>
                                             <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>View Job</Link>
+                                            exact to={'/job_details'}>View Job</Link>
                                             <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark"
                                             exact to={'/application'}>View Progress</Link>

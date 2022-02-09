@@ -3,7 +3,7 @@ import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'
 import { Link } from 'react-router-dom';
-import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip, Menu } from '@material-ui/core';
+import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip, Menu, Badge } from '@material-ui/core';
 import Logout from '@mui/icons-material/Logout';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
@@ -28,8 +28,9 @@ const StyledMenu = styled((props) => (
       borderRadius: 6,
       marginTop: theme.spacing(1),
       minWidth: 180,
+      backgroundColor: '#ece3f4',
       color:
-        theme.palette.mode === 'dark' ? 'rgb(55, 65, 81)' : theme.palette.grey[500],
+        theme.palette.mode === 'dark' ? 'rgb(55, 65, 81)' : 'black',
       boxShadow:
         'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
       '& .MuiMenu-list': {
@@ -56,6 +57,40 @@ const styles = theme => ({
         backgroundColor: 'black',
       }
   });
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: 'ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }));
+  
+  const SmallAvatar = styled(Avatar)(({ theme }) => ({
+    width: 22,
+    height: 22,
+    border: `2px solid ${theme.palette.background.paper}`,
+  }));
 
 const Header = () => {
     const classes= styles();
@@ -179,8 +214,10 @@ const Header = () => {
                                                     </div> 
                                                     
                                                     : 
+                                                    
                                                     <React.Fragment>
                                                     <Tooltip title="Account settings">
+                                                       
                                                       <IconButton
                                                         onClick={handleClick}
                                                         size="small"
@@ -189,7 +226,13 @@ const Header = () => {
                                                         aria-haspopup="true"
                                                         aria-expanded={open ? 'true' : undefined}
                                                       >
-                                                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                                                        <StyledBadge
+                                                         overlap="circular"
+                                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                                         variant="dot"
+                                                        >
+                                                         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                                        </StyledBadge>
                                                       </IconButton>
                                                     </Tooltip>
                                                     <StyledMenu
@@ -205,13 +248,7 @@ const Header = () => {
                                                         <ListItemIcon>
                                                           <Avatar />
                                                         </ListItemIcon>
-                                                        <Link>Profile</Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                      <ListItemIcon>
-                                                          <Avatar />
-                                                        </ListItemIcon>
-                                                        <Link>My Account</Link>
+                                                        <Link exact to= {'/profile'}>Profile</Link>
                                                       </MenuItem>
                                                       <Divider />
                                                       <MenuItem>
@@ -225,6 +262,12 @@ const Header = () => {
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
                                                         <Link exact to= {'/resume'}>Resume </Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/application'}>Applications</Link>
                                                       </MenuItem>
                                                       <MenuItem>
                                                         <ListItemIcon>
