@@ -49,5 +49,13 @@ export const jobApply=async (data, internId)=>{
         }
     });
 }
+export const userInfo=async (data, internId)=>{
+    return await axios.get(`/getuser`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
 
 

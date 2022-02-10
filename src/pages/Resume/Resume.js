@@ -69,20 +69,7 @@ const Resume = () => {
     interest6: '',
   });
 
-  const nextStep = () => {
-    const {step} = state;
-    setState ({
-      step: step + 1,
-    });
-  };
-
-  const prevStep = () => {
-    const {step} = state;
-    setState ({
-      step: step - 1,
-    });
-  };
-
+  
   const handleChange = (e) => {
     e.preventDefault();
     const val= e.target.value;
@@ -230,7 +217,6 @@ const Resume = () => {
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Profile
-                nextStep={nextStep}
                 handleChange={handleChange}
                 values={values}
               />
@@ -239,8 +225,6 @@ const Resume = () => {
            <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Education
-                nextStep={nextStep}
-                prevStep={prevStep}
                 handleChange={handleChange}
                 values={values}
               />
@@ -249,8 +233,6 @@ const Resume = () => {
            <div className="App mt-3">
             <div className="container col-lg-8 mx-auto text-center  mb-4">
               <Projects
-                nextStep={nextStep}
-                prevStep={prevStep}
                 handleChange={handleChange}
                 values={values}
               />
@@ -259,8 +241,6 @@ const Resume = () => {
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Experience
-                nextStep={nextStep}
-                prevStep={prevStep}
                 handleChange={handleChange}
                 values={values}
               />
@@ -269,7 +249,6 @@ const Resume = () => {
            <div className="App mt-3 mb-5">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Extras
-                prevStep={prevStep}
                 handleChange={handleChange}
                 values={values}
               />
@@ -278,7 +257,6 @@ const Resume = () => {
            <div className="App mt-3 mb-5">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Extras
-                prevStep={prevStep}
                 handleChange={handleChange}
                 values={values}
               />

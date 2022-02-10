@@ -25,10 +25,7 @@ const styles = theme => ({
 });
 
 const Profile = (props) => {
-  const Continue = (e) => {
-    e.preventDefault ();
-    props.nextStep ();
-  };
+  
   const classes = styles();
   const values = [];
     return (

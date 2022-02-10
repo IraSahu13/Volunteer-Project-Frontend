@@ -3,8 +3,8 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
-import { allApplicants } from '../api';
-import { AppBar, Avatar, Box, Button, Card, CircularProgress, Dialog, Divider, IconButton, List, ListItem, ListItemText, Slide, Toolbar, Typography } from '@material-ui/core';
+import { allApplicants, getUser } from '../api';
+import { AppBar, Avatar, Box, Button, Card, CardContent, CardHeader, CircularProgress, Dialog, Divider, Grid, IconButton, InputAdornment, List, ListItem, ListItemText, Paper, Slide, TextField, Toolbar, Typography } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Rating } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -12,148 +12,172 @@ import { Form,Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
 import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
+import {userInfo} from '../api';
+import EmailIcon from '@material-ui/icons/Email';
+import PhoneIcon from '@material-ui/icons/Phone';
+import LanguageIcon from '@material-ui/icons/Language';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+const styles = theme => ({
+  margin: {
+    margin: '1.5rem',
+  },
+  padding: {
+    padding: '1.5rem',  
+  },
+});
 
-const ProfileDetails = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pic, setPic] = useState();
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [picMessage, setPicMessage] = useState();
-  const [text, setText] = useState("");
-  // const dispatch = useDispatch();
-  const history= useHistory();
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { userInfo } = userLogin;
-
-  // const userUpdate = useSelector((state) => state.userUpdate);
-  // const { loading, error, success } = userUpdate;
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    pic: "",
-  });
-  useEffect(() => {
-    if (!userInfo) {
-      history.push("/");
-    } else {
-      setUserInfo({
-        name: userInfo.name,
-        email: userInfo.email,
-        pic: userInfo.pic,
-      })
-    }
-  }, [history, userInfo]);
-
-  const postDetails = (pics) => {
-    setPicMessage("Please Select an Image");
-    // if (pics.type === "image/jpeg" || pics.type === "image/png") {
-    //   const data = new FormData();
-    //   data.append("file", pics);
-    //   data.append("upload_preset", "notezipper");
-    //   data.append("cloud_name", "piyushproj");
-    //   fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
-    //     method: "post",
-    //     body: data,
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       setPic(data.url.toString());
-    //       console.log(pic);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // } else {
-    //   return setPicMessage("Please Select an Image");
-    // }
-  };
-
-  const submitHandler = (e) => {
+const ProfileDetails = () =>{
+  const handleChange = (e) => {
     e.preventDefault();
-    console.log(e);
-    // dispatch(updateProfile({ name, email, password, pic }));
+    // const val= e.target.value;
+    // console.log(val);
+    // setState ({
+    //   ...state,
+    //   [e.target.name]: val});
   };
-  return (
-    <div>
-        <Row className="profileContainer">
-          <Col md={6}>
-            <Form onSubmit={submitHandler}>
-              {/* {loading && <CircularProgress />}
-              {success && (
-                <Alertsuccess text={Text} />
-              )}
-              {error && <Alerterror text= {text} />} */}
-              <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => setUserInfo(e.target.name=e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
-                  value={email}
-                  onChange={(e) => setUserInfo(e.target.name=e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Password"
-                  value={password}
-                  onChange={(e) => setUserInfo(e.target.name=e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>{" "}
-              {picMessage && (
-                <Alerterror text={picMessage} />
-              )}
-              <Form.Group controlId="pic">
-                <Form.Label>Change Profile Picture</Form.Label>
-                <Form.File
-                  onChange={(e) => postDetails(e.target.files[0])}
-                  id="custom-file"
-                  type="image/png"
-                  label="Upload Profile Picture"
-                  custom
+  const handleSubmit = (e) => {
+    console.log(e);
+  }
+  const classes = styles();
+  const values = [];
+    return (
+      <Paper className={classes.padding} >
+        <Card className="bg-theme-GreyColor">
+          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Personal Details" />
+        </Card>
+        <CardContent>
+          <div className={classes.margin}>
+          <div className='row'>
+            <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  variant="outlined"
+                  name="firstname"
+                  label="First Name"
+                  style={{width: '80%'}}
+                  value={values.firstname}
+                  onChange={handleChange}
                 />
-              </Form.Group>
-              <Button type="submit" varient="primary">
-                Update
-              </Button>
-            </Form>
-          </Col>
-          <Col
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <img src={pic} alt={name} className="profilePic" />
-          </Col>
-        </Row>
-      </div>
-  );
+              </Grid>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  label="Last Name"
+                  variant="outlined"
+                  style={{width: '80%'}}
+                  name="lastname"
+                  value={values.lastname}
+                  onChange={handleChange}
+                />
+              </Grid>
+
+              <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  label="Email"
+                  variant="outlined"
+                  name="email"
+                  style={{alignItems: 'left', width: '80%'}}
+                  value={values.email}
+                  onChange={handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <EmailIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+
+              <Grid item lg={6} xs={12} sm={12} md={6}>
+                <TextField
+                  margin="dense"
+                  label="Phone Number"
+                  variant="outlined"
+                  name="phone"
+                  style={{alignItems: 'left', width: '80%'}}
+                  value={values.phone}
+                  onChange={handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <PhoneIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+
+              <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  label="Your Website"
+                  variant="outlined"
+                  name="website"
+                  style={{alignItems: 'left', width: '80%'}}
+                  value={values.website}
+                  onChange={handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <LanguageIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  label="GitHub"
+                  variant="outlined"
+                  name="github"
+                  style={{alignItems: 'left', width: '80%'}}
+                  value={values.github}
+                  onChange={handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <GitHubIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  label="Linked In"
+                  variant="outlined"
+                  name="linkedin"
+                  style={{alignItems: 'left', width: '80%'}}
+                  value={values.linkedin}
+                  onChange={handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <LinkedInIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
+              <img alt="profile_pic"></img>
+            </Grid>
+          </div>
+          </div>
+        </CardContent>
+      </Paper>
+    );
 }
 const EditProfile = () => {
   const [open, setOpen] = useState(false);
@@ -188,12 +212,12 @@ const EditProfile = () => {
             <Typography sx={{ ml: 2, flex: 1 }} className="featured-title" variant="h6" component="div">
               Edit Profile
             </Typography>
-            <Button autoFocus className="view-block" onClick={handleClose}>
-              Save
-            </Button>
           </Toolbar>
+          
         </AppBar>
-        {/* <ProfileDetails /> */}
+        <div className="row">
+          <ProfileDetails />
+        </div>
       </Dialog>
     </div>
   );
