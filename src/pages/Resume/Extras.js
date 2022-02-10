@@ -280,7 +280,7 @@ class Experience extends Component {
             </Grid>
           </div>
         </CardContent>
-        <Container className={classes.margin}>
+        {/* <Container className={classes.margin}>
           <Row>
             <Col lg={4} xs={4} />
             <Col lg={2} xs={2}>
@@ -305,7 +305,7 @@ class Experience extends Component {
             </Col>
             <Col xs={4} />
           </Row>
-          <br />
+          <br /> */}
           {/* <Button
             variant="contained"
             color="primary"
@@ -314,8 +314,8 @@ class Experience extends Component {
           >
             Download Resume
           </Button> */}
-        </Container>
-        <p className="text-center text-muted">Page 5</p>
+        {/* </Container>
+        <p className="text-center text-muted">Page 5</p> */}
       </Paper>
       {/* <Footer /> */}
     </>

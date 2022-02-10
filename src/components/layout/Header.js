@@ -1,27 +1,114 @@
-import React, { Component } from 'react'
-import Menu from './HeaderMenu';
+import React, { Component, useState } from 'react'
+import HeaderMenu from './HeaderMenu';
 import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'
+import { Link } from 'react-router-dom';
+import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip, Menu, Badge } from '@material-ui/core';
+import Logout from '@mui/icons-material/Logout';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import { styled, alpha } from '@mui/material/styles';
 
-
-export class Header extends Component {
-    
-    componentDidMount() {
+const StyledMenu = styled((props) => (
+    <Menu
+      elevation={0}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    '& .MuiPaper-root': {
+      borderRadius: 6,
+      marginTop: theme.spacing(1),
+      minWidth: 180,
+      backgroundColor: '#ece3f4',
+      color:
+        theme.palette.mode === 'dark' ? 'rgb(55, 65, 81)' : 'black',
+      boxShadow:
+        'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+      '& .MuiMenu-list': {
+        padding: '4px 0',
+      },
+      '& .MuiMenuItem-root': {
+        '& .MuiSvgIcon-root': {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        '&:active': {
+          backgroundColor: 'pink',
+          // alpha(
+          //   theme.palette.primary.main,
+          //   theme.palette.action.selectedOpacity,
+          // ),
+        },
+      },
+    },
+  }));
+const styles = theme => ({
+    menuPaper: {
+        backgroundColor: 'black',
+      }
+  });
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: 'ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }));
+  
+const Header = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    const componentDidMount = () => {
         window.addEventListener('scroll', this.isSticky);
     }
 
-    componentWillUnmount() {
+    const componentWillUnmount = () => {
         window.removeEventListener('scroll', this.isSticky);
     }
 
-    isSticky = (e)=>{
+    const isSticky = (e) =>{
         const header = document.querySelector('header');
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
 
-    render() {        
         return (
                 
             <header id="masthead" className="header ttm-header-style-01">
@@ -58,8 +145,92 @@ export class Header extends Component {
                                         <div className="border-box-block">
                                             <div className=" d-flex align-items-center justify-content-between">
                                                 {/* menu */}
-                                                <Menu/>
+                                                <HeaderMenu/>
                                                 <div className="mobile-menu"><Mobile_menu/></div>
+                                             <div className="border-box-block ms-auto mr-20">
+                                                <div className=" d-flex align-items-center justify-content-between">
+                                                
+                                                </div>
+                                             </div>
+                                                <React.Fragment className="ml-auto">
+                                                    <Tooltip title="Account settings">
+                                                       
+                                                      <IconButton
+                                                        onClick={handleClick}
+                                                        size="small"
+                                                        sx={{ ml: 2 }}
+                                                        aria-controls={open ? 'account-menu' : undefined}
+                                                        aria-haspopup="true"
+                                                        aria-expanded={open ? 'true' : undefined}
+                                                      >
+                                                        <StyledBadge
+                                                         overlap="circular"
+                                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                                         variant="dot"
+                                                        >
+                                                         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                                        </StyledBadge>
+                                                      </IconButton>
+                                                    </Tooltip>
+                                                    <StyledMenu
+                                                      anchorEl={anchorEl}
+                                                      id="account-menu"
+                                                      open={open}
+                                                      onClose={handleClose}
+                                                      onClick={handleClose}
+                                                      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                                      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                                                    >
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          <Avatar />
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/profile'}>Profile</Link>
+                                                      </MenuItem>
+                                                      <Divider />
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          <PersonAdd fontSize="small" />
+                                                        </ListItemIcon>
+                                                        <Link>Add another account</Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/resume'}>Resume </Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/applications'}>Applications</Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          <Settings fontSize="small" />
+                                                        </ListItemIcon>
+                                                        <Link>Settings</Link>
+                                                      </MenuItem>
+                                                      <MenuItem
+                                                        onClick={()=>{
+                                                           localStorage.removeItem("token");
+                                                           localStorage.removeItem("status");
+                                                           window.location.reload();
+                                                           console.log("response");
+                                                        }}>
+                                                        <ListItemIcon>
+                                                          <Logout fontSize="small"/>
+                                                        </ListItemIcon>
+                                                        <Link>Logout</Link>
+                                                      </MenuItem>
+                                                    </StyledMenu>
+                                                    {/* <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
+                                                        localStorage.removeItem("token");
+                                                        localStorage.removeItem("status");
+                                                        window.location.reload();
+                                                    }}>Sign Out </Link> */}
+                                                    </React.Fragment>
                                                 {/* menu end */}
                                                 <div className="header_extra ml-auto d-flex align-items-center">
                                                     {/* <Header_search/> */}
@@ -88,7 +259,6 @@ export class Header extends Component {
             </header> 
             
         )
-    }
 }
 
 export default Header;

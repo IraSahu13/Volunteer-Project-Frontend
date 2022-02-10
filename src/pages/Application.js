@@ -35,38 +35,29 @@ function Apply() {
                                     <div className="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
                                     <div className="layer-content">
                                         <div className="mb-10">
-                                            <h5>About</h5>
+                                            <h5>Application</h5>
                                         </div>
                                         <div className="ttm-tabs ttm-tab-style-02">
                                             <Tabs>
                                                 <div className="content-tab">                                
                                                     <TabPanel>
-                                                        <form id="apply_form" className="login_form wrap-form">
                                                             <div className="row">
-                                                                <div className="col-lg-12">
-                                                                    <label>
-                                                                        <i className=""></i>
-                                                                        <input type="text" value={title} onChange={(e)=>{
-                                                                            settitle(e.target.value)
-                                                                        }} id="title_apply" placeholder="Title" />
-                                                                    </label>
-                                                                </div>
-                                                                <div className="col-lg-12">
-                                                                    <label>
-                                                                        <i className=""></i>
-                                                                        <input type="text" value={question} onChange={(e)=>{
-                                                                            setquestion(e.target.value)
-                                                                        }} id="description" placeholder="Why you should get selected?"/>
-                                                                    </label>
+                                                               <label className="featured-content">Why you should get selected:</label>
+                                                               <div className="col-lg-12 featured-content">
+                                                                  <p >
+                                                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                                  labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                                  maecenas accumsan lacus vel facilisis.
+                                                                    </p>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                   <div className="featured-imagebox featured-imagebox-job bg-theme-GreyColor">
-                                                                       <div className="featured-thumbnail">
+                                                                       {/* <div className="featured-thumbnail">
                                                                          <img src="https://via.placeholder.com/210x204?text=210x204+job-06.png" />
-                                                                       </div>
+                                                                       </div> */}
                                                                    <div className="featured-content">
                                                                      <div className="featured-title">
-                                                                        <h3><a href={'/resume'}>Resume</a></h3>
+                                                                        <h3><a href={'/resume'}>Resume_1</a></h3>
                                                                      </div>
                                                                      <div className="featured-desc">
                                                                        <p>Review</p>
@@ -85,11 +76,11 @@ function Apply() {
                                                                 </div>
                                                                 <div className="col-lg-6 mx-auto">
                                                                     <label className="mb-0">
-                                                                        <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" type="submit" onClick={handleSubmit}>Apply</button>
+                                                                        <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" type="submit" onClick={handleSubmit}>Edit</button>
                                                                     </label>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        
                                                     </TabPanel>
                                                     {/* <TabPanel>
                                                         <form id="login_form" className="login_form wrap-form">

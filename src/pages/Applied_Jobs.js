@@ -133,11 +133,11 @@ const Applied_Jobs = () => {
                                             <div >
                                                 <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark mr-20"
-                                                    exact to={'/application'}>Review Application</Link>
-                                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                            exact to={'/application'} >Review Application</Link>
+                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark mr-20"
-                                                    exact to={'/application'}>View Job</Link>
-                                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                            exact to={'/job_details'}>View Job</Link>
+                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark"
                                                     exact to={'/application'}>View Progress</Link>
                                             </div>
