@@ -75,9 +75,9 @@ const Login = () => {
                 history.push('/');
                 // window.location.reload();
             }).catch((e) => {
-                console.log(e.response.data.error);
+                console.log(e.response?.data?.error);
                 setError(true);
-                setText(e.response.data.error);
+                setText(e.response?.data?.error);
             })
         }
     }

@@ -1,7 +1,7 @@
 import { Card } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { allApplicants, companyInterns } from '../api';
+import { myAppliedJobs } from '../api';
 import { Footer } from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import PageHeader from '../components/layout/PageHeader';
@@ -12,16 +12,20 @@ const Applied_Jobs = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
     const [AllApplications, setallInterns] = useState([]);
+    let [user, setuser] = useState([])
+    let [applied, setapplied] = useState('')
+    let [question, setquestion] = useState('')
+    const [load, setload] = useState(true)
     useEffect(() => {
-        Promise.resolve(companyInterns()).then((res) => {
-            console.log(res.data.intern);
-            setallInterns(res.data.intern)
+        Promise.resolve(myAppliedJobs()).then((res) => {
+            setallInterns(res.data.response)
+            setuser(res.data.user)
         }).catch((e) => {
             console.log({ e });
         })
@@ -36,50 +40,59 @@ const Applied_Jobs = () => {
             />
             <Card>
                 <div className="row m-4">
-                    {AllApplications?.map((data)=>(
+                    {AllApplications?.map((data) => (
                         <div className="col-lg-12">
-                        <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-                            <div className="featured-content">
-                                <div className="featured-title">
-                                    <h3>{data?.name}</h3>
-                                </div>
-                                <div className="featured-bottom">
-                                    <div className="job-skill">
-                                        <p style={{color: 'grey'}}>{data.date}</p>
-                                    </div>
-
-                                    <div className="view-block">
-                                        <KeyboardArrowDownIcon
-                                            id="demo-customized-button"
-                                            aria-controls={open ? 'demo-customized-menu' : undefined}
-                                            aria-haspopup="true"
-                                            aria-expanded={open ? 'true' : undefined}
-                                            variant="contained"
-                                            disableElevation
-                                            onClick={open ? handleClose : handleClick}
-                                          ></KeyboardArrowDownIcon>
-                                        
-                                    </div>
-                                    {open &&
-                                    <div className="mt-10">
-                                        <p>{data?.description?.slice(0,50)}...</p>
-                                        <div >
-                                           <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                           ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>Review Application</Link>
-                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                           ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>View Job</Link>
-                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                           ttm-btn-color-dark"
-                                            exact to={'/application'}>View Progress</Link>
+                            <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+                                <div className="featured-content">
+                                        <h4>{data?.name}</h4>
+                                    <div className="featured-bottom">
+                                        <div className="job-skill">
+                                            {/* {console.log(user?.internsApplied)} */}
+                                            {(load) && user?.internsApplied?.map((u) => {
+                                                if (u.id === data._id) {
+                                                    setapplied(u.date.substring(4, 16))
+                                                    setquestion(u.question)
+                                                    setload(false)
+                                                }
+                                            })}
+                                            <p style={{ color: 'grey' }}>Applied on -{applied}</p>
                                         </div>
+
+                                        <div className="view-block">
+                                            <KeyboardArrowDownIcon
+                                                id="demo-customized-button"
+                                                aria-controls={open ? 'demo-customized-menu' : undefined}
+                                                aria-haspopup="true"
+                                                aria-expanded={open ? 'true' : undefined}
+                                                variant="contained"
+                                                disableElevation
+                                                onClick={open ? handleClose : handleClick}
+                                            ></KeyboardArrowDownIcon>
+
+                                        </div>
+                                        {open &&
+                                            <div className="mt-10">
+                                                <div className="featured-title">
+                                                    <h3 style={{color: 'black'}}>Why Should we hire you? </h3>
+                                                </div>
+                                                <p>{question}...</p>
+                                                <div >
+                                                    <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                           ttm-btn-color-dark mr-20"
+                                                        exact to={'/application'}>Review Application</Link>
+                                                    <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                           ttm-btn-color-dark mr-20"
+                                                        exact to={'/application'}>View Job</Link>
+                                                    <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                           ttm-btn-color-dark"
+                                                        exact to={'/application'}>View Progress</Link>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
-                                    }
                                 </div>
                             </div>
                         </div>
-                    </div>
                     ))}
                     <div className="col-lg-12">
                         <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
@@ -92,14 +105,14 @@ const Applied_Jobs = () => {
                                 </div>
                                 <div className="featured-bottom">
                                     <div className="job-skill">
-                                        <p style={{color: 'grey'}}>10-01-22</p>
+                                        <p style={{ color: 'grey' }}>10-01-22</p>
                                     </div>
 
                                     <div className="view-block">
                                         {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                             ttm-btn-color-dark"
                                             exact to={'/applications'}>View Details</Link> */}
-                                            <KeyboardArrowDownIcon
+                                        <KeyboardArrowDownIcon
                                             id="demo-customized-button"
                                             aria-controls={open ? 'demo-customized-menu' : undefined}
                                             aria-haspopup="true"
@@ -107,28 +120,28 @@ const Applied_Jobs = () => {
                                             variant="contained"
                                             disableElevation
                                             onClick={open ? handleClose : handleClick}
-                                          ></KeyboardArrowDownIcon>
+                                        ></KeyboardArrowDownIcon>
                                     </div>
                                     {open &&
-                                    <div className="mt-10">
-                                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                        maecenas accumsan lacus vel facilisis.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                        maecenas accumsan lacus vel facilisis.</p>
-                                        <div >
-                                           <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                        <div className="mt-10">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                maecenas accumsan lacus vel facilisis.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                                maecenas accumsan lacus vel facilisis.</p>
+                                            <div >
+                                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>Review Application</Link>
-                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                    exact to={'/application'}>Review Application</Link>
+                                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark mr-20"
-                                            exact to={'/application'}>View Job</Link>
-                                            <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                    exact to={'/application'}>View Job</Link>
+                                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                            ttm-btn-color-dark"
-                                            exact to={'/application'}>View Progress</Link>
+                                                    exact to={'/application'}>View Progress</Link>
+                                            </div>
                                         </div>
-                                    </div>
                                     }
                                 </div>
                             </div>
