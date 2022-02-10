@@ -2,12 +2,202 @@ import React, { Component, useState, useEffect } from 'react';
 import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { allApplicants } from '../api';
-import { Avatar, Box, Card, CircularProgress, Divider, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Box, Button, Card, CircularProgress, Dialog, Divider, IconButton, List, ListItem, ListItemText, Slide, Toolbar, Typography } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Rating } from '@mui/material';
-import Edit_Profile from './Edit_Profile';
+import CloseIcon from '@mui/icons-material/Close';
+import { Form,Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+// import { updateProfile } from "../../actions/userActions";
+import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const ProfileDetails = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pic, setPic] = useState();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [picMessage, setPicMessage] = useState();
+  const [text, setText] = useState("");
+  // const dispatch = useDispatch();
+  const history= useHistory();
+  // const userLogin = useSelector((state) => state.userLogin);
+  // const { userInfo } = userLogin;
+
+  // const userUpdate = useSelector((state) => state.userUpdate);
+  // const { loading, error, success } = userUpdate;
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    pic: "",
+  });
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/");
+    } else {
+      setUserInfo({
+        name: userInfo.name,
+        email: userInfo.email,
+        pic: userInfo.pic,
+      })
+    }
+  }, [history, userInfo]);
+
+  const postDetails = (pics) => {
+    setPicMessage("Please Select an Image");
+    // if (pics.type === "image/jpeg" || pics.type === "image/png") {
+    //   const data = new FormData();
+    //   data.append("file", pics);
+    //   data.append("upload_preset", "notezipper");
+    //   data.append("cloud_name", "piyushproj");
+    //   fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+    //     method: "post",
+    //     body: data,
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       setPic(data.url.toString());
+    //       console.log(pic);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // } else {
+    //   return setPicMessage("Please Select an Image");
+    // }
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(e);
+    // dispatch(updateProfile({ name, email, password, pic }));
+  };
+  return (
+    <div>
+        <Row className="profileContainer">
+          <Col md={6}>
+            <Form onSubmit={submitHandler}>
+              {/* {loading && <CircularProgress />}
+              {success && (
+                <Alertsuccess text={Text} />
+              )}
+              {error && <Alerterror text= {text} />} */}
+              <Form.Group controlId="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setUserInfo(e.target.name=e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setUserInfo(e.target.name=e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={(e) => setUserInfo(e.target.name=e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "}
+              {picMessage && (
+                <Alerterror text={picMessage} />
+              )}
+              <Form.Group controlId="pic">
+                <Form.Label>Change Profile Picture</Form.Label>
+                <Form.File
+                  onChange={(e) => postDetails(e.target.files[0])}
+                  id="custom-file"
+                  type="image/png"
+                  label="Upload Profile Picture"
+                  custom
+                />
+              </Form.Group>
+              <Button type="submit" varient="primary">
+                Update
+              </Button>
+            </Form>
+          </Col>
+          <Col
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img src={pic} alt={name} className="profilePic" />
+          </Col>
+        </Row>
+      </div>
+  );
+}
+const EditProfile = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  }
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+        ttm-btn-color-dark mr-20"
+        onClick={handleOpen}>Edit Profile</button>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className="color-SkinColor"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} className="featured-title" variant="h6" component="div">
+              Edit Profile
+            </Typography>
+            <Button autoFocus className="view-block" onClick={handleClose}>
+              Save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        {/* <ProfileDetails /> */}
+      </Dialog>
+    </div>
+  );
+}
 
 function CircularProgressWithLabel(props) {
   return (
@@ -68,7 +258,7 @@ const User_profile = () => {
     const editProfile = () => {
          setOpenProfile(true);
         // console.log(openProfile);
-         <Edit_Profile props={openProfile} />
+         <EditProfile />
     }
     return (
         <div className="site-main">
@@ -80,7 +270,7 @@ const User_profile = () => {
                 breadcrumb="p"
             /> */}
             {/* PageHeader end */}
-
+           
             <div className="site-main">
                 <div className="ttm-row sidebar job-sidebar clearfix" >
                     <div className="container">
@@ -107,9 +297,7 @@ const User_profile = () => {
                             <div className="col-6 col-lg-7"></div>
                             
                             <div className="col-1">
-                            <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                              ttm-btn-color-dark mr-20"
-                               onClick={editProfile}>Edit Profile</button>
+                               <EditProfile />
                             </div>
                           </div>
                         </div>
@@ -197,7 +385,7 @@ const User_profile = () => {
                                 
                                 <div className="row">
                                   <h6>Projects</h6>
-                                  <div className="col-lg-6 col-md-12"> 
+                                  <div className="col-12"> 
                                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
                            
                                         <div className="featured-content">
@@ -242,7 +430,7 @@ const User_profile = () => {
                                         </div>
                                      </div>
                                     </div>
-                                    <div className="col-lg-6 col-md-12"> 
+                                    <div className="col-12"> 
                                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
                            
                                         <div className="featured-content">
@@ -337,6 +525,37 @@ const User_profile = () => {
                                       </div>
                                     </div>
                                     <Divider className="mt-2" />
+                                    <div className="featuredbox-number pr-30 pr-lg-0 pb-lg-50 pt-md-20">
+                                {/* featured-icon-box */}
+                                <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
+                                    <div className="featured-icon">
+                                        <div className="ttm-icon ttm-icon_element-fill ttm-icon_element-color-grey ttm-icon_element-size-md ttm-icon_element-style-rounded">
+                                            <i className="ttm-num ti-info"></i>
+                                        </div>
+                                    </div>
+                                    <div className="featured-content ">
+                                        <div>
+                                            <h6 style={{color:'black'}}>Create an eye-catching Resume</h6>
+                                        </div>
+                                        
+                                    </div>
+                                </div>{/* featured-icon-box end */}
+                                {/* featured-icon-box */}
+                                <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
+                                    <div className="featured-icon">
+                                        <div className="ttm-icon ttm-icon_element-fill ttm-icon_element-color-grey ttm-icon_element-size-md ttm-icon_element-style-rounded">
+                                            <i className="ttm-num ti-info"></i>
+                                        </div>
+                                    </div>
+                                    <div className="featured-content ttm-bgcolor-grey">
+                                        <div className="">
+                                            <h6 style={{color:'black'}}>Look for your best Project Match</h6>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                </div>
+                                    <Divider className="mt-2" />
                                     <div className="col-lg-12 mt-3">
                                       <h6>Activity</h6>
                                       <Card>
@@ -348,6 +567,7 @@ const User_profile = () => {
                                          <p>.</p>
                                       </Card>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

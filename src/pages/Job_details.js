@@ -310,6 +310,12 @@ const Job_details = () => {
                                                                             {option}
                                                                         </MenuItem>
                                                                     ))}
+                                                                    <Link exact to={'/resume'}>
+                                                                        <MenuItem
+                                                                        >
+                                                                         <i className="fa fa-plus mr-2"></i><span>Add Resume</span>
+                                                                        </MenuItem>
+                                                                    </Link>
                                                                 </Menu>
                                                             </div>
                                                             <button onClick={ApplyHandleClick} className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"

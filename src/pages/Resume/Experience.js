@@ -267,7 +267,7 @@ class Experience extends Component {
             </Grid>
           </div>
         </CardContent>
-        <Container className={classes.margin}>
+        {/* <Container className={classes.margin}>
           <Row>
             <Col lg={4} xs={4} />
             <Col lg={2} xs={2}>
@@ -293,7 +293,7 @@ class Experience extends Component {
             <Col xs={4} />
           </Row>
         </Container>
-        <p className="text-center text-muted">Page 4</p>
+        <p className="text-center text-muted">Page 4</p> */}
       </Paper>
       {/* <Footer /> */}
     </>

@@ -267,7 +267,7 @@ const Header = () => {
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        <Link exact to= {'/application'}>Applications</Link>
+                                                        <Link exact to= {'/applications'}>Applications</Link>
                                                       </MenuItem>
                                                       <MenuItem>
                                                         <ListItemIcon>

@@ -17,17 +17,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Edit_Profile(openProfile) {
-  const [open, setOpen] = useState(false);
+export default function EditProfile() {
+  const [open, setOpen] = useState(true);
   
-  setOpen({openProfile});
-  console.log({openProfile});
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
     <div>
+      <Button>Open</Button>
       <Dialog
         fullScreen
         open={open}

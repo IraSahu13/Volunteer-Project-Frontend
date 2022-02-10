@@ -323,7 +323,7 @@ export class Home2 extends Component {
                                 </div>
                                 <div className="featured-content">
                                     <div className="featured-desc">
-                                        <p>HireCo tens to accelerate innovation current and future based solutions to support</p>
+                                        <p>S5LNC tens to accelerate innovation current and future based solutions to support</p>
                                     </div>
                                 </div>
                             </div>{/* featured-icon-box end */}

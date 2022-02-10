@@ -91,7 +91,9 @@ const Resume = () => {
       ...state,
       [e.target.name]: val});
   };
-
+  const handleSubmit = (e) => {
+    console.log(e);
+  }
     const {step} = state;
     const {
       // Profile-Information
@@ -214,8 +216,8 @@ const Resume = () => {
       interest5,
       interest6,
     };
-    switch (step) {
-      case 1:
+    // switch (step) {
+    //   case 1:
         return (
          <>
            <Header />
@@ -234,17 +236,6 @@ const Resume = () => {
               />
             </div>
           </div>
-          <Footer />
-         </>
-        );
-      case 2:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Resume"
-            breadcrumb="education"
-           />
            <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Education
@@ -255,18 +246,7 @@ const Resume = () => {
               />
             </div>
            </div>
-           <Footer />
-         </>
-        );
-      case 3:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Resume"
-            breadcrumb="projects"
-           />
-          <div className="App mt-3">
+           <div className="App mt-3">
             <div className="container col-lg-8 mx-auto text-center  mb-4">
               <Projects
                 nextStep={nextStep}
@@ -276,17 +256,6 @@ const Resume = () => {
               />
             </div>
           </div>
-          <Footer />
-         </>
-        );
-      case 4:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Resume"
-            breadcrumb="experience"
-           />
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Experience
@@ -297,17 +266,6 @@ const Resume = () => {
               />
             </div>
           </div>
-          <Footer />
-         </>
-        );
-      case 5:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Resume"
-            breadcrumb="skills"
-           />
            <div className="App mt-3 mb-5">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Extras
@@ -317,18 +275,6 @@ const Resume = () => {
               />
             </div>
            </div>
-          <Footer />
-         </>
-         
-        );
-        case 6:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Resume"
-            breadcrumb="review"
-           />
            <div className="App mt-3 mb-5">
             <div className="container col-lg-10 mx-auto text-center  mb-4">
               <Extras
@@ -338,13 +284,21 @@ const Resume = () => {
               />
             </div>
            </div>
+           <div className=" justify-center" style={{marginLeft: '45%'}}>
+             <button
+                variant="contained"
+                type= "submit"
+                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
+                onClick={handleSubmit}
+              >
+                Submit
+             </button>
+          </div>
           <Footer />
          </>
          
         );
-          
-      default: return <div/>;
-      }
+      
   }
 
 export default Resume;

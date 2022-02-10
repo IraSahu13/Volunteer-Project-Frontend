@@ -212,7 +212,7 @@ const Profile = (props) => {
                 />
               </Grid>
             </Grid>
-            <Container className={classes.margin} style={{marginTop: '2rem'}}>
+            {/* <Container className={classes.margin} style={{marginTop: '2rem'}}>
               <Row>
                 <Col lg={4} xs={4} />
                 <Col lg={2} xs={2}>
@@ -237,7 +237,7 @@ const Profile = (props) => {
                 </Col>
                 <Col lg={3} xs={1} />
               </Row>
-            </Container>
+            </Container> */}
             {/* <Button
               variant="contained"
               color="secondary"
@@ -248,7 +248,7 @@ const Profile = (props) => {
             </Button> */}
           </div>
         </CardContent>
-        <p className="text-center text-muted">Page 1 </p>
+        {/* <p className="text-center text-muted">Page 1 </p> */}
       </Paper>
     );
 }
