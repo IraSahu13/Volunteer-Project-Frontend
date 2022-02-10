@@ -32,6 +32,17 @@ const styles = theme => ({
 });
 
 const ProfileDetails = () =>{
+  const [ userEdit, setUserEdit]= useState([]);
+  const location = useLocation()
+  useEffect(() => {
+    const id = location.pathname.substring(19,);
+    Promise.resolve(userInfo(id)).then((res) => {
+        console.log(res.data);
+        setUserEdit(res.data)
+    }).catch((e) => {
+        console.log({e});
+    })
+}, [])
   const handleChange = (e) => {
     e.preventDefault();
     // const val= e.target.value;
@@ -199,11 +210,12 @@ const EditProfile = () => {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
+        <AppBar sx={{ position: 'relative' , bgcolor: "green"}} className="bg-theme-SkinColor" >
+          <Toolbar style={{color:'#44b700'}}>
             <IconButton
               edge="start"
-              className="color-SkinColor"
+              
+              color= '#44b700'
               onClick={handleClose}
               aria-label="close"
             >
