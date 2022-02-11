@@ -42,7 +42,9 @@ import Applications from './pages/Applicants';
 import Terms from './pages/Terms';
 import Applied_Jobs from './pages/Applied_Jobs';
 import User_profile from './pages/User_profile';
-axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
+
+axios.defaults.baseURL = 'http://localhost:4000';
+// axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
 axios.defaults.params = {};
 
 

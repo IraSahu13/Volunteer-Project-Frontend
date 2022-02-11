@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {TextField, Button, Container} from '@material-ui/core';
-import {Card, CardHeader, CardContent} from '@material-ui/core';
+import React, { Component } from 'react';
+import { TextField, Button, Container } from '@material-ui/core';
+import { Card, CardHeader, CardContent } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import EmailIcon from '@material-ui/icons/Email';
@@ -12,95 +12,95 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {Row, Col} from 'react-bootstrap';
-import {Paper, withStyles, Grid} from '@material-ui/core';
+import { Row, Col } from 'react-bootstrap';
+import { Paper, withStyles, Grid } from '@material-ui/core';
 
 const styles = theme => ({
   margin: {
     margin: '1.5rem',
   },
   padding: {
-    padding: '1.5rem',  
+    padding: '1.5rem',
   },
 });
 
 const Profile = (props) => {
-  
+
   const classes = styles();
   const values = [];
-    return (
-      <Paper className={classes.padding} >
-        <Card className="bg-theme-GreyColor">
-          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Personal Details" />
-        </Card>
-        <CardContent>
-          <div className={classes.margin}>
-            <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="firstname"
-                  label="First Name"
-                  style={{width: '80%'}}
-                  required
-                  value={values.firstname}
-                  onChange={props.handleChange}
-                />
-              </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  label="Last Name"
-                  variant="outlined"
-                  style={{width: '80%'}}
-                  name="lastname"
-                  required
-                  value={values.lastname}
-                  onChange={props.handleChange}
-                />
-              </Grid>
+  return (
+    <Paper className={classes.padding} >
+      <Card className="bg-theme-GreyColor">
+        <CardHeader style={{ color: '#e63c80', fontWeight: 600 }} titleTypographyProps={{ variant: 'h4' }} title="Personal Details" />
+      </Card>
+      <CardContent>
+        <div className={classes.margin}>
+          <Grid container spacing={2} alignItems="center" lg={12}>
+            <Grid item md={6} sm={12} xs={12} lg={6}>
+              <TextField
+                margin="dense"
+                variant="outlined"
+                name="Full Name"
+                label="First Name"
+                style={{ width: '80%' }}
+                required
+                value={values.firstname}
+                onChange={props.handleChange}
+              />
+            </Grid>
+            {/* <Grid item md={6} sm={12} xs={12} lg={6}>
+              <TextField
+                margin="dense"
+                label="Last Name"
+                variant="outlined"
+                style={{ width: '80%' }}
+                name="lastname"
+                required
+                value={values.lastname}
+                onChange={props.handleChange}
+              />
+            </Grid> */}
 
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  label="Email"
-                  variant="outlined"
-                  name="email"
-                  required
-                  style={{alignItems: 'left', width: '80%'}}
-                  value={values.email}
-                  onChange={props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <EmailIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
+            <Grid item md={6} sm={12} xs={12} lg={6}>
+              <TextField
+                margin="dense"
+                label="Email"
+                variant="outlined"
+                name="email"
+                required
+                style={{ alignItems: 'left', width: '80%' }}
+                value={values.email}
+                onChange={props.handleChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
 
-              <Grid item lg={6} xs={12} sm={12} md={6}>
-                <TextField
-                  margin="dense"
-                  label="Phone Number"
-                  variant="outlined"
-                  name="phone"
-                  style={{alignItems: 'left', width: '80%'}}
-                  value={values.phone}
-                  onChange={props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <PhoneIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
+            <Grid item lg={6} xs={12} sm={12} md={6}>
+              <TextField
+                margin="dense"
+                label="Phone Number"
+                variant="outlined"
+                name="phone"
+                style={{ alignItems: 'left', width: '80%' }}
+                value={values.phone}
+                onChange={props.handleChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <PhoneIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
 
-              <Grid item md={6} sm={12} xs={12} lg={6}>
+            {/* <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Your Website"
@@ -117,44 +117,44 @@ const Profile = (props) => {
                     ),
                   }}
                 />
-              </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  label="GitHub"
-                  variant="outlined"
-                  name="github"
-                  style={{alignItems: 'left', width: '80%'}}
-                  value={values.github}
-                  onChange={props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <GitHubIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  label="Linked In"
-                  variant="outlined"
-                  name="linkedin"
-                  style={{alignItems: 'left', width: '80%'}}
-                  value={values.linkedin}
-                  onChange={props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <LinkedInIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
+              </Grid> */}
+            <Grid item md={6} sm={12} xs={12} lg={6}>
+              <TextField
+                margin="dense"
+                label="GitHub"
+                variant="outlined"
+                name="github"
+                style={{ alignItems: 'left', width: '80%' }}
+                value={values.github}
+                onChange={props.handleChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <GitHubIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            <Grid item md={6} sm={12} xs={12} lg={6}>
+              <TextField
+                margin="dense"
+                label="Linked In"
+                variant="outlined"
+                name="linkedin"
+                style={{ alignItems: 'left', width: '80%' }}
+                value={values.linkedin}
+                onChange={props.handleChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <LinkedInIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            {/* <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Twitter"
@@ -171,26 +171,26 @@ const Profile = (props) => {
                     ),
                   }}
                 />
-              </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  label="Facebook"
-                  variant="outlined"
-                  name="facebook"
-                  style={{alignItems: 'left', width: '80%'}}
-                  value={values.facebook}
-                  onChange={props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <FacebookIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
+              </Grid> */}
+            <Grid item md={6} sm={12} xs={12} lg={6}>
+              <TextField
+                margin="dense"
+                label="Facebook"
+                variant="outlined"
+                name="facebook"
+                style={{ alignItems: 'left', width: '80%' }}
+                value={values.facebook}
+                onChange={props.handleChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <FacebookIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            {/* <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Instagram"
@@ -207,7 +207,7 @@ const Profile = (props) => {
                     ),
                   }}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             {/* <Container className={classes.margin} style={{marginTop: '2rem'}}>
               <Row>
@@ -243,11 +243,11 @@ const Profile = (props) => {
             >
               Generate PDF
             </Button> */}
-          </div>
-        </CardContent>
-        {/* <p className="text-center text-muted">Page 1 </p> */}
-      </Paper>
-    );
+        </div>
+      </CardContent>
+      {/* <p className="text-center text-muted">Page 1 </p> */}
+    </Paper>
+  );
 }
 
 

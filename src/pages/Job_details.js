@@ -7,7 +7,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { getIntern, jobApply } from '../api';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 import ActionSection from '../components/layout/ActionSection';
-
+import {Alerterror, Alertsuccess} from '../components/layout/Alerts'
 
 const Job_details = () => {
 
@@ -22,24 +22,39 @@ const Job_details = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(1);
     const listOpen = Boolean(anchorEl);
-        
+    const [error, setError] = useState(false);
+    const [text, setText] = useState("");
+    const [success, setsuccess] = useState(false);
+
     useEffect(() => {
         Promise.resolve(getIntern(internId)).then((res) => {
             setIntern(res.data.intern)
             setCompany(res.data.company)
+            console.log(res.data.intern);
         }).catch((e) => {
-            console.log({e});
+            console.log({ e });
         })
     }, [])
-    
-    const ApplyHandleClick=()=>{
-        Promise.resolve(jobApply({question},internId)).then((res)=>{
+
+    const ApplyHandleClick = () => {
+        Promise.resolve(jobApply({ question }, internId)).then((res) => {
             console.log(res.data);
-            alert(res.data);
-            setOpen(false);
-        }).catch((e)=>{
-            console.log(e);
-            alert(e)
+            setsuccess(true);
+            setText(res.data)
+            setTimeout(() => {
+                setOpen(false);
+                setsuccess(false)
+                setText(false)
+            }, 3000);
+        }).catch((e) => {
+            setError(true);
+            setText(e.response.data);
+            setTimeout(() => {
+                setOpen(false);
+                setError(false)
+                setText('')
+            }, 3000);
+            // alert(e)
         })
     }
 
@@ -90,7 +105,7 @@ const Job_details = () => {
                 }
             }]
         };
-        
+
         const handleClickListItem = (event) => {
             setAnchorEl(event.currentTarget);
         };
@@ -128,14 +143,14 @@ const Job_details = () => {
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Job Informations</h3>
                                         <ul>
-                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.jobType}</li>
-                                            <li className="d-flex"><b className="mr-5">Location:</b>{intern.location}</li>
-                                            <li className="d-flex"><b className="mr-5">Offered Salary:</b>{intern.stipend}</li>
+                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.jobType ? intern.jobType : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Location:</b>{intern.location ? intern.location : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Offered Salary:</b>{intern.stipend ? intern.stipend : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Posted on:</b> {intern.createdAt?.substr(0, 10)}</li>
-                                            <li className="d-flex"><b className="mr-5">Experience:</b>{intern.experienceNeeded}</li>
-                                            <li className="d-flex"><b className="mr-5">Category:</b>{intern.category}</li>
-                                            <li className="d-flex"><b className="mr-5">Qualification:</b>{intern.qualificationNeeded}</li>
-                                            <li className="d-flex"><b className="mr-5">position:</b>{intern.position}</li>
+                                            <li className="d-flex"><b className="mr-5">Experience:</b>{intern.experienceNeeded ? intern.experienceNeeded : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Category:</b>{intern.category ? intern.category : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Qualification:</b>{intern.qualificationNeeded ? intern.qualificationNeeded : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">position:</b>{intern.position ? intern.position : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">no. of candidates hired:</b>{intern.users?.length}</li>
                                         </ul>
                                     </aside>
@@ -216,8 +231,8 @@ const Job_details = () => {
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    {(intern.qualificationNeeded?.length === 0 && <p>No Prerequisites Reuired</p>)}
-                                                    {intern.qualificationNeeded?.map((data) => (
+                                                    {(intern.knowledgeNeeded?.length === 0 && <p>No Prerequisites Reuired</p>) || (intern.knowledgeNeeded === undefined && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.knowledgeNeeded?.map((data) => (
                                                         <li>
                                                             <i className="ti ti-check-box"></i>
                                                             <div className="ttm-list-li-content">{data}</div>
@@ -254,8 +269,10 @@ const Job_details = () => {
                                                         aria-describedby="modal-modal-description"
                                                     >
                                                         <Box sx={style}>
+                                                            {success&&<Alertsuccess text={text}/>}
+                                                            {error&&<Alerterror text={text}/>}
                                                             <h2>{intern?.name}</h2>
-                                                            <Typography>{intern.description?.slice(0,50)}</Typography>
+                                                            <Typography>{intern.description?.slice(0, 50)}</Typography>
                                                             <div className="col-lg-12">
                                                                 <label className="mt-2 justify-center">
                                                                     <i className=""></i>
@@ -264,8 +281,8 @@ const Job_details = () => {
                                                                         placeholder='Why should we hire you?'
                                                                         rows={5}
                                                                         cols={50}
-                                                                        onChange={(e)=>{setquestion(e.target.value)}}
-                                                                    >                                                                       
+                                                                        onChange={(e) => { setquestion(e.target.value) }}
+                                                                    >
                                                                     </textarea>
                                                                 </label>
                                                             </div>

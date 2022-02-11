@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {TextField, Button, Container, Divider} from '@material-ui/core';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
 import axios from 'axios';
@@ -19,46 +19,45 @@ import { Footer } from '../../components/layout/Footer';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit * 1.5,
+    margin: '1.5rem',
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: '1.5rem',  
   },
 });
 
-class Experience extends Component {
-  continue = e => {
+const Experience=(props)=>{
+  const classes = styles();
+  const {values} = props;
+
+  const Continue = e => {
     e.preventDefault ();
-    this.props.nextStep ();
+    props.nextStep ();
   };
 
-  back = e => {
+  const Back = e => {
     e.preventDefault ();
-    this.props.prevStep ();
+    props.prevStep ();
   };
 
-  createAndDownloadPDF = () => {
-    axios
-      .post ('/create-pdf', this.props.values)
-      .then (() => {
-        axios
-          .get ('fetch-pdf', {responseType: 'blob'})
-          .then (res => {
-            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
-            saveAs (pdfBlob, `${this.props.values.firstname}'s Resume.pdf`);
-          })
-          .catch (err => {
-            console.log (err);
-          });
-      })
-      .catch (err => {
-        console.log (err);
-      });
-  };
-
-  render () {
-    const {values} = this.props;
-    const {classes} = this.props;
+  // const createAndDownloadPDF = () => {
+  //   axios
+  //     .post ('/create-pdf', this.props.values)
+  //     .then (() => {
+  //       axios
+  //         .get ('fetch-pdf', {responseType: 'blob'})
+  //         .then (res => {
+  //           const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
+  //           saveAs (pdfBlob, `${this.props.values.firstname}'s Resume.pdf`);
+  //         })
+  //         .catch (err => {
+  //           console.log (err);
+  //         });
+  //     })
+  //     .catch (err => {
+  //       console.log (err);
+  //     });
+  // };
 
     return (
     <>
@@ -97,7 +96,7 @@ class Experience extends Component {
                   style={{width: '90%'}}
                   required
                   value={values.institute1}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -116,7 +115,7 @@ class Experience extends Component {
                   style={{width: '90%'}}
                   required
                   value={values.position1}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -136,7 +135,7 @@ class Experience extends Component {
                   style={{width: '90%'}}
                   required
                   value={values.duration1}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -156,7 +155,7 @@ class Experience extends Component {
                   name="experienceDescription1"
                   required
                   value={values.experienceDescription1}
-                  onChange={this.props.handleChange}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -167,10 +166,7 @@ class Experience extends Component {
                 />
               </Grid>
             </Grid>
-            <br />
-            <Divider />
-            <br />
-            <Grid container spacing={2} alignItems="flex-start" lg={12}>
+            {/* <Grid container spacing={2} alignItems="flex-start" lg={12}>
               <Grid
                 item
                 xs={12}
@@ -193,8 +189,8 @@ class Experience extends Component {
                   label="Institue/Organisation"
                   style={{width: '90%'}}
                   required
-                  value={values.institute2}
-                  onChange={this.props.handleChange}
+                  value={insti2}
+                  onChange={(e)=>{setinsti2(e.target.value)}}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -212,8 +208,8 @@ class Experience extends Component {
                   label="Position"
                   style={{width: '90%'}}
                   required
-                  value={values.position2}
-                  onChange={this.props.handleChange}
+                  value={pos2}
+                  onChange={(e)=>{setpos2(e.target.value)}}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -232,8 +228,8 @@ class Experience extends Component {
                   label="Duration"
                   style={{width: '90%'}}
                   required
-                  value={values.duration2}
-                  onChange={this.props.handleChange}
+                  value={duration2}
+                  onChange={(e)=>{setduration2(e.target.value)}}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -253,8 +249,8 @@ class Experience extends Component {
                   rows={3}
                   name="experienceDescription2"
                   required
-                  value={values.experienceDescription2}
-                  onChange={this.props.handleChange}
+                  value={des2}
+                  onChange={(e)=>{setdes2(e.target.value)}}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -264,7 +260,7 @@ class Experience extends Component {
                   }}
                 />
               </Grid>
-            </Grid>
+            </Grid> */}
           </div>
         </CardContent>
         {/* <Container className={classes.margin}>
@@ -274,8 +270,8 @@ class Experience extends Component {
               <Button
                 variant="contained"
                 className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.back}
                 startIcon={<NavigateBeforeIcon />}
+                onClick={Back}
               >
                 Back
               </Button>
@@ -284,8 +280,8 @@ class Experience extends Component {
               <Button
                 variant="contained"
                 className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.continue}
                 endIcon={<NavigateNextIcon />}
+                onClick={Continue}
               >
                 Next
               </Button>
@@ -299,6 +295,5 @@ class Experience extends Component {
     </>
     );
   }
-}
 
-export default withStyles (styles) (Experience);
+export default Experience;

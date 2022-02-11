@@ -4,7 +4,7 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import ProgressBar from 'react-animated-progress-bar';
 import { useLocation } from 'react-router-dom';
-import { getUser } from '../api';
+import { userInfo } from '../api';
 
 
 const Candidate_details=()=> {
@@ -14,7 +14,7 @@ const Candidate_details=()=> {
     
     useEffect(() => {
         const id = location.pathname.substring(19,);
-        Promise.resolve(getUser(id)).then((res) => {
+        Promise.resolve(userInfo(id)).then((res) => {
             console.log(res.data);
             setcandidate(res.data)
         }).catch((e) => {
