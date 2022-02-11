@@ -30,9 +30,9 @@ const Profile = (props) => {
   const values = [];
   return (
     <Paper className={classes.padding} >
-      <Card className="bg-theme-GreyColor">
-        <CardHeader style={{ color: '#e63c80', fontWeight: 600 }} titleTypographyProps={{ variant: 'h4' }} title="Personal Details" />
-      </Card>
+      <Grid item xs={12} lg={12}>
+        <h3>Personal details</h3>
+      </Grid>
       <CardContent>
         <div className={classes.margin}>
           <Grid container spacing={2} alignItems="center" lg={12}>

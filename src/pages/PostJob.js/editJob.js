@@ -7,7 +7,7 @@ import Description from './Description';
 import Qualification from './Qualification';
 import Skills from './Skills';
 
-const PostJob = () => {
+const EditJob = () => {
   const [state, setState] = useState({
     step: 1,
     // Personal Profile Details...
@@ -207,8 +207,8 @@ const PostJob = () => {
          <>
            <Header />
            <PageHeader
-            title="Post an Opportunity"
-            breadcrumb="post opportunity"
+            title="Edit Opportunity"
+            breadcrumb="edit opportunity"
            />
               
          
@@ -259,4 +259,4 @@ const PostJob = () => {
     );
 }
 
-export default PostJob;
+export default EditJob;

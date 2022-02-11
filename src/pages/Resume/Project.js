@@ -25,16 +25,7 @@ const styles = theme => ({
 });
 
 class Projects extends Component {
-  continue = e => {
-    e.preventDefault();
-    this.props.nextStep();
-  };
-
-  back = e => {
-    e.preventDefault();
-    this.props.prevStep();
-  };
-
+  
   createAndDownloadPDF = () => {
     axios
       .post('/create-pdf', this.state)
@@ -67,9 +58,9 @@ class Projects extends Component {
         />
      */}
         <Paper className={classes.padding}>
-          <Card>
-            <CardHeader style={{ color: '#e63c80', fontWeight: 600 }} titleTypographyProps={{ variant: 'h4' }} title="Projects Developed" />
-          </Card>
+          <Grid item xs={12} lg={12}>
+            <h3>Projects</h3>
+          </Grid>
           <CardContent>
             <div className={classes.margin}>
               <Grid container spacing={2} alignItems="center" lg={12}>
@@ -258,6 +249,9 @@ class Projects extends Component {
                   />
                 </Grid>
               </Grid> */}
+             <div className="view-block">
+               <i className="fa fa-plus">Add</i>
+             </div>
             </div>
           </CardContent>
           {/* <Container className={classes.margin}>

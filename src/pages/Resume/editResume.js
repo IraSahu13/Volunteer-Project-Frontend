@@ -13,7 +13,7 @@ import { Paper, withStyles, Grid } from '@material-ui/core';
 import ResumeTitle from './ResumeTitle';
 import { PostResume } from '../../api';
 
-const Resume = () => {
+const EditResume = () => {
   const [state, setState] = useState({
     step: 1,
     resumeTitle:'abc',
@@ -161,8 +161,8 @@ const Resume = () => {
     <>
       <Header />
       <PageHeader
-        title="Resume"
-        breadcrumb="resume"
+        title="Edit Resume"
+        breadcrumb="edit resume"
       />
       <div className="App mt-3">
         <div className="container col-lg-10 mx-auto text-center  mb-4">
@@ -212,7 +212,7 @@ const Resume = () => {
           />
         </div>
       </div>
-      <div className=" justify-center mb-10" style={{ marginLeft: '45%' }}>
+      <div className=" justify-center mb-10" style={{ marginLeft: '47%' }}>
         <button
           variant="contained"
           type="submit"
@@ -229,4 +229,4 @@ const Resume = () => {
 
 }
 
-export default Resume;
+export default EditResume;
