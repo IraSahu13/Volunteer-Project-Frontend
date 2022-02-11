@@ -141,7 +141,7 @@ class Profile extends Component {
               </Grid>
               
             </Grid>
-            <Container className={classes.margin}>
+            {/* <Container className={classes.margin}>
               <Row>
                 <Col lg={4} xs={4} />
                 <Col lg={2} xs={2}>
@@ -167,7 +167,7 @@ class Profile extends Component {
                 </Col>
                 <Col lg={3} xs={1} />
               </Row>
-            </Container>
+            </Container> */}
             {/* <Button
               variant="contained"
               color="secondary"
@@ -178,7 +178,7 @@ class Profile extends Component {
             </Button> */}
           </div>
         </CardContent>
-        <p className="text-center text-muted">Page 1 </p>
+        {/* <p className="text-center text-muted">Page 1 </p> */}
       </Paper>
     );
   }

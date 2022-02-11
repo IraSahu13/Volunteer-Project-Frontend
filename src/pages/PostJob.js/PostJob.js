@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { Footer } from '../../components/layout/Footer';
 import Header from '../../components/layout/Header';
 import PageHeader from '../../components/layout/PageHeader';
@@ -7,8 +7,8 @@ import Description from './Description';
 import Qualification from './Qualification';
 import Skills from './Skills';
 
-export class PostJob extends Component {
-  state = {
+const PostJob = () => {
+  const [state, setState] = useState({
     step: 1,
     // Personal Profile Details...
     firstname: '',
@@ -66,29 +66,21 @@ export class PostJob extends Component {
     interest4: '',
     interest5: '',
     interest6: '',
-  };
+  });
 
-  nextStep = () => {
-    const {step} = this.state;
-    this.setState ({
-      step: step + 1,
-    });
+  
+  const handleChange = (e) => {
+    e.preventDefault();
+    const val= e.target.value;
+    console.log(val);
+    setState ({
+      ...state,
+      [e.target.name]: val});
   };
-
-  prevStep = () => {
-    const {step} = this.state;
-    this.setState ({
-      step: step - 1,
-    });
-  };
-
-  handleChange = ({target: {value, name}}) => {
-    console.log(value);
-    this.setState ({[name]: value});
-  };
-
-  render () {
-    const {step} = this.state;
+  const handleSubmit = (e) => {
+    console.log(e);
+  }
+    const {step} = state;
     const {
       // Profile-Information
       firstname,
@@ -148,7 +140,8 @@ export class PostJob extends Component {
       interest4,
       interest5,
       interest6,
-    } = this.state;
+    } = state;
+
     const values = {
       // Profile-Information
       firstname,
@@ -210,95 +203,50 @@ export class PostJob extends Component {
       interest6,
     };
     // console.log(company);
-    switch (step) {
-      case 1:
-        return (
+    return (
          <>
            <Header />
            <PageHeader
-            title="Post a Vacancy"
-            breadcrumb="post"
+            title="Post an Opportunity"
+            breadcrumb="post opportunity"
            />
               
          
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center mb-4">
               <Profile
-                nextStep={this.nextStep}
-                handleChange={this.handleChange}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
           </div>
-          <Footer />
-         </>
-        );
-      case 2:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Post a Vacancy"
-            breadcrumb="post"
-           />
-           <div className="App mt-3 ">
+          <div className="App mt-3 ">
             <div className="container col-lg-10 mx-auto text-center mb-4">
               <Description
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
-           </div>
-           <Footer />
-         </>
-        );
-      case 3:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Post a Vacancy"
-            breadcrumb="post"
-           />
+          </div>
           <div className="App mt-3">
             <div className="container col-lg-8 mx-auto text-center mb-4">
               <Qualification
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
           </div>
-          <Footer />
-         </>
-        );
-      case 4:
-        return (
-          <>
-           <Header />
-           <PageHeader
-            title="Post a Vacancy"
-            breadcrumb="post"
-           />
           <div className="App mt-3">
             <div className="container col-lg-10 mx-auto text-center mb-4">
               <Skills
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
+                handleChange={handleChange}
                 values={values}
               />
             </div>
           </div>
           <Footer />
          </>
-        );
-      default: return <div/>;
-      }
-  }
+    );
 }
 
 export default PostJob;

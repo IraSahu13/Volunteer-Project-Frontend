@@ -114,25 +114,12 @@ const Profile = (props) => {
               <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Qualification"
+                  label="Percentage"
                   variant="outlined"
                   style={{width: '80%'}}
                   name="qualification1"
                   required
                   value={values.qualification1}
-                  onChange={props.handleChange}
-                />
-              </Grid>
-
-              <Grid item md={8} sm={12} xs={12} lg={8}>
-                <TextField
-                  margin="dense"
-                  label="Description"
-                  variant="outlined"
-                  style={{width: '90%'}}
-                  name="description1"
-                  required
-                  value={values.description1}
                   onChange={props.handleChange}
                 />
               </Grid>
@@ -213,25 +200,12 @@ const Profile = (props) => {
               <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Qualification"
+                  label="Percentage"
                   variant="outlined"
                   style={{width: '80%'}}
                   name="qualification2"
                   required
                   value={values.qualification2}
-                  onChange={props.handleChange}
-                />
-              </Grid>
-
-              <Grid item md={8} sm={8} xs={8} lg={8}>
-                <TextField
-                  margin="dense"
-                  label="Description"
-                  variant="outlined"
-                  style={{width: '90%'}}
-                  name="description2"
-                  required
-                  value={values.description2}
                   onChange={props.handleChange}
                 />
               </Grid>

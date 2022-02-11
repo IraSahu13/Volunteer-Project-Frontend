@@ -92,7 +92,7 @@ class Skills extends Component {
             <br />
           </div>
         </CardContent>
-        <Container className={classes.margin}>
+        {/* <Container className={classes.margin}>
           <Row>
             <Col lg={4} xs={4} />
             <Col lg={2} xs={2}>
@@ -126,8 +126,8 @@ class Skills extends Component {
           >
             Download Resume
           </Button> */}
-        </Container>
-        <p className="text-center text-muted">Page 4</p>
+        {/* </Container>
+        <p className="text-center text-muted">Page 4</p> */}
       </Paper>
       {/* <Footer /> */}
     </>

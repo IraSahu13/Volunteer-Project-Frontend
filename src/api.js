@@ -13,9 +13,6 @@ export const googleLogin=async (data)=>{
 export const signup=async (data)=>{
     return await axios.post("/auth/signup",data);
 }
-export const getUser=async (id)=>{
-    return await axios.get(`/user/getuser/${id}`);
-}
 export const allInterns=async (data)=>{
     return await axios.get("/intern/allinterns");
 }
@@ -41,6 +38,14 @@ export const PostJob=async ()=>{
         }
     });
 }
+export const PostResume=async (data)=>{
+    return await axios.post(`/resume/postjob`,{credentials: data},
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
 export const jobApply=async (data, internId)=>{
     return await axios.post(`/user/jobapply/${internId}`, {credentials: data}, 
     {
@@ -57,5 +62,19 @@ export const myAppliedJobs=async ()=>{
         }
     });
 }
-
-
+export const userInfo=async ()=>{
+    return await axios.get(`/user/getuser`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const editUser=async ()=>{
+    return await axios.get(`/user/edituser`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}

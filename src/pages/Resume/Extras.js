@@ -130,7 +130,7 @@ class Experience extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={4} sm={6} xs={12} lg={4}>
+              {/* <Grid item md={4} sm={6} xs={12} lg={4}>
                 <TextField
                   margin="dense"
                   variant="outlined"
@@ -173,7 +173,7 @@ class Experience extends Component {
                     endAdornment: <InputAdornment position="start" />,
                   }}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <br />
             <Divider />
@@ -235,7 +235,7 @@ class Experience extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={12} sm={12} xs={12} lg={4}>
+              {/* <Grid item md={12} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
                   label="Interest 4"
@@ -276,7 +276,7 @@ class Experience extends Component {
                     endAdornment: <InputAdornment position="start" />,
                   }}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
           </div>
         </CardContent>

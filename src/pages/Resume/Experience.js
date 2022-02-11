@@ -28,7 +28,7 @@ const styles = theme => ({
 
 const Experience=(props)=>{
   const classes = styles();
-  const values = [];
+  const {values} = props;
 
   const Continue = e => {
     e.preventDefault ();
@@ -39,16 +39,6 @@ const Experience=(props)=>{
     e.preventDefault ();
     props.prevStep ();
   };
-
-  const [insti1, setinsti1] = useState('');
-  const [pos1, setpos1] = useState('');
-  const [duration1, setduration1] = useState('');
-  const [des1, setdes1] = useState('');
-
-  const [insti2, setinsti2] = useState('');
-  const [pos2, setpos2] = useState('');
-  const [duration2, setduration2] = useState('');
-  const [des2, setdes2] = useState('');
 
   // const createAndDownloadPDF = () => {
   //   axios
@@ -105,8 +95,8 @@ const Experience=(props)=>{
                   label="Institue/Organisation"
                   style={{width: '90%'}}
                   required
-                  value={insti1}
-                  onChange={(e)=>{setinsti1(e.target.value)}}
+                  value={values.institute1}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -124,8 +114,8 @@ const Experience=(props)=>{
                   label="Position"
                   style={{width: '90%'}}
                   required
-                  value={pos1}
-                  onChange={(e)=>{setpos1(e.target.value)}}
+                  value={values.position1}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -144,8 +134,8 @@ const Experience=(props)=>{
                   label="Duration"
                   style={{width: '90%'}}
                   required
-                  value={duration1}
-                  onChange={(e)=>{setduration1(e.target.value)}}
+                  value={values.duration1}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -164,8 +154,8 @@ const Experience=(props)=>{
                   style={{width: '97%'}}
                   name="experienceDescription1"
                   required
-                  value={des1}
-                  onChange={(e)=>{setdes1(e.target.value)}}
+                  value={values.experienceDescription1}
+                  onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -176,10 +166,7 @@ const Experience=(props)=>{
                 />
               </Grid>
             </Grid>
-            <br />
-            <Divider />
-            <br />
-            <Grid container spacing={2} alignItems="flex-start" lg={12}>
+            {/* <Grid container spacing={2} alignItems="flex-start" lg={12}>
               <Grid
                 item
                 xs={12}
@@ -273,7 +260,7 @@ const Experience=(props)=>{
                   }}
                 />
               </Grid>
-            </Grid>
+            </Grid> */}
           </div>
         </CardContent>
         {/* <Container className={classes.margin}>
