@@ -68,9 +68,9 @@ class Skills extends Component {
         />
      */}
       <Paper className={classes.padding}>
-        <Card>
-          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Skills Required" />
-        </Card>
+       <Grid item xs={12} lg={12}>
+         <h3>Skills Required</h3>
+       </Grid>
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} className="ml-0" lg={12}>

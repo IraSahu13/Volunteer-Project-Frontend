@@ -35,9 +35,9 @@ class Profile extends Component {
     const {classes} = this.props;
     return (
       <Paper className={classes.padding}>
-        <Card>
-          <CardHeader  style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Jod Details" />
-        </Card>
+    ]  <Grid item xs={12} lg={12}>
+         <h3>Job Details</h3>
+       </Grid>
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="center" lg={12}>

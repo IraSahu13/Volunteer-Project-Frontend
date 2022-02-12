@@ -67,9 +67,9 @@ const Experience=(props)=>{
           breadcrumb="experience"
       /> */}
       <Paper className={classes.padding}>
-        <Card>
-          <CardHeader style={{color: '#e63c80', fontWeight:600}} titleTypographyProps={{variant:'h4' }} title="Experience Details" />
-        </Card>
+        <Grid item xs={12} lg={12}>
+         <h3>Experience</h3>
+        </Grid>
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="center" lg={12}>

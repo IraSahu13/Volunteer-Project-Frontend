@@ -42,9 +42,11 @@ import Applications from './pages/Applicants';
 import Terms from './pages/Terms';
 import Applied_Jobs from './pages/Applied_Jobs';
 import User_profile from './pages/User_profile';
+import EditResume from './pages/Resume/editResume';
+import EditJob from './pages/PostJob.js/editJob';
 
-axios.defaults.baseURL = 'http://localhost:4000';
-// axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
+// axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
 axios.defaults.params = {};
 
 
@@ -88,6 +90,8 @@ function App() {
         <Route exact path={'/applications'} component={Applications} />
         <Route exact path={'/application'} component={Apply} />
         <Route exact path={'/posted_field'} component={Posted_Jobs} />
+        <Route exact path={'/edit_resume'} component={EditResume} />
+        <Route exact path={'/edit_field'} component={EditJob} />
         <ScrollToTop />
         </Switch>
       </Router>

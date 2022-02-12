@@ -31,11 +31,44 @@ const styles = theme => ({
   },
 });
 
-const ProfileDetails = () => {
+const ProfileDetails = (props) => {
 
-  const [userEdit, setUserEdit] = useState([]);
+  const [userEdit, setUserEdit] = useState({
+    firstname: 'Ira',
+    lastname: 'Sahu',
+    email: 'irasahu13@gamil.com',
+    phone: '',
+    address:'',
+  });
   const location = useLocation()
+  const {
+    firstname,
+    lastname,
+    email,
+    phone,
+    address,
+  }= userEdit;
 
+  const values = {
+
+    // Profile-Information
+    firstname,
+    lastname,
+    email,
+    phone,
+    address,
+    // Education Information
+    
+
+    // Project Information...
+    
+
+    // Experience Information
+    
+
+    // Extra Information
+    
+  };
   const handleChange = (e) => {
     e.preventDefault();
     // const val= e.target.value;
@@ -48,12 +81,12 @@ const ProfileDetails = () => {
     console.log(e);
   }
   const classes = styles();
-  const values = [];
   return (
-    <Paper className={classes.padding} >
-      <Card className="bg-theme-GreyColor">
-        <CardHeader style={{ color: '#e63c80', fontWeight: 600 }} titleTypographyProps={{ variant: 'h4' }} title="Personal Details" />
-      </Card>
+    <>
+    <Paper className="mt-120" >
+      <Grid item xs={12} lg={12}>
+       <h3>Edit Profile</h3>
+      </Grid>
       <CardContent>
         <div className={classes.margin}>
           <div className='row'>
@@ -81,25 +114,6 @@ const ProfileDetails = () => {
                 />
               </Grid>
 
-              <Grid item md={6} sm={12} xs={12} lg={6}>
-                <TextField
-                  margin="dense"
-                  label="Email"
-                  variant="outlined"
-                  name="email"
-                  style={{ alignItems: 'left', width: '80%' }}
-                  value={values.email}
-                  onChange={handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <EmailIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-
               <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
@@ -112,65 +126,64 @@ const ProfileDetails = () => {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <PhoneIcon />
                       </InputAdornment>
                     ),
                   }}
                 />
               </Grid>
-
-              <Grid item md={6} sm={12} xs={12} lg={6}>
+              <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
-                  label="Your Website"
+                  label="Address Line 1"
                   variant="outlined"
-                  name="website"
+                  name="address_line_1"
                   style={{ alignItems: 'left', width: '80%' }}
-                  value={values.website}
+                  value={values.address}
                   onChange={handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <LanguageIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
+              <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
-                  label="GitHub"
+                  label="Address Line 2"
                   variant="outlined"
-                  name="github"
+                  name="address_line_2"
                   style={{ alignItems: 'left', width: '80%' }}
-                  value={values.github}
+                  value={values.address}
                   onChange={handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <GitHubIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
-              <Grid item md={6} sm={12} xs={12} lg={6}>
+              <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
-                  label="Linked In"
+                  label="Zipcode"
                   variant="outlined"
-                  name="linkedin"
+                  name="zipcode"
                   style={{ alignItems: 'left', width: '80%' }}
-                  value={values.linkedin}
+                  value={values.address}
                   onChange={handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <LinkedInIcon />
-                      </InputAdornment>
-                    ),
-                  }}
+                />
+              </Grid>
+              <Grid item lg={6} xs={12} sm={12} md={6}>
+                <TextField
+                  margin="dense"
+                  label="City"
+                  variant="outlined"
+                  name="city"
+                  style={{ alignItems: 'left', width: '80%' }}
+                  value={values.address}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item lg={6} xs={12} sm={12} md={6}>
+                <TextField
+                  margin="dense"
+                  label="State"
+                  variant="outlined"
+                  name="state"
+                  style={{ alignItems: 'left', width: '80%' }}
+                  value={values.address}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -181,6 +194,17 @@ const ProfileDetails = () => {
         </div>
       </CardContent>
     </Paper>
+    {/*<Paper className="mt-50">
+    <Grid item xs={12} lg={12}>
+      <h3>Edit Resume</h3>
+      <CardContent>
+        <ul>
+         <li>Resume_1</li>
+        </ul>
+      </CardContent>
+      </Grid>
+      </Paper>*/}
+    </>
   );
 }
 const EditProfile = () => {
@@ -191,7 +215,7 @@ const EditProfile = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
+ 
   return (
     <div>
       <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
@@ -203,8 +227,8 @@ const EditProfile = () => {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative', bgcolor: "green" }} className="bg-theme-SkinColor" >
-          <Toolbar style={{ color: '#44b700' }}>
+      {/*<AppBar sx={{position: 'relative', backgroundColor:'pink'}}>*/}
+          <Toolbar>
             <IconButton
               edge="start"
 
@@ -219,9 +243,11 @@ const EditProfile = () => {
             </Typography>
           </Toolbar>
 
-        </AppBar>
-        <div className="row">
-          <ProfileDetails />
+        {/*</AppBar>*/}
+        <div className="App mt-3">
+          <div className="container col-lg-10 mx-auto text-center  mb-4">
+            <ProfileDetails />
+          </div>
         </div>
       </Dialog>
     </div>
@@ -334,61 +360,31 @@ const User_profile = () => {
             <div className="row">
               <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                 <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
+                <aside className="widget job-widget pt-1">
+                  {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
+                  {/* <form id="list1" className="list-filter"> */}
+                      <ul>
+                        <li><Link exact to= {'/projects'}>Projects</Link></li>
+                        <li><Link exact to= {'/applications'}>Applications</Link></li>
+                        <li><Link exact to= {'/offers'}>Offers</Link></li>
+                      </ul>
+                  {/* </form> */}
+                </aside>
                   <aside className="widget job-widget">
                     {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                     {/* <form id="list1" className="list-filter"> */}
-                    <div className=" justify-center" style={{ justifyContent: 'center' }}>
-
-                      <p>Name</p>
-                      <p>Rating</p>
-                      <Rating name="read-only" value={2} readOnly />
-                      <p>Projects</p>
-                      <p>Applications</p>
-
+                    <div className= "justify-center pt-1">
+                      <ul>
+                        <li></li>
+                        <p>Name: Ira Sahu</p>
+                        <p>Email:</p>
+                        <p>Phone:</p>
+                        <p>Address: </p>
+                      </ul>
                     </div>
                     {/* </form> */}
                   </aside>
-                  <aside className="widget job-widget">
-                    <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>
-                    <form id="list2" className="list-filter">
-                      <div  >
-                        <label className="radio">
-                          <input type="radio" value="Digital Marketing" defaultChecked name="categories" />Digital Marketing
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="Charity & Voluntary" name="categories" />Charity & Voluntary
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="IT Contractor" name="categories" />IT Contractor
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="Estate Agency" name="categories" />Estate Agency
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="Graduate" name="categories" />Graduate
-                        </label>
-                      </div>
-                    </form>
-                  </aside>
-                  <aside className="widget job-widget">
-                    <h3 className="widget-title"><i className="flaticon flaticon-expert"></i>Experince</h3>
-                    <form id="list3" className="list-filter">
-                      <div>
-                        <label className="radio">
-                          <input type="radio" value="0Year to 1Year" name="ex_year" />0Year to 1Year
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="1Year to 2Year" name="ex_year" />1Year to 2Year
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="2Year to 3Year" name="ex_year" />2Year to 3Year
-                        </label>
-                        <label className="radio">
-                          <input type="radio" value="3Year or more" defaultChecked name="ex_year" />3Year or more
-                        </label>
-                      </div>
-                    </form>
-                  </aside>
+                  
                   {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
                                         <form id="list4" onSubmit={this.formSubmit} className="list-filter">
@@ -403,6 +399,36 @@ const User_profile = () => {
                                         </form>
                                     </aside> */}
                 </div>
+                <div className="featuredbox-number pr-30 pr-lg-0 pb-lg-50 pt-md-20">
+                    {/* featured-icon-box */}
+                    <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
+                      <div className="featured-icon">
+                        <div className="ttm-icon ttm-icon_element-fill ttm-icon_element-color-grey ttm-icon_element-size-md ttm-icon_element-style-rounded">
+                          <i className="ttm-num ti-info"></i>
+                        </div>
+                      </div>
+                      <div className="featured-content ">
+                        <div>
+                          <h6 style={{ color: 'black' }}>Create an eye-catching Resume</h6>
+                        </div>
+
+                      </div>
+                    </div>{/* featured-icon-box end */}
+                    {/* featured-icon-box */}
+                    <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
+                      <div className="featured-icon">
+                        <div className="ttm-icon ttm-icon_element-fill ttm-icon_element-color-grey ttm-icon_element-size-md ttm-icon_element-style-rounded">
+                          <i className="ttm-num ti-info"></i>
+                        </div>
+                      </div>
+                      <div className="featured-content ttm-bgcolor-grey">
+                        <div className="">
+                          <h6 style={{ color: 'black' }}>Look for your best Project Match</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                 {/* <aside className="widget widget-download">
                                     <ul className="download">
                                         <li><a href="#">Download.pdf</a><i className="ti ti-files"></i></li>
@@ -553,39 +579,23 @@ const User_profile = () => {
                       </div>
                     </div>
                   </div>
+                  
                   <Divider className="mt-2" />
-                  <div className="featuredbox-number pr-30 pr-lg-0 pb-lg-50 pt-md-20">
-                    {/* featured-icon-box */}
-                    <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
-                      <div className="featured-icon">
-                        <div className="ttm-icon ttm-icon_element-fill ttm-icon_element-color-grey ttm-icon_element-size-md ttm-icon_element-style-rounded">
-                          <i className="ttm-num ti-info"></i>
-                        </div>
-                      </div>
-                      <div className="featured-content ">
-                        <div>
-                          <h6 style={{ color: 'black' }}>Create an eye-catching Resume</h6>
-                        </div>
+                  <div className="col-lg-12 mt-3">
+                    <h6>Resume</h6>
+                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
-                      </div>
-                    </div>{/* featured-icon-box end */}
-                    {/* featured-icon-box */}
-                    <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
-                      <div className="featured-icon">
-                        <div className="ttm-icon ttm-icon_element-fill ttm-icon_element-color-grey ttm-icon_element-size-md ttm-icon_element-style-rounded">
-                          <i className="ttm-num ti-info"></i>
-                        </div>
-                      </div>
-                      <div className="featured-content ttm-bgcolor-grey">
-                        <div className="">
-                          <h6 style={{ color: 'black' }}>Look for your best Project Match</h6>
-                        </div>
-
-                      </div>
+                      <div className="featured-content">
+                        <ul>
+                          <li><Link excat to ={'/edit_resume'}>Resume_1</Link></li>
+                          <li><Link>Resume_2</Link></li>
+                          <Link><li>Resume_3</li></Link>
+                        </ul>
+                      </div> 
                     </div>
                   </div>
                   <Divider className="mt-2" />
-                  <div className="col-lg-12 mt-3">
+                  {/*<div className="col-lg-12 mt-3">
                     <h6>Activity</h6>
                     <Card>
                       <p>.</p>
@@ -595,7 +605,7 @@ const User_profile = () => {
                       <p>.</p>
                       <p>.</p>
                     </Card>
-                  </div>
+                        </div> */}
 
                 </div>
               </div>

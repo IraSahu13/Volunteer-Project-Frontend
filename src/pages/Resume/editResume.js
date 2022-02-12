@@ -13,10 +13,10 @@ import { Paper, withStyles, Grid } from '@material-ui/core';
 import ResumeTitle from './ResumeTitle';
 import { PostResume } from '../../api';
 
-const Resume = () => {
+const EditResume = () => {
   const [state, setState] = useState({
     step: 1,
-    resumeTitle:'',
+    resumeTitle:'abc',
     // Personal Profile Details...
     name: '',
     email: '',
@@ -59,7 +59,7 @@ const Resume = () => {
   const handleChange = (e) => {
     e.preventDefault();
     const val = e.target.value;
-    console.log(e.target.name, val);
+    console.log(val);
     setState({
       ...state,
       [e.target.name]: val
@@ -71,7 +71,7 @@ const Resume = () => {
     Promise.resolve((PostResume(values))).then((res)=>{
       console.log(res);
     }).catch((e)=>{
-      console.log({e});
+      console.log(e);
     })
   }
   const { step } = state;
@@ -161,8 +161,8 @@ const Resume = () => {
     <>
       <Header />
       <PageHeader
-        title="Resume"
-        breadcrumb="resume"
+        title="Edit Resume"
+        breadcrumb="edit resume"
       />
       <div className="App mt-3">
         <div className="container col-lg-10 mx-auto text-center  mb-4">
@@ -212,7 +212,7 @@ const Resume = () => {
           />
         </div>
       </div>
-      <div className=" justify-center mb-10" style={{ marginLeft: '45%' }}>
+      <div className=" justify-center mb-10" style={{ marginLeft: '47%' }}>
         <button
           variant="contained"
           type="submit"
@@ -229,4 +229,4 @@ const Resume = () => {
 
 }
 
-export default Resume;
+export default EditResume;
