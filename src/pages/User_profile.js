@@ -382,7 +382,7 @@ const User_profile = () => {
                 <aside className="widget job-widget pt-1">
                   {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                   {/* <form id="list1" className="list-filter"> */}
-                      <ul>
+                      <ul className="mt-10">
                         <li><a href= "#projects">Projects</a></li>
                         <li><a href="#applications">Applications</a></li>
                         <li><a href= "#offers">Offers</a></li>
@@ -604,10 +604,10 @@ const User_profile = () => {
                     <h6>Resume</h6>
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
-                      <div className="featured-content">
+                      <div className="text-size-2">
                         <ul>
-                          <li><Link excat to ={'/edit_resume'}>Resume_1</Link></li>
-                          <li><Link>Resume_2</Link></li>
+                          <Link exact to ={'/resume'}><li>Resume_1</li></Link>
+                          <Link><li>Resume_2</li></Link>
                           <Link><li>Resume_3</li></Link>
                         </ul>
                       </div> 

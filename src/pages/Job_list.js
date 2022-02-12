@@ -167,7 +167,7 @@ const Job_list = () => {
                                     </aside> */}
 
                             </div>
-                            <aside className="widget widget-banner text-theme-WhiteColor">
+                            <aside className="widget widget-banner">
                                 <div className="ttm-col-bgcolor-yes bg-theme-DarkColor text-theme-WhitColor col-bg-img-seven ttm-col-bgimage-yes ttm-bg p-40">
                                     <div className="ttm-col-wrapper-bg-layer ttm-bg-layer bg-theme-DarkColor" style={{ backgroundImage: '' }}>
                                         <div className="ttm-col-wrapper-bg-layer-inner bg-theme-DarkColor"></div>
