@@ -92,6 +92,7 @@ function App() {
         <Route exact path={'/posted_field'} component={Posted_Jobs} />
         <Route exact path={'/edit_resume'} component={EditResume} />
         <Route exact path={'/edit_field'} component={EditJob} />
+        <Route exact path={'/applied_jobs'} component={Applied_Jobs} />
         <ScrollToTop />
         </Switch>
       </Router>

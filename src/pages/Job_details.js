@@ -139,7 +139,7 @@ const Job_details = () => {
 
                 {/* PageHeader */}
                 <PageHeader
-                    title="job details"
+                    title="job title details"
                     breadcrumb="job"
                 />
                 {/* PageHeader end */}

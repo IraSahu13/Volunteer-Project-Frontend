@@ -108,7 +108,7 @@ const Header = () => {
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
-
+    const token = localStorage.getItem("token")
         return (
                 
             <header id="masthead" className="header ttm-header-style-01">
@@ -152,7 +152,7 @@ const Header = () => {
                                                 
                                                 </div>
                                              </div>
-                                                <React.Fragment className="ml-auto">
+                                              {token &&   <React.Fragment className="ml-auto">
                                                     <Tooltip title="Account settings">
                                                        
                                                       <IconButton
@@ -181,62 +181,64 @@ const Header = () => {
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <Avatar />
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/profile'}>Profile</Link>
-                                                      </MenuItem>
-                                                      <Divider />
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <PersonAdd fontSize="small" />
-                                                        </ListItemIcon>
-                                                        <Link>Add another account</Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/resume'}>Add Resume </Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/edit_resume'}>My Resumes </Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/applications'}>Applications</Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <Settings fontSize="small" />
-                                                        </ListItemIcon>
-                                                        <Link>Settings</Link>
-                                                      </MenuItem>
-                                                      <MenuItem
-                                                        onClick={()=>{
-                                                           localStorage.removeItem("token");
-                                                           localStorage.removeItem("status");
-                                                           window.location.reload();
-                                                           console.log("response");
-                                                        }}>
-                                                        <ListItemIcon>
-                                                          <Logout fontSize="small"/>
-                                                        </ListItemIcon>
-                                                        <Link>Logout</Link>
-                                                      </MenuItem>
+                                                    <Link exact to= {'/profile'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <Avatar />
+                                                      </ListItemIcon>
+                                                      Profile
+                                                    </MenuItem>
+                                                  </Link>
+                                                    <Divider />
+                                                    <Link>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <PersonAdd fontSize="small" />
+                                                      </ListItemIcon>
+                                                      Add another account
+                                                    </MenuItem>
+                                                    </Link>
+                                                    <Link exact to= {'/resume'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Resume
+                                                    </MenuItem>
+                                                    </Link>
+                                                    <Link exact to= {'/applied_jobs'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Applications
+                                                    </MenuItem>
+                                                    </Link>
+                                                    {/*<MenuItem>
+                                                      <ListItemIcon>
+                                                        <Settings fontSize="small" />
+                                                      </ListItemIcon>
+                                                      <Link>Settings</Link>
+                                                    </MenuItem>*/}
+                                                    <MenuItem
+                                                      onClick={()=>{
+                                                         localStorage.removeItem("token");
+                                                         localStorage.removeItem("status");
+                                                         window.location.reload();
+                                                         console.log("response");
+                                                      }}>
+                                                      <ListItemIcon>
+                                                        <Logout fontSize="small"/>
+                                                      </ListItemIcon>
+                                                      <Link>Logout</Link>
+                                                    </MenuItem>
                                                     </StyledMenu>
                                                     {/* <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
                                                         localStorage.removeItem("token");
                                                         localStorage.removeItem("status");
                                                         window.location.reload();
                                                     }}>Sign Out </Link> */}
-                                                    </React.Fragment>
+                                                    </React.Fragment>}
                                                 {/* menu end */}
                                                 <div className="header_extra ml-auto d-flex align-items-center">
                                                     {/* <Header_search/> */}
