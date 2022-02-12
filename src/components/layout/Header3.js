@@ -244,45 +244,43 @@ const Header = () => {
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
-                                                    <Link exact to= {'/profile'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           <Avatar />
                                                         </ListItemIcon>
-                                                        Profile
+                                                        <Link exact to= {'/profile'}>Profile</Link>
                                                       </MenuItem>
-                                                    </Link>
                                                       <Divider />
-                                                      <Link>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           <PersonAdd fontSize="small" />
                                                         </ListItemIcon>
-                                                        Add another account
+                                                        <Link>Add another account</Link>
                                                       </MenuItem>
-                                                      </Link>
-                                                      <Link exact to= {'/resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        Resume
+                                                        <Link exact to= {'/resume'}>Add Resume </Link>
                                                       </MenuItem>
-                                                      </Link>
-                                                      <Link exact to= {'/applied_jobs'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        Applications
+                                                        <Link exact to= {'/edit_resume'}>My Resumes </Link>
                                                       </MenuItem>
-                                                      </Link>
-                                                      {/*<MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/applications'}>Applications</Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
                                                         <ListItemIcon>
                                                           <Settings fontSize="small" />
                                                         </ListItemIcon>
                                                         <Link>Settings</Link>
-                                                      </MenuItem>*/}
+                                                      </MenuItem>
                                                       <MenuItem
                                                         onClick={()=>{
                                                            localStorage.removeItem("token");

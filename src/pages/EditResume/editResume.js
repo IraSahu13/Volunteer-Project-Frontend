@@ -1,7 +1,4 @@
-import React, { Component, useState } from 'react';
-import { Footer } from '../../components/layout/Footer';
-import Header from '../../components/layout/Header';
-import PageHeader from '../../components/layout/PageHeader';
+import React, { Component, useState, useEffect } from 'react';
 import Profile from './Profile';
 import Education from './Education';
 import Projects from './Project';
@@ -11,48 +8,52 @@ import { TextField, Button, Container, Divider } from '@material-ui/core';
 import { Card, CardHeader, CardContent } from '@material-ui/core';
 import { Paper, withStyles, Grid } from '@material-ui/core';
 import ResumeTitle from './ResumeTitle';
-import { PostResume } from '../../api';
+import { editResume, getResume, PostResume } from '../../api';
+import { Alertsuccess } from '../../components/layout/Alerts';
 
-const EditResume = () => {
+const EditResume = ({data,i}) => {
+
+  const [success, setsuccess] = useState()
+  const [text, settext] = useState('')
   const [state, setState] = useState({
     step: 1,
-    resumeTitle:'abc',
+    resumeTitle:data.resumeTitle,
     // Personal Profile Details...
-    name: '',
-    email: '',
-    phone: '',
-    github: '',
-    linkedin: '',
-    facebook: '',
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    github: data.github,
+    linkedin: data.linkedin,
+    facebook: data.facebook,
 
     // Education Information
-    college: '',
-    fromYearClg: '',
-    toYearClg: '',
-    percentageClg: '',
-    school: '',
-    fromYearSchl: '',
-    toYearSchl: '',
-    percentageSchl: '',
+    college: data.college,
+    fromYearClg: data.fromYearClg,
+    toYearClg: data.toYearClg,
+    percentageClg: data.percentageClg,
+    school: data.school,
+    fromYearSchl: data.fromYearSchl,
+    toYearSchl: data.toYearSchl,
+    percentageSchl: data.percentageSchl,
 
     // Project Information...
-    title: '',
-    link: '',
-    projectDescription: '',
+    title: data.title,
+    link: data.link,
+    projectDescription: data.projectDescription,
 
     // Experience Information
-    companyName: '',
-    position: '',
-    duration: '',
-    experienceDescription: '',
+    companyName: data.companyName,
+    position: data.position,
+    duration: data.duration,
+    experienceDescription: data.experienceDescription,
 
     // Extra Information
-    skill1: '',
-    skill2: '',
-    skill3: '',
-    interest1: '',
-    interest2: '',
-    interest3: '',
+    skill1: data.skill1,
+    skill2: data.skill2,
+    skill3: data.skill3,
+    interest1: data.interest1,
+    interest2: data.interest2,
+    interest3: data.interest3,
   });
 
 
@@ -65,13 +66,24 @@ const EditResume = () => {
       [e.target.name]: val
     });
   };
+  const handleEdit = (e) => {
+    i==0&&window.scrollTo(0, 250);
+    i==1&&window.scrollTo(0, 2400);
+    i==2&&window.scrollTo(0, 4600);
+  }
   const handleSubmit = (e) => {
     console.log("e");
     console.log(values);
-    Promise.resolve((PostResume(values))).then((res)=>{
+    Promise.resolve((editResume(values))).then((res)=>{
       console.log(res);
+      setsuccess(true)
+      settext(`Edited Resume ${resumeTitle} successfully`);
+      setTimeout(() => {
+        setsuccess(false)
+        settext(``);
+      }, 3000);
     }).catch((e)=>{
-      console.log(e);
+      console.log({e});
     })
   }
   const { step } = state;
@@ -159,16 +171,12 @@ const EditResume = () => {
   //   case 1:
   return (
     <>
-      <Header />
-      <PageHeader
-        title="Edit Resume"
-        breadcrumb="edit resume"
-      />
       <div className="App mt-3">
         <div className="container col-lg-10 mx-auto text-center  mb-4">
           <ResumeTitle
             handleChange={handleChange}
             values={values}
+            i={i}
           />
         </div>
       </div>
@@ -212,17 +220,25 @@ const EditResume = () => {
           />
         </div>
       </div>
-      <div className=" justify-center mb-10" style={{ marginLeft: '47%' }}>
+      <div className='justify-center'>{success&&<Alertsuccess text={text}/>}</div>
+      <div className=" justify-center mb-10" style={{ marginLeft: '37%' }}>
         <button
           variant="contained"
           type="submit"
-          className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
+          className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor mr-10"
+          onClick={handleEdit}
+        >
+          Edit {data.resumeTitle} Resume
+        </button>
+        <button
+          variant="contained"
+          type="submit"
+          className="btn btn-primary ml-10 font-weight-bold"
           onClick={handleSubmit}
         >
-          Save
+          Save Details
         </button>
       </div>
-      <Footer />
     </>
 
   );
