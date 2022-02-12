@@ -12,7 +12,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
 import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
-import { userInfo } from '../api';
+import { userInfo, myAppliedJobs, getResume } from '../api';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -32,15 +32,29 @@ const styles = theme => ({
 });
 
 const ProfileDetails = (props) => {
-
+  const [user, setUser] = useState([]);
+  const location = useLocation();
+  useEffect(() => {
+    const id = location.pathname.substring(19,);
+    Promise.resolve(userInfo(id)).then((res) => {
+      // console.log(res.data);
+      setUser(res.data);
+    }).catch((e) => {
+      console.log({ e });
+    })
+  }, [])
   const [userEdit, setUserEdit] = useState({
-    firstname: 'Ira',
-    lastname: 'Sahu',
-    email: 'irasahu13@gamil.com',
-    phone: '',
-    address:'',
+    firstname: user.firstname,
+    lastname: user.lastname,
+    email: user.email,
+    phone: user.phone,
+    address_line_1:user.address_line_1,
+    address_line_1:user.address_line_1,
+    zipcode:user.zipcode,
+    city:user.city,
+    state: user.state,
   });
-  const location = useLocation()
+
   const {
     firstname,
     lastname,
@@ -197,7 +211,19 @@ const ProfileDetails = (props) => {
               </Grid>
             </Grid>
             <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
+            <Grid>
               <img alt="profile_pic"></img>
+            </Grid>
+            {/*<Grid>
+              <div className="mt-10">
+                 <button 
+                   variant="contained"
+                   type="submit"
+                   className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor">
+                   Upload profile pic
+                  </button>
+              </div>
+            </Grid>*/}
             </Grid>
           </div>
         </div>
@@ -299,12 +325,13 @@ function CircularProgressWithLabel(props) {
 
 const User_profile = () => {
 
-  const [allcandidates, setallcandidates] = useState([]);
+  const [user, setUser] = useState([]);
   const location = useLocation();
   useEffect(() => {
     const id = location.pathname.substring(19,);
     Promise.resolve(userInfo(id)).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
+      setUser(res.data);
     }).catch((e) => {
       console.log({ e });
     })
@@ -319,11 +346,20 @@ const User_profile = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [AllApplications, setallInterns] = useState([]);
+  const [allApplications, setAllApplications] = useState([]);
   useEffect(() => {
-    Promise.resolve(allApplicants()).then((res) => {
-      console.log(res.data.intern);
-      setallInterns(res.data.intern)
+    Promise.resolve(myAppliedJobs()).then((res) => {
+      console.log(res.data);
+      setAllApplications(res.data.intern)
+    }).catch((e) => {
+      console.log({ e });
+    })
+  }, []);
+  const [resume, setResume] = useState([]);
+  useEffect(() => {
+    Promise.resolve(getResume()).then((res) => {
+      // console.log(res.data.intern);
+      setResume(res.data.intern)
     }).catch((e) => {
       console.log({ e });
     })
@@ -385,6 +421,7 @@ const User_profile = () => {
                       <ul className="mt-10">
                         <li><a href= "#projects">Projects</a></li>
                         <li><a href="#applications">Applications</a></li>
+                        <li><a href="#resume">Resume</a></li>
                         <li><a href= "#offers">Offers</a></li>
                       </ul>
                   {/* </form> */}
@@ -395,10 +432,10 @@ const User_profile = () => {
                     <div className= "justify-center pt-1">
                       <ul>
                         <li></li>
-                        <p>Name: Ira Sahu</p>
-                        <p>Email:</p>
-                        <p>Phone:</p>
-                        <p>Address: </p>
+                        <p>{`Name: ${user.name}`}</p>
+                        <p>{`Email: ${user.email}`}</p>
+                        <p>{`Phone: ${user.phone}`}</p>
+                        <p>{`Address: ${user.address}`}</p>
                       </ul>
                     </div>
                     {/* </form> */}
@@ -601,13 +638,14 @@ const User_profile = () => {
                   
                   <Divider className="mt-2" />
                   <div className="col-lg-12 mt-3">
-                    <h6>Resume</h6>
+                    <h6 id="resume">Resume</h6>
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
                       <div className="text-size-2">
                         <ul>
                           <Link exact to ={'/resume'}><li>Resume_1</li></Link>
                           <Link><li>Resume_2</li></Link>
+                          <Link><li>{resume}</li></Link>
                           <Link><li>Resume_3</li></Link>
                         </ul>
                       </div> 

@@ -108,7 +108,7 @@ const Header = () => {
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
-
+    const token = localStorage.getItem("token")
         return (
                 
             <header id="masthead" className="header ttm-header-style-01">
@@ -152,7 +152,7 @@ const Header = () => {
                                                 
                                                 </div>
                                              </div>
-                                                <React.Fragment className="ml-auto">
+                                              {token &&   <React.Fragment className="ml-auto">
                                                     <Tooltip title="Account settings">
                                                        
                                                       <IconButton
@@ -206,12 +206,12 @@ const Header = () => {
                                                       Resume
                                                     </MenuItem>
                                                     </Link>
-                                                    <Link exact to= {'/resume'}>
+                                                    <Link exact to= {'/applied_jobs'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                         {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
-                                                      Projects
+                                                      Applications
                                                     </MenuItem>
                                                     </Link>
                                                     {/*<MenuItem>
@@ -238,7 +238,7 @@ const Header = () => {
                                                         localStorage.removeItem("status");
                                                         window.location.reload();
                                                     }}>Sign Out </Link> */}
-                                                    </React.Fragment>
+                                                    </React.Fragment>}
                                                 {/* menu end */}
                                                 <div className="header_extra ml-auto d-flex align-items-center">
                                                     {/* <Header_search/> */}

@@ -108,8 +108,8 @@ const Header = () => {
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
     
-    // const token = localStorage.getItem("token")
-    const token = "user";
+    const token = localStorage.getItem("token")
+    // const token = null;
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -269,12 +269,12 @@ const Header = () => {
                                                         Resume
                                                       </MenuItem>
                                                       </Link>
-                                                      <Link exact to= {'/resume'}>
+                                                      <Link exact to= {'/applied_jobs'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        Projects
+                                                        Applications
                                                       </MenuItem>
                                                       </Link>
                                                       {/*<MenuItem>

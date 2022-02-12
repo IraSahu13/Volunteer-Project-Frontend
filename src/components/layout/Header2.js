@@ -22,8 +22,8 @@ export class Header extends Component {
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
 
-    // token = localStorage.getItem("token")
-    token= "user";
+    token = localStorage.getItem("token")
+    // token= "user";
     render() {        
         return (
                 
