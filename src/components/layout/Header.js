@@ -181,49 +181,57 @@ const Header = () => {
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <Avatar />
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/profile'}>Profile</Link>
-                                                      </MenuItem>
-                                                      <Divider />
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <PersonAdd fontSize="small" />
-                                                        </ListItemIcon>
-                                                        <Link>Add another account</Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/resume'}>Resume </Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/applications'}>Applications</Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <Settings fontSize="small" />
-                                                        </ListItemIcon>
-                                                        <Link>Settings</Link>
-                                                      </MenuItem>
-                                                      <MenuItem
-                                                        onClick={()=>{
-                                                           localStorage.removeItem("token");
-                                                           localStorage.removeItem("status");
-                                                           window.location.reload();
-                                                           console.log("response");
-                                                        }}>
-                                                        <ListItemIcon>
-                                                          <Logout fontSize="small"/>
-                                                        </ListItemIcon>
-                                                        <Link>Logout</Link>
-                                                      </MenuItem>
+                                                    <Link exact to= {'/profile'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <Avatar />
+                                                      </ListItemIcon>
+                                                      Profile
+                                                    </MenuItem>
+                                                  </Link>
+                                                    <Divider />
+                                                    <Link>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <PersonAdd fontSize="small" />
+                                                      </ListItemIcon>
+                                                      Add another account
+                                                    </MenuItem>
+                                                    </Link>
+                                                    <Link exact to= {'/resume'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Resume
+                                                    </MenuItem>
+                                                    </Link>
+                                                    <Link exact to= {'/resume'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Projects
+                                                    </MenuItem>
+                                                    </Link>
+                                                    {/*<MenuItem>
+                                                      <ListItemIcon>
+                                                        <Settings fontSize="small" />
+                                                      </ListItemIcon>
+                                                      <Link>Settings</Link>
+                                                    </MenuItem>*/}
+                                                    <MenuItem
+                                                      onClick={()=>{
+                                                         localStorage.removeItem("token");
+                                                         localStorage.removeItem("status");
+                                                         window.location.reload();
+                                                         console.log("response");
+                                                      }}>
+                                                      <ListItemIcon>
+                                                        <Logout fontSize="small"/>
+                                                      </ListItemIcon>
+                                                      <Link>Logout</Link>
+                                                    </MenuItem>
                                                     </StyledMenu>
                                                     {/* <i className="ti ti-lock fa-sm text-theme-DarkColor"></i><Link exact to={'/'} onClick={()=>{
                                                         localStorage.removeItem("token");

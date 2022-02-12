@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
 
 const HeaderMenu = () => {
 
-    let status = localStorage.getItem("status");
+    // let status = localStorage.getItem("status");
+    let status= "user";
     {
         return (
             <div>

@@ -81,6 +81,15 @@ const ProfileDetails = (props) => {
     console.log(e);
   }
   const classes = styles();
+  // const handleSubmit = (e) => {
+  //   console.log("e");
+  //   console.log(values);
+  //   Promise.resolve((PostResume(values))).then((res)=>{
+  //     console.log(res);
+  //   }).catch((e)=>{
+  //     console.log(e);
+  //   })
+  // }
   return (
     <>
     <Paper className="mt-120" >
@@ -194,6 +203,16 @@ const ProfileDetails = (props) => {
         </div>
       </CardContent>
     </Paper>
+    <div className=" justify-center mt-10">
+      <button
+              variant="contained"
+              type="submit"
+              className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
+              // onClick={handleSubmit}
+      >
+              Save
+      </button>
+    </div>
     {/*<Paper className="mt-50">
     <Grid item xs={12} lg={12}>
       <h3>Edit Resume</h3>
@@ -215,7 +234,7 @@ const EditProfile = () => {
   const handleClose = () => {
     setOpen(false);
   };
- 
+  
   return (
     <div>
       <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
@@ -364,9 +383,9 @@ const User_profile = () => {
                   {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                   {/* <form id="list1" className="list-filter"> */}
                       <ul>
-                        <li><Link exact to= {'/projects'}>Projects</Link></li>
-                        <li><Link exact to= {'/applied_jobs'}>Applications</Link></li>
-                        <li><Link exact to= {'/offers'}>Offers</Link></li>
+                        <li><a href= "#projects">Projects</a></li>
+                        <li><a href="#applications">Applications</a></li>
+                        <li><a href= "#offers">Offers</a></li>
                       </ul>
                   {/* </form> */}
                 </aside>
@@ -439,7 +458,7 @@ const User_profile = () => {
               <div className="col-lg-8 content-area">
 
                 <div className="row">
-                  <h6>Projects</h6>
+                  <h6 id="projects">Projects</h6>
                   <div className="col-12">
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
@@ -532,7 +551,7 @@ const User_profile = () => {
                   </div>
                   <Divider className="mt-2" />
                   <div className="col-lg-12 mt-3">
-                    <h6>Applications</h6>
+                    <h6 id="applications">Applications</h6>
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
                       <div className="featured-content">
@@ -595,7 +614,7 @@ const User_profile = () => {
                     </div>
                   </div>
                   <Divider className="mt-2" />
-                  <h6>Projects</h6>
+                  <h6 id="offers">Offers</h6>
                   <div className="col-12">
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 

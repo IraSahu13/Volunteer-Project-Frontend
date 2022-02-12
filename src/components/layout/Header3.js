@@ -108,8 +108,8 @@ const Header = () => {
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
     
-    const token = localStorage.getItem("token")
-    // const token = null;
+    // const token = localStorage.getItem("token")
+    const token = "user";
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -244,37 +244,45 @@ const Header = () => {
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
+                                                    <Link exact to= {'/profile'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           <Avatar />
                                                         </ListItemIcon>
-                                                        <Link exact to= {'/profile'}>Profile</Link>
+                                                        Profile
                                                       </MenuItem>
+                                                    </Link>
                                                       <Divider />
+                                                      <Link>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           <PersonAdd fontSize="small" />
                                                         </ListItemIcon>
-                                                        <Link>Add another account</Link>
+                                                        Add another account
                                                       </MenuItem>
+                                                      </Link>
+                                                      <Link exact to= {'/resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        <Link exact to= {'/resume'}>Resume </Link>
+                                                        Resume
                                                       </MenuItem>
+                                                      </Link>
+                                                      <Link exact to= {'/resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        <Link exact to= {'/applications'}>Applications</Link>
+                                                        Projects
                                                       </MenuItem>
-                                                      <MenuItem>
+                                                      </Link>
+                                                      {/*<MenuItem>
                                                         <ListItemIcon>
                                                           <Settings fontSize="small" />
                                                         </ListItemIcon>
                                                         <Link>Settings</Link>
-                                                      </MenuItem>
+                                                      </MenuItem>*/}
                                                       <MenuItem
                                                         onClick={()=>{
                                                            localStorage.removeItem("token");
