@@ -80,11 +80,11 @@ class Projects extends Component {
                   <TextField
                     margin="dense"
                     variant="outlined"
-                    name="title1"
+                    name="title"
                     label="Title"
                     style={{ width: '80%' }}
                     required
-                    value={values.title1}
+                    value={values.title}
                     onChange={this.props.handleChange}
                     InputProps={{
                       endAdornment: (
@@ -99,11 +99,11 @@ class Projects extends Component {
                   <TextField
                     margin="dense"
                     variant="outlined"
-                    name="link1"
+                    name="link"
                     label="Link"
                     style={{ width: '80%' }}
                     required
-                    value={values.link1}
+                    value={values.link}
                     onChange={this.props.handleChange}
                     InputProps={{
                       endAdornment: (
@@ -119,11 +119,11 @@ class Projects extends Component {
                   <TextField
                     margin="dense"
                     variant="outlined"
-                    name="projectDescription1"
+                    name="projectDescription"
                     label="Description"
                     style={{ width: '80%' }}
                     required
-                    value={values.projectDescription1}
+                    value={values.projectDescription}
                     onChange={this.props.handleChange}
                     InputProps={{
                       endAdornment: (

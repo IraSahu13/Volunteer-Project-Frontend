@@ -91,11 +91,11 @@ const Experience=(props)=>{
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="institute1"
+                  name="companyName"
                   label="Institue/Organisation"
                   style={{width: '90%'}}
                   required
-                  value={values.institute1}
+                  value={values.companyName}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -110,11 +110,11 @@ const Experience=(props)=>{
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="position1"
+                  name="position"
                   label="Position"
                   style={{width: '90%'}}
                   required
-                  value={values.position1}
+                  value={values.position}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -130,11 +130,11 @@ const Experience=(props)=>{
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="duration1"
+                  name="duration"
                   label="Duration"
                   style={{width: '90%'}}
                   required
-                  value={values.duration1}
+                  value={values.duration}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -152,9 +152,9 @@ const Experience=(props)=>{
                   label="Description"
                   variant="outlined"
                   style={{width: '97%'}}
-                  name="experienceDescription1"
+                  name="experienceDescription"
                   required
-                  value={values.experienceDescription1}
+                  value={values.experienceDescription}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
