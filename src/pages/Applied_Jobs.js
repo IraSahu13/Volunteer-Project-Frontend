@@ -26,7 +26,7 @@ const Job_list = () => {
     useEffect(() => {
     Promise.resolve(myAppliedJobs()).then((res) => {
       console.log(res.data.user.internsApplied);
-      setAllApplications(res.data.internApplied)
+      setAllApplications(res.data.user.internsAppliedS)
     }).catch((e) => {
       console.log({ e });
     })

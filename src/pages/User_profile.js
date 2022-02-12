@@ -35,9 +35,8 @@ const ProfileDetails = (props) => {
   const [user, setUser] = useState([]);
   const location = useLocation();
   useEffect(() => {
-    const id = location.pathname.substring(19,);
-    Promise.resolve(userInfo(id)).then((res) => {
-      // console.log(res.data);
+    Promise.resolve(userInfo()).then((res) => {
+      console.log(res.data);
       setUser(res.data);
     }).catch((e) => {
       console.log({ e });
@@ -349,8 +348,8 @@ const User_profile = () => {
   const [allApplications, setAllApplications] = useState([]);
   useEffect(() => {
     Promise.resolve(myAppliedJobs()).then((res) => {
-      console.log(res.data);
-      setAllApplications(res.data.intern)
+      console.log(res.data.user.internsApplied);
+      setAllApplications(res.data.user.internsApplied)
     }).catch((e) => {
       console.log({ e });
     })
@@ -358,8 +357,8 @@ const User_profile = () => {
   const [resume, setResume] = useState([]);
   useEffect(() => {
     Promise.resolve(getResume()).then((res) => {
-      // console.log(res.data.intern);
-      setResume(res.data.intern)
+      console.log(res.data);
+      setResume(res.data.resumeTitle);
     }).catch((e) => {
       console.log({ e });
     })
@@ -645,7 +644,9 @@ const User_profile = () => {
                         <ul>
                           <Link exact to ={'/resume'}><li>Resume_1</li></Link>
                           <Link><li>Resume_2</li></Link>
-                          <Link><li>{resume}</li></Link>
+                          { resume?.map((cv) => (<Link><li>{cv}</li></Link>
+                          
+                          ))}
                           <Link><li>Resume_3</li></Link>
                         </ul>
                       </div> 
