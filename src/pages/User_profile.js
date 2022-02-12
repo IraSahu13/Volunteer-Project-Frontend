@@ -365,7 +365,7 @@ const User_profile = () => {
                   {/* <form id="list1" className="list-filter"> */}
                       <ul>
                         <li><Link exact to= {'/projects'}>Projects</Link></li>
-                        <li><Link exact to= {'/applications'}>Applications</Link></li>
+                        <li><Link exact to= {'/applied_jobs'}>Applications</Link></li>
                         <li><Link exact to= {'/offers'}>Offers</Link></li>
                       </ul>
                   {/* </form> */}
@@ -595,6 +595,91 @@ const User_profile = () => {
                     </div>
                   </div>
                   <Divider className="mt-2" />
+                  <h6>Projects</h6>
+                  <div className="col-12">
+                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+
+                      <div className="featured-content">
+                        <div className="featured-title">
+                          <h3>JOB-2</h3>
+                          <p className="mt-2" style={{ color: 'grey' }}>10-01-21</p>
+                        </div>
+                        <div className="featured-bottom">
+                          <div className="view-block">
+                            {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                        ttm-btn-color-dark"
+                                                        exact to={'/applications'}>View Details</Link> */}
+                            <KeyboardArrowDownIcon
+                              id="demo-customized-button"
+                              aria-controls={open ? 'demo-customized-menu' : undefined}
+                              aria-haspopup="true"
+                              aria-expanded={open ? 'true' : undefined}
+                              variant="contained"
+                              disableElevation
+                              onClick={open ? handleClose : handleClick}
+                            ></KeyboardArrowDownIcon>
+                          </div>
+                          {open &&
+                            <div className="mt-10">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                maecenas accumsan lacus vel facilisis.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                maecenas accumsan lacus vel facilisis.</p>
+                              <div >
+                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                       ttm-btn-color-dark mr-20"
+                                  exact to={'/job_details'}>Accept</Link>
+                              </div>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+
+                      <div className="featured-content">
+                        <div className="featured-title">
+                          <h3>JOB-1</h3>
+                          <p className="mt-2" style={{ color: 'grey' }}>02-10-21</p>
+                        </div>
+                        <div className="featured-bottom">
+                          <div className="view-block">
+                            {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                        ttm-btn-color-dark"
+                                                        exact to={'/applications'}>View Details</Link> */}
+                            <KeyboardArrowDownIcon
+                              id="demo-customized-button"
+                              aria-controls={open ? 'demo-customized-menu' : undefined}
+                              aria-haspopup="true"
+                              aria-expanded={open ? 'true' : undefined}
+                              variant="contained"
+                              disableElevation
+                              onClick={open ? handleClose : handleClick}
+                            ></KeyboardArrowDownIcon>
+                          </div>
+                          {open &&
+                            <div className="mt-10">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                maecenas accumsan lacus vel facilisis.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                maecenas accumsan lacus vel facilisis.</p>
+                              <div >
+                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                       ttm-btn-color-dark mr-20"
+                                  exact to={'/job_details'}>Accept</Link>
+                              </div>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   {/*<div className="col-lg-12 mt-3">
                     <h6>Activity</h6>
                     <Card>
