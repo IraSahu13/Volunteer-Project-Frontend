@@ -198,7 +198,13 @@ const Header = () => {
                                                         <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        <Link exact to= {'/resume'}>Resume </Link>
+                                                        <Link exact to= {'/resume'}>Add Resume </Link>
+                                                      </MenuItem>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                        <Link exact to= {'/edit_resume'}>My Resumes </Link>
                                                       </MenuItem>
                                                       <MenuItem>
                                                         <ListItemIcon>
