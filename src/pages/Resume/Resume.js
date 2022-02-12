@@ -16,7 +16,7 @@ import { PostResume } from '../../api';
 const Resume = () => {
   const [state, setState] = useState({
     step: 1,
-    resumeTitle:'abc',
+    resumeTitle:'',
     // Personal Profile Details...
     name: '',
     email: '',
@@ -59,7 +59,7 @@ const Resume = () => {
   const handleChange = (e) => {
     e.preventDefault();
     const val = e.target.value;
-    console.log(val);
+    console.log(e.target.name, val);
     setState({
       ...state,
       [e.target.name]: val
@@ -71,7 +71,7 @@ const Resume = () => {
     Promise.resolve((PostResume(values))).then((res)=>{
       console.log(res);
     }).catch((e)=>{
-      console.log(e);
+      console.log({e});
     })
   }
   const { step } = state;

@@ -27,7 +27,7 @@ const styles = theme => ({
 const Profile = (props) => {
 
   const classes = styles();
-  const values = [];
+  const {values} = props
   return (
     <Paper className={classes.padding} >
       <Grid item xs={12} lg={12}>
@@ -40,11 +40,11 @@ const Profile = (props) => {
               <TextField
                 margin="dense"
                 variant="outlined"
-                name="Full Name"
-                label="First Name"
+                name="name"
+                label="Full Name"
                 style={{ width: '80%' }}
                 required
-                value={values.firstname}
+                value={values.name}
                 onChange={props.handleChange}
               />
             </Grid>
