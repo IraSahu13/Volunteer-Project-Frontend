@@ -73,12 +73,12 @@ const Profile = (props) => {
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="fromyear1"
+                  name="fromYearClg"
                   label=""
                   type="date"
                   style={{width: '80%'}}
                   required
-                  value={values.fromyear1}
+                  value={values.fromYearClg}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -95,12 +95,12 @@ const Profile = (props) => {
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="toyear1"
+                  name="toYearClg"
                   type="date"
                   label=""
                   style={{width: '80%'}}
                   required
-                  value={values.toyear1}
+                  value={values.toYearClg}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -118,9 +118,9 @@ const Profile = (props) => {
                   label="Percentage"
                   variant="outlined"
                   style={{width: '80%'}}
-                  name="qualification1"
+                  name="percentageClg"
                   required
-                  value={values.qualification1}
+                  value={values.percentageClg}
                   onChange={props.handleChange}
                 />
               </Grid>
@@ -152,12 +152,12 @@ const Profile = (props) => {
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="fromyear2"
+                  name="fromYearSchl"
                   label=""
                   type="date"
                   style={{width: '80%'}}
                   required
-                  value={values.fromyear2}
+                  value={values.fromYearSchl}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -181,12 +181,12 @@ const Profile = (props) => {
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="toyear2"
+                  name="toYearSchl"
                   label=""
                   type="date"
                   style={{width: '80%'}}
                   required
-                  value={values.toyear2}
+                  value={values.toYearSchl}
                   onChange={props.handleChange}
                   InputProps={{
                     endAdornment: (
@@ -204,9 +204,9 @@ const Profile = (props) => {
                   label="Percentage"
                   variant="outlined"
                   style={{width: '80%'}}
-                  name="qualification2"
+                  name="percentageSchl"
                   required
-                  value={values.qualification2}
+                  value={values.percentageSchl}
                   onChange={props.handleChange}
                 />
               </Grid>

@@ -4,7 +4,7 @@ import Header from '../components/layout/Header';
 import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
-import { getIntern, jobApply } from '../api';
+import { getIntern, getResume, jobApply } from '../api';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
 import ActionSection from '../components/layout/ActionSection';
 import {Alerterror, Alertsuccess} from '../components/layout/Alerts'
@@ -13,7 +13,9 @@ const Job_details = () => {
 
     const [intern, setIntern] = useState([]);
     const [company, setCompany] = useState([]);
-    const [question, setquestion] = useState('');
+    const [question, setquestion] = useState([]);
+    const [resume, setresume] = useState([]);
+    const [options, setoptions] = useState([]);
     const location = useLocation();
     const internId = location.pathname.substring(13,);
     const [open, setOpen] = useState(false);
@@ -30,14 +32,23 @@ const Job_details = () => {
         Promise.resolve(getIntern(internId)).then((res) => {
             setIntern(res.data.intern)
             setCompany(res.data.company)
-            console.log(res.data.intern);
+            // console.log(res.data.intern);
         }).catch((e) => {
             console.log({ e });
+        })
+        Promise.resolve(getResume()).then((res)=>{
+            const p = res.data.map((data)=>{
+                return data.resumeTitle
+            })
+            setoptions(p)
+        }).catch((e)=>{
+            console.log({e});
         })
     }, [])
 
     const ApplyHandleClick = () => {
-        Promise.resolve(jobApply({ question }, internId)).then((res) => {
+        console.log(question, resume);
+        Promise.resolve(jobApply({question,resume}, internId)).then((res) => {
             console.log(res.data);
             setsuccess(true);
             setText(res.data)
@@ -72,12 +83,12 @@ const Job_details = () => {
             boxShadow: 24,
             p: 4,
         };
-        const options = [
-            'Resume_1',
-            'Resume_2',
-            'Resume_3',
-            'Resume_4',
-        ];
+        // const options = [
+        //     'Resume_1',
+        //     'Resume_2',
+        //     'Resume_3',
+        //     'Resume_4',
+        // ];
 
         var slick_slider = {
             dots: false,
@@ -304,6 +315,7 @@ const Job_details = () => {
                                                                         <ListItemText
                                                                             primary="Select Resume"
                                                                             secondary={options[selectedIndex]}
+                                                                            onClick={(e)=>{setresume(options[selectedIndex])}}
                                                                         />
                                                                     </ListItem>
                                                                 </List>
@@ -317,14 +329,13 @@ const Job_details = () => {
                                                                         role: 'listbox',
                                                                     }}
                                                                 >
-                                                                    {options.map((option, index) => (
+                                                                    {options.map((name, index) => (
                                                                         <MenuItem
-                                                                            key={option}
-                                                                            disabled={index === 0}
+                                                                            key={name}
                                                                             selected={index === selectedIndex}
                                                                             onClick={(event) => handleMenuItemClick(event, index)}
                                                                         >
-                                                                            {option}
+                                                                            {name}
                                                                         </MenuItem>
                                                                     ))}
                                                                     <Link exact to={'/resume'}>

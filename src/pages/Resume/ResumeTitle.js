@@ -35,16 +35,16 @@ const ResumeTitle = (props) => {
             <Grid item xs={12} lg={12}>
               <h3>Resume Title</h3>
             </Grid>
-            <Grid item md={12} sm={12} xs={12} lg={12}>
+            <Grid item md={6} sm={12} xs={12} lg={6}>
               <TextField
                 margin="dense"
                 variant="outlined"
-                name="resume title"
+                name="resumeTitle"
                 label="Resume Title"
                 style={{ width: '80%' }}
                 required
-                handleChange={props.handleChange}
                 value={values.resumeTitle}
+                onChange={props.handleChange}
               />
             </Grid>
           </Grid>

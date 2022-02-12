@@ -39,7 +39,7 @@ export const PostJob=async ()=>{
     });
 }
 export const PostResume=async (data)=>{
-    return await axios.post(`/resume/postjob`,{credentials: data},
+    return await axios.post(`/resume/postresume`,{credentials: data},
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -56,6 +56,14 @@ export const jobApply=async (data, internId)=>{
 }
 export const myAppliedJobs=async ()=>{
     return await axios.get(`/user/getmyjobs`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const getResume=async ()=>{
+    return await axios.get(`/resume/getresume`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
