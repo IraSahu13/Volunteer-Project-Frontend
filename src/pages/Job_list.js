@@ -31,8 +31,8 @@ const Job_list = () => {
 
                 {/* PageHeader */}
                 <PageHeader
-                    title="Projects"
-                    breadcrumb="projects"
+                    title="Opportunities"
+                    breadcrumb="Opportunities"
                     className="pb-65 pb-lg-0"
                 />
                 {/* PageHeader end */}

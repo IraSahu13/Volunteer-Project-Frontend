@@ -27,33 +27,33 @@ const EditResume = ({data,i}) => {
     facebook: data.facebook,
 
     // Education Information
-    college: data.college,
-    fromYearClg: data.fromYearClg,
-    toYearClg: data.toYearClg,
-    percentageClg: data.percentageClg,
-    school: data.school,
-    fromYearSchl: data.fromYearSchl,
-    toYearSchl: data.toYearSchl,
-    percentageSchl: data.percentageSchl,
+    college: data.qualification[0].college,
+    fromYearClg: data.qualification[0].fromYearClg,
+    toYearClg: data.qualification[0].toYearClg,
+    percentageClg: data.qualification[0].percentageClg,
+    school: data.qualification[0].school,
+    fromYearSchl: data.qualification[0].fromYearSchl,
+    toYearSchl: data.qualification[0].toYearSchl,
+    percentageSchl: data.qualification[0].percentageSchl,
 
     // Project Information...
-    title: data.title,
-    link: data.link,
-    projectDescription: data.projectDescription,
+    title: data.projects[0].title,
+    link: data.projects[0].link,
+    projectDescription: data.projects[0].projectDescription,
 
     // Experience Information
-    companyName: data.companyName,
-    position: data.position,
-    duration: data.duration,
-    experienceDescription: data.experienceDescription,
+    companyName: data.experience[0].companyName,
+    position: data.experience[0].position,
+    duration: data.experience[0].duration,
+    experienceDescription: data.experience[0].experienceDescription,
 
     // Extra Information
-    skill1: data.skill1,
-    skill2: data.skill2,
-    skill3: data.skill3,
-    interest1: data.interest1,
-    interest2: data.interest2,
-    interest3: data.interest3,
+    skill1: data.skill[0],
+    skill2: data.skill[1],
+    skill3: data.skill[2],
+    interest1: data.interests[0],
+    interest2: data.interests[1],
+    interest3: data.interests[2],
   });
 
 

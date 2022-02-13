@@ -17,7 +17,7 @@ export const signup=async (data)=>{
 
 //****** user ******//
 export const myAppliedJobs=async ()=>{
-    return await axios.get(`/user/getmyjobs`, 
+    return await axios.get(`/user/getappliedjobs`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -42,6 +42,14 @@ export const editUser=async ()=>{
 }
 export const jobApply=async (data, internId)=>{
     return await axios.post(`/user/jobapply/${internId}`, {credentials: data}, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const myProjects=async ()=>{
+    return await axios.get(`/user/getprojects`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
