@@ -42,14 +42,14 @@ const ProfileDetails = (props) => {
     })
   }, [])
   const [userEdit, setUserEdit] = useState({
-    firstname: user.firstname,
-    lastname: user.lastname,
+    name: user.name,
     email: user.email,
     phone: user.phone,
-    address_line_1: user.address_line_1,
-    address_line_1: user.address_line_1,
-    zipcode: user.zipcode,
-    city: user.city,
+    title: user.title,
+    address_line_1:user.address_line_1,
+    address_line_1:user.address_line_1,
+    zipcode:user.zipcode,
+    city:user.city,
     state: user.state,
   });
 
@@ -59,8 +59,8 @@ const ProfileDetails = (props) => {
     email,
     phone,
     address,
-  } = userEdit;
-
+    title,
+  }= userEdit;
   const values = {
 
     // Profile-Information
@@ -69,6 +69,7 @@ const ProfileDetails = (props) => {
     email,
     phone,
     address,
+    title,
     // Education Information
 
 
@@ -347,7 +348,7 @@ const User_profile = () => {
   const [allApplications, setAllApplications] = useState([]);
   useEffect(() => {
     Promise.resolve(myAppliedJobs()).then((res) => {
-      console.log(res.data.user.internsApplied);
+      // console.log(res.data.user.internsApplied);
       setAllApplications(res.data.user.internsApplied)
     }).catch((e) => {
       console.log({ e });
@@ -355,12 +356,15 @@ const User_profile = () => {
   }, []);
   const [resume, setResume] = useState([]);
   useEffect(() => {
-    Promise.resolve(getResume()).then((res) => {
-      console.log(res.data);
-      setResume(res.data.resumeTitle);
-    }).catch((e) => {
-      console.log({ e });
-    })
+    Promise.resolve(getResume()).then((res)=>{
+      const p = res.data.map((data)=>{
+          return data.resumeTitle
+      })
+      setResume(p);
+      console.log(p);
+   }).catch((e)=>{
+      console.log({e});
+  })
   }, []);
   const [projects, setprojects] = useState([])
   useEffect(() => {
@@ -409,8 +413,8 @@ const User_profile = () => {
                 </div>
                 <div className="col-2">
                   <h5>{user.name}</h5>
-                  <p>{user.title && user.title}</p>
-                  <Rating name="read-only" value={2} readOnly />
+                  <p>{user.title}</p>
+                  <Rating name="read-only" value={user.rating} readOnly />
                 </div>
                 <div className="col-6 col-lg-7"></div>
 
@@ -423,18 +427,8 @@ const User_profile = () => {
             <div className="row">
               <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                 <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
-                  <aside className="widget job-widget pt-1">
-                    {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
-                    {/* <form id="list1" className="list-filter"> */}
-                    <ul className="mt-10">
-                      <li><a href="#projects">Projects</a></li>
-                      <li><a href="#applications">Applications</a></li>
-                      <li><a href="#resume">Resume</a></li>
-                      <li><a href="#offers">Offers</a></li>
-                    </ul>
-                    {/* </form> */}
-                  </aside>
-                  <aside className="widget job-widget">
+
+                <aside className="widget job-widget">
                     {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                     {/* <form id="list1" className="list-filter"> */}
                     <div className="justify-center pt-1">
@@ -448,7 +442,17 @@ const User_profile = () => {
                     </div>
                     {/* </form> */}
                   </aside>
-
+                </aside>
+                <aside className="widget job-widget pt-1">
+                  {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
+                  {/* <form id="list1" className="list-filter"> */}
+                      <ul className="mt-10">
+                        <li><a href= "#projects">Projects</a></li>
+                        <li><a href="#resume">Resume</a></li>
+                        <li><a href= "#offers">Offers</a></li>
+                      </ul>
+                  {/* </form> */}
+                </aside>
                   {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
                                         <form id="list4" onSubmit={this.formSubmit} className="list-filter">
@@ -597,24 +601,22 @@ const User_profile = () => {
                       </div>
                     </div>
                   </div>
-
+                  </div>
                   <Divider className="mt-2" />
+                  <Link exact to= {"/edit_resume"}>
                   <div className="col-lg-12 mt-3">
                     <h6 id="resume">Resume</h6>
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
                       <div className="text-size-2">
                         <ul>
-                          <Link exact to={'/resume'}><li>Resume_1</li></Link>
-                          <Link><li>Resume_2</li></Link>
-                          {resume?.map((cv) => (<Link><li>{cv}</li></Link>
-
+                          { resume?.map((cv, index) => (<li>{cv}</li>
                           ))}
-                          <Link><li>Resume_3</li></Link>
                         </ul>
                       </div>
                     </div>
                   </div>
+                  </Link>
                   <Divider className="mt-2" />
                   <h6 id="offers">Offers</h6>
                   <div className="col-12">

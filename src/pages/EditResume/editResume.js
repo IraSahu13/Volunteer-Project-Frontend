@@ -15,6 +15,7 @@ const EditResume = ({data,i}) => {
 
   const [success, setsuccess] = useState()
   const [text, settext] = useState('')
+  console.log(data);
   const [state, setState] = useState({
     step: 1,
     resumeTitle:data.resumeTitle,
@@ -72,12 +73,12 @@ const EditResume = ({data,i}) => {
     i==2&&window.scrollTo(0, 4600);
   }
   const handleSubmit = (e) => {
-    console.log("e");
-    console.log(values);
+    // console.log("e");
+    // console.log(values);
     Promise.resolve((editResume(values))).then((res)=>{
       console.log(res);
       setsuccess(true)
-      settext(`Edited Resume ${resumeTitle} successfully`);
+      settext(`${resumeTitle} has been edited successfully`);
       setTimeout(() => {
         setsuccess(false)
         settext(``);

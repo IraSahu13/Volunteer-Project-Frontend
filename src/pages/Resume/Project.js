@@ -57,7 +57,6 @@ class Projects extends Component {
             breadcrumb= "project"
         />
      */}
-        <Paper className={classes.padding}>
           <Grid item xs={12} lg={12}>
             <h3>Projects</h3>
           </Grid>
@@ -86,7 +85,7 @@ class Projects extends Component {
                     }}
                   />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12} lg={12}>
+                <Grid item md={12} sm={12} xs={12} lg={12}>
                   <TextField
                     margin="dense"
                     variant="outlined"
@@ -249,9 +248,6 @@ class Projects extends Component {
                   />
                 </Grid>
               </Grid> */}
-             <div className="view-block">
-               <i className="fa fa-plus">Add</i>
-             </div>
             </div>
           </CardContent>
           {/* <Container className={classes.margin}>
@@ -281,7 +277,6 @@ class Projects extends Component {
           </Row>
         </Container>
         <p className="text-center text-muted">Page 3</p> */}
-        </Paper>
         {/* <Footer /> */}
       </>
     );
