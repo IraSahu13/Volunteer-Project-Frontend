@@ -59,7 +59,7 @@ const Job_details = () => {
             }, 3000);
         }).catch((e) => {
             setError(true);
-            setText(e.response.data);
+            setText(e.response.data.error);
             setTimeout(() => {
                 setOpen(false);
                 setError(false)
