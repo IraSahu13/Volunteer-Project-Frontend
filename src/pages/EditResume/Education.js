@@ -34,7 +34,7 @@ const Profile = (props) => {
 
   const classes = styles();
   const {values} = props;
-
+  console.log(values);
     return (
     <>
       {/* <Header />

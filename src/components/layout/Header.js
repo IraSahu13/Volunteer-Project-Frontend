@@ -201,10 +201,18 @@ const Header = () => {
                                                     <Link exact to= {'/resume'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
+                                                          {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
-                                                      Resume
-                                                    </MenuItem>
+                                                      Add Resume
+                                                      </MenuItem>
+                                                    </Link>
+                                                    <Link exact to= {'/edit_resume'}>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                      {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                         My Resumes
+                                                     </MenuItem>
                                                     </Link>
                                                     <Link exact to= {'/applied_jobs'}>
                                                     <MenuItem>

@@ -43,10 +43,10 @@ const ProfileDetails = (props) => {
     })
   }, [])
   const [userEdit, setUserEdit] = useState({
-    firstname: user.firstname,
-    lastname: user.lastname,
+    name: user.name,
     email: user.email,
     phone: user.phone,
+    title: user.title,
     address_line_1:user.address_line_1,
     address_line_1:user.address_line_1,
     zipcode:user.zipcode,
@@ -60,6 +60,7 @@ const ProfileDetails = (props) => {
     email,
     phone,
     address,
+    title,
   }= userEdit;
 
   const values = {
@@ -70,6 +71,7 @@ const ProfileDetails = (props) => {
     email,
     phone,
     address,
+    title,
     // Education Information
     
 
@@ -113,29 +115,29 @@ const ProfileDetails = (props) => {
         <div className={classes.margin}>
           <div className='row'>
             <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
+              
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
+                  label="Name"
                   variant="outlined"
-                  name="firstname"
-                  label="First Name"
                   style={{ width: '80%' }}
-                  value={values.firstname}
+                  name="name"
+                  value={values.name}
                   onChange={handleChange}
                 />
               </Grid>
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Last Name"
                   variant="outlined"
+                  name="title"
+                  label="Title"
                   style={{ width: '80%' }}
-                  name="lastname"
-                  value={values.lastname}
+                  value={values.title}
                   onChange={handleChange}
                 />
               </Grid>
-
               <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
@@ -348,7 +350,7 @@ const User_profile = () => {
   const [allApplications, setAllApplications] = useState([]);
   useEffect(() => {
     Promise.resolve(myAppliedJobs()).then((res) => {
-      console.log(res.data.user.internsApplied);
+      // console.log(res.data.user.internsApplied);
       setAllApplications(res.data.user.internsApplied)
     }).catch((e) => {
       console.log({ e });
@@ -356,12 +358,15 @@ const User_profile = () => {
   }, []);
   const [resume, setResume] = useState([]);
   useEffect(() => {
-    Promise.resolve(getResume()).then((res) => {
-      console.log(res.data);
-      setResume(res.data.resumeTitle);
-    }).catch((e) => {
-      console.log({ e });
-    })
+    Promise.resolve(getResume()).then((res)=>{
+      const p = res.data.map((data)=>{
+          return data.resumeTitle
+      })
+      setResume(p);
+      console.log(p);
+   }).catch((e)=>{
+      console.log({e});
+  })
   }, []);
   const editProfile = () => {
     setOpenProfile(true);
@@ -399,9 +404,9 @@ const User_profile = () => {
                   />
                 </div>
                 <div className="col-2">
-                  <h5>Ira Sahu</h5>
-                  <p>Software Developer</p>
-                  <Rating name="read-only" value={2} readOnly />
+                  <h5>{user.name}</h5>
+                  <p>{user.title}</p>
+                  <Rating name="read-only" value={user.rating} readOnly />
                 </div>
                 <div className="col-6 col-lg-7"></div>
 
@@ -414,18 +419,7 @@ const User_profile = () => {
             <div className="row">
               <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                 <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
-                <aside className="widget job-widget pt-1">
-                  {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
-                  {/* <form id="list1" className="list-filter"> */}
-                      <ul className="mt-10">
-                        <li><a href= "#projects">Projects</a></li>
-                        <li><a href="#applications">Applications</a></li>
-                        <li><a href="#resume">Resume</a></li>
-                        <li><a href= "#offers">Offers</a></li>
-                      </ul>
-                  {/* </form> */}
-                </aside>
-                  <aside className="widget job-widget">
+                <aside className="widget job-widget">
                     {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                     {/* <form id="list1" className="list-filter"> */}
                     <div className= "justify-center pt-1">
@@ -438,7 +432,18 @@ const User_profile = () => {
                       </ul>
                     </div>
                     {/* </form> */}
-                  </aside>
+                </aside>
+                <aside className="widget job-widget pt-1">
+                  {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
+                  {/* <form id="list1" className="list-filter"> */}
+                      <ul className="mt-10">
+                        <li><a href= "#projects">Projects</a></li>
+                        <li><a href="#resume">Resume</a></li>
+                        <li><a href= "#offers">Offers</a></li>
+                      </ul>
+                  {/* </form> */}
+                </aside>
+                  
                   
                   {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
@@ -585,73 +590,22 @@ const User_profile = () => {
                       </div>
                     </div>
                   </div>
-                  <Divider className="mt-2" />
-                  <div className="col-lg-12 mt-3">
-                    <h6 id="applications">Applications</h6>
-                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-
-                      <div className="featured-content">
-                        <div className="featured-title">
-                          <h3>JOB-1</h3>
-                          <p className="mt-2" style={{ color: 'grey' }}>10-01-21</p>
-                        </div>
-                        <div className="featured-bottom">
-                          <div className="view-block">
-                            {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                       ttm-btn-color-dark"
-                                                       exact to={'/applications'}>View Details</Link> */}
-                            <KeyboardArrowDownIcon
-                              id="demo-customized-button"
-                              aria-controls={open ? 'demo-customized-menu' : undefined}
-                              aria-haspopup="true"
-                              aria-expanded={open ? 'true' : undefined}
-                              variant="contained"
-                              disableElevation
-                              onClick={open ? handleClose : handleClick}
-                            ></KeyboardArrowDownIcon>
-                          </div>
-                          {open &&
-                            <div className="mt-10">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.</p>
-                              <div >
-                                <div >
-                                  <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                      ttm-btn-color-dark mr-20"
-                                    exact to={'/application'} >Review Application</Link>
-                                  <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                      ttm-btn-color-dark mr-20"
-                                    exact to={'/job_details'}>View Job</Link>
-                                </div>
-                              </div>
-                            </div>
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   
                   <Divider className="mt-2" />
+                  <Link exact to= {"/edit_resume"}>
                   <div className="col-lg-12 mt-3">
                     <h6 id="resume">Resume</h6>
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
                       <div className="text-size-2">
                         <ul>
-                          <Link exact to ={'/resume'}><li>Resume_1</li></Link>
-                          <Link><li>Resume_2</li></Link>
-                          { resume?.map((cv) => (<Link><li>{cv}</li></Link>
-                          
+                          { resume?.map((cv, index) => (<li>{cv}</li>
                           ))}
-                          <Link><li>Resume_3</li></Link>
                         </ul>
                       </div> 
                     </div>
                   </div>
+                  </Link>
                   <Divider className="mt-2" />
                   <h6 id="offers">Offers</h6>
                   <div className="col-12">

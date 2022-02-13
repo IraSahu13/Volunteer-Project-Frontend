@@ -164,8 +164,10 @@ const Resume = () => {
         title="Resume"
         breadcrumb="resume"
       />
+      <Paper>
       <div className="App mt-3">
         <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div>
           <ResumeTitle
             handleChange={handleChange}
             values={values}
@@ -212,6 +214,8 @@ const Resume = () => {
           />
         </div>
       </div>
+      </div>
+      </Paper>
       <div className=" justify-center mb-10" style={{ marginLeft: '45%' }}>
         <button
           variant="contained"

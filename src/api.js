@@ -17,7 +17,7 @@ export const signup=async (data)=>{
 
 //****** user ******//
 export const myAppliedJobs=async ()=>{
-    return await axios.get(`/user/getmyjobs`, 
+    return await axios.get(`/user/getappliedjobs`, 
     {
         headers:{ 
             token: localStorage.getItem("token")

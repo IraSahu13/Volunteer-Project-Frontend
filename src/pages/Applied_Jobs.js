@@ -4,7 +4,7 @@ import PageHeader from "../components/layout/PageHeader";
 import { Footer } from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
 import { allApplicants, allInterns, myAppliedJobs } from '../api';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Divider } from '@material-ui/core';
 import ActionSection from '../components/layout/ActionSection';
 
 
@@ -25,8 +25,8 @@ const Job_list = () => {
     const [allApplications, setAllApplications] = useState([]);
     useEffect(() => {
     Promise.resolve(myAppliedJobs()).then((res) => {
-      console.log(res.data.user.internsApplied);
-      setAllApplications(res.data.user.internsAppliedS)
+      console.log(res.data);
+      setAllApplications(res.data.response)
     }).catch((e) => {
       console.log({ e });
     })
@@ -91,11 +91,12 @@ const Job_list = () => {
                                       <li>
                                       { AllInterns &&
                                         AllInterns.map((intern, index) => (
-                                            index<6 && <div className="col-lg-12 col-md-12">
+                                            index<5 && <div className="col-lg-12 col-md-12">
                                                 <div className="featured-title">
-                                                   <Link to={`/job_details/${intern._id}`}><h3>{intern.name}</h3></Link>
+                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
                                                    <p>{intern.jobType}</p>
                                                 </div>
+                                                <Divider style={{ color: 'black'}}/>
                                             </div>
                                         ))
                                       }  
@@ -160,7 +161,7 @@ const Job_list = () => {
                                     (loading) && <CircularProgress />
                                 }
                                 {  allApplications &&
-                                    allApplications.map((intern) => (
+                                    allApplications.map((intern, index) => (
                                         <div className="col-lg-12 col-md-12">
                                             <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
                                                 <div className="featured-content">
