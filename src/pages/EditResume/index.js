@@ -10,7 +10,7 @@ const Resume = () => {
     const [allResumesData, setallResumesData] = useState();
     useEffect(() => {
         Promise.resolve(getResume()).then((res) => {
-            // console.log(res.data);
+            console.log(res.data);
             setallResumesData(res.data)
         }).catch((e) => {
             console.log({ e });

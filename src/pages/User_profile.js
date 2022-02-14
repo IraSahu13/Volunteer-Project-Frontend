@@ -11,7 +11,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
 import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
-import { userInfo, myAppliedJobs, getResume, myProjects } from '../api';
+import { userInfo, myAppliedJobs, getResume, myProjects, myOffers, editUser } from '../api';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -34,7 +34,8 @@ const ProfileDetails = (props) => {
   const [user, setUser] = useState([]);
   const location = useLocation();
   useEffect(() => {
-    Promise.resolve(userInfo()).then((res) => {
+    const id = location.pathname.substring(19,);
+    Promise.resolve(userInfo(id)).then((res) => {
       console.log(res.data);
       setUser(res.data);
     }).catch((e) => {
@@ -47,29 +48,35 @@ const ProfileDetails = (props) => {
     phone: user.phone,
     title: user.title,
     address_line_1:user.address_line_1,
-    address_line_1:user.address_line_1,
+    address_line_2:user.address_line_2,
     zipcode:user.zipcode,
     city:user.city,
     state: user.state,
   });
-
+  
   const {
-    firstname,
-    lastname,
+    name,
+    title,
     email,
     phone,
-    address,
-    title,
+    address_line_1,
+    address_line_2,
+    zipcode,
+    city,
+    state,
   }= userEdit;
   const values = {
 
     // Profile-Information
-    firstname,
-    lastname,
-    email,
-    phone,
-    address,
-    title,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    title: user.title,
+    address_line_1:user.address_line_1,
+    address_line_2:user.address_line_2,
+    zipcode:user.zipcode,
+    city:user.city,
+    state: user.state,
     // Education Information
 
 
@@ -82,17 +89,46 @@ const ProfileDetails = (props) => {
     // Extra Information
 
   };
+
+  
   const handleChange = (e) => {
     e.preventDefault();
-    // const val= e.target.value;
-    // console.log(val);
-    // setState ({
-    //   ...state,
-    //   [e.target.name]: val});
+    
+    const val = e.target.value;
+    console.log(val);
+    setUser({
+      ...state,
+      [e.target.name]: val
+    });
   };
+  const [success, setsuccess]= useState(false);
+  const [text, setText]= useState("");
+  const [error, seterror]= useState(false);
+
   const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(e);
+    Promise.resolve((editUser(values))).then((res)=>{
+      console.log(res);
+      setsuccess(true);
+      setText('Your profile has been edited successfully');
+      setTimeout(() => {
+        setsuccess(false);
+        setText('');
+        window.location.reload();
+      }, 3000);
+    }).catch((e)=>{
+      seterror(true);
+      setText('Your profile cannot be updated');
+      setTimeout(() => {
+        seterror(false);
+        setText('');
+      }, 3000);
+      console.log({e});
+    })
   }
+  const [chosen, setChosen]= useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const classes = styles();
   // const handleSubmit = (e) => {
   //   console.log("e");
@@ -106,6 +142,8 @@ const ProfileDetails = (props) => {
   return (
     <>
       <Paper className="mt-120" >
+       {success && <Alertsuccess text={text} />}
+       {error && <Alerterror text={text} />}
         <Grid item xs={12} lg={12}>
           <h3>Edit Profile</h3>
         </Grid>
@@ -117,21 +155,21 @@ const ProfileDetails = (props) => {
                   <TextField
                     margin="dense"
                     variant="outlined"
-                    name="firstname"
-                    label="First Name"
+                    name="name"
+                    placeholder="Name"
                     style={{ width: '80%' }}
-                    value={values.firstname}
+                    value={values.name}
                     onChange={handleChange}
                   />
                 </Grid>
                 <Grid item md={6} sm={12} xs={12} lg={6}>
                   <TextField
                     margin="dense"
-                    label="Last Name"
+                    placeholder="Ttile"
                     variant="outlined"
                     style={{ width: '80%' }}
-                    name="lastname"
-                    value={values.lastname}
+                    name="title"
+                    value={values.title}
                     onChange={handleChange}
                   />
                 </Grid>
@@ -139,79 +177,94 @@ const ProfileDetails = (props) => {
                 <Grid item lg={6} xs={12} sm={12} md={6}>
                   <TextField
                     margin="dense"
-                    label="Phone Number"
+                    placeholder="Phone Number"
                     variant="outlined"
                     name="phone"
                     style={{ alignItems: 'left', width: '80%' }}
                     value={values.phone}
                     onChange={handleChange}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                        </InputAdornment>
-                      ),
-                    }}
+                    
                   />
                 </Grid>
                 <Grid item lg={6} xs={12} sm={12} md={6}>
                   <TextField
                     margin="dense"
-                    label="Address Line 1"
+                    placeholder="Address Line 1"
                     variant="outlined"
                     name="address_line_1"
                     style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address}
+                    value={values.address_line_1}
                     onChange={handleChange}
                   />
                 </Grid>
                 <Grid item lg={6} xs={12} sm={12} md={6}>
                   <TextField
                     margin="dense"
-                    label="Address Line 2"
+                    placeholder="Address Line 2"
                     variant="outlined"
                     name="address_line_2"
                     style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address}
+                    value={values.address_line_2}
                     onChange={handleChange}
                   />
                 </Grid>
                 <Grid item lg={6} xs={12} sm={12} md={6}>
                   <TextField
                     margin="dense"
-                    label="Zipcode"
+                    placeholder="Zipcode"
                     variant="outlined"
                     name="zipcode"
                     style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address}
+                    value={values.zipcode}
                     onChange={handleChange}
                   />
                 </Grid>
                 <Grid item lg={6} xs={12} sm={12} md={6}>
                   <TextField
                     margin="dense"
-                    label="City"
+                    placeholder="City"
                     variant="outlined"
                     name="city"
                     style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address}
+                    value={values.city}
                     onChange={handleChange}
                   />
                 </Grid>
                 <Grid item lg={6} xs={12} sm={12} md={6}>
                   <TextField
                     margin="dense"
-                    label="State"
+                    placeholder="State"
                     variant="outlined"
                     name="state"
                     style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address}
+                    value={values.state}
                     onChange={handleChange}
                   />
                 </Grid>
               </Grid>
               <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
                 <Grid>
-                  <img alt="profile_pic"></img>
+                {selectedImage && (
+                  <div>
+                  <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                  {console.log(URL.createObjectURL(selectedImage))}
+                  <br />
+                  <button onClick={()=>{setChosen(false);
+                     setSelectedImage(null);}}>Remove</button>
+                  </div>
+                )}
+                <br />
+               
+                <br /> 
+                {!chosen && <input
+                  type="file"
+                  name="myImage"
+                  onChange={(event) => {
+                    setChosen(true);
+                    console.log(event.target.files[0]);
+                    setSelectedImage(event.target.files[0]);
+                  }}
+                />}
                 </Grid>
                 {/*<Grid>
               <div className="mt-10">
@@ -233,7 +286,7 @@ const ProfileDetails = (props) => {
           variant="contained"
           type="submit"
           className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-        // onClick={handleSubmit}
+          onClick={handleSubmit}
         >
           Save
         </button>
@@ -329,7 +382,7 @@ const User_profile = () => {
   useEffect(() => {
     const id = location.pathname.substring(19,);
     Promise.resolve(userInfo(id)).then((res) => {
-      // console.log(res.data);
+      console.log(res.data);
       setUser(res.data);
     }).catch((e) => {
       console.log({ e });
@@ -345,15 +398,7 @@ const User_profile = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [allApplications, setAllApplications] = useState([]);
-  useEffect(() => {
-    Promise.resolve(myAppliedJobs()).then((res) => {
-      // console.log(res.data.user.internsApplied);
-      setAllApplications(res.data.user.internsApplied)
-    }).catch((e) => {
-      console.log({ e });
-    })
-  }, []);
+  
   const [resume, setResume] = useState([]);
   useEffect(() => {
     Promise.resolve(getResume()).then((res)=>{
@@ -375,12 +420,21 @@ const User_profile = () => {
       console.log({ e });
     })
   }, [])
+  const [offers, setOffers] = useState([])
+  useEffect(() => {
+    Promise.resolve((myOffers())).then((res) => {
+      console.log(res.data);
+      setOffers(res.data)
+    }).catch((e) => {
+      console.log({ e });
+    })
+  }, [])
 
-  const editProfile = () => {
-    setOpenProfile(true);
-    // console.log(openProfile);
-    <EditProfile />
+  const [accepted, setAccepted]= useState(false)
+  const acceptOffer = () => {
+       setAccepted(true);
   }
+        
   return (
     <div className="site-main">
       <Header />
@@ -428,22 +482,20 @@ const User_profile = () => {
               <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                 <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
 
-                <aside className="widget job-widget">
+                 <aside className="widget job-widget">
                     {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                     {/* <form id="list1" className="list-filter"> */}
                     <div className="justify-center pt-1">
                       <ul>
-                        <li></li>
-                        <p>{`Name: ${user.name}`}</p>
-                        <p>{`Email: ${user.email}`}</p>
-                        <p>{`Phone: ${user.phone ? user.phone : "-"}`}</p>
-                        <p>{`Address: ${user.address ? user.address : "-"}`}</p>
+                        <li>{`Name: ${user.name}`}</li>
+                        <li>{`Email: ${user.email}`}</li>
+                        <li>{`Phone: ${user.phone ? user.phone : ""}`}</li>
+                        <li>{`Address: ${user.address ? user.address : ""}`}</li>
                       </ul>
                     </div>
                     {/* </form> */}
                   </aside>
-                </aside>
-                <aside className="widget job-widget pt-1">
+                 <aside className="widget job-widget pt-1">
                   {/* <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3> */}
                   {/* <form id="list1" className="list-filter"> */}
                       <ul className="mt-10">
@@ -452,7 +504,7 @@ const User_profile = () => {
                         <li><a href= "#offers">Offers</a></li>
                       </ul>
                   {/* </form> */}
-                </aside>
+                 </aside>
                   {/* <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-gender"></i>Gender</h3>
                                         <form id="list4" onSubmit={this.formSubmit} className="list-filter">
@@ -467,6 +519,7 @@ const User_profile = () => {
                                         </form>
                                     </aside> */}
                 </div>
+              
                 <div className="featuredbox-number pr-30 pr-lg-0 pb-lg-50 pt-md-20">
                   {/* featured-icon-box */}
                   <div className="featured-icon-box icon-align-before-content icon-ver_align-top style4">
@@ -496,14 +549,8 @@ const User_profile = () => {
 
                     </div>
                   </div>
+                 </div>
                 </div>
-                {/* <aside className="widget widget-download">
-                                    <ul className="download">
-                                        <li><a href="#">Download.pdf</a><i className="ti ti-files"></i></li>
-                                        <li><a href="#">Download.txt</a><i className="ti ti-files"></i></li>
-                                    </ul>
-                                </aside> */}
-              </div>
               <div className="col-lg-8 content-area">
 
                 <div className="row">
@@ -515,7 +562,7 @@ const User_profile = () => {
                         <div className="featured-content">
                           <div className="featured-title">
                             <h3>{project.name}</h3>
-                            <p className="mt-2" style={{ color: 'grey' }}>10-01-21</p>
+                            <p className="mt-2" style={{ color: 'grey' }}>{project.date}</p>
                           </div>
                           <div className="featured-bottom">
                             <div className="view-block">
@@ -552,56 +599,7 @@ const User_profile = () => {
                       </div>
                     </div>
                   ))}
-                  <Divider className="mt-2" />
-                  <div className="col-lg-12 mt-3">
-                    <h6 id="applications">Applications</h6>
-                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-
-                      <div className="featured-content">
-                        <div className="featured-title">
-                          <h3>JOB-1</h3>
-                          <p className="mt-2" style={{ color: 'grey' }}>10-01-21</p>
-                        </div>
-                        <div className="featured-bottom">
-                          <div className="view-block">
-                            {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                       ttm-btn-color-dark"
-                                                       exact to={'/applications'}>View Details</Link> */}
-                            <KeyboardArrowDownIcon
-                              id="demo-customized-button"
-                              aria-controls={open ? 'demo-customized-menu' : undefined}
-                              aria-haspopup="true"
-                              aria-expanded={open ? 'true' : undefined}
-                              variant="contained"
-                              disableElevation
-                              onClick={open ? handleClose : handleClick}
-                            ></KeyboardArrowDownIcon>
-                          </div>
-                          {open &&
-                            <div className="mt-10">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.</p>
-                              <div >
-                                <div >
-                                  <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                      ttm-btn-color-dark mr-20"
-                                    exact to={'/application'} >Review Application</Link>
-                                  <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                      ttm-btn-color-dark mr-20"
-                                    exact to={'/job_details'}>View Job</Link>
-                                </div>
-                              </div>
-                            </div>
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
+                  
                   <Divider className="mt-2" />
                   <Link exact to= {"/edit_resume"}>
                   <div className="col-lg-12 mt-3">
@@ -619,13 +617,14 @@ const User_profile = () => {
                   </Link>
                   <Divider className="mt-2" />
                   <h6 id="offers">Offers</h6>
-                  <div className="col-12">
+                  {offers?.map((offer) => (
+                    <div className="col-12">
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
                       <div className="featured-content">
                         <div className="featured-title">
-                          <h3>JOB-2</h3>
-                          <p className="mt-2" style={{ color: 'grey' }}>10-01-21</p>
+                          <h3>{offer.name}</h3>
+                          <p className="mt-2" style={{ color: 'grey' }}>{offer.date}</p>
                         </div>
                         <div className="featured-bottom">
                           <div className="view-block">
@@ -644,16 +643,13 @@ const User_profile = () => {
                           </div>
                           {open &&
                             <div className="mt-10">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.</p>
+                              <p>{offer.description}</p>
                               <div >
                                 <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                        ttm-btn-color-dark mr-20"
-                                  exact to={'/job_details'}>Accept</Link>
+                                  exact to={'/job_details'}>View Details</Link>
+                                <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                ttm-btn-color-dark mr-20" onClick={acceptOffer}> Accept</button>
                               </div>
                             </div>
                           }
@@ -661,6 +657,7 @@ const User_profile = () => {
                       </div>
                     </div>
                   </div>
+                  ))}
                   <div className="col-12">
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
@@ -714,13 +711,14 @@ const User_profile = () => {
                       <p>.</p>
                     </Card>
                         </div> */}
-
-                </div>
-              </div>
-            </div>
-          </div>{/* row end */}
-        </div>
-      </div>
+                      </div>
+                  </div>
+               </div>
+             </div>
+           </div>
+          </div>
+          {/* row end */}
+        
       <Footer />
 
     </div>
