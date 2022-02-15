@@ -510,7 +510,7 @@ const User_profile = () => {
 
                         <div className="featured-content">
                           <div className="featured-title">
-                            <h3>{project.name}</h3>
+                            <h3>{project?.name}</h3>
                             <p className="mt-2" style={{ color: 'grey' }}>10-01-21</p>
                           </div>
                           <div className="featured-bottom">

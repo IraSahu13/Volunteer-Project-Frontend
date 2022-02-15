@@ -1,20 +1,32 @@
+import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { allApplicants } from '../api';
+import { Link, useLocation } from 'react-router-dom';
+import { allApplicants, acceptApplicant } from '../api';
 import { Footer } from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import PageHeader from '../components/layout/PageHeader';
 
 const Applications = () => {
-  const [allcandidates, setallcandidates] = useState([]);
+    const [allcandidates, setallcandidates] = useState([]);
+    const location = useLocation();
+    let id = location.pathname;
+    id = id.split('/id=')[1];
     useEffect(() => {
-        Promise.resolve(allApplicants()).then((res) => {
-            // console.log(res.data);
+        Promise.resolve(allApplicants(id)).then((res) => {
+            console.log(res.data);
             setallcandidates(res.data)
         }).catch((e) => {
-            console.log(e);
+            console.log({e});
         })
     }, [])
+
+    const handleReject=()=>{
+       
+    }
+
+    const handleAccept=()=>{
+
+    }
 
     return (
         <div className="site-main">
@@ -139,7 +151,7 @@ const Applications = () => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                {allcandidates.map((user) => (
+                                {allcandidates?allcandidates.map((user) => (
                                     <div className="col-lg-12">
                                         <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="featured-thumbnail">
@@ -148,6 +160,9 @@ const Applications = () => {
                                             <div className="featured-content">
                                                 <div className="featured-title">
                                                     <h3>{user.name}</h3>
+                                                </div>
+                                                <div className="featured-title">
+                                                    <p>{user.title}</p>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-skill">
@@ -165,14 +180,18 @@ const Applications = () => {
                                                       <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
                                                         exact to={'/candidate_details'}>view Profile</Link></span>
-                                                    
                                                     </div>
-                                                    
+                                                    <button onClick={handleReject} className="btn">Reject Applicant</button>
+                                                    <button onClick={()=>{
+                                                        Promise.resolve(acceptApplicant(id,user._id)).then((res)=>{
+                                                            console.log(res);
+                                                        }).catch((e)=>{console.log({e});})
+                                                    }} className="btn">Accept Applicant</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                )): <CircularProgress/>}
                                 <div className="col-lg-12">
                                     <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
                                         <div className="featured-thumbnail">

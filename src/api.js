@@ -67,6 +67,10 @@ export const allInterns=async (data)=>{
 export const getIntern=async (id)=>{
     return await axios.get(`/intern/getintern/${id}`);
 }
+export const acceptApplicant=async (id,userId)=>{
+    console.log(id);
+    return await axios.put(`/intern/acceptapplicant/${id}`, {credentials: userId});
+}
 
 //****** company ******//
 export const companyInterns=async ()=>{
