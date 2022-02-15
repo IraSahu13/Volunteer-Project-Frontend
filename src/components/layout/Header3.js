@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react'
 import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip, Menu, Badge } from '@material-ui/core';
 import Logout from '@mui/icons-material/Logout';
 import PersonAdd from '@mui/icons-material/PersonAdd';
@@ -93,6 +93,7 @@ const styles = theme => ({
   }));
 
 const Header = () => {
+    const history= useHistory();
     const classes= styles();
     const componentDidMount = () => {
         window.addEventListener('scroll', this.isSticky);
@@ -285,6 +286,7 @@ const Header = () => {
                                                         onClick={()=>{
                                                            localStorage.removeItem("token");
                                                            localStorage.removeItem("status");
+                                                           history.push('/');
                                                            window.location.reload();
                                                            console.log("response");
                                                         }}>

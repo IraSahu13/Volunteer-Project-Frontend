@@ -30,16 +30,7 @@ const Experience=(props)=>{
   const classes = styles();
   const {values} = props;
 
-  const Continue = e => {
-    e.preventDefault ();
-    props.nextStep ();
-  };
-
-  const Back = e => {
-    e.preventDefault ();
-    props.prevStep ();
-  };
-
+  
   // const createAndDownloadPDF = () => {
   //   axios
   //     .post ('/create-pdf', this.props.values)

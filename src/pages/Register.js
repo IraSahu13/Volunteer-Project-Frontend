@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {signup} from './../api.js';
 import { Link, useHistory } from 'react-router-dom';
 import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
+import { ContentCutOutlined } from '@mui/icons-material';
 
 // export class Register extends Component {
 //     constructor(props) {
@@ -41,17 +42,18 @@ const Register = () => {
         };
         const CandidateSignup = async(e) =>{
             e.preventDefault();
+            
             if(username==="" || useremail===""){
                 setError(true);
                 setText("Missing Credentials");
                 return;
             }
-            else if(usercnfpass!==userpass){
+            if(usercnfpass!==userpass){
                 setError(true);
                 setText("Password and Confirmed password doesn't match!");
                 return;
             }
-            else if(!term){
+            if(!term){
                 setError(true);
                 setText("Please accept our terms and conditions");
                 return;
@@ -80,11 +82,17 @@ const Register = () => {
                     console.log(e.response.data.error);
                     setError(true);
                     setText(e.response.data.error);
+                    console.log(text);
                 })
 
             }
             setTimeout(() => {
                 setError(false);
+                if(text===`user with this email already exists`){
+                    setError(false);
+                    setText("");
+                    history.push('/login');
+                }
                 setText("");
             }, 5000);
             
@@ -100,23 +108,24 @@ const Register = () => {
         
 
         const EmployerSignup = async(e) =>{
-            
+            e.preventDefault();
             if(companyname==="" || companyemail==="" || companytitle===""){
                 setError(true);
                 setText("Please re-enter the correct credentials");
                 return;
                 
             }
-            else if(companycnfpass!==companypass){
+            if(companycnfpass!==companypass){
                 setError(true);
                 setText("Password and Confirmed password doesn't match!")
+                return;
             }
-            else if(!term){
+            if(!term){
                 setError(true);
                 setText("Please accept our terms and conditions");
                 return;
             }
-            e.preventDefault();
+            
             Promise.resolve(signup(
                 { 
                     name : companyname, 
@@ -140,6 +149,11 @@ const Register = () => {
                 console.log(e.response);
                 setError(true);
                 setText(e.response.data.error);
+                if(text==="company with this email already exists"){
+                    setError(false);
+                    setText("");
+                    history.push('/login');
+                }
             })
         }; 
         return (
@@ -239,7 +253,7 @@ const Register = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
-                                                                                <p>Already registered?<a href={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</a></p>
+                                                                                <p>Already registered?<Link href={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</Link></p>
                                                                             </div>
                                                                         </div>
                                                                     </label>

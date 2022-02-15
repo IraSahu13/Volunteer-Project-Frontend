@@ -59,6 +59,7 @@ const Job_details = () => {
             }, 3000);
         }).catch((e) => {
             setError(true);
+            console.log(e.response.data.error);
             setText(e.response.data.error);
             setTimeout(() => {
                 setOpen(false);
@@ -139,7 +140,7 @@ const Job_details = () => {
 
                 {/* PageHeader */}
                 <PageHeader
-                    title="job title details"
+                    title={intern?.name}
                     breadcrumb="job"
                 />
                 {/* PageHeader end */}
@@ -165,7 +166,7 @@ const Job_details = () => {
                                             <li className="d-flex"><b className="mr-5">no. of candidates hired:</b>{intern.users?.length}</li>
                                         </ul>
                                     </aside>
-                                    <aside className="widget form-widget">
+                                    {/*<aside className="widget form-widget">
                                         <h3 className="widget-title"><i className="ti ti-email"></i>Send Us Message</h3>
                                         <form className="wrap-form">
                                             <label>
@@ -179,7 +180,7 @@ const Job_details = () => {
                                             </label>
                                             <button className="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor w-100" type="submit">send a message!</button>
                                         </form>
-                                    </aside>
+                                    </aside>*/}
                                     <aside className="widget location-widget p-0">
                                         <iframe width="100%" height="350" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26361414.263400003!2d-113.75849480805297!3d36.24080384347216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sin!4v1578680778274!5m2!1sen!2sin">
                                         </iframe>
@@ -210,16 +211,21 @@ const Job_details = () => {
                                                 <div className="featured-desc">
                                                     <p>Published on {intern.createdAt?.substr(0, 10)}</p>
                                                 </div>
+                                                <div className="view-block">
+                                                <button className=" ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                onClick={handleOpen}>Apply</button>
+                                                </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-meta">
                                                         <span><i className="fa fa-map-marker-alt"></i>{company?.city}</span>
                                                         <span><i className="fa fa-filter"></i>{company?.name}</span>
                                                     </div>
-                                                    <div className="job-time">
+                                                    <div className="job-time ml-0">
                                                         <span className="green">{intern?.jobType}</span>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                         </div>{/* featured-imagebox end */}
                                     </div>
                                     <div className="col-lg-12 col-md-12">

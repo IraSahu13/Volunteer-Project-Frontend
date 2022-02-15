@@ -15,6 +15,7 @@ const EditResume = ({data,i}) => {
 
   const [success, setsuccess] = useState()
   const [text, settext] = useState('')
+  console.log(data);
   const [state, setState] = useState({
     step: 1,
     resumeTitle:data.resumeTitle,
@@ -27,30 +28,30 @@ const EditResume = ({data,i}) => {
     facebook: data.facebook,
 
     // Education Information
-    college: data.qualification[0].college,
-    fromYearClg: data.qualification[0].fromYearClg,
-    toYearClg: data.qualification[0].toYearClg,
-    percentageClg: data.qualification[0].percentageClg,
-    school: data.qualification[0].school,
-    fromYearSchl: data.qualification[0].fromYearSchl,
-    toYearSchl: data.qualification[0].toYearSchl,
-    percentageSchl: data.qualification[0].percentageSchl,
+    college: data.qualification[0]?.college,
+    fromYearClg: data.qualification[0]?.fromYearClg,
+    toYearClg: data.qualification[0]?.toYearClg,
+    percentageClg: data.qualification[0]?.percentageClg,
+    school: data.qualification[0]?.school,
+    fromYearSchl: data.qualification[0]?.fromYearSchl,
+    toYearSchl: data.qualification[0]?.toYearSchl,
+    percentageSchl: data.qualification[0]?.percentageSchl,
 
     // Project Information...
-    title: data.projects[0].title,
-    link: data.projects[0].link,
-    projectDescription: data.projects[0].projectDescription,
+    title: data.projects[0]?.title,
+    link: data.projects[0]?.link,
+    projectDescription: data.projects[0]?.projectDescription,
 
     // Experience Information
-    companyName: data.experience[0].companyName,
-    position: data.experience[0].position,
-    duration: data.experience[0].duration,
-    experienceDescription: data.experience[0].experienceDescription,
+    companyName: data.experience[0]?.companyName,
+    position: data.experience[0]?.position,
+    duration: data.experience[0]?.duration,
+    experienceDescription: data.experience[0]?.experienceDescription,
 
     // Extra Information
-    skill1: data.skill[0],
-    skill2: data.skill[1],
-    skill3: data.skill[2],
+    skill1: data.skills[0],
+    skill2: data.skills[1],
+    skill3: data.skills[2],
     interest1: data.interests[0],
     interest2: data.interests[1],
     interest3: data.interests[2],
@@ -72,12 +73,12 @@ const EditResume = ({data,i}) => {
     i==2&&window.scrollTo(0, 4600);
   }
   const handleSubmit = (e) => {
-    console.log("e");
-    console.log(values);
+    // console.log("e");
+    // console.log(values);
     Promise.resolve((editResume(values))).then((res)=>{
       console.log(res);
       setsuccess(true)
-      settext(`Edited Resume ${resumeTitle} successfully`);
+      settext(`${resumeTitle} has been edited successfully`);
       setTimeout(() => {
         setsuccess(false)
         settext(``);

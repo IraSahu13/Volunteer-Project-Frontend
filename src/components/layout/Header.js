@@ -3,7 +3,7 @@ import HeaderMenu from './HeaderMenu';
 import Mobile_menu from './Mobile_menu';
 import Logo from './Logo'
 import Header_search from './Header_search'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Avatar, Divider, IconButton, ListItemIcon, MenuItem, Tooltip, Menu, Badge } from '@material-ui/core';
 import Logout from '@mui/icons-material/Logout';
 import PersonAdd from '@mui/icons-material/PersonAdd';
@@ -87,6 +87,7 @@ const styles = theme => ({
   }));
   
 const Header = () => {
+    const history = useHistory();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -201,10 +202,18 @@ const Header = () => {
                                                     <Link exact to= {'/resume'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
+                                                          {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
-                                                      Resume
-                                                    </MenuItem>
+                                                      Add Resume
+                                                      </MenuItem>
+                                                    </Link>
+                                                    <Link exact to= {'/edit_resume'}>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                      {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                         My Resumes
+                                                     </MenuItem>
                                                     </Link>
                                                     <Link exact to= {'/applied_jobs'}>
                                                     <MenuItem>
@@ -224,6 +233,7 @@ const Header = () => {
                                                       onClick={()=>{
                                                          localStorage.removeItem("token");
                                                          localStorage.removeItem("status");
+                                                         history.push('/');
                                                          window.location.reload();
                                                          console.log("response");
                                                       }}>

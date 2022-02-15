@@ -249,9 +249,7 @@ class Projects extends Component {
                   />
                 </Grid>
               </Grid> */}
-             <div className="view-block">
-               <i className="fa fa-plus">Add</i>
-             </div>
+             
             </div>
           </CardContent>
           {/* <Container className={classes.margin}>
