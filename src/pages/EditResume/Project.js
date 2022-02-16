@@ -72,7 +72,7 @@ class Projects extends Component {
                     margin="dense"
                     variant="outlined"
                     name="title"
-                    label="Title"
+                    placeholder="Title"
                     style={{ width: '80%' }}
                     required
                     value={values.title}
@@ -91,7 +91,7 @@ class Projects extends Component {
                     margin="dense"
                     variant="outlined"
                     name="link"
-                    label="Link"
+                    placeholder="Link"
                     style={{ width: '80%' }}
                     required
                     value={values.link}
@@ -111,7 +111,7 @@ class Projects extends Component {
                     margin="dense"
                     variant="outlined"
                     name="projectDescription"
-                    label="Description"
+                    placeholder="Description"
                     style={{ width: '80%' }}
                     required
                     value={values.projectDescription}

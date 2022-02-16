@@ -55,7 +55,7 @@ const Profile = (props) => {
                   margin="dense"
                   variant="outlined"
                   name="college"
-                  label="College/Unviersity"
+                  placeholder="College/Unviersity"
                   style={{width: '80%'}}
                   required
                   value={values.college}
@@ -74,7 +74,7 @@ const Profile = (props) => {
                   margin="dense"
                   variant="outlined"
                   name="fromYearClg"
-                  label=""
+                  placeholder="From"
                   type="date"
                   style={{width: '80%'}}
                   required
@@ -97,7 +97,7 @@ const Profile = (props) => {
                   variant="outlined"
                   name="toYearClg"
                   type="date"
-                  label=""
+                  placeholder="To"
                   style={{width: '80%'}}
                   required
                   value={values.toYearClg}
@@ -115,7 +115,7 @@ const Profile = (props) => {
               <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Percentage"
+                  placeholder="Percentage"
                   variant="outlined"
                   style={{width: '80%'}}
                   name="percentageClg"
@@ -134,7 +134,7 @@ const Profile = (props) => {
                   margin="dense"
                   variant="outlined"
                   name="school"
-                  label="School"
+                  placeholder="School"
                   style={{width: '80%'}}
                   required
                   value={values.school}
@@ -153,7 +153,7 @@ const Profile = (props) => {
                   margin="dense"
                   variant="outlined"
                   name="fromYearSchl"
-                  label=""
+                  placeholder="From"
                   type="date"
                   style={{width: '80%'}}
                   required
@@ -182,7 +182,7 @@ const Profile = (props) => {
                   margin="dense"
                   variant="outlined"
                   name="toYearSchl"
-                  label=""
+                  placeholder="To"
                   type="date"
                   style={{width: '80%'}}
                   required
@@ -201,7 +201,7 @@ const Profile = (props) => {
               <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Percentage"
+                  placeholder="Percentage"
                   variant="outlined"
                   style={{width: '80%'}}
                   name="percentageSchl"

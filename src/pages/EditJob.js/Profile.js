@@ -39,14 +39,13 @@ class Profile extends Component {
          <h3>Job Details</h3>
        </Grid>
         <CardContent>
-          <div className={classes.margin}>
             <Grid container spacing={2} alignItems="center" lg={12}>
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   variant="outlined"
                   name="company"
-                  label="Company"
+                  placeholder="Company"
                   style={{width: '80%'}}
                   required
                   value={values.company}
@@ -56,7 +55,7 @@ class Profile extends Component {
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Project Title"
+                  placeholder="Project Title"
                   variant="outlined"
                   style={{width: '80%'}}
                   name="title"
@@ -69,7 +68,7 @@ class Profile extends Component {
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Category"
+                  placeholder="Category"
                   variant="outlined"
                   name="category"
                   required
@@ -83,7 +82,7 @@ class Profile extends Component {
               <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
-                  label="Experince Required"
+                  placeholder="Experince Required"
                   variant="outlined"
                   name="experience"
                   required
@@ -96,7 +95,7 @@ class Profile extends Component {
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Job Type"
+                  placeholder="Job Type"
                   variant="outlined"
                   name="type"
                   required
@@ -108,7 +107,7 @@ class Profile extends Component {
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Location"
+                  placeholder="Location"
                   variant="outlined"
                   name="location"
                   required
@@ -120,7 +119,7 @@ class Profile extends Component {
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Duration"
+                  placeholder="Duration"
                   variant="outlined"
                   name="duration"
                   required
@@ -132,7 +131,7 @@ class Profile extends Component {
               <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
-                  label="Stipend"
+                  placeholder="Stipend"
                   variant="outlined"
                   name="stipend"
                   style={{alignItems: 'left', width: '80%'}}
@@ -177,7 +176,6 @@ class Profile extends Component {
             >
               Generate PDF
             </Button> */}
-          </div>
         </CardContent>
         {/* <p className="text-center text-muted">Page 1 </p> */}
       </>

@@ -119,6 +119,7 @@ const Header = () => {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    let status = localStorage.getItem("status"); 
     return (
 
             <header id="masthead" className="header ttm-header-style-03">
@@ -245,43 +246,95 @@ const Header = () => {
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <Avatar />
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/profile'}>Profile</Link>
-                                                      </MenuItem>
-                                                      <Divider />
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                          <PersonAdd fontSize="small" />
-                                                        </ListItemIcon>
-                                                        <Link>Add another account</Link>
-                                                      </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
+                                                    {status==="user" && <Link exact to= {'/profile'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <Avatar />
+                                                      </ListItemIcon>
+                                                      Profile
+                                                    </MenuItem>
+                                                  </Link>}
+                                                  {status==="company" && <Link exact to= {'/company_profile'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <Avatar />
+                                                      </ListItemIcon>
+                                                      Profile
+                                                    </MenuItem>
+                                                  </Link>}
+                                                    <Divider />
+                                                    <Link>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <PersonAdd fontSize="small" />
+                                                      </ListItemIcon>
+                                                      Add another account
+                                                    </MenuItem>
+                                                    </Link>
+                                                    {status=="user" && <Link exact to= {'/resume'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/resume'}>Add Resume </Link>
+                                                      </ListItemIcon>
+                                                      Add Resume
                                                       </MenuItem>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
+                                                    </Link>}
+                                                    {status=="company" && <Link exact to= {'/field'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                        <Link exact to= {'/edit_resume'}>My Resumes </Link>
+                                                      </ListItemIcon>
+                                                      Post an Opportunity
                                                       </MenuItem>
+                                                    </Link>}
+                                                    {status==="user" && <Link exact to= {'/edit_resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
+                                                      {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        <Link exact to= {'/applications'}>Applications</Link>
-                                                      </MenuItem>
+                                                         My Resumes
+                                                     </MenuItem>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/posted_jobs'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
-                                                          <Settings fontSize="small" />
+                                                      {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
-                                                        <Link>Settings</Link>
-                                                      </MenuItem>
+                                                         Posted Jobs
+                                                     </MenuItem>
+                                                    </Link>}
+                                                    {status==="user" && <Link exact to= {'/applied_jobs'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Applications
+                                                    </MenuItem>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/applications'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Applications
+                                                    </MenuItem>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/projects'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Projects
+                                                    </MenuItem>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/manage_recruitment '}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Manage Recruitment
+                                                    </MenuItem>
+                                                    </Link>}
                                                       <MenuItem
                                                         onClick={()=>{
                                                            localStorage.removeItem("token");

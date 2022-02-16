@@ -1,11 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { allApplicants, allInterns, myAppliedJobs } from '../api';
+import { allApplicants, allInterns, myAppliedJobs } from '../../api';
 import { CircularProgress, Divider } from '@material-ui/core';
-import ActionSection from '../components/layout/ActionSection';
+import ActionSection from '../../components/layout/ActionSection';
 
 
 // export class Job_list extends Component {
@@ -189,12 +189,12 @@ const Job_list = () => {
                                 
                                 <div className="col-lg-12">
                                     <div className="job-pagination-block">
-                                        <a className="page-nav-link">prev</a>
-                                        <a className="page-nav-link current">1</a>
-                                        <a className="page-nav-link" href="#">2</a>
-                                        <a className="page-nav-link" href="#">3</a>
-                                        <a className="page-nav-link" href="#">....</a>
-                                        <a className="page-nav-link">next</a>
+                                        <Link className="page-nav-link">prev</Link>
+                                        <Link className="page-nav-link current">1</Link>
+                                        <Link className="page-nav-link" href="#">2</Link>
+                                        <Link className="page-nav-link" href="#">3</Link>
+                                        <Link className="page-nav-link" href="#">....</Link>
+                                        <Link className="page-nav-link">next</Link>
                                     </div>
                                 </div>
                             </div>{/* row end */}

@@ -49,32 +49,14 @@ class Mobile_menu extends Component {
                     </MDBDropdown> */}
                 </MDBNavItem>
                 <MDBNavItem className="mb-3">
-                    {/* <MDBDropdown > */}
                       <Link className="ml-10 pl-0.5 pb-0.5" exact to={'/login'}>Login</Link><span> / </span><a className="ml-10 pl-0.5 pb-0.5" href={'/signup'}>Signin</a>
-                      {/* <MDBDropdownToggle nav caret>Pages</MDBDropdownToggle>
-                      <MDBDropdownMenu>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/about_us'}>About Us</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/services'}>Services</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/services_details'}>Services Details</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/carrer_01'}>Carrer</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/login'}>Login</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/register'}>Register</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/error_404'}>Error 404</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/error_405'}>Error 405</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/contact_01'}>Contact us 01</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/contact_02'}>Contact us 02</MDBDropdownItem>
-                      </MDBDropdownMenu> */}
-                    {/* </MDBDropdown> */}
+                      
 
                 </MDBNavItem> 
                 {this.status==="user" && <MDBNavItem className="mb-3">
-                  <MDBDropdown href={'/jobs_list'}>
+                  <MDBDropdown exact to={'/jobs_list'}>
                    <Link className="ml-10 pl-0.5 pb-1" exact to={'/job_list'}>Opportunities</Link>
-                      {/* <MDBDropdownToggle nav caret>Jobs</MDBDropdownToggle>
-                      <MDBDropdownMenu>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/job_list'}>Job List</MDBDropdownItem>
-                        <MDBDropdownItem href={process.env.PUBLIC_URL + '/job_details'}>Job Details</MDBDropdownItem>
-                    </MDBDropdownMenu> */}
+                     
                   </MDBDropdown>
                 </MDBNavItem>}
                 { this.status === "company" && <MDBNavItem className="mb-4">

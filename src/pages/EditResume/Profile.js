@@ -41,7 +41,7 @@ const Profile = (props) => {
                 margin="dense"
                 variant="outlined"
                 name="name"
-                label="Full Name"
+                placeholder="Full Name"
                 style={{ width: '80%' }}
                 required
                 value={values.name}
@@ -64,7 +64,7 @@ const Profile = (props) => {
             <Grid item md={6} sm={12} xs={12} lg={6}>
               <TextField
                 margin="dense"
-                label="Email"
+                placeholder="Email"
                 variant="outlined"
                 name="email"
                 required
@@ -84,7 +84,7 @@ const Profile = (props) => {
             <Grid item lg={6} xs={12} sm={12} md={6}>
               <TextField
                 margin="dense"
-                label="Phone Number"
+                placeholder="Phone Number"
                 variant="outlined"
                 name="phone"
                 style={{ alignItems: 'left', width: '80%' }}
@@ -121,7 +121,7 @@ const Profile = (props) => {
             <Grid item md={6} sm={12} xs={12} lg={6}>
               <TextField
                 margin="dense"
-                label="GitHub"
+                placeholder="GitHub"
                 variant="outlined"
                 name="github"
                 style={{ alignItems: 'left', width: '80%' }}
@@ -139,7 +139,7 @@ const Profile = (props) => {
             <Grid item md={6} sm={12} xs={12} lg={6}>
               <TextField
                 margin="dense"
-                label="Linked In"
+                placeholder="Linked In"
                 variant="outlined"
                 name="linkedin"
                 style={{ alignItems: 'left', width: '80%' }}
@@ -175,7 +175,7 @@ const Profile = (props) => {
             <Grid item md={6} sm={12} xs={12} lg={6}>
               <TextField
                 margin="dense"
-                label="Facebook"
+                placeholder="Facebook"
                 variant="outlined"
                 name="facebook"
                 style={{ alignItems: 'left', width: '80%' }}

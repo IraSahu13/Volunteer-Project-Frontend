@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { TextField, Button, Container } from '@material-ui/core';
 import { Card, CardHeader, CardContent } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -25,7 +25,8 @@ const styles = theme => ({
 });
 
 const ResumeTitle = (props) => {
-
+  const [chosen, setChosen]= useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const classes = styles();
   const {values} = props;
   return (
@@ -47,6 +48,29 @@ const ResumeTitle = (props) => {
                 onChange={props.handleChange}
               />
             </Grid>
+            <Grid item md={6} sm={12} xs={12} lg={6}>
+                {selectedImage && (
+                  <div>
+                  <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                  {console.log(URL.createObjectURL(selectedImage))}
+                  <br />
+                  <button onClick={()=>{setChosen(false);
+                     setSelectedImage(null);}}>Remove</button>
+                  </div>
+                )}
+                <br />
+               
+                <br /> 
+                {!chosen && <input
+                  type="file"
+                  name="myImage"
+                  onChange={(event) => {
+                    setChosen(true);
+                    console.log(event.target.files[0]);
+                    setSelectedImage(event.target.files[0]);
+                  }}
+                />}
+                </Grid>
           </Grid>
         </div>
       </CardContent>

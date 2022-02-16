@@ -1,10 +1,10 @@
 import React, { Component,useState, useEffect } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import ProgressBar from 'react-animated-progress-bar';
 import { useLocation } from 'react-router-dom';
-import { userInfo } from '../api';
+import { userInfo } from '../../api';
 
 
 const Candidate_details=()=> {

@@ -66,7 +66,7 @@ const Experience=(props)=>{
           title= "Resume"
           breadcrumb="experience"
       /> */}
-      <Paper className={classes.padding}>
+      <>
         <Grid item xs={12} lg={12}>
          <h3>Experience</h3>
         </Grid>
@@ -290,7 +290,7 @@ const Experience=(props)=>{
           </Row>
         </Container>
         <p className="text-center text-muted">Page 4</p> */}
-      </Paper>
+      </>
       {/* <Footer /> */}
     </>
     );

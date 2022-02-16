@@ -42,14 +42,12 @@ const Profile = (props) => {
         title= "Resume"
         breadcrumb="education"
       /> */}
-      <div>
-       <Card>
         <Grid item xs={12} lg={12}>
          <h3>Education</h3>
         </Grid>
         <CardContent>
           <div className={classes.margin}>
-            <Grid container spacing={2} className="ml-0" lg={12}>
+            <Grid container spacing={2} lg={12}>
               <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
@@ -240,8 +238,6 @@ const Profile = (props) => {
           </Row>
         </Container> */}
         {/* <p className="text-center text-muted">Page 2</p> */}
-      </Card>
-      </div>
       {/* <Footer /> */}
     </>
     );

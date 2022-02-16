@@ -66,7 +66,7 @@ class Projects extends Component {
                 <Grid item xs={12} lg={12}>
                   <h5>Project 1</h5>
                 </Grid>
-                <Grid item md={12} sm={12} xs={12} lg={12}>
+                <Grid item md={6} sm={12} xs={12} lg={6}>
                   <TextField
                     margin="dense"
                     variant="outlined"
@@ -85,7 +85,7 @@ class Projects extends Component {
                     }}
                   />
                 </Grid>
-                <Grid item md={12} sm={12} xs={12} lg={12}>
+                <Grid item md={6} sm={12} xs={12} lg={6}>
                   <TextField
                     margin="dense"
                     variant="outlined"

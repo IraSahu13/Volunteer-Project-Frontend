@@ -18,32 +18,32 @@ import Blog_grid from './pages/Blog_grid';
 import Blog_details from './pages/Blog_details';
 import Contact_01 from './pages/Contact_01';
 import Contact_02 from './pages/Contact_02';
-import Job_list from './pages/Job_list';
-import Job_details from './pages/Job_details';
+import Job_list from './pages/User/Job_list';
+import Job_details from './pages/User/Job_details';
 import Carrer_01 from './pages/Carrer_01';
 import Error_404 from './pages/Error_404';
 import Error_405 from './pages/Error_405';
 import Employers_list from './pages/Employers_list';
 import Employers_details from './pages/Employers_details';
-import Candidate_list from './pages/Candidate_list';
-import Candidate_details from './pages/Candidate_details';
+import Candidate_list from './pages/Company/Candidate_list';
+import Candidate_details from './pages/Company/Candidate_details';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import axios from 'axios';
 import Resume from './pages/Resume/Resume';
 import ScrollToTop from './components/layout/Gotop';
-import Apply from './pages/Application';
+import Apply from './pages/User/Application';
 import { history } from './history';
 import PostJob from './pages/PostJob.js/PostJob';
 
-import Company_interns from './pages/Company_interns';
-import Posted_Jobs from './pages/Posted_Jobs';
-import Applications from './pages/Applicants';
+import Company_interns from './pages/Company/Company_interns';
+import Posted_Jobs from './pages/Company/Posted_Jobs';
+import Applications from './pages/Company/Applicants';
 import Terms from './pages/Terms';
-import Applied_Jobs from './pages/Applied_Jobs';
-import User_profile from './pages/User_profile';
+import Applied_Jobs from './pages/User/Applied_Jobs';
+import User_profile from './pages/User/User_profile';
 import EditResume from './pages/EditResume/index';
-import EditJob from './pages/PostJob.js/editJob';
+import EditJob from './pages/EditJob.js/EditJob';
 
 // axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
@@ -80,13 +80,13 @@ function App() {
         <Route path={`/candidate_details`} component={ Candidate_details } />
         <Route exact path={ `/login`} component={ Login } />
         <Route exact path={`/signup`} component={ Register } />
-        <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
         <Route exact path={`/company_interns`} component={ Company_interns } />
         <Route exact path={'/applied'} component={Applied_Jobs} />
         <Route exact path={'/terms'} component={Terms} />
         <Route exact path={`/field`} component={ PostJob } />
         <Route exact path={`/profile`} component={ User_profile } />
+        <Route exact path={`/company_profile`} component={ User_profile } />
         <Route exact path={'/applications'} component={Applications} />
         <Route exact path={'/application'} component={Apply} />
         <Route exact path={'/posted_field'} component={Posted_Jobs} />

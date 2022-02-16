@@ -1,10 +1,10 @@
 import { Card } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { allApplicants, companyInterns } from '../api';
-import { Footer } from '../components/layout/Footer';
-import Header from '../components/layout/Header';
-import PageHeader from '../components/layout/PageHeader';
+import { allApplicants, companyInterns } from '../../api';
+import { Footer } from '../../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from '../../components/layout/PageHeader';
 
 const Posted_Jobs = () => {
 

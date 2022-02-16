@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export class Footer extends Component {
     render() {
@@ -18,17 +19,17 @@ export class Footer extends Component {
                                         <h6 className="fw-normal">Social Share: </h6>
                                         <div className="social-icons">
                                             <ul className="social-icons list-inline">
-                                                <li><a href="#facebook" rel="noopener" aria-label="facebook">
-                                                    <i className="ti ti-facebook"></i></a>
+                                                <li><Link href="#facebook" rel="noopener" aria-label="facebook">
+                                                    <i className="ti ti-facebook"></i></Link>
                                                 </li>
-                                                <li><a href="#twitter" rel="noopener" aria-label="twitter">
-                                                    <i className="ti ti-twitter-alt"></i></a>
+                                                <li><Link href="#twitter" rel="noopener" aria-label="twitter">
+                                                    <i className="ti ti-twitter-alt"></i></Link>
                                                 </li>
-                                                <li><a href="#instagram" rel="noopener" aria-label="instagram">
-                                                    <i className="ti ti-instagram"></i></a>
+                                                <li><Link href="#instagram" rel="noopener" aria-label="instagram">
+                                                    <i className="ti ti-instagram"></i></Link>
                                                 </li>
-                                                <li><a href="#pinterest" rel="noopener" aria-label="pinterest">
-                                                    <i className="ti ti-pinterest"></i></a>
+                                                <li><Link href="#pinterest" rel="noopener" aria-label="pinterest">
+                                                    <i className="ti ti-pinterest"></i></Link>
                                                 </li>
                                             </ul>
                                         </div>

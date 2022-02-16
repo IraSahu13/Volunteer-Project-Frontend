@@ -1,20 +1,16 @@
-import React, { Component, useState, useEffect } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import { allApplicants } from '../api';
-import { CircularProgress } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { allApplicants, companyInterns } from '../../api';
+import { Footer } from '../../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from '../../components/layout/PageHeader';
 
-const Candidate_list = () => {
-
-    const [allcandidates, setallcandidates] = useState([]);
-    const location = useLocation();
+const Applications = () => {
+  const [allJobs, setAllJobs] = useState([]);
     useEffect(() => {
-        const id = location.pathname.substring(16,)
-        Promise.resolve(allApplicants(id)).then((res) => {
+        Promise.resolve(companyInterns()).then((res) => {
             console.log(res.data);
-            setallcandidates(res.data)
+            setAllJobs(res.data)
         }).catch((e) => {
             console.log(e);
         })
@@ -26,8 +22,8 @@ const Candidate_list = () => {
 
             {/* PageHeader */}
             <PageHeader
-                title="Volunteers"
-                breadcrumb="volunteers"
+                title="Applicants"
+                breadcrumb="applicants"
             />
             {/* PageHeader end */}
 
@@ -38,28 +34,26 @@ const Candidate_list = () => {
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                                 <div className="job_list-widget" style={{backgroundColor:'#ece3f4'}}>
-                                    <aside className="widget job-widget">
-                                        <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3>
-                                        <form id="list1" className="list-filter">
-                                            <div>
-                                                <label className="radio">
-                                                    <input type="radio" value="Today" name="post_date" />Today
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 7 days" defaultChecked name="post_date" />Last 7 days
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 14 days" name="post_date" />Last 14 days
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 21 days" name="post_date" />Last 21 days
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 30 days" name="post_date" />Last 30 days
-                                                </label>
+                                <aside className="widget job-widget">
+                                    <h3 className="widget-title">More Suggestions</h3>
+                                  <div className="col-lg-12 col-md-12">
+                                    <ul>    
+                                      <li>
+                                      {/* AllJobs &&
+                                        AllJobs.map((jobs, index) => (
+                                            index<5 && <div className="col-lg-12 col-md-12">
+                                                <div className="featured-title">
+                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                                   <p>{intern.jobType}</p>
+                                                </div>
+                                                <Divider style={{ color: 'black'}}/>
                                             </div>
-                                        </form>
-                                    </aside>
+                                        ))
+                                        */}  
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </aside>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>
                                         <form id="list2" className="list-filter">
@@ -143,37 +137,7 @@ const Candidate_list = () => {
                                     </div>
                                 </div>
                                 <div className="row">
-
-                                    {allcandidates.map((user) => (
-                                        (user) ? <div className="col-lg-12">
-                                            <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
-                                                <div className="featured-thumbnail">
-                                                    <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
-                                                </div>
-                                                <div className="featured-content">
-                                                    <div className="featured-title">
-                                                        <Link to={`/candidate_details/${user._id}`}><h3>{(user) && user.name}</h3></Link>
-                                                    </div>
-                                                    <div className="featured-bottom">
-                                                        <div className="job-skill">
-                                                            {(user) && user.skills.map(skill => (
-                                                                <span className="skill-tag">{(user) && skill}</span>
-                                                            ))}
-                                                        </div>
-                                                        <div className="job-meta">
-                                                            <span><i className="fa fa-map-marker-alt"></i>{(user) && user.city}</span>
-                                                        </div>
-                                                        <div className="view-block">
-                                                            <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                    ttm-btn-color-dark"
-                                                            href={`/candidate_details/${user._id}`}>view Profile</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> : <div><CircularProgress/></div>
-                                    ))}
-                                    
+                                {/*allcandidates.map((user) => (
                                     <div className="col-lg-12">
                                         <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
                                             <div className="featured-thumbnail">
@@ -181,37 +145,78 @@ const Candidate_list = () => {
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3>Rafael Briggs</h3>
+                                                    <h3>{user.name}</h3>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-skill">
-                                                        <span className="skill-tag">bootstrap</span>
-                                                        <span className="skill-tag">JavaScript</span>
+                                                        {user.skills.map(skill => (
+                                                            <span className="skill-tag">{skill}</span>
+                                                        ))}
                                                     </div>
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
-                                                        <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>{user.city}</span>
                                                     </div>
                                                     <div className="view-block">
-                                                        <a className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                      <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
+                                                        exact to={'/candidate_details'}>Contact</Link>
+                                                      <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
-                                                            href={process.env.PUBLIC_URL + '/candidate_details'}>view Profile</a>
+                                                        exact to={'/candidate_details'}>view Profile</Link></span>
+                                                    
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-lg-12">
-                                        <div className="job-pagination-block">
-                                            <a className="page-nav-link">prev</a>
-                                            <a className="page-nav-link current">1</a>
-                                            <a className="page-nav-link" href="#">2</a>
-                                            <a className="page-nav-link" href="#">3</a>
-                                            <a className="page-nav-link" href="#">....</a>
-                                            <a className="page-nav-link">next</a>
+                                                        ))*/}
+                                <div className="col-lg-12">
+                                    <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
+                                        <div className="featured-thumbnail">
+                                            <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
+                                        </div>
+                                        <div className="featured-content">
+                                            <div className="featured-title">
+                                                <h3>Rafael Briggs</h3>
+                                            </div>
+                                            <div className="featured-bottom">
+                                                <div className="job-skill">
+                                                    <span className="skill-tag">bootstrap</span>
+                                                    <span className="skill-tag">JavaScript</span>
+                                                </div>
+                                                <div className="job-meta">
+                                                    <span><i className="fa fa-map-marker-alt"></i>24 Fifth st, Los Angeles, USA</span>
+                                                    <span><i className="fa fa-hand-holding-usd"></i>$700 - $900/month</span>
+                                                </div>
+                                                <div className="view-block">
+                                                    <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
+                                                        exact to={'/candidate_details'}>Contact</Link>
+                                                    <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark"
+                                                        exact to={'/candidate_details'}>view Profile</Link></span>
+                                                    
+                                                </div>
+                                                {/* <div >
+                                                    
+                                                    
+                                                </div> */}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-lg-12">
+                                    <div className="job-pagination-block">
+                                        <Link className="page-nav-link">prev</Link>
+                                        <Link className="page-nav-link current">1</Link>
+                                        <Link className="page-nav-link" href="#">2</Link>
+                                        <Link className="page-nav-link" href="#">3</Link>
+                                        <Link className="page-nav-link" href="#">....</Link>
+                                        <Link className="page-nav-link">next</Link>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>{/* row end */}
@@ -221,6 +226,6 @@ const Candidate_list = () => {
 
         </div>
     )
-}
+};
 
-export default Candidate_list;
+export default Applications;

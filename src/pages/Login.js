@@ -114,10 +114,10 @@ const Login = () => {
             <Header />
 
             {/* PageHeader */}
-            <PageHeader
+            {/*<PageHeader
                 title="Login"
                 breadcrumb="Login"
-            />
+            />*/}
             {/* PageHeader end */}
 
 
@@ -125,7 +125,8 @@ const Login = () => {
             <div className="ttm-row login-section clearfix">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-12">
+                       <div className="col-lg-2"></div>
+                        <div className="col-lg-8">
                             <div className="bg-theme-GreyColor ttm-col-bgcolor-yes ttm-bg rounded p-50 p-lg-20">
                                 <div className="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
                                 <div className="layer-content">
@@ -153,7 +154,7 @@ const Login = () => {
                                                 <TabPanel>
                                                     <form id="login_form" className="login_form wrap-form">
                                                         <div className="row">
-                                                            <div className="col-lg-12">
+                                                            <div className="col-lg-6">
                                                                 <label>
                                                                     <i className="ti ti-email"></i>
                                                                     <input value={useremail} onChange={(e) => {
@@ -161,7 +162,7 @@ const Login = () => {
                                                                     }} type="email" id="txtemail" placeholder="Email Address" />
                                                                 </label>
                                                             </div>
-                                                            <div className="col-lg-12">
+                                                            <div className="col-lg-6">
                                                                 <label>
                                                                     <i className="ti ti-lock"></i>
                                                                     <input value={userpass} onChange={(e) => {
@@ -234,7 +235,7 @@ const Login = () => {
                                                 <TabPanel>
                                                     <form id="login_form" className="login_form wrap-form">
                                                         <div className="row">
-                                                            <div className="col-lg-12">
+                                                            <div className="col-lg-6">
                                                                 <label>
                                                                     <i className="ti ti-email"></i>
                                                                     <input value={companyemail} onChange={(e) => {
@@ -242,7 +243,7 @@ const Login = () => {
                                                                     }} type="email" id="txtemail" placeholder="Email Address" />
                                                                 </label>
                                                             </div>
-                                                            <div className="col-lg-12">
+                                                            <div className="col-lg-6">
                                                                 <label>
                                                                     <i className="ti ti-lock"></i>
                                                                     <input value={companypass} onChange={(e) => {
@@ -318,9 +319,9 @@ const Login = () => {
                                     </div>
                                     <div className="login-social-buttons">
                                         <div className="row">
-                                            <div className="col-lg-2"></div>
-                                            <div className="col-lg-4 flex">
-                                                <button id="login-with-facebook" className="social-account-button facebook-button ml-100"
+                                            
+                                            <div className="col-lg-6 flex">
+                                                <button id="login-with-facebook" className="social-account-button facebook-button ml-100 ml=5"
                                                 >
                                                     <FacebookLogin
                                                         appId="951777148793990"
@@ -332,8 +333,8 @@ const Login = () => {
                                                     />
                                                 </button>
                                             </div>
-                                            <div className="col-lg-4 flex">
-                                                <button id="login-with-google" className="mt-25 ml-50 google-button">
+                                            <div className="col-lg-6 flex">
+                                                <button id="login-with-google" className="mt-25 ml-10 google-button">
                                                     <GoogleLogin method="POST"
                                                         clientId="430560948108-l48c3dssgupp977dti4au6g5vc3dsfp6.apps.googleusercontent.com"
 

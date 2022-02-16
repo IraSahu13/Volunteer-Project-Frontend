@@ -1,13 +1,13 @@
 import React, { Component, useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import { Link, useLocation } from 'react-router-dom';
-import { getIntern, getResume, jobApply } from '../api';
+import { getIntern, getResume, jobApply } from '../../api';
 import { Box, List, ListItem, ListItemText, Menu, MenuItem, Modal, Typography } from '@material-ui/core';
-import ActionSection from '../components/layout/ActionSection';
-import {Alerterror, Alertsuccess} from '../components/layout/Alerts'
+import ActionSection from '../../components/layout/ActionSection';
+import {Alerterror, Alertsuccess} from '../../components/layout/Alerts'
 
 const Job_details = () => {
 

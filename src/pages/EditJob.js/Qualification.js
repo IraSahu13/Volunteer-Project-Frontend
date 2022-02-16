@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {TextField, Button, Container, Divider} from '@material-ui/core';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
+import axios from 'axios';
+import {saveAs} from 'file-saver';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import SchoolIcon from '@material-ui/icons/School';
-import DateRangeIcon from '@material-ui/icons/DateRange';
+import DescriptionIcon from '@material-ui/icons/Description';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import TimelapseIcon from '@material-ui/icons/Timelapse';
+import EventSeatIcon from '@material-ui/icons/EventSeat';
+import BusinessIcon from '@material-ui/icons/Business';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
-import 'date-fns';
 import Header from '../../components/layout/Header';
 import PageHeader from '../../components/layout/PageHeader';
 import { Footer } from '../../components/layout/Footer';
@@ -22,7 +26,7 @@ const styles = theme => ({
   },
 });
 
-class Description extends Component {
+class Qualification extends Component {
   continue = e => {
     e.preventDefault ();
     this.props.nextStep ();
@@ -33,6 +37,25 @@ class Description extends Component {
     this.props.prevStep ();
   };
 
+  createAndDownloadPDF = () => {
+    axios
+      .post ('/create-pdf', this.props.values)
+      .then (() => {
+        axios
+          .get ('fetch-pdf', {responseType: 'blob'})
+          .then (res => {
+            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
+            saveAs (pdfBlob, `${this.props.values.firstname}'s Resume.pdf`);
+          })
+          .catch (err => {
+            console.log (err);
+          });
+      })
+      .catch (err => {
+        console.log (err);
+      });
+  };
+
   render () {
     const {values} = this.props;
     const {classes} = this.props;
@@ -40,13 +63,12 @@ class Description extends Component {
     return (
     <>
       {/* <Header />
-      <PageHeader
-        title= "Resume"
-        breadcrumb="education"
+      <PageHeader 
+          title= "Resume"
+          breadcrumb="experience"
       /> */}
-      
         <Grid item xs={12} lg={12}>
-         <h3>Description</h3>
+         <h3>Qualifications Required</h3>
         </Grid>
         <CardContent>
           <div >
@@ -55,12 +77,12 @@ class Description extends Component {
                 <textarea
                   margin="dense"
                   variant="outlined"
-                  name="Description"
-                  placeholder="Description"
-                  cols={100}
+                  name="qualification"
+                  placeholder="Qualifications Required"
                   rows={3}
+                  cols={100}
                   required
-                  value={values.college}
+                  value={values.qualification}
                   onChange={this.props.handleChange}
                 />
               </Grid>
@@ -70,38 +92,10 @@ class Description extends Component {
             <br />
           </div>
         </CardContent>
-        {/* <Container className={classes.margin}>
-          <Row>
-            <Col lg={4} xs={4} />
-            <Col lg={2} xs={2}>
-              <Button
-                variant="contained"
-                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.back}
-                startIcon={<NavigateBeforeIcon />}
-              >
-                Back
-              </Button>
-            </Col>
-            <Col lg={1} xs={2}>
-              <Button
-                variant="contained"
-                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.continue}
-                endIcon={<NavigateNextIcon />}
-              >
-                Next
-              </Button>
-            </Col>
-            <Col xs={4} />
-          </Row>
-        </Container>
-        <p className="text-center text-muted">Page 2</p> */}
-       
-      {/* <Footer /> */}
+        
     </>
     );
   }
 }
 
-export default withStyles (styles) (Description);
+export default withStyles (styles) (Qualification);

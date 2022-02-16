@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { companyInterns } from '../api';
+import { companyInterns } from '../../api';
 
 const Company_interns = () => {
 

@@ -6,6 +6,7 @@ import { Footer } from '../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import CountUp from 'react-countup';
 import ProgressBar from 'react-animated-progress-bar';
+import { Link } from 'react-router-dom';
 
 
 export class Home extends Component {
@@ -228,8 +229,8 @@ export class Home extends Component {
                                     <div className="featured-desc">
                                         <p>90 Jobs<br></br>Assistant Plant Manager</p>
                                     </div>
-                                    <a className="ttm-btn btn-inline ttm-btn-size-md ttm-btn-color-dark" 
-                                    href={process.env.PUBLIC_URL + '/job_list'}>Apply Jobs!</a>
+                                    <Link className="ttm-btn btn-inline ttm-btn-size-md ttm-btn-color-dark" 
+                                    href={'/job_list'}>Apply Jobs!</Link>
                                 </div>
                             </div>{/* featured-icon-box end */}
                         </div>
@@ -323,7 +324,7 @@ export class Home extends Component {
                                 </div>{/* featured-thumbnail end */}
                                 <div className="featured-content">
                                     <div className="featured-title">
-                                        <h3><a href={process.env.PUBLIC_URL + '/services_details'}>Manpower Supply</a></h3>
+                                        <h3><Link href={'/candidate_list'}>Volunteers</Link></h3>
                                     </div>
                                     <div className="featured-desc">
                                         <p>We are quality personnel experts to the fields of expertise that needed for all kind of recruit projects</p>
@@ -545,9 +546,9 @@ export class Home extends Component {
                                     <div className="ttm-tabs ttm-tab-style-01">
                                         <Tabs>
                                             <TabList className="tabs">
-                                                <Tab className="tab"><a className="tab-1" tabIndex="0">Our Mision</a></Tab>
-                                                <Tab className="tab"><a className="tab-2" tabIndex="0">Our Vision</a></Tab>
-                                                <Tab className="tab"><a className="tab-3" tabIndex="0">Core Values</a></Tab>
+                                                <Tab className="tab"><Link className="tab-1" tabIndex="0">Our Mision</Link></Tab>
+                                                <Tab className="tab"><Link className="tab-2" tabIndex="0">Our Vision</Link></Tab>
+                                                <Tab className="tab"><Link className="tab-3" tabIndex="0">Core Values</Link></Tab>
                                             </TabList> 
                                             <div className="content-tab mb_15">                                
                                                 <TabPanel>

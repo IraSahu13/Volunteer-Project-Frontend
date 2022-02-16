@@ -109,7 +109,8 @@ const Header = () => {
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-Sticky') : header.classList.remove('is-Sticky');
     };
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+    let status = localStorage.getItem("status");
         return (
                 
             <header id="masthead" className="header ttm-header-style-01">
@@ -182,14 +183,22 @@ const Header = () => {
                                                       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                                     >
-                                                    <Link exact to= {'/profile'}>
+                                                    {status==="user" && <Link exact to= {'/profile'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                         <Avatar />
                                                       </ListItemIcon>
                                                       Profile
                                                     </MenuItem>
-                                                  </Link>
+                                                  </Link>}
+                                                  {status==="company" && <Link exact to= {'/company_profile'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        <Avatar />
+                                                      </ListItemIcon>
+                                                      Profile
+                                                    </MenuItem>
+                                                  </Link>}
                                                     <Divider />
                                                     <Link>
                                                     <MenuItem>
@@ -199,30 +208,70 @@ const Header = () => {
                                                       Add another account
                                                     </MenuItem>
                                                     </Link>
-                                                    <Link exact to= {'/resume'}>
+                                                    {status=="user" && <Link exact to= {'/resume'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                       Add Resume
                                                       </MenuItem>
-                                                    </Link>
-                                                    <Link exact to= {'/edit_resume'}>
+                                                    </Link>}
+                                                    {status=="company" && <Link exact to= {'/field'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Post an Opportunity
+                                                      </MenuItem>
+                                                    </Link>}
+                                                    {status==="user" && <Link exact to= {'/edit_resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                       {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
                                                          My Resumes
                                                      </MenuItem>
-                                                    </Link>
-                                                    <Link exact to= {'/applied_jobs'}>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/posted_jobs'}>
+                                                      <MenuItem>
+                                                        <ListItemIcon>
+                                                      {/* <Settings fontSize="small" /> */}
+                                                        </ListItemIcon>
+                                                         Posted Jobs
+                                                     </MenuItem>
+                                                    </Link>}
+                                                    {status==="user" && <Link exact to= {'/applied_jobs'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                         {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                       Applications
                                                     </MenuItem>
-                                                    </Link>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/applications'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Applications
+                                                    </MenuItem>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/projects'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Projects
+                                                    </MenuItem>
+                                                    </Link>}
+                                                    {status==="company" && <Link exact to= {'/manage_recruitment '}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                        {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                      Manage Recruitment
+                                                    </MenuItem>
+                                                    </Link>}
                                                     {/*<MenuItem>
                                                       <ListItemIcon>
                                                         <Settings fontSize="small" />
@@ -263,10 +312,7 @@ const Header = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* <div className="header_btn">
-                                            <a className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
-                                            href={process.env.PUBLIC_URL + '/contact_01'}>Get A Quotes!</a>
-                                        </div> */}
+                                        
                                     </div>{/* site-navigation end */}
                                 </div>
                             </div>

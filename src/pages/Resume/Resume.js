@@ -169,7 +169,7 @@ const Resume = () => {
       />
       <Paper>
       <div className="App mt-3">
-        <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div className=" col-lg-10 mx-auto">
         <div>
           <ResumeTitle
             handleChange={handleChange}
@@ -178,7 +178,7 @@ const Resume = () => {
         </div>
       </div>
       <div className="App mt-3">
-        <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div className="col-lg-10 mx-auto">
           <Profile
             handleChange={handleChange}
             values={values}
@@ -186,7 +186,7 @@ const Resume = () => {
         </div>
       </div>
       <div className="App mt-3">
-        <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div className="col-lg-10 mx-auto">
           <Education
             handleChange={handleChange}
             values={values}
@@ -194,7 +194,7 @@ const Resume = () => {
         </div>
       </div>
       <div className="App mt-3">
-        <div className="container col-lg-8 mx-auto text-center  mb-4">
+        <div className="col-lg-10 mx-auto">
           <Projects
             handleChange={handleChange}
             values={values}
@@ -202,7 +202,7 @@ const Resume = () => {
         </div>
       </div>
       <div className="App mt-3">
-        <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div className="col-lg-10 mx-auto">
           <Experience
             handleChange={handleChange}
             values={values}
@@ -210,7 +210,7 @@ const Resume = () => {
         </div>
       </div>
       <div className="App mt-3 mb-5">
-        <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div className="col-lg-10 mx-auto">
           <Extras
             handleChange={handleChange}
             values={values}
@@ -219,7 +219,7 @@ const Resume = () => {
       </div>
       </div>
       <div className="App mt-3 mb-5">
-        <div className="container col-lg-10 mx-auto text-center  mb-4">
+        <div className="col-lg-10 mx-auto">
         {success && <Alertsuccess text={"Resume has been added successfully"} />}
         </div>
       </div>
