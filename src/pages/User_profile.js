@@ -11,7 +11,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
 import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
-import { userInfo, myAppliedJobs, getResume, myProjects, myOffers, editUser } from '../api';
+import { userInfo, myAppliedJobs, getResume, myProjects, myOffers, editUser, offerAccept } from '../api';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -435,6 +435,7 @@ const User_profile = () => {
   const [accepted, setAccepted] = useState(false)
   const acceptOffer = () => {
     setAccepted(true);
+    Promise.resolve(acceptOffer())
   }
 
   return (
@@ -625,8 +626,8 @@ const User_profile = () => {
 
                         <div className="featured-content">
                           <div className="featured-title">
-                            <h3>{offer.name}</h3>
-                            <p className="mt-2" style={{ color: 'grey' }}>{offer.date}</p>
+                            <h3>{offer?.name}</h3>
+                            <p className="mt-2" style={{ color: 'grey' }}>{offer?.date}</p>
                           </div>
                           <div className="featured-bottom">
                             <div className="view-block">
@@ -645,13 +646,19 @@ const User_profile = () => {
                             </div>
                             {open &&
                               <div className="mt-10">
-                                <p>{offer.description}</p>
+                                <p>{offer?.description}</p>
                                 <div >
                                   <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                        ttm-btn-color-dark mr-20"
                                     exact to={'/job_details'}>View Details</Link>
                                   <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                ttm-btn-color-dark mr-20" onClick={acceptOffer}> Accept</button>
+                                ttm-btn-color-dark mr-20" onClick={()=>{
+                                  Promise.resolve(offerAccept(offer._id)).then((res)=>{
+                                    console.log(res);
+                                  }).catch((e)=>{
+                                    console.log(e);
+                                  })
+                                }}> Accept</button>
                                 </div>
                               </div>
                             }

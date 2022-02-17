@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {TextField, Button, Container} from '@material-ui/core';
-import {Card, CardHeader, CardContent} from '@material-ui/core';
+import React, { Component } from 'react';
+import { TextField, Button, Container } from '@material-ui/core';
+import { Card, CardHeader, CardContent } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import EmailIcon from '@material-ui/icons/Email';
@@ -12,8 +12,8 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {Row, Col} from 'react-bootstrap';
-import {Paper, withStyles, Grid} from '@material-ui/core';
+import { Row, Col } from 'react-bootstrap';
+import { Paper, withStyles, Grid } from '@material-ui/core';
 
 const styles = theme => ({
   margin: {
@@ -26,18 +26,18 @@ const styles = theme => ({
 
 class Profile extends Component {
   continue = e => {
-    e.preventDefault ();
-    this.props.nextStep ();
+    e.preventDefault();
+    this.props.nextStep();
   };
 
-  render () {
-    const {values} = this.props;
-    const {classes} = this.props;
+  render() {
+    const { values } = this.props;
+    const { classes } = this.props;
     return (
       <Paper className={classes.padding}>
-    ]  <Grid item xs={12} lg={12}>
-         <h3>Job Details</h3>
-       </Grid>
+        <Grid item xs={12} lg={12}>
+          <h3>Job Details</h3>
+        </Grid>
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="center" lg={12}>
@@ -47,7 +47,7 @@ class Profile extends Component {
                   variant="outlined"
                   name="company"
                   label="Company"
-                  style={{width: '80%'}}
+                  style={{ width: '80%' }}
                   required
                   value={values.company}
                   onChange={this.props.handleChange}
@@ -58,7 +58,7 @@ class Profile extends Component {
                   margin="dense"
                   label="Project Title"
                   variant="outlined"
-                  style={{width: '80%'}}
+                  style={{ width: '80%' }}
                   name="name"
                   required
                   value={values.title}
@@ -73,10 +73,10 @@ class Profile extends Component {
                   variant="outlined"
                   name="category"
                   required
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: 'left', width: '80%' }}
                   value={values.category}
                   onChange={this.props.handleChange}
-                  
+
                 />
               </Grid>
 
@@ -87,7 +87,7 @@ class Profile extends Component {
                   variant="outlined"
                   name="experience"
                   required
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: 'left', width: '80%' }}
                   value={values.experience}
                   onChange={this.props.handleChange}
                 />
@@ -100,7 +100,7 @@ class Profile extends Component {
                   variant="outlined"
                   name="type"
                   required
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: 'left', width: '80%' }}
                   value={values.type}
                   onChange={this.props.handleChange}
                 />
@@ -112,7 +112,7 @@ class Profile extends Component {
                   variant="outlined"
                   name="locaton"
                   required
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: 'left', width: '80%' }}
                   value={values.location}
                   onChange={this.props.handleChange}
                 />
@@ -124,7 +124,7 @@ class Profile extends Component {
                   variant="outlined"
                   name="duration"
                   required
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: 'left', width: '80%' }}
                   value={values.duration}
                   onChange={this.props.handleChange}
                 />
@@ -135,11 +135,11 @@ class Profile extends Component {
                   label="Stipend"
                   variant="outlined"
                   name="stipend"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: 'left', width: '80%' }}
                   value={values.stipend}
                 />
               </Grid>
-              
+
             </Grid>
             {/* <Container className={classes.margin}>
               <Row>
@@ -184,4 +184,4 @@ class Profile extends Component {
   }
 }
 
-export default withStyles (styles) (Profile);
+export default withStyles(styles)(Profile);

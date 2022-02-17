@@ -11,6 +11,7 @@ const Applications = () => {
     const location = useLocation();
     let id = location.pathname;
     id = id.split('/id=')[1];
+    console.log(id);
     useEffect(() => {
         Promise.resolve(allApplicants(id)).then((res) => {
             console.log(res.data);
@@ -159,19 +160,19 @@ const Applications = () => {
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3>{user.name}</h3>
+                                                    <h3>{user?.name}</h3>
                                                 </div>
                                                 <div className="featured-title">
-                                                    <p>{user.title}</p>
+                                                    <p>{user?.title}</p>
                                                 </div>
                                                 <div className="featured-bottom">
                                                     <div className="job-skill">
-                                                        {user.skills.map(skill => (
+                                                        {user?.skills?.map(skill => (
                                                             <span className="skill-tag">{skill}</span>
                                                         ))}
                                                     </div>
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>{user.city}</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>{user?.city}</span>
                                                     </div>
                                                     <div className="view-block">
                                                       <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 

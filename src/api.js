@@ -57,7 +57,15 @@ export const myProjects=async ()=>{
     });
 }
 export const myOffers=async ()=>{
-    return await axios.get(`/user/getoffers`, 
+    return await axios.get(`/user/getoffers`,
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const offerAccept=async (id)=>{
+    return await axios.put(`/user/acceptoffer`, {credentials: id}, 
     {
         headers:{ 
             token: localStorage.getItem("token")
