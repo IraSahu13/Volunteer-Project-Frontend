@@ -102,6 +102,22 @@ export const editJob=async ()=>{
     });
 }
 
+export const companyInfo=async (id)=>{
+    return await axios.get(`/company/getcompany/${id}`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const editCompany=async ()=>{
+    return await axios.get(`/company/editcompany`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
 
 //****** resume ******//
 export const PostResume=async (data)=>{

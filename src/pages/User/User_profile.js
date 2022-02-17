@@ -171,7 +171,7 @@ const ProfileDetails = (props) => {
                 <Grid item md={6} sm={12} xs={12} lg={6}>
                   <TextField
                     margin="dense"
-                    placeholder="Ttile"
+                    placeholder="Title"
                     variant="outlined"
                     style={{ width: '80%' }}
                     name="title"

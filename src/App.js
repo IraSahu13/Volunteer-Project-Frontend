@@ -44,6 +44,8 @@ import Applied_Jobs from './pages/User/Applied_Jobs';
 import User_profile from './pages/User/User_profile';
 import EditResume from './pages/EditResume/index';
 import EditJob from './pages/EditJob.js/EditJob';
+import CompanyProfile from './pages/Company/CompanyProfile';
+import Projects from './pages/Company/Projects';
 
 // axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
@@ -84,14 +86,15 @@ function App() {
         <Route exact path={`/company_interns`} component={ Company_interns } />
         <Route exact path={'/applied'} component={Applied_Jobs} />
         <Route exact path={'/terms'} component={Terms} />
-        <Route exact path={`/field`} component={ PostJob } />
+        <Route exact path={`/post_job`} component={ PostJob } />
         <Route exact path={`/profile`} component={ User_profile } />
-        <Route exact path={`/company_profile`} component={ User_profile } />
-        <Route exact path={'/applications'} component={Applications} />
+        <Route exact path={`/company_profile`} component={ CompanyProfile } />
+        <Route exact path={'/applicants'} component={Applications} />
         <Route exact path={'/application'} component={Apply} />
-        <Route exact path={'/posted_field'} component={Posted_Jobs} />
+        <Route exact path={'/posted_jobs'} component={Posted_Jobs} />
         <Route exact path={'/edit_resume'} component={EditResume} />
-        <Route exact path={'/edit_field'} component={EditJob} />
+        <Route exact path={'/edit_job'} component={EditJob} />
+        <Route exact path={'/projects'} component={Projects} />
         <Route exact path={'/applied_jobs'} component={Applied_Jobs} />
         <ScrollToTop />
         </Switch>

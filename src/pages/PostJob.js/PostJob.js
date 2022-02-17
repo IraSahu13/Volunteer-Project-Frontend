@@ -7,10 +7,11 @@ import Description from './Description';
 import Qualification from './Qualification';
 import Skills from './Skills';
 import { Alertsuccess } from '../../components/layout/Alerts';
+import { postJob } from '../../api';
 
 const PostJob = () => {
   const [success, setSuccess]= useState(false);
-  const [text, setText]= useState('');
+  const [text, setText]= useState("");
   const [state, setState] = useState({
     // Personal Profile Details...
     company:'',
@@ -35,18 +36,19 @@ const PostJob = () => {
   
   const handleChange = (e) => {
     e.preventDefault();
-    const val= e.target.value;
-    console.log(val);
-    setState ({
+    const val = e.target.value;
+    console.log(e.target.name, val);
+    setState({
       ...state,
-      [e.target.name]: val});
+      [e.target.name]: val
+    });
   };
   const handleSubmit = (e) => {
     console.log(e);
     console.log(values);
     setSuccess(true);
     setText('Job has been posted Successfully!')
-    Promise.resolve((PostJob(values))).then((res)=>{
+    Promise.resolve(postJob(values)).then((res)=>{
       console.log(res);
     }).catch((e)=>{
       console.log({e});
@@ -56,7 +58,6 @@ const PostJob = () => {
       setText('');
     }, 3000);
   }
-    const {step} = state;
     const {
       // Profile-Information
     company,

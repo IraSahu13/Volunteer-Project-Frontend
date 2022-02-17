@@ -9,6 +9,8 @@ import Skills from './Skills';
 import { editJob } from '../../api';
 
 const EditJob = () => {
+  const [success, setsuccess] = useState()
+  const [text, settext] = useState('')
   const [editjob, setEditjob]= useState([]);
   useEffect(() => {
     Promise.resolve(editJob()).then((res) => {
@@ -51,6 +53,17 @@ const EditJob = () => {
   };
   const handleSubmit = (e) => {
     console.log(e);
+    Promise.resolve(editJob(values)).then((res) => {
+      console.log(res);
+      setsuccess(true)
+      settext(`${title} has been edited successfully`);
+      setTimeout(() => {
+        setsuccess(false)
+        settext(``);
+      }, 3000);
+  }).catch((e) => {
+      console.log({ e });
+  })
   }
     
     const {
@@ -99,8 +112,8 @@ const EditJob = () => {
          <>
            <Header />
            <PageHeader
-            title="Post an Opportunity"
-            breadcrumb="post opportunity"
+            title="Edit Job"
+            breadcrumb="edit job"
            />
               
          

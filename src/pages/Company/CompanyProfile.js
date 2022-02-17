@@ -11,7 +11,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
 import { Alerterror, Alertsuccess } from '../../components/layout/Alerts';
-import { userInfo, myAppliedJobs, getResume, myProjects, myOffers, editUser } from '../../api';
+import { companyInfo, myAppliedJobs, companyInterns, myProjects, myOffers, editCompany, editComapny } from '../../api';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -35,23 +35,19 @@ const ProfileDetails = (props) => {
   const location = useLocation();
   useEffect(() => {
     const id = location.pathname.substring(19,);
-    Promise.resolve(userInfo(id)).then((res) => {
+    Promise.resolve(companyInfo(id)).then((res) => {
       console.log(res.data);
       setCompany(res.data);
     }).catch((e) => {
       console.log({ e });
     })
   }, [])
-  const [userEdit, setUserEdit] = useState({
-    name: user.name,
-    email: user.email,
-    phone: user.phone,
-    title: user.title,
-    address_line_1:user.address_line_1,
-    address_line_2:user.address_line_2,
-    zipcode:user.zipcode,
-    city:user.city,
-    state: user.state,
+  const [companyEdit, setCompanyEdit] = useState({
+    name: company.name,
+    email: company.email,
+    phone: company.phone,
+    title: company.title,
+    
   });
   
   const {
@@ -59,24 +55,14 @@ const ProfileDetails = (props) => {
     title,
     email,
     phone,
-    address_line_1,
-    address_line_2,
-    zipcode,
-    city,
-    state,
-  }= userEdit;
+  }= companyEdit;
   const values = {
 
     // Profile-Information
-    name: user.name,
-    email: user.email,
-    phone: user.phone,
-    title: user.title,
-    address_line_1:user.address_line_1,
-    address_line_2:user.address_line_2,
-    zipcode:user.zipcode,
-    city:user.city,
-    state: user.state,
+    name: company.name,
+    email: company.email,
+    phone: company.phone,
+    title: company.title,
     // Education Information
 
 
@@ -99,8 +85,7 @@ const ProfileDetails = (props) => {
     
     const val = e.target.value;
     console.log(val);
-    setUser({
-      ...state,
+    setCompany({
       [e.target.name]: val
     });
   };
@@ -114,7 +99,7 @@ const ProfileDetails = (props) => {
     e.preventDefault();
     let file= 
     console.log(e);
-    Promise.resolve((editUser(values))).then((res)=>{
+    Promise.resolve((editCompany(values))).then((res)=>{
       console.log(res);
       setsuccess(true);
       setText('Your profile has been edited successfully');
@@ -162,7 +147,7 @@ const ProfileDetails = (props) => {
                     margin="dense"
                     variant="outlined"
                     name="name"
-                    placeholder="Name"
+                    placeholder="Company Name"
                     style={{ width: '80%' }}
                     value={values.name}
                     onChange={handleChange}
@@ -171,7 +156,7 @@ const ProfileDetails = (props) => {
                 <Grid item md={6} sm={12} xs={12} lg={6}>
                   <TextField
                     margin="dense"
-                    placeholder="Ttile"
+                    placeholder="Title"
                     variant="outlined"
                     style={{ width: '80%' }}
                     name="title"
@@ -192,61 +177,7 @@ const ProfileDetails = (props) => {
                     
                   />
                 </Grid>
-                <Grid item lg={6} xs={12} sm={12} md={6}>
-                  <TextField
-                    margin="dense"
-                    placeholder="Address Line 1"
-                    variant="outlined"
-                    name="address_line_1"
-                    style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address_line_1}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item lg={6} xs={12} sm={12} md={6}>
-                  <TextField
-                    margin="dense"
-                    placeholder="Address Line 2"
-                    variant="outlined"
-                    name="address_line_2"
-                    style={{ alignItems: 'left', width: '80%' }}
-                    value={values.address_line_2}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item lg={6} xs={12} sm={12} md={6}>
-                  <TextField
-                    margin="dense"
-                    placeholder="Zipcode"
-                    variant="outlined"
-                    name="zipcode"
-                    style={{ alignItems: 'left', width: '80%' }}
-                    value={values.zipcode}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item lg={6} xs={12} sm={12} md={6}>
-                  <TextField
-                    margin="dense"
-                    placeholder="City"
-                    variant="outlined"
-                    name="city"
-                    style={{ alignItems: 'left', width: '80%' }}
-                    value={values.city}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item lg={6} xs={12} sm={12} md={6}>
-                  <TextField
-                    margin="dense"
-                    placeholder="State"
-                    variant="outlined"
-                    name="state"
-                    style={{ alignItems: 'left', width: '80%' }}
-                    value={values.state}
-                    onChange={handleChange}
-                  />
-                </Grid>
+                
               </Grid>
               <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
                 <Grid item md={6} sm={12} xs={12} lg={6}>
@@ -381,15 +312,15 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-const User_profile = () => {
+const CompanyProfile = () => {
 
-  const [user, setUser] = useState([]);
+  const [company, setCompany] = useState([]);
   const location = useLocation();
   useEffect(() => {
     const id = location.pathname.substring(19,);
-    Promise.resolve(userInfo(id)).then((res) => {
+    Promise.resolve(companyInfo(id)).then((res) => {
       console.log(res.data);
-      setUser(res.data);
+      setCompany(res.data);
     }).catch((e) => {
       console.log({ e });
     })
@@ -405,14 +336,12 @@ const User_profile = () => {
     setAnchorEl(null);
   };
   
-  const [resume, setResume] = useState([]);
+  const [jobs, setJobs] = useState([])
   useEffect(() => {
-    Promise.resolve(getResume()).then((res)=>{
-      const p = res.data.map((data)=>{
-          return data.resumeTitle
-      })
-      setResume(p);
-      console.log(p);
+    Promise.resolve((companyInterns())).then((res)=>{
+      setJobs(res.data.interns);
+      console.log("Jobs");
+      console.log(res.data);
    }).catch((e)=>{
       console.log({e});
   })
@@ -472,9 +401,8 @@ const User_profile = () => {
                   />
                 </div>
                 <div className="col-2">
-                  <h5>{user.name}</h5>
-                  <p>{user.title}</p>
-                  <Rating name="read-only" value={user.rating} readOnly />
+                  <h5>{company.name}</h5>
+                  <p>{company.title}</p>
                 </div>
                 <div className="col-6 col-lg-7"></div>
 
@@ -493,10 +421,10 @@ const User_profile = () => {
                     {/* <form id="list1" className="list-filter"> */}
                     <div className="justify-center pt-1">
                       <ul>
-                        <li>{`Name: ${user.name}`}</li>
-                        <li>{`Email: ${user.email}`}</li>
-                        <li>{`Phone: ${user.phone ? user.phone : ""}`}</li>
-                        <li>{`Address: ${user.address ? user.address : ""}`}</li>
+                        <li>{`Company Name: ${company.name}`}</li>
+                        <li>{`Email: ${company.email}`}</li>
+                        <li>{`Phone: ${company.phone ? company.phone : ""}`}</li>
+                        {/*<li>{`Address: ${user.address ? user.address : ""}`}</li>*/}
                       </ul>
                     </div>
                     {/* </form> */}
@@ -506,7 +434,7 @@ const User_profile = () => {
                   {/* <form id="list1" className="list-filter"> */}
                       <ul className="mt-10">
                         <li><a href= "#projects">Projects</a></li>
-                        <li><a href="#resume">Resume</a></li>
+                        <li><a href="#posted">Posted Jobs</a></li>
                         <li><a href= "#offers">Offers</a></li>
                       </ul>
                   {/* </form> */}
@@ -607,14 +535,14 @@ const User_profile = () => {
                   ))}
                   
                   <Divider className="mt-2" />
-                  <Link exact to= {"/edit_resume"}>
+                  <Link exact to= {"/posted_jobs"}>
                   <div className="col-lg-12 mt-3">
-                    <h6 id="resume">Resume</h6>
+                    <h6 id="posted">Posted Jobs</h6>
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 
                       <div className="text-size-2">
                         <ul>
-                          { resume?.map((cv, index) => (<li>{cv}</li>
+                          {jobs?.map((job, index) => (<Link exact to={`/job_details/${job.id}`}><li>{job}</li></Link>
                           ))}
                         </ul>
                       </div>
@@ -636,7 +564,7 @@ const User_profile = () => {
                           <div className="view-block">
                             {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                         ttm-btn-color-dark"
-                                                        exact to={'/applications'}>View Details</Link> */}
+                                                        exact to={'/applicants'}>View Details</Link> */}
                             <KeyboardArrowDownIcon
                               id="demo-customized-button"
                               aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -676,7 +604,7 @@ const User_profile = () => {
                           <div className="view-block">
                             {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                         ttm-btn-color-dark"
-                                                        exact to={'/applications'}>View Details</Link> */}
+                                                        exact to={'/applicants'}>View Details</Link> */}
                             <KeyboardArrowDownIcon
                               id="demo-customized-button"
                               aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -731,4 +659,4 @@ const User_profile = () => {
   )
 }
 
-export default User_profile;
+export default CompanyProfile;

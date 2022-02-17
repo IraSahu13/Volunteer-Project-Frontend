@@ -216,7 +216,7 @@ const Header = () => {
                                                       Add Resume
                                                       </MenuItem>
                                                     </Link>}
-                                                    {status=="company" && <Link exact to= {'/field'}>
+                                                    {status=="company" && <Link exact to= {'/post_job'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                           {/* <Settings fontSize="small" /> */}
@@ -248,7 +248,7 @@ const Header = () => {
                                                       Applications
                                                     </MenuItem>
                                                     </Link>}
-                                                    {status==="company" && <Link exact to= {'/applications'}>
+                                                    {status==="company" && <Link exact to= {'/applicants'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                         {/* <Settings fontSize="small" /> */}

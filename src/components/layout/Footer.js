@@ -13,7 +13,7 @@ export class Footer extends Component {
                                     <div className="footer-logo">
                                         <img id="footer-logo-img" className="img-fluid auto_size" height="40" width="162" src="images/footer-logo.svg" alt="footer-logo" />
                                     </div>
-                                    <p style={{color:'#ee77a6'}}>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
+                                    <p style={{color:'#5f43b2'}}>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
                                         Our customized recruiting process delivers fast & accurate results</p>
                                     <div className="d-flex align-items-center pt-15 pb-25">
                                         <h6 className="fw-normal">Social Share: </h6>
@@ -67,13 +67,13 @@ export class Footer extends Component {
                                 <div className="widget widget-contact clearfix">
                                     <h3 className="widget-title">Quick Contact!</h3>
                                     <ul className="widget_contact_wrapper">
-                                        <li style={{color:'#f08ab3'}}>
+                                        <li style={{color:'#5f43b2'}}>
                                             <i className=" flaticon-phone-call" ></i>
                                             <h3>Call Us On:</h3>+92 777 555 0000</li>
-                                        <li style={{color:'#f08ab3'}}>
+                                        <li style={{color:'#5f43b2'}}>
                                             <i className=" flaticon-placeholder"></i>
                                             <h3>Address:</h3>Suite 20 Golden Street USA</li>
-                                        <li style={{color:'#f08ab3'}}>
+                                        <li style={{color:'#5f43b2'}}>
                                             <i className=" flaticon-email"></i>
                                             <h3>Email:</h3><a href="mailto:info@example.com">info@example.com</a>
                                         </li>

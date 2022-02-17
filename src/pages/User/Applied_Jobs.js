@@ -9,7 +9,7 @@ import ActionSection from '../../components/layout/ActionSection';
 
 
 // export class Job_list extends Component {
-const Job_list = () => {
+const Applied_Jobs = () => {
 
     const [AllInterns, setallInterns] = useState([]);
     const [loading, setloading] = useState(true);
@@ -42,7 +42,7 @@ const Job_list = () => {
                 <PageHeader
                     title="Applications"
                     breadcrumb="applications"
-                    className="pb-65 pb-lg-0"
+                    className="pb-40 pb-lg-0"
                 />
                 {/* PageHeader end */}
 
@@ -214,4 +214,4 @@ const Job_list = () => {
     )
 }
 
-export default Job_list;
+export default Applied_Jobs;

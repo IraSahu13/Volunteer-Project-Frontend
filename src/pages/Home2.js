@@ -273,7 +273,7 @@ export class Home2 extends Component {
                         </div>
                     </div>{/* row end */}
                     {/* row */}
-                    <div className="row row-equal-height mb_10">
+                    <div className="row row-equal-height">
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             {/* featured-icon-box */}
                             <div className="featured-icon-box icon-align-before-title style3">
