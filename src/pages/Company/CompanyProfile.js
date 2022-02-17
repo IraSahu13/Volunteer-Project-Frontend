@@ -47,7 +47,7 @@ const ProfileDetails = (props) => {
     email: company.email,
     phone: company.phone,
     title: company.title,
-    
+    description: company.description,
   });
   
   const {
@@ -55,6 +55,7 @@ const ProfileDetails = (props) => {
     title,
     email,
     phone,
+    description,
   }= companyEdit;
   const values = {
 
@@ -63,6 +64,7 @@ const ProfileDetails = (props) => {
     email: company.email,
     phone: company.phone,
     title: company.title,
+    description: company.description,
     // Education Information
 
 
@@ -173,6 +175,19 @@ const ProfileDetails = (props) => {
                     name="phone"
                     style={{ alignItems: 'left', width: '80%' }}
                     value={values.phone}
+                    onChange={handleChange}
+                    
+                  />
+                </Grid>
+                <Grid item lg={12} xs={12} sm={12} md={12}>
+                  <textarea
+                    margin="dense"
+                    placeholder="Company Description"
+                    variant="outlined"
+                    name="description"
+                    rows={3}
+                    cols={70}
+                    value={values.description}
                     onChange={handleChange}
                     
                   />
@@ -464,7 +479,7 @@ const CompanyProfile = () => {
                     </div>
                     <div className="featured-content ">
                       <div>
-                        <h6 style={{ color: 'black' }}>Create an eye-catching Resume</h6>
+                        <h6 style={{ color: 'black' }}>Post details of your project</h6>
                       </div>
 
                     </div>
@@ -478,7 +493,7 @@ const CompanyProfile = () => {
                     </div>
                     <div className="featured-content ttm-bgcolor-grey">
                       <div className="">
-                        <h6 style={{ color: 'black' }}>Look for your best Project Match</h6>
+                        <h6 style={{ color: 'black' }}>Look for your best candidate match</h6>
                       </div>
 
                     </div>
@@ -486,8 +501,22 @@ const CompanyProfile = () => {
                  </div>
                 </div>
               <div className="col-lg-8 content-area">
-
-                <div className="row">
+              <div className="row">
+                <div className="col-12">
+                 <div className="overview-box" style={{backgroundColor:'#ece3f4'}}>
+                  <div className="title">
+                      <h6>Description</h6>
+                  </div>
+                  <div className="desc">
+                      {company?.description? <p>{company?.description}</p> : <p>Dolor sed viverra ipsum nunc. In ornare quam viverra orci. Id diam maecenas ultricies mi eget mauris
+                          pharetra et ultrices. Non diam phasellus vestibulum lorem sed risus ultricies. Lacinia at quis 
+                          risus sed vulputate odio ut enim blandit. Suspendisse ultrices gravida dictum fusce ut.</p>}
+                  </div>
+                 </div>
+                </div>
+              </div>
+              <Divider />
+                <div className="row mt-10">
                   <h6 id="projects">Projects</h6>
                   {projects?.map((project) => (
                     <div className="col-12">
@@ -549,49 +578,7 @@ const CompanyProfile = () => {
                     </div>
                   </div>
                   </Link>
-                  <Divider className="mt-2" />
-                  <h6 id="offers">Offers</h6>
-                  {offers?.map((offer) => (
-                    <div className="col-12">
-                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-
-                      <div className="featured-content">
-                        <div className="featured-title">
-                          <h3>{offer.name}</h3>
-                          <p className="mt-2" style={{ color: 'grey' }}>{offer.date}</p>
-                        </div>
-                        <div className="featured-bottom">
-                          <div className="view-block">
-                            {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                        ttm-btn-color-dark"
-                                                        exact to={'/applicants'}>View Details</Link> */}
-                            <KeyboardArrowDownIcon
-                              id="demo-customized-button"
-                              aria-controls={open ? 'demo-customized-menu' : undefined}
-                              aria-haspopup="true"
-                              aria-expanded={open ? 'true' : undefined}
-                              variant="contained"
-                              disableElevation
-                              onClick={open ? handleClose : handleClick}
-                            ></KeyboardArrowDownIcon>
-                          </div>
-                          {open &&
-                            <div className="mt-10">
-                              <p>{offer.description}</p>
-                              <div >
-                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                       ttm-btn-color-dark mr-20"
-                                  exact to={'/job_details'}>View Details</Link>
-                                <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                ttm-btn-color-dark mr-20" onClick={acceptOffer}> Accept</button>
-                              </div>
-                            </div>
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  ))}
+                  
                   <div className="col-12">
                     <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
 

@@ -10,7 +10,7 @@ import ActionSection from '../../components/layout/ActionSection';
 
 // export class Job_list extends Component {
 const Projects = () => {
-
+    const [step, setStep]= useState(0);
     const [AllInterns, setallInterns] = useState([]);
     const [loading, setloading] = useState(true);
     useEffect(() => {
@@ -31,6 +31,7 @@ const Projects = () => {
       console.log({ e });
     })
     }, []);
+    
     return (
 
         <div className="site-main">
@@ -82,7 +83,7 @@ const Projects = () => {
                     <div className="row">
                         <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                             <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
-                                <aside className="widget job-widget">
+                                <aside className="widget job-widget" onClick={() => ( setStep(0))}>
                                     <h3 className="widget-title">Active Projects</h3>
                                     <div className="col-lg-12 col-md-12">
                                     <ul>
@@ -104,7 +105,29 @@ const Projects = () => {
                                     </ul>
                                   </div>
                                 </aside>
-                                <aside className="widget job-widget">
+                                <aside className="widget job-widget" onClick={() => ( setStep(1))}>
+                                    <h3 className="widget-title">Completed Projects</h3>
+                                    <div className="col-lg-12 col-md-12">
+                                    <ul>
+                                                    
+                                                
+                                      <li>
+                                      { AllInterns &&
+                                        AllInterns.map((intern, index) => (
+                                            index<5 && <div className="col-lg-12 col-md-12">
+                                                <div className="featured-title">
+                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                                   <p>{intern.jobType}</p>
+                                                </div>
+                                                <Divider style={{ color: 'black'}}/>
+                                            </div>
+                                        ))
+                                      }  
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </aside>
+                                <aside className="widget job-widget" onClick={() => ( setStep(2))}>
                                     <h3 className="widget-title">In Process Projects</h3>
                                     <div className="col-lg-12 col-md-12">
                                     <ul>
@@ -127,21 +150,6 @@ const Projects = () => {
                                   </div>
                                 </aside>
                             </div>
-                            <aside className="widget widget-banner">
-                                <div className="ttm-col-bgcolor-yes bg-theme-DarkColor text-theme-WhitColor col-bg-img-seven ttm-col-bgimage-yes ttm-bg p-40">
-                                    <div className="ttm-col-wrapper-bg-layer ttm-bg-layer bg-theme-DarkColor" style={{ backgroundImage: '' }}>
-                                        <div className="ttm-col-wrapper-bg-layer-inner bg-theme-DarkColor"></div>
-                                    </div>
-                                    <div className="layer-content text-center">
-                                        <div className="widget-banner-inner">
-                                            <h3 className="mb-15">Make a Difference with Online Resume!</h3>
-                                            <p className="mb-30">Your Resume in Minutes with Jobs Resume Assistant is Ready!</p>
-                                            <Link className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                exact to={'/resume'}>Build Resume</Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
                             </div>
                         <div className="col-lg-8 content-area">
                             <div className="row">
@@ -166,6 +174,135 @@ const Projects = () => {
                             <div className="row">
                                 {
                                     (loading) && <CircularProgress />
+                                }
+                                {(() => {
+                                    switch (step) {
+                                      case 0:
+                                        return( 
+                                        <>
+                                        <h6>Active Projects</h6>
+                                        {  allApplications &&
+                                            allApplications.map((intern, index) => (
+                                                <div className="col-lg-12 col-md-12">
+                                                    <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
+                                                        <div className="featured-content">
+                                                            <div className="featured-title">
+                                                                <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
+                                                            </div>
+                                                            <div className="featured-desc">
+                                                                <p>{intern.duration}</p>
+                                                                <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
+                                                            </div>
+                                                            <div className="featured-bottom">
+                                                                <div className="job-meta">
+                                                                    <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
+                                                                </div>
+                                                                {intern?.jobType && <div className="job-time">
+                                                                    <span className="green">{intern.jobType}</span>
+                                                                </div>}
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                        </>
+                                        );
+                                      case 1:
+                                        return(
+                                        <>
+                                        <h6>Completed Projects</h6>
+                                        {  allApplications &&
+                                            allApplications.map((intern, index) => (
+                                                <div className="col-lg-12 col-md-12">
+                                                    <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
+                                                        <div className="featured-content">
+                                                            <div className="featured-title">
+                                                                <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
+                                                            </div>
+                                                            <div className="featured-desc">
+                                                                <p>{intern.duration}</p>
+                                                                <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
+                                                            </div>
+                                                            <div className="featured-bottom">
+                                                                <div className="job-meta">
+                                                                    <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
+                                                                </div>
+                                                                {intern?.jobType && <div className="job-time">
+                                                                    <span className="green">{intern.jobType}</span>
+                                                                </div>}
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                        </>
+                                        );
+                                      case 2:
+                                        return(
+                                        <>
+                                        <h6>In Process Projects</h6>
+                                        {  allApplications &&
+                                            allApplications.map((intern, index) => (
+                                                <div className="col-lg-12 col-md-12">
+                                                    <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
+                                                        <div className="featured-content">
+                                                            <div className="featured-title">
+                                                                <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
+                                                            </div>
+                                                            <div className="featured-desc">
+                                                                <p>{intern.duration}</p>
+                                                                <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
+                                                            </div>
+                                                            <div className="featured-bottom">
+                                                                <div className="job-meta">
+                                                                    <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
+                                                                </div>
+                                                                {intern?.jobType && <div className="job-time">
+                                                                    <span className="green">{intern.jobType}</span>
+                                                                </div>}
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                        </>)
+                                        ;
+                                      default:
+                                        return <CircularProgress />;
+                                    }
+                                  })()}
+                                
+                                {  allApplications &&
+                                    allApplications.map((intern, index) => (
+                                        <div className="col-lg-12 col-md-12">
+                                            <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
+                                                <div className="featured-content">
+                                                    <div className="featured-title">
+                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
+                                                    </div>
+                                                    <div className="featured-desc">
+                                                        <p>{intern.duration}</p>
+                                                        <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
+                                                    </div>
+                                                    <div className="featured-bottom">
+                                                        <div className="job-meta">
+                                                            <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
+                                                        </div>
+                                                        {intern?.jobType && <div className="job-time">
+                                                            <span className="green">{intern.jobType}</span>
+                                                        </div>}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    ))
                                 }
                                 {  allApplications &&
                                     allApplications.map((intern, index) => (
@@ -211,7 +348,7 @@ const Projects = () => {
         </div>
 
             {/* action-section */}
-            <ActionSection />
+            
             {/* action-section end */}
 
 

@@ -29,7 +29,7 @@ const HeaderMenu = () => {
                     {/* </li> */}
                     {/* <li className="mega-menu-item"> */}
                     {status==="user" && <Link className="alert-heading ml-40" exact to={'/job_list'}  >Opportunities</Link>}
-                    {status==="company" && <Link className="alert-heading ml-40" exact to={'/posted_jobs'}  >Posted Fields</Link>}
+                    {status==="company" && <Link className="alert-heading ml-40" exact to={'/projects'}  >Projects</Link>}
                     {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/job_list'}>Job List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/job_details'}>Job Details</a></li>
@@ -43,7 +43,7 @@ const HeaderMenu = () => {
                             </ul>
                         </li> */}
                     {/* <li className="mega-menu-item"> */}
-                    {status==="company" && <Link exact to={'/candidate_list'}  className="alert-heading ml-40">My Interns</Link>}
+                    {status==="company" && <Link exact to={'/candidate_list'}  className="alert-heading ml-40">Volunteers</Link>}
                     {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_list'}>Candidate List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_details'}>Candidate Details</a></li>

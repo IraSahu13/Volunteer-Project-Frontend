@@ -295,14 +295,6 @@ const Header = () => {
                                                          My Resumes
                                                      </MenuItem>
                                                     </Link>}
-                                                    {status==="company" && <Link exact to= {'fields'}>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                      {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                         Posted Jobs
-                                                     </MenuItem>
-                                                    </Link>}
                                                     {status==="user" && <Link exact to= {'/applied_jobs'}>
                                                     <MenuItem>
                                                       <ListItemIcon>

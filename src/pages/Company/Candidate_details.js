@@ -21,7 +21,9 @@ const Candidate_details=()=> {
             console.log({e});
         })
     }, [])
-
+    const Offer = () => {
+        console.log("offer");
+    }
 
     {
         return (
@@ -221,6 +223,8 @@ const Candidate_details=()=> {
                                                 </div>))}
                                             </div>
                                         </div>
+                                        <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                        onClick={Offer}>Offer</button>
                                     </div>
                                 </div>{/* row end */}
                             </div>

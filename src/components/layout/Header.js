@@ -224,20 +224,20 @@ const Header = () => {
                                                       Post an Opportunity
                                                       </MenuItem>
                                                     </Link>}
+                                                    {status=="company" && <Link exact to= {'/edit_job'}>
+                                                    <MenuItem>
+                                                      <ListItemIcon>
+                                                          {/* <Settings fontSize="small" /> */}
+                                                      </ListItemIcon>
+                                                        Edit Job
+                                                      </MenuItem>
+                                                    </Link>}
                                                     {status==="user" && <Link exact to= {'/edit_resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
                                                       {/* <Settings fontSize="small" /> */}
                                                         </ListItemIcon>
                                                          My Resumes
-                                                     </MenuItem>
-                                                    </Link>}
-                                                    {status==="company" && <Link exact to= {'/posted_jobs'}>
-                                                      <MenuItem>
-                                                        <ListItemIcon>
-                                                      {/* <Settings fontSize="small" /> */}
-                                                        </ListItemIcon>
-                                                         Posted Jobs
                                                      </MenuItem>
                                                     </Link>}
                                                     {status==="user" && <Link exact to= {'/applied_jobs'}>
@@ -266,12 +266,10 @@ const Header = () => {
                                                     </Link>}
                                                     {status==="company" && <Link exact to= {'/manage_recruitment '}>
                                                     <MenuItem>
-                                                      <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
-                                                      </ListItemIcon>
+                                                    <ListItemIcon />
                                                       Manage Recruitment
                                                     </MenuItem>
-                                                    </Link>}
+                                                     </Link>}
                                                     {/*<MenuItem>
                                                       <ListItemIcon>
                                                         <Settings fontSize="small" />
