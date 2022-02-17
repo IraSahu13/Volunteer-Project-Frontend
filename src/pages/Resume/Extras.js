@@ -67,7 +67,7 @@ class Experience extends Component {
             breadcrumb="skills"
         />
      */}
-      <Paper className={classes.padding}>
+      
         <Grid item xs={12} lg={12}>
          <h3>Extra detials</h3>
         </Grid>
@@ -316,7 +316,6 @@ class Experience extends Component {
           </Button> */}
         {/* </Container>
         <p className="text-center text-muted">Page 5</p> */}
-      </Paper>
       {/* <Footer /> */}
     </>
     );

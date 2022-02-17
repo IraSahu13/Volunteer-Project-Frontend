@@ -1,9 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { allApplicants } from '../api';
+import { allApplicants } from '../../api';
 import { CircularProgress } from '@material-ui/core';
 
 const Candidate_list = () => {
@@ -203,12 +203,12 @@ const Candidate_list = () => {
                                     </div>
                                     <div className="col-lg-12">
                                         <div className="job-pagination-block">
-                                            <a className="page-nav-link">prev</a>
-                                            <a className="page-nav-link current">1</a>
-                                            <a className="page-nav-link" href="#">2</a>
-                                            <a className="page-nav-link" href="#">3</a>
-                                            <a className="page-nav-link" href="#">....</a>
-                                            <a className="page-nav-link">next</a>
+                                            <Link className="page-nav-link">prev</Link>
+                                            <Link className="page-nav-link current">1</Link>
+                                            <Link className="page-nav-link" href="#">2</Link>
+                                            <Link className="page-nav-link" href="#">3</Link>
+                                            <Link className="page-nav-link" href="#">....</Link>
+                                            <Link className="page-nav-link">next</Link>
                                         </div>
                                     </div>
                                 </div>

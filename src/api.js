@@ -97,8 +97,33 @@ export const companyInterns=async ()=>{
         }
     });
 }
-export const PostJob=async ()=>{
-    return await axios.post(`/company/postjob`, 
+export const postJob=async (data)=>{
+    return await axios.post(`/company/postjob`,{credentials: data}, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const editJob=async ()=>{
+    return await axios.get(`/company/editjob`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+
+export const companyInfo=async (id)=>{
+    return await axios.get(`/company/getcompany/${id}`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const editCompany=async ()=>{
+    return await axios.get(`/company/editcompany`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -127,7 +152,7 @@ export const editResume=async (data)=>{
     return await axios.put(`/resume/editresume`, data,
     {
         headers:{ 
-            token: localStorage.getItem("token")
+            token: localStorage.getItem("token") 
         }
     });
 }

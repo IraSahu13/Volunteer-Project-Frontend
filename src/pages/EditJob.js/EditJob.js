@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import { Footer } from '../../components/layout/Footer';
 import Header from '../../components/layout/Header';
 import PageHeader from '../../components/layout/PageHeader';
@@ -6,60 +6,68 @@ import Profile from './Profile';
 import Description from './Description';
 import Qualification from './Qualification';
 import Skills from './Skills';
-import { Alertsuccess } from '../../components/layout/Alerts';
-import { postJob } from '../../api';
+import { editJob } from '../../api';
 
-const PostJob = () => {
-  const [success, setSuccess]= useState(false);
-  const [text, setText]= useState("");
+const EditJob = () => {
+  const [success, setsuccess] = useState()
+  const [text, settext] = useState('')
+  const [editjob, setEditjob]= useState([]);
+  useEffect(() => {
+    Promise.resolve(editJob()).then((res) => {
+        console.log(res.data);
+        setEditjob(res.data)
+    }).catch((e) => {
+        console.log({ e });
+    })
+    }, [])
   const [state, setState] = useState({
+   
     // Personal Profile Details...
-    company:'',
-    title:'',
-    category:'',
-    experience:'',
-    type:'',
-    location:'',
-    duration:'',
-    stipend:'',
+    company: editjob.company,
+    title: editjob.projectTitle,
+    category: editjob.category,
+    experience: editjob.experience,
+    type: editjob.jobType,
+    location: editjob.location,
+    duration: editjob.duration,
+    stipend: editjob.stipend,
 
     // Description
-    description:'',
+    description: editjob.description,
     
     // Qualifications Required
-    qualification:'',
+    qualification: editjob.qualification,
 
     // Skills Required
-     skills:'',
+     skills: editjob.skills,
   });
 
   
   const handleChange = (e) => {
     e.preventDefault();
-    const val = e.target.value;
-    console.log(e.target.name, val);
-    setState({
+    const val= e.target.value;
+    console.log(val);
+    setState ({
       ...state,
-      [e.target.name]: val
-    });
+      [e.target.name]: val});
   };
   const handleSubmit = (e) => {
     console.log(e);
-    console.log(values);
-    setSuccess(true);
-    setText('Job has been posted Successfully!')
-    Promise.resolve(postJob(values)).then((res)=>{
+    Promise.resolve(editJob(values)).then((res) => {
       console.log(res);
-    }).catch((e)=>{
-      console.log({e});
-    })
-    setTimeout(() => {
-      setSuccess(false);
-      setText('');
-    }, 3000);
+      setsuccess(true)
+      settext(`${title} has been edited successfully`);
+      setTimeout(() => {
+        setsuccess(false)
+        settext(``);
+      }, 3000);
+  }).catch((e) => {
+      console.log({ e });
+  })
   }
+    
     const {
-      // Profile-Information
+    // Profile-Information
     company,
     title,
     category,
@@ -104,8 +112,8 @@ const PostJob = () => {
          <>
            <Header />
            <PageHeader
-            title="Post an Opportunity"
-            breadcrumb="post opportunity"
+            title="Edit Job"
+            breadcrumb="edit job"
            />
               
          
@@ -141,11 +149,6 @@ const PostJob = () => {
               />
             </div>
           </div>
-          {success && <div className="App mt-3">
-            <div className="container col-lg-10 mx-auto">
-              <Alertsuccess text={text} />
-            </div>
-          </div>}
           <div className=" justify-center mb-10" style={{ marginLeft: '47%' }}>
             <button
               variant="contained"
@@ -161,4 +164,4 @@ const PostJob = () => {
     );
 }
 
-export default PostJob;
+export default EditJob;

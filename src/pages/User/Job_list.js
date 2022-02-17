@@ -1,11 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { allInterns } from '../api';
+import { allInterns } from '../../api';
 import { CircularProgress } from '@material-ui/core';
-import ActionSection from '../components/layout/ActionSection';
+import ActionSection from '../../components/layout/ActionSection';
 
 
 // export class Job_list extends Component {

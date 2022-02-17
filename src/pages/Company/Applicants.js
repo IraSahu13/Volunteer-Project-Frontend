@@ -17,15 +17,24 @@ const Applications = () => {
             console.log(res.data);
             setallcandidates(res.data)
         }).catch((e) => {
-            console.log({e});
+            console.log({ e });
+        })
+    }, [])
+    const [allJobs, setAllJobs] = useState([]);
+    useEffect(() => {
+        Promise.resolve(companyInterns()).then((res) => {
+            console.log(res.data);
+            setAllJobs(res.data)
+        }).catch((e) => {
+            console.log({ e });
         })
     }, [])
 
-    const handleReject=()=>{
-       
+    const handleReject = () => {
+
     }
 
-    const handleAccept=()=>{
+    const handleAccept = () => {
 
     }
 
@@ -46,28 +55,26 @@ const Applications = () => {
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget" style={{backgroundColor:'#ece3f4'}}>
+                                <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
                                     <aside className="widget job-widget">
-                                        <h3 className="widget-title"><i className="flaticon flaticon-calendar-1"></i>Date Applied</h3>
-                                        <form id="list1" className="list-filter">
-                                            <div>
-                                                <label className="radio">
-                                                    <input type="radio" value="Today" name="post_date" />Today
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 7 days" defaultChecked name="post_date" />Last 7 days
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 14 days" name="post_date" />Last 14 days
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 21 days" name="post_date" />Last 21 days
-                                                </label>
-                                                <label className="radio">
-                                                    <input type="radio" value="Last 30 days" name="post_date" />Last 30 days
-                                                </label>
+                                        <h3 className="widget-title">More Suggestions</h3>
+                                        <div className="col-lg-12 col-md-12">
+                                            <ul>
+                                                <li>
+                                                    {/* AllJobs &&
+                                        AllJobs.map((jobs, index) => (
+                                            index<5 && <div className="col-lg-12 col-md-12">
+                                                <div className="featured-title">
+                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                                   <p>{intern.jobType}</p>
+                                                </div>
+                                                <Divider style={{ color: 'black'}}/>
                                             </div>
-                                        </form>
+                                        ))
+                                        */}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </aside>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>
@@ -134,7 +141,7 @@ const Applications = () => {
                             <div className="col-lg-8 content-area">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between" style={{backgroundColor:'#ece3f4'}}>
+                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between" style={{ backgroundColor: '#ece3f4' }}>
                                             <span className="showing-result">Showing 1–10 of 50 Applicant Results :</span>
                                             <form>
                                                 <div className="sort-by">Sort By:
@@ -152,47 +159,47 @@ const Applications = () => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                {allcandidates?allcandidates.map((user) => (
-                                    <div className="col-lg-12">
-                                        <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>{user?.name}</h3>
-                                                </div>
-                                                <div className="featured-title">
-                                                    <p>{user?.title}</p>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        {user?.skills?.map(skill => (
-                                                            <span className="skill-tag">{skill}</span>
-                                                        ))}
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>{user?.city}</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                      <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
-                                                        exact to={'/candidate_details'}>Contact</Link>
-                                                      <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                {/*allcandidates.map((user) => (
+            <div className="col-lg-12">
+                <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+                    <div className="featured-thumbnail">
+                        <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
+                    </div>
+                    <div className="featured-content">
+                        <div className="featured-title">
+                            <h3>{user?.name}</h3>
+                        </div>
+                        <div className="featured-title">
+                            <p>{user?.title}</p>
+                        </div>
+                        <div className="featured-bottom">
+                            <div className="job-skill">
+                                {user?.skills?.map(skill => (
+                                    <span className="skill-tag">{skill}</span>
+                                ))}
+                            </div>
+                            <div className="job-meta">
+                                <span><i className="fa fa-map-marker-alt"></i>{user?.city}</span>
+                            </div>
+                            <div className="view-block">
+                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{ marginRight: '1rem' }}
+                                    exact to={'/candidate_details'}>Contact</Link>
+                                <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
-                                                        exact to={'/candidate_details'}>view Profile</Link></span>
-                                                    </div>
-                                                    <button onClick={handleReject} className="btn">Reject Applicant</button>
-                                                    <button onClick={()=>{
-                                                        Promise.resolve(acceptApplicant(id,user._id)).then((res)=>{
-                                                            console.log(res);
-                                                        }).catch((e)=>{console.log({e});})
-                                                    }} className="btn">Accept Applicant</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )): <CircularProgress/>}
+                                    exact to={'/candidate_details'}>view Profile</Link></span>
+                            </div>
+                            <button onClick={handleReject} className="btn">Reject Applicant</button>
+                            <button onClick={() => {
+                                Promise.resolve(acceptApplicant(id, user._id)).then((res) => {
+                                    console.log(res);
+                                }).catch((e) => { console.log({ e }); })
+                            }} className="btn">Accept Applicant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                                        ))*/}
                                 <div className="col-lg-12">
                                     <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
                                         <div className="featured-thumbnail">
@@ -230,23 +237,23 @@ const Applications = () => {
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="job-pagination-block">
-                                        <a className="page-nav-link">prev</a>
-                                        <a className="page-nav-link current">1</a>
-                                        <a className="page-nav-link" href="#">2</a>
-                                        <a className="page-nav-link" href="#">3</a>
-                                        <a className="page-nav-link" href="#">....</a>
-                                        <a className="page-nav-link">next</a>
+                                        <Link className="page-nav-link">prev</Link>
+                                        <Link className="page-nav-link current">1</Link>
+                                        <Link className="page-nav-link" href="#">2</Link>
+                                        <Link className="page-nav-link" href="#">3</Link>
+                                        <Link className="page-nav-link" href="#">....</Link>
+                                        <Link className="page-nav-link">next</Link>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>{/* row end */}
-                </div>
-            </div>
-            <Footer />
+                            </div >
+                            </div >
+                        </div >
+                    </div > {/* row end */ }
+                </div >
+            </div >
+    <Footer />
 
-        </div>
+        </div >
     )
 };
 

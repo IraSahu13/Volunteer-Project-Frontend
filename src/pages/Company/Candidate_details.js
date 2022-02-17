@@ -1,10 +1,10 @@
 import React, { Component,useState, useEffect } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import ProgressBar from 'react-animated-progress-bar';
 import { useLocation } from 'react-router-dom';
-import { userInfo } from '../api';
+import { userInfo } from '../../api';
 
 
 const Candidate_details=()=> {
@@ -21,7 +21,9 @@ const Candidate_details=()=> {
             console.log({e});
         })
     }, [])
-
+    const Offer = () => {
+        console.log("offer");
+    }
 
     {
         return (
@@ -221,6 +223,8 @@ const Candidate_details=()=> {
                                                 </div>))}
                                             </div>
                                         </div>
+                                        <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                        onClick={Offer}>Offer</button>
                                     </div>
                                 </div>{/* row end */}
                             </div>

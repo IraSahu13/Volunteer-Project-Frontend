@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from "../components/layout/PageHeader";
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from "../../components/layout/PageHeader";
+import { Footer } from '../../components/layout/Footer';
 import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { AppBar, Avatar, Box, Button, Card, CardContent, CardHeader, CircularProgress, Dialog, Divider, Grid, IconButton, InputAdornment, List, ListItem, ListItemText, Paper, Slide, TextField, Toolbar, Typography } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -10,8 +10,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
+<<<<<<< HEAD:src/pages/User_profile.js
 import { Alerterror, Alertsuccess } from '../components/layout/Alerts';
 import { userInfo, myAppliedJobs, getResume, myProjects, myOffers, editUser, offerAccept } from '../api';
+=======
+import { Alerterror, Alertsuccess } from '../../components/layout/Alerts';
+import { userInfo, myAppliedJobs, getResume, myProjects, myOffers, editUser } from '../../api';
+>>>>>>> 48a5cb673516c5bbdaf763e46c8f831817f72716:src/pages/User/User_profile.js
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -89,8 +94,16 @@ const ProfileDetails = (props) => {
     // Extra Information
 
   };
+<<<<<<< HEAD:src/pages/User_profile.js
 
 
+=======
+  const handleFile = (e) => {
+    console.log(e.target.files, "$$$");
+    console.log(e.target.files[0], "&&&");
+  }
+  
+>>>>>>> 48a5cb673516c5bbdaf763e46c8f831817f72716:src/pages/User/User_profile.js
   const handleChange = (e) => {
     e.preventDefault();
 
@@ -101,12 +114,21 @@ const ProfileDetails = (props) => {
       [e.target.name]: val
     });
   };
+<<<<<<< HEAD:src/pages/User_profile.js
   const [success, setsuccess] = useState(false);
   const [text, setText] = useState("");
   const [error, seterror] = useState(false);
+=======
+  
+  
+  const [success, setsuccess]= useState(false);
+  const [text, setText]= useState("");
+  const [error, seterror]= useState(false);
+>>>>>>> 48a5cb673516c5bbdaf763e46c8f831817f72716:src/pages/User/User_profile.js
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let file= 
     console.log(e);
     Promise.resolve((editUser(values))).then((res) => {
       console.log(res);
@@ -165,7 +187,7 @@ const ProfileDetails = (props) => {
                 <Grid item md={6} sm={12} xs={12} lg={6}>
                   <TextField
                     margin="dense"
-                    placeholder="Ttile"
+                    placeholder="Title"
                     variant="outlined"
                     style={{ width: '80%' }}
                     name="title"
@@ -243,6 +265,7 @@ const ProfileDetails = (props) => {
                 </Grid>
               </Grid>
               <Grid container spacing={2} alignItems="center" item md={6} sm={12} xs={12} lg={6}>
+<<<<<<< HEAD:src/pages/User_profile.js
                 <Grid>
                   {selectedImage && (
                     <div>
@@ -255,6 +278,13 @@ const ProfileDetails = (props) => {
                       }}>Remove</button>
                     </div>
                   )}
+=======
+                <Grid item md={6} sm={12} xs={12} lg={6}>
+                {selectedImage && (
+                  <div>
+                  <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                  {console.log(URL.createObjectURL(selectedImage))}
+>>>>>>> 48a5cb673516c5bbdaf763e46c8f831817f72716:src/pages/User/User_profile.js
                   <br />
 
                   <br />

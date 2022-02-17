@@ -67,20 +67,19 @@ class Skills extends Component {
             breadcrumb="skills"
         />
      */}
-      <Paper className={classes.padding}>
        <Grid item xs={12} lg={12}>
          <h3>Skills Required</h3>
        </Grid>
         <CardContent>
-          <div className={classes.margin}>
-            <Grid container spacing={2} className="ml-0" lg={12}>
+            <Grid container spacing={2} lg={12}>
               <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
+                <textarea
                   margin="dense"
                   variant="outlined"
                   name="skills"
-                  label="Skills Required"
-                  style={{width: '80%'}}
+                  placeholder="Skills Required"
+                  cols={100}
+                  rows={3}
                   required
                   value={values.college}
                   onChange={this.props.handleChange}
@@ -90,7 +89,6 @@ class Skills extends Component {
             <br />
             <Divider />
             <br />
-          </div>
         </CardContent>
         {/* <Container className={classes.margin}>
           <Row>
@@ -128,7 +126,6 @@ class Skills extends Component {
           </Button> */}
         {/* </Container>
         <p className="text-center text-muted">Page 4</p> */}
-      </Paper>
       {/* <Footer /> */}
     </>
     );

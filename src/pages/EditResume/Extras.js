@@ -93,7 +93,7 @@ class Experience extends Component {
                   margin="dense"
                   variant="outlined"
                   name="skill1"
-                  label="Skill 1"
+                  placeholder="Skill 1"
                   style={{width: '90%'}}
                   value={values.skill1}
                   onChange={this.props.handleChange}
@@ -107,7 +107,7 @@ class Experience extends Component {
                   margin="dense"
                   variant="outlined"
                   name="skill2"
-                  label="Skill 2"
+                  placeholder="Skill 2"
                   style={{width: '90%'}}
                   value={values.skill2}
                   onChange={this.props.handleChange}
@@ -121,7 +121,7 @@ class Experience extends Component {
                   margin="dense"
                   variant="outlined"
                   name="skill3"
-                  label="Skill 3"
+                  placeholder="Skill 3"
                   style={{width: '90%'}}
                   value={values.skill3}
                   onChange={this.props.handleChange}
@@ -196,7 +196,7 @@ class Experience extends Component {
               <Grid item md={12} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Interest 1"
+                  placeholder="Interest 1"
                   variant="outlined"
                   style={{width: '90%'}}
                   name="interest1"
@@ -210,7 +210,7 @@ class Experience extends Component {
               <Grid item md={12} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Interest 2"
+                  placeholder="Interest 2"
                   variant="outlined"
                   style={{width: '90%'}}
                   name="interest2"
@@ -224,7 +224,7 @@ class Experience extends Component {
               <Grid item md={12} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="Interest 3"
+                  placeholder="Interest 3"
                   variant="outlined"
                   style={{width: '90%'}}
                   name="interest3"

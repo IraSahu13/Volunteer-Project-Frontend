@@ -83,7 +83,7 @@ const Experience=(props)=>{
                   margin="dense"
                   variant="outlined"
                   name="companyName"
-                  label="Institue/Organisation"
+                  placeholder="Institue/Organisation"
                   style={{width: '90%'}}
                   required
                   value={values.companyName}
@@ -102,7 +102,7 @@ const Experience=(props)=>{
                   margin="dense"
                   variant="outlined"
                   name="position"
-                  label="Position"
+                  placeholder="Position"
                   style={{width: '90%'}}
                   required
                   value={values.position}
@@ -122,7 +122,7 @@ const Experience=(props)=>{
                   margin="dense"
                   variant="outlined"
                   name="duration"
-                  label="Duration"
+                  placeholder="Duration"
                   style={{width: '90%'}}
                   required
                   value={values.duration}
@@ -140,7 +140,7 @@ const Experience=(props)=>{
               <Grid item md={12} sm={12} xs={12} lg={12}>
                 <TextField
                   margin="dense"
-                  label="Description"
+                  placeholder="Description"
                   variant="outlined"
                   style={{width: '97%'}}
                   name="experienceDescription"

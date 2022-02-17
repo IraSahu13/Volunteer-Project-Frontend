@@ -29,7 +29,7 @@ const Profile = (props) => {
   const classes = styles();
   const {values} = props
   return (
-    <Paper className={classes.padding} >
+    <>
       <Grid item xs={12} lg={12}>
         <h3>Personal details</h3>
       </Grid>
@@ -246,7 +246,7 @@ const Profile = (props) => {
         </div>
       </CardContent>
       {/* <p className="text-center text-muted">Page 1 </p> */}
-    </Paper>
+    </>
   );
 }
 

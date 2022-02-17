@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export class Footer extends Component {
     render() {
@@ -12,23 +13,23 @@ export class Footer extends Component {
                                     <div className="footer-logo">
                                         <img id="footer-logo-img" className="img-fluid auto_size" height="40" width="162" src="images/footer-logo.svg" alt="footer-logo" />
                                     </div>
-                                    <p style={{color:'#ee77a6'}}>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
+                                    <p style={{color:'white'}}>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
                                         Our customized recruiting process delivers fast & accurate results</p>
                                     <div className="d-flex align-items-center pt-15 pb-25">
                                         <h6 className="fw-normal">Social Share: </h6>
                                         <div className="social-icons">
                                             <ul className="social-icons list-inline">
-                                                <li><a href="#facebook" rel="noopener" aria-label="facebook">
-                                                    <i className="ti ti-facebook"></i></a>
+                                                <li><Link href="#facebook" rel="noopener" aria-label="facebook">
+                                                    <i className="ti ti-facebook"></i></Link>
                                                 </li>
-                                                <li><a href="#twitter" rel="noopener" aria-label="twitter">
-                                                    <i className="ti ti-twitter-alt"></i></a>
+                                                <li><Link href="#twitter" rel="noopener" aria-label="twitter">
+                                                    <i className="ti ti-twitter-alt"></i></Link>
                                                 </li>
-                                                <li><a href="#instagram" rel="noopener" aria-label="instagram">
-                                                    <i className="ti ti-instagram"></i></a>
+                                                <li><Link href="#instagram" rel="noopener" aria-label="instagram">
+                                                    <i className="ti ti-instagram"></i></Link>
                                                 </li>
-                                                <li><a href="#pinterest" rel="noopener" aria-label="pinterest">
-                                                    <i className="ti ti-pinterest"></i></a>
+                                                <li><Link href="#pinterest" rel="noopener" aria-label="pinterest">
+                                                    <i className="ti ti-pinterest"></i></Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -66,15 +67,15 @@ export class Footer extends Component {
                                 <div className="widget widget-contact clearfix">
                                     <h3 className="widget-title">Quick Contact!</h3>
                                     <ul className="widget_contact_wrapper">
-                                        <li style={{color:'#f08ab3'}}>
+                                        <li style={{color:'white'}}>
                                             <i className=" flaticon-phone-call" ></i>
                                             <h3>Call Us On:</h3>+92 777 555 0000</li>
-                                        <li style={{color:'#f08ab3'}}>
+                                        <li style={{color:'white'}}>
                                             <i className=" flaticon-placeholder"></i>
                                             <h3>Address:</h3>Suite 20 Golden Street USA</li>
-                                        <li style={{color:'#f08ab3'}}>
+                                        <li style={{color:'white'}}>
                                             <i className=" flaticon-email"></i>
-                                            <h3>Email:</h3><a href="mailto:info@example.com">info@example.com</a>
+                                            <h3>Email:</h3><a style={{color:'white'}} href="mailto:info@example.com">info@example.com</a>
                                         </li>
                                     </ul>
                                 </div>

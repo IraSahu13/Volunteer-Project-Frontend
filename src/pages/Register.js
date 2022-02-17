@@ -30,7 +30,7 @@ const Register = () => {
         const [success, setSuccess] = useState(false);
         const[term, setTerm]= useState(false);
         const Termclicked = () => {
-            setTerm(true);
+            setTerm(!term);
         }
         const handleEnter = (event) => {
             if (event.key.toLowerCase() === "enter") {
@@ -162,10 +162,10 @@ const Register = () => {
                 <Header/>
             
                 {/* PageHeader */} 
-                <PageHeader
+                {/*<PageHeader
                     title="register"
                     breadcrumb="register"
-                />
+                />*/}
                 {/* PageHeader end */}
 
 
@@ -173,7 +173,8 @@ const Register = () => {
                 <div className="ttm-row register-section clearfix">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-12">
+                          <div className="col-lg-2"></div>
+                            <div className="col-lg-8">
                                 <div className="bg-theme-GreyColor ttm-col-bgcolor-yes ttm-bg rounded p-50 p-lg-20">
                                     <div className="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
                                     <div className="layer-content">
@@ -186,13 +187,13 @@ const Register = () => {
                                                     <Tab className="tab">
                                                         <a>
                                                         <i className="flaticon flaticon-research"></i>
-                                                            <span>Candidate</span><h5>Signup as a Candidate</h5>
+                                                            <span>Candidate</span><h5>Signup as Candidate</h5>
                                                         </a>
                                                     </Tab>
                                                     <Tab className="tab">
                                                         <a>
                                                         <i className="flaticon flaticon-job-search"></i>
-                                                            <span>Employer</span><h5>Signup as a Employer</h5>
+                                                            <span>Employer</span><h5>Signup as Employer</h5>
                                                         </a>
                                                     </Tab>
                                                 </TabList> 
@@ -253,7 +254,7 @@ const Register = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
-                                                                                <p>Already registered?<Link href={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</Link></p>
+                                                                                <p>Already registered?<Link exact to ={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</Link></p>
                                                                             </div>
                                                                         </div>
                                                                     </label>
@@ -272,23 +273,23 @@ const Register = () => {
                                                         
                                                         <form id="login_form" className="login_form wrap-form">
                                                             <div className="row">
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-6 col-md-6">
                                                                     <label>
                                                                         <i className="ti ti-bar-chart"></i>
                                                                         <input value={companytitle} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanytitle(e.target.value)
-                                                                        }}  type="title" id="title" placeholder="Company Title"/>
+                                                                        }}  type="text" placeholder="Company Title"/>
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-6 col-md-6">
                                                                     <label>
                                                                         <i className="ti ti-user"></i>
                                                                         <input value={companyname} onkeydown={handleEnter} onChange={(e)=>{
                                                                             setcompanyname(e.target.value)
-                                                                        }}  type="text" id="txtname" placeholder="Username" />
+                                                                        }}  type="text"  placeholder="Username" />
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-6 col-md-6">
                                                                     <label>
                                                                         <i className="ti ti-email"></i>
                                                                         <input value={companyemail} onkeydown={handleEnter} onChange={(e)=>{
@@ -296,7 +297,7 @@ const Register = () => {
                                                                         }}  type="email" id="txtemail" placeholder="Email Address" />
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-6 col-md-6">
                                                                     <label>
                                                                         <i className="ti ti-mobile"></i>
                                                                         <input value={companyphone} onkeydown={handleEnter} onChange={(e)=>{
@@ -304,7 +305,7 @@ const Register = () => {
                                                                         }}  type="tel" id="txtphone" placeholder="Phone Number"/>
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-6 col-md-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
                                                                         <input value={companypass} onkeydown={handleEnter} onChange={(e)=>{
@@ -312,7 +313,7 @@ const Register = () => {
                                                                         }}  type="password" id="password" placeholder="Password"/>
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-6 col-md-6">
                                                                     <label>
                                                                         <i className="ti ti-lock"></i>
                                                                         <input value={companycnfpass} onkeydown={handleEnter} onChange={(e)=>{
@@ -320,7 +321,7 @@ const Register = () => {
                                                                         }}  type="password" id="cpassword" placeholder="Confirm Password *"/>
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-12">
+                                                                <div className="col-lg-12 col-md-6">
                                                                     <label className="mt-0">
                                                                         <div className="d-md-flex align-items-center justify-content-between">
                                                                             <div className="cookies-checkbox mt-15">
@@ -330,12 +331,12 @@ const Register = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="mt-15">
-                                                                                <p>Already registered?<a href={'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</a></p>
+                                                                                <p>Already registered?<Link exact to = {'/login'} className="text-theme-SkinColor" style={{fontWeight:'bold'}}> Login here</Link></p>
                                                                             </div>
                                                                         </div>
                                                                     </label>
                                                                 </div>
-                                                                <div className="col-lg-12">
+                                                                <div className="col-lg-12 ">
                                                                     <label className="mb-0">
                                                                         <button className="submit w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor" 
                                                                         type="submit"

@@ -67,20 +67,20 @@ class Qualification extends Component {
           title= "Resume"
           breadcrumb="experience"
       /> */}
-      <Paper className={classes.padding}>
         <Grid item xs={12} lg={12}>
          <h3>Qualifications Required</h3>
         </Grid>
         <CardContent>
-          <div className={classes.margin}>
-            <Grid container spacing={2} className="ml-0" lg={12}>
+          <div >
+            <Grid container spacing={2} lg={12}>
               <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
+                <textarea
                   margin="dense"
                   variant="outlined"
                   name="qualification"
-                  label="Qualifications Required"
-                  style={{width: '80%'}}
+                  placeholder='Qualifications Required'
+                  rows={3}
+                  cols={100}
                   required
                   value={values.college}
                   onChange={this.props.handleChange}
@@ -92,35 +92,7 @@ class Qualification extends Component {
             <br />
           </div>
         </CardContent>
-        {/* <Container className={classes.margin}>
-          <Row>
-            <Col lg={4} xs={4} />
-            <Col lg={2} xs={2}>
-              <Button
-                variant="contained"
-                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.back}
-                startIcon={<NavigateBeforeIcon />}
-              >
-                Back
-              </Button>
-            </Col>
-            <Col lg={1} xs={2}>
-              <Button
-                variant="contained"
-                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.continue}
-                endIcon={<NavigateNextIcon />}
-              >
-                Next
-              </Button>
-            </Col>
-            <Col xs={4} />
-          </Row>
-        </Container>
-        <p className="text-center text-muted">Page 3</p> */}
-      </Paper>
-      {/* <Footer /> */}
+        
     </>
     );
   }

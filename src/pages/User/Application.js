@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Header from '../components/layout/Header';
-import PageHeader from '../components/layout/PageHeader';
-import { Footer } from '../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from '../../components/layout/PageHeader';
+import { Footer } from '../../components/layout/Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { jobApply } from '../api';
+import { jobApply } from '../../api';
 
 function Apply() {
 

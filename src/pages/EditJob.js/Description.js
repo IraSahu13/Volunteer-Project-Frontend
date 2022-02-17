@@ -60,7 +60,7 @@ class Description extends Component {
                   cols={100}
                   rows={3}
                   required
-                  value={values.college}
+                  value={values.description}
                   onChange={this.props.handleChange}
                 />
               </Grid>
