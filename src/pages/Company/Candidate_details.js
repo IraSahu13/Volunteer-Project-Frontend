@@ -4,16 +4,16 @@ import PageHeader from "../../components/layout/PageHeader";
 import { Footer } from '../../components/layout/Footer';
 import ProgressBar from 'react-animated-progress-bar';
 import { useLocation } from 'react-router-dom';
-import { userInfo } from '../../api';
+import { offerIntern, userInfo } from '../../api';
 
 
 const Candidate_details=()=> {
 
     const location = useLocation()
     const [candidate, setcandidate] = useState([]);
-    
+    const id = location.pathname.substring(19,);
     useEffect(() => {
-        const id = location.pathname.substring(19,);
+        
         Promise.resolve(userInfo(id)).then((res) => {
             console.log(res.data);
             setcandidate(res.data)
@@ -21,8 +21,16 @@ const Candidate_details=()=> {
             console.log({e});
         })
     }, [])
-    const Offer = () => {
-        console.log("offer");
+    const handleOffer= (e) => {
+        e.preventDefault();
+        console.log(e);
+        Promise.resolve(offerIntern(id)).then((res) => {
+            console.log(res);
+            setTimeout(() => {
+            }, 3000);
+        }).catch((e) => {
+            console.log({ e });
+        })
     }
 
     {
@@ -223,8 +231,10 @@ const Candidate_details=()=> {
                                                 </div>))}
                                             </div>
                                         </div>
-                                        <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                        onClick={Offer}>Offer</button>
+                                        <div className="justify-center">
+                                            <button className="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor mt-10"
+                                                        onClick={handleOffer}>Offer</button>
+                                        </div>
                                     </div>
                                 </div>{/* row end */}
                             </div>

@@ -48,6 +48,7 @@ const ProfileDetails = (props) => {
     phone: company.phone,
     title: company.title,
     description: company.description,
+    city: company.city,
   });
   
   const {
@@ -334,7 +335,7 @@ const CompanyProfile = () => {
   useEffect(() => {
     const id = location.pathname.substring(19,);
     Promise.resolve(companyInfo(id)).then((res) => {
-      console.log(res.data);
+      console.log(res);
       setCompany(res.data);
     }).catch((e) => {
       console.log({ e });
@@ -353,12 +354,11 @@ const CompanyProfile = () => {
   
   const [jobs, setJobs] = useState([])
   useEffect(() => {
-    Promise.resolve((companyInterns())).then((res)=>{
-      setJobs(res.data.interns);
-      console.log("Jobs");
-      console.log(res.data);
-   }).catch((e)=>{
-      console.log({e});
+    Promise.resolve(companyInterns()).then((res) => {
+      console.log(res.data.intern);
+      setJobs(res.data.intern);
+  }).catch((e) => {
+      console.log({ e });
   })
   }, []);
   const [projects, setprojects] = useState([])
@@ -436,7 +436,8 @@ const CompanyProfile = () => {
                     {/* <form id="list1" className="list-filter"> */}
                     <div className="justify-center pt-1">
                       <ul>
-                        <li>{`Company Name: ${company.name}`}</li>
+                        <li>{`Company Name: ${company.title}`}</li>
+                        <li>{`User Name: ${company.name}`}</li>
                         <li>{`Email: ${company.email}`}</li>
                         <li>{`Phone: ${company.phone ? company.phone : ""}`}</li>
                         {/*<li>{`Address: ${user.address ? user.address : ""}`}</li>*/}
@@ -517,109 +518,55 @@ const CompanyProfile = () => {
               </div>
               <Divider />
                 <div className="row mt-10">
-                  <h6 id="projects">Projects</h6>
-                  {projects?.map((project) => (
-                    <div className="col-12">
-                      <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-
-                        <div className="featured-content">
-                          <div className="featured-title">
-                            <h3>{project.name}</h3>
-                            <p className="mt-2" style={{ color: 'grey' }}>{project.date}</p>
-                          </div>
-                          <div className="featured-bottom">
-                            <div className="view-block">
-                              <KeyboardArrowDownIcon
-                                id="demo-customized-button"
-                                aria-controls={open ? 'demo-customized-menu' : undefined}
-                                aria-haspopup="true"
-                                aria-expanded={open ? 'true' : undefined}
-                                variant="contained"
-                                disableElevation
-                                onClick={open ? handleClose : handleClick}
-                              ></KeyboardArrowDownIcon>
-                            </div>
-                            {open &&
-                              <div className="mt-10">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                  labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                  maecenas accumsan lacus vel facilisis.
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                  labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                  maecenas accumsan lacus vel facilisis.</p>
-                                <div style={{ position: 'relative' }}>
-                                  <span><CircularProgressWithLabel value={100} /></span>
-                                </div>
-                                <div >
-                                  <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                       ttm-btn-color-dark mr-20"
-                                    exact to={'/job_details'}>Details</Link>
-                                </div>
-                              </div>
-                            }
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
                   
                   <Divider className="mt-2" />
-                  <Link exact to= {"/posted_jobs"}>
                   <div className="col-lg-12 mt-3">
                     <h6 id="posted">Posted Jobs</h6>
-                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-
-                      <div className="text-size-2">
+                    
                         <ul>
-                          {jobs?.map((job, index) => (<Link exact to={`/job_details/${job.id}`}><li>{job}</li></Link>
-                          ))}
+                         {jobs?.map((job, index) => (
+                        <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+                         <div className="featured-content">
+                           <div className="featured-title">
+                             <h3>{job.title}</h3>
+                             <p>{job.category}</p>
+                             <p className="mt-2" style={{ color: 'grey' }}>{(job.updatedAt).slice(0,10)}</p>
+                           </div>
+                           <div className="featured-bottom">
+                             <div className="view-block">
+                               {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                           ttm-btn-color-dark"
+                                                           exact to={'/applicants'}>View Details</Link> */}
+                               <KeyboardArrowDownIcon
+                                 id="demo-customized-button"
+                                 aria-controls={open ? 'demo-customized-menu' : undefined}
+                                 aria-haspopup="true"
+                                 aria-expanded={open ? 'true' : undefined}
+                                 variant="contained"
+                                 disableElevation
+                                 onClick={open ? handleClose : handleClick}
+                               ></KeyboardArrowDownIcon>
+                             </div>
+                             {open &&
+                               <div className="mt-10">
+                                 <p>{job.description.slice(0,100)}</p>
+                                 <div >
+                                   <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                          ttm-btn-color-dark mr-20"
+                                     exact to={`/edit_job/${job._id}`}>Edit Project</Link>
+                                     <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                          ttm-btn-color-dark mr-20"
+                                     exact to={`/projects`}>View Details</Link>
+                                 </div>
+                               </div>
+                             }
+                           </div>
+                         </div>
+                       </div>))}
                         </ul>
                       </div>
-                    </div>
-                  </div>
-                  </Link>
-                  
                   <div className="col-12">
-                    <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-
-                      <div className="featured-content">
-                        <div className="featured-title">
-                          <h3>JOB-1</h3>
-                          <p className="mt-2" style={{ color: 'grey' }}>02-10-21</p>
-                        </div>
-                        <div className="featured-bottom">
-                          <div className="view-block">
-                            {/* <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                        ttm-btn-color-dark"
-                                                        exact to={'/applicants'}>View Details</Link> */}
-                            <KeyboardArrowDownIcon
-                              id="demo-customized-button"
-                              aria-controls={open ? 'demo-customized-menu' : undefined}
-                              aria-haspopup="true"
-                              aria-expanded={open ? 'true' : undefined}
-                              variant="contained"
-                              disableElevation
-                              onClick={open ? handleClose : handleClick}
-                            ></KeyboardArrowDownIcon>
-                          </div>
-                          {open &&
-                            <div className="mt-10">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                maecenas accumsan lacus vel facilisis.</p>
-                              <div >
-                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                       ttm-btn-color-dark mr-20"
-                                  exact to={'/job_details'}>Accept</Link>
-                              </div>
-                            </div>
-                          }
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                   {/*<div className="col-lg-12 mt-3">
                     <h6>Activity</h6>

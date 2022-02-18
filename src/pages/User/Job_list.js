@@ -235,7 +235,7 @@ const Job_list = () => {
                                             <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
                                                 <div className="featured-content">
                                                     <div className="featured-title">
-                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
+                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.title}</Link></h3>
                                                     </div>
                                                     <div className="featured-desc">
                                                         <p>{intern.duration}</p>
@@ -245,8 +245,8 @@ const Job_list = () => {
                                                         <div className="job-meta">
                                                             <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
                                                         </div>
-                                                        {intern?.jobType && <div className="job-time">
-                                                            <span className="green">{intern.jobType}</span>
+                                                        {intern?.type && <div className="job-time">
+                                                            <span className="green">{intern.type}</span>
                                                         </div>}
                                                     </div>
                                                 </div>

@@ -633,7 +633,7 @@ export class Home2 extends Component {
 
 
             {/* fid-section */}
-            <section className="ttm-row fid-section bg-img4 bg-theme-DarkColor ttm-bg ttm-bgimage-yes text-theme-WhiteColor clearfix" style={{ backgroundImage: 'url("https://via.placeholder.com/1920x570?text=1920x570+row-bgimage-4.jpg")' }}>
+            <section className="ttm-row fid-section bg-img4 bg-theme-SkinColor ttm-bg ttm-bgimage-yes text-theme-WhiteColor clearfix" style={{ backgroundImage: 'url("https://via.placeholder.com/1920x570?text=1920x570+row-bgimage-4.jpg")' }}>
                 <div className="ttm-row-wrapper-bg-layer ttm-bg-layer bg-theme-DarkColor"></div>
                 <div className="container">
                     {/* row */}

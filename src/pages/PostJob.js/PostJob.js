@@ -31,6 +31,9 @@ const PostJob = () => {
 
     // Skills Required
      skills:'',
+     perks:'',
+     knowledge:'',
+     position:'',
   });
 
   
@@ -77,6 +80,9 @@ const PostJob = () => {
 
     // Skills Required
      skills,
+     perks,
+     knowledge,
+     position,
     } = state;
 
     const values = {
@@ -98,6 +104,9 @@ const PostJob = () => {
 
     // Skills Required
      skills,
+     perks,
+     knowledge,
+     position,
     };
     // console.log(company);
     return (

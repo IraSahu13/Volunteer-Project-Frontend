@@ -93,9 +93,10 @@ function App() {
         <Route exact path={'/applicants'} component={Applications} />
         <Route exact path={'/application'} component={Apply} />
         <Route exact path={'/edit_resume'} component={EditResume} />
-        <Route exact path={'/edit_job'} component={EditJob} />
+        <Route path={'/edit_job'} component={EditJob} />
         <Route exact path={'/projects'} component={Projects} />
         <Route exact path={'/applied_jobs'} component={Applied_Jobs} />
+        <Route exact path={'/posted_jobs'} component={Posted_Jobs} />
         <Route exact path={'/manage_recruitment'} component={ManageRecruitment} />
         <ScrollToTop />
         </Switch>

@@ -55,12 +55,12 @@ class Description extends Component {
                 <textarea
                   margin="dense"
                   variant="outlined"
-                  name="Description"
+                  name="description"
                   placeholder="Description"
                   cols={100}
                   rows={3}
                   required
-                  value={values.college}
+                  value={values.description}
                   onChange={this.props.handleChange}
                 />
               </Grid>
@@ -70,35 +70,56 @@ class Description extends Component {
             <br />
           </div>
         </CardContent>
-        {/* <Container className={classes.margin}>
-          <Row>
-            <Col lg={4} xs={4} />
-            <Col lg={2} xs={2}>
-              <Button
-                variant="contained"
-                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.back}
-                startIcon={<NavigateBeforeIcon />}
-              >
-                Back
-              </Button>
-            </Col>
-            <Col lg={1} xs={2}>
-              <Button
-                variant="contained"
-                className="ttm-btn ttm-btn-style-fill ttm-btn-color-skincolor"
-                onClick={this.continue}
-                endIcon={<NavigateNextIcon />}
-              >
-                Next
-              </Button>
-            </Col>
-            <Col xs={4} />
-          </Row>
-        </Container>
-        <p className="text-center text-muted">Page 2</p> */}
-       
-      {/* <Footer /> */}
+        <Grid item xs={12} lg={12}>
+         <h3>Knowledge</h3>
+        </Grid>
+        <CardContent>
+          <div >
+            <Grid container spacing={2} lg={12}>
+              <Grid item md={4} sm={12} xs={12} lg={4}>
+                <textarea
+                  margin="dense"
+                  variant="outlined"
+                  name="knowledge"
+                  placeholder="Knowledge and Abilities Required"
+                  cols={100}
+                  rows={3}
+                  required
+                  value={values.knowledge}
+                  onChange={this.props.handleChange}
+                />
+              </Grid>
+            </Grid>
+            <br />
+            <Divider />
+            <br />
+          </div>
+        </CardContent>
+        <Grid item xs={12} lg={12}>
+         <h3>Perks</h3>
+        </Grid>
+        <CardContent>
+          <div >
+            <Grid container spacing={2} lg={12}>
+              <Grid item md={4} sm={12} xs={12} lg={4}>
+                <textarea
+                  margin="dense"
+                  variant="outlined"
+                  name="perks"
+                  placeholder="Perks and Benefits"
+                  cols={100}
+                  rows={3}
+                  required
+                  value={values.perks}
+                  onChange={this.props.handleChange}
+                />
+              </Grid>
+            </Grid>
+            <br />
+            <Divider />
+            <br />
+          </div>
+        </CardContent>
     </>
     );
   }

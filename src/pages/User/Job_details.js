@@ -155,7 +155,7 @@ const Job_details = () => {
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Job Informations</h3>
                                         <ul>
-                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.jobType ? intern.jobType : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.type ? intern.type : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Location:</b>{intern.location ? intern.location : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Offered Salary:</b>{intern.stipend ? intern.stipend : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Posted on:</b> {intern.createdAt?.substr(0, 10)}</li>
@@ -221,7 +221,7 @@ const Job_details = () => {
                                                         <span><i className="fa fa-filter"></i>{company?.name}</span>
                                                     </div>
                                                     <div className="job-time ml-0">
-                                                        <span className="green">{intern?.jobType}</span>
+                                                        <span className="green">{intern?.type}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -244,7 +244,7 @@ const Job_details = () => {
                                         </div>
                                         <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
-                                                <h5>Required Knowledge, Skills, and Abilities :</h5>
+                                                <h5>Required Knowledge and Abilities :</h5>
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">

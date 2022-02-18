@@ -5,7 +5,6 @@ import { Footer } from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
 import { allApplicants, allInterns, myAppliedJobs } from '../../api';
 import { CircularProgress, Divider } from '@material-ui/core';
-import ActionSection from '../../components/layout/ActionSection';
 
 
 // export class Job_list extends Component {
