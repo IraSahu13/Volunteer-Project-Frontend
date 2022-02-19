@@ -3,7 +3,7 @@ import Header from '../../components/layout/Header';
 import PageHeader from "../../components/layout/PageHeader";
 import { Footer } from '../../components/layout/Footer';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { allApplicants } from '../../api';
+import { allApplicants, allUsers } from '../../api';
 import { CircularProgress } from '@material-ui/core';
 
 const Candidate_list = () => {
@@ -12,7 +12,7 @@ const Candidate_list = () => {
     const location = useLocation();
     useEffect(() => {
         const id = location.pathname.substring(16,)
-        Promise.resolve(allApplicants(id)).then((res) => {
+        Promise.resolve(allUsers(id)).then((res) => {
             console.log(res.data);
             setallcandidates(res.data)
         }).catch((e) => {

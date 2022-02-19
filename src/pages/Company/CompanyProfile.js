@@ -32,9 +32,10 @@ const styles = theme => ({
 
 const ProfileDetails = (props) => {
   const [company, setCompany] = useState([]);
-  const location = useLocation();
+  const l = useLocation();
+  const id = l.pathname.substring(19,);
   useEffect(() => {
-    const id = location.pathname.substring(19,);
+    
     Promise.resolve(companyInfo(id)).then((res) => {
       console.log(res.data);
       setCompany(res.data);
@@ -57,7 +58,9 @@ const ProfileDetails = (props) => {
     email,
     phone,
     description,
-  }= companyEdit;
+    city,
+  } = companyEdit;
+  console.log(company.title);
   const values = {
 
     // Profile-Information
@@ -102,7 +105,7 @@ const ProfileDetails = (props) => {
     e.preventDefault();
     let file= 
     console.log(e);
-    Promise.resolve((editCompany(values))).then((res)=>{
+    Promise.resolve((editCompany(values, id))).then((res)=>{
       console.log(res);
       setsuccess(true);
       setText('Your profile has been edited successfully');

@@ -16,6 +16,14 @@ export const signup=async (data)=>{
 }
 
 //****** user ******//
+export const allUsers=async ()=>{
+    return await axios.get(`/user/allusers`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
 export const myAppliedJobs=async ()=>{
     return await axios.get(`/user/getappliedjobs`, 
     {
@@ -134,8 +142,8 @@ export const offerIntern=async (id)=>{
         }
     });
 }
-export const editCompany=async (id)=>{
-    return await axios.get(`/company/editcompany/${id}`, 
+export const editCompany=async (data, id)=>{
+    return await axios.put(`/company/editcompany/${id}`, {credentials: data}, 
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -186,7 +194,7 @@ export const getResume=async ()=>{
     });
 }
 export const editResume=async (data)=>{
-    return await axios.put(`/resume/editresume`, data,
+    return await axios.put(`/resume/editresume`, {credentials:data},
     {
         headers:{ 
             token: localStorage.getItem("token") 

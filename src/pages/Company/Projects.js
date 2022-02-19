@@ -113,14 +113,14 @@ const Projects = () => {
                         <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                             <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
                                 <aside className="widget job-widget" >
-                                    <h3 className="widget-title">Active Projects</h3>
+                                    <h3 className="widget-title">Posted Projects</h3>
                                     <div className="col-lg-12 col-md-12">
                                     <ul> 
                                       <li>
                                       { AllInterns?.map((intern, index) => (
                                             <div className="col-lg-12 col-md-12" onClick={() => ( setStep(intern._id))}>
                                                 <div className="featured-title">
-                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.title}</h6></Link>
                                                    <p>{intern.type}</p>
                                                 </div>
                                                 <Divider style={{ color: 'black'}}/>

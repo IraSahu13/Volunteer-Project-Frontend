@@ -235,7 +235,7 @@ const Job_list = () => {
                                             <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
                                                 <div className="featured-content">
                                                     <div className="featured-title">
-                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.title}</Link></h3>
+                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.title ? intern.title : "_"}</Link></h3>
                                                     </div>
                                                     <div className="featured-desc">
                                                         <p>{intern.duration}</p>
