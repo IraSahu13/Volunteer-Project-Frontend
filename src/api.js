@@ -73,7 +73,15 @@ export const myProjects=async ()=>{
     });
 }
 export const myOffers=async ()=>{
-    return await axios.get(`/user/getoffers`, 
+    return await axios.get(`/user/getoffers`,
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const offerAccept=async (id)=>{
+    return await axios.put(`/user/acceptoffer`, {credentials: id}, 
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -90,6 +98,10 @@ export const allInterns=async (data)=>{
 }
 export const getIntern=async (id)=>{
     return await axios.get(`/intern/getintern/${id}`);
+}
+export const acceptApplicant=async (id,userId)=>{
+    console.log(id);
+    return await axios.put(`/intern/acceptapplicant/${id}`, {credentials: userId});
 }
 
 //****** company ******//

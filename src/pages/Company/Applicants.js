@@ -1,20 +1,42 @@
+import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { allApplicants, companyInterns } from '../../api';
+import { Link, useLocation } from 'react-router-dom';
+import { allApplicants, acceptApplicant, companyInterns } from '../../api';
 import { Footer } from '../../components/layout/Footer';
 import Header from '../../components/layout/Header';
 import PageHeader from '../../components/layout/PageHeader';
 
 const Applications = () => {
-  const [allJobs, setAllJobs] = useState([]);
+    const [allcandidates, setallcandidates] = useState([]);
+    const location = useLocation();
+    let id = location.pathname;
+    id = id.split('/id=')[1];
+    console.log(id);
+    useEffect(() => {
+        Promise.resolve(allApplicants(id)).then((res) => {
+            console.log(res.data);
+            setallcandidates(res.data)
+        }).catch((e) => {
+            console.log({ e });
+        })
+    }, [])
+    const [allJobs, setAllJobs] = useState([]);
     useEffect(() => {
         Promise.resolve(companyInterns()).then((res) => {
             console.log(res.data);
             setAllJobs(res.data)
         }).catch((e) => {
-            console.log(e);
+            console.log({ e });
         })
     }, [])
+
+    const handleReject = () => {
+
+    }
+
+    const handleAccept = () => {
+
+    }
 
     return (
         <div className="site-main">
@@ -49,11 +71,11 @@ const Applications = () => {
                                                 <Divider style={{ color: 'black'}}/>
                                             </div>
                                         ))
-                                        */}  
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </aside>
+                                        */}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </aside>
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="flaticon flaticon-subfolder-1"></i>Skills</h3>
                                         <form id="list2" className="list-filter">
@@ -138,38 +160,45 @@ const Applications = () => {
                                 </div>
                                 <div className="row">
                                 {/*allcandidates.map((user) => (
-                                    <div className="col-lg-12">
-                                        <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
-                                            <div className="featured-thumbnail">
-                                                <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
-                                            </div>
-                                            <div className="featured-content">
-                                                <div className="featured-title">
-                                                    <h3>{user.name}</h3>
-                                                </div>
-                                                <div className="featured-bottom">
-                                                    <div className="job-skill">
-                                                        {user.skills.map(skill => (
-                                                            <span className="skill-tag">{skill}</span>
-                                                        ))}
-                                                    </div>
-                                                    <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>{user.city}</span>
-                                                    </div>
-                                                    <div className="view-block">
-                                                      <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
-                                                        ttm-btn-color-dark " style={{marginRight:'1rem'}}
-                                                        exact to={'/candidate_details'}>Contact</Link>
-                                                      <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+            <div className="col-lg-12">
+                <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+                    <div className="featured-thumbnail">
+                        <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
+                    </div>
+                    <div className="featured-content">
+                        <div className="featured-title">
+                            <h3>{user?.name}</h3>
+                        </div>
+                        <div className="featured-title">
+                            <p>{user?.title}</p>
+                        </div>
+                        <div className="featured-bottom">
+                            <div className="job-skill">
+                                {user?.skills?.map(skill => (
+                                    <span className="skill-tag">{skill}</span>
+                                ))}
+                            </div>
+                            <div className="job-meta">
+                                <span><i className="fa fa-map-marker-alt"></i>{user?.city}</span>
+                            </div>
+                            <div className="view-block">
+                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                                        ttm-btn-color-dark " style={{ marginRight: '1rem' }}
+                                    exact to={'/candidate_details'}>Contact</Link>
+                                <span><Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                                         ttm-btn-color-dark"
-                                                        exact to={'/candidate_details'}>view Profile</Link></span>
-                                                    
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    exact to={'/candidate_details'}>view Profile</Link></span>
+                            </div>
+                            <button onClick={handleReject} className="btn">Reject Applicant</button>
+                            <button onClick={() => {
+                                Promise.resolve(acceptApplicant(id, user._id)).then((res) => {
+                                    console.log(res);
+                                }).catch((e) => { console.log({ e }); })
+                            }} className="btn">Accept Applicant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
                                                         ))*/}
                                 <div className="col-lg-12">
                                     <div className="featured-imagebox featured-imagebox-candidate">
@@ -216,15 +245,15 @@ const Applications = () => {
                                         <Link className="page-nav-link">next</Link>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>{/* row end */}
-                </div>
-            </div>
-            <Footer />
+                            </div >
+                            </div >
+                        </div >
+                    </div > {/* row end */ }
+                </div >
+            </div >
+    <Footer />
 
-        </div>
+        </div >
     )
 };
 

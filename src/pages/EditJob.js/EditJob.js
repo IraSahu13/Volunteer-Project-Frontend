@@ -15,17 +15,7 @@ const EditJob = () => {
   const [editjob, setEditjob]= useState([]);
   const l = useLocation();
   let id = l.pathname;
-  id = id.split('/edit_job/')[1];
-  useEffect(() => {
-    console.log(id);
-    Promise.resolve(getJob(id)).then((res) => {
-      
-      console.log(res.data);
-      setEditjob(res.data)
-    }).catch((e) => {
-        console.log({ e });
-    })
-    }, [])
+  id = id.split('/id=')[1];
   
   const [job, setJob] = useState({
    
@@ -72,25 +62,34 @@ const EditJob = () => {
      skills,
      position, 
      perks,
-    } = editjob;
+    } = job;
 
+    useEffect(() => {
+      console.log(id);
+      Promise.resolve(getJob(id)).then((res) => {
+        console.log(res.data);
+        setJob(res.data)
+      }).catch((e) => {
+          console.log({ e });
+      })
+      }, [])
     console.log(job.company);
     const values = {
     // Personal Profile Details...
     company,
     title,
     category,
-    experience: editjob.experience,
-    type: editjob.type,
-    location: editjob.location,
-    duration: editjob.duration,
-    stipend: editjob.stipend,
+    experience,
+    type,
+    location,
+    duration,
+    stipend,
 
     // Description
-    description: editjob.description,
+    description,
     
     // Qualifications Required
-    qualification: editjob.qualification,
+    qualification,
 
     // Skills Required
      skills: editjob.skills,
