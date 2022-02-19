@@ -159,7 +159,7 @@ const Applications = () => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                {/*allcandidates.map((user) => (
+                                {allcandidates.map((user, index) => (
             <div className="col-lg-12">
                 <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
                     <div className="featured-thumbnail">
@@ -199,7 +199,7 @@ const Applications = () => {
                     </div>
                 </div>
             </div>
-                                                        ))*/}
+                                                        ))}
                                 <div className="col-lg-12">
                                     <div className="featured-imagebox featured-imagebox-candidate">
                                         <div className="featured-thumbnail">

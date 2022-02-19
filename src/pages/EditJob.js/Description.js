@@ -55,7 +55,7 @@ class Description extends Component {
                 <textarea
                   margin="dense"
                   variant="outlined"
-                  name="Description"
+                  name="description"
                   placeholder="Description"
                   cols={100}
                   rows={3}

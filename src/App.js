@@ -90,7 +90,7 @@ function App() {
         <Route exact path={`/post_job`} component={ PostJob } />
         <Route exact path={`/profile`} component={ User_profile } />
         <Route exact path={`/company_profile`} component={ CompanyProfile } />
-        <Route exact path={'/applicants'} component={Applications} />
+        <Route path={'/applicants'} component={Applications} />
         <Route exact path={'/application'} component={Apply} />
         <Route exact path={'/edit_resume'} component={EditResume} />
         <Route path={'/edit_job'} component={EditJob} />

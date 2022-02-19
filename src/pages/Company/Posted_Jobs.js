@@ -45,7 +45,7 @@ const Posted_Jobs = () => {
                                             <div className="view-block">
                                                 <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                             ttm-btn-color-dark"
-                                                    exact to={'/applicants'}>View Applications</Link>
+                                                    to={`/applicants/id=${data._id}`}>View Applications</Link>
                                             </div>
                                         </div>
                                     </div>

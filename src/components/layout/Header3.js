@@ -303,6 +303,12 @@ const Header = () => {
                                                       Applications
                                                     </MenuItem>
                                                     </Link>}
+                                                    {status==="company" && <Link exact to= {'/posted_jobs '}>
+                                                    <MenuItem>
+                                                    <ListItemIcon />
+                                                      Posted Jobs
+                                                    </MenuItem>
+                                                    </Link>}
                                                     {/*status==="company" && <Link exact to= {'/applicants'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
