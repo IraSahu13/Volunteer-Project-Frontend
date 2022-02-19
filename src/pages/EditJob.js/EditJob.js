@@ -6,28 +6,35 @@ import Profile from './Profile';
 import Description from './Description';
 import Qualification from './Qualification';
 import Skills from './Skills';
-import { editJob } from '../../api';
+import { editJob, getJob } from '../../api';
+import { useLocation } from 'react-router-dom';
 
 const EditJob = () => {
   const [success, setsuccess] = useState()
   const [text, settext] = useState('')
   const [editjob, setEditjob]= useState([]);
+  const l = useLocation();
+  let id = l.pathname;
+  id = id.split('/edit_job/')[1];
   useEffect(() => {
-    Promise.resolve(editJob()).then((res) => {
-        console.log(res.data);
-        setEditjob(res.data)
+    console.log(id);
+    Promise.resolve(getJob(id)).then((res) => {
+      
+      console.log(res.data);
+      setEditjob(res.data)
     }).catch((e) => {
         console.log({ e });
     })
     }, [])
-  const [state, setState] = useState({
+  
+  const [job, setJob] = useState({
    
     // Personal Profile Details...
     company: editjob.company,
-    title: editjob.projectTitle,
+    title: editjob.title,
     category: editjob.category,
     experience: editjob.experience,
-    type: editjob.jobType,
+    type: editjob.type,
     location: editjob.location,
     duration: editjob.duration,
     stipend: editjob.stipend,
@@ -40,32 +47,10 @@ const EditJob = () => {
 
     // Skills Required
      skills: editjob.skills,
+     position: editjob.position,
+     perks: editjob.perks,
   });
-
-  
-  const handleChange = (e) => {
-    e.preventDefault();
-    const val= e.target.value;
-    console.log(val);
-    setState ({
-      ...state,
-      [e.target.name]: val});
-  };
-  const handleSubmit = (e) => {
-    console.log(e);
-    Promise.resolve(editJob(values)).then((res) => {
-      console.log(res);
-      setsuccess(true)
-      settext(`${title} has been edited successfully`);
-      setTimeout(() => {
-        setsuccess(false)
-        settext(``);
-      }, 3000);
-  }).catch((e) => {
-      console.log({ e });
-  })
-  }
-    
+  console.log(job);
     const {
     // Profile-Information
     company,
@@ -85,28 +70,56 @@ const EditJob = () => {
 
     // Skills Required
      skills,
-    } = state;
+     position, 
+     perks,
+    } = editjob;
 
+    console.log(job.company);
     const values = {
-      // Profile-Information
+    // Personal Profile Details...
     company,
     title,
     category,
-    experience,
-    type,
-    location,
-    duration,
-    stipend,
+    experience: editjob.experience,
+    type: editjob.type,
+    location: editjob.location,
+    duration: editjob.duration,
+    stipend: editjob.stipend,
 
     // Description
-    description,
+    description: editjob.description,
     
     // Qualifications Required
-    qualification,
+    qualification: editjob.qualification,
 
     // Skills Required
-     skills,
+     skills: editjob.skills,
+     position: editjob.position,
+     perks: editjob.perks,
     };
+
+    const handleChange = (e) => {
+      e.preventDefault();
+      const val= e.target.value;
+      console.log(val);
+      setJob ({
+        ...job,
+        [e.target.name]: val});
+    };
+    const handleSubmit = (e) => {
+      console.log(e);
+      Promise.resolve(editJob(id,values)).then((res) => {
+        console.log(res);
+        setsuccess(true)
+        settext(`${title} has been edited successfully`);
+        setTimeout(() => {
+          setsuccess(false)
+          settext(``);
+        }, 3000);
+    }).catch((e) => {
+        console.log({ e });
+    })
+    }
     // console.log(company);
     return (
          <>

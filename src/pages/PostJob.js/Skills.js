@@ -90,6 +90,19 @@ class Skills extends Component {
             <Divider />
             <br />
         </CardContent>
+        <Grid item md={6} sm={12} xs={12} lg={6}>
+                <TextField
+                  margin="dense"
+                  label="Positions open"
+                  variant="outlined"
+                  name="position"
+                  required
+                  style={{alignItems: 'left', width: '80%'}}
+                  value={values.position}
+                  onChange={this.props.handleChange}
+                  
+                />
+              </Grid>
         {/* <Container className={classes.margin}>
           <Row>
             <Col lg={4} xs={4} />

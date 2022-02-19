@@ -16,8 +16,8 @@ const Job_details = () => {
     const [question, setquestion] = useState([]);
     const [resume, setresume] = useState([]);
     const [options, setoptions] = useState([]);
-    const location = useLocation();
-    const internId = location.pathname.substring(13,);
+    const l = useLocation();
+    const internId = l.pathname.substring(13,);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -27,15 +27,15 @@ const Job_details = () => {
     const [error, setError] = useState(false);
     const [text, setText] = useState("");
     const [success, setsuccess] = useState(false);
-
+    const status= localStorage.getItem("status"); 
     useEffect(() => {
         Promise.resolve(getIntern(internId)).then((res) => {
-            setIntern(res.data.intern)
-            setCompany(res.data.company)
-            // console.log(res.data.intern);
+            setIntern(res.data)
+            console.log(res.data);
         }).catch((e) => {
             console.log({ e });
         })
+        if(status=="user"){
         Promise.resolve(getResume()).then((res)=>{
             const p = res.data.map((data)=>{
                 return data.resumeTitle
@@ -44,6 +44,7 @@ const Job_details = () => {
         }).catch((e)=>{
             console.log({e});
         })
+        }
     }, [])
 
     const ApplyHandleClick = () => {
@@ -155,13 +156,13 @@ const Job_details = () => {
                                     <aside className="widget job-widget">
                                         <h3 className="widget-title"><i className="ti ti-files"></i>Job Informations</h3>
                                         <ul>
-                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.jobType ? intern.jobType : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Job Type:</b>{intern.type ? intern.type : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Location:</b>{intern.location ? intern.location : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Offered Salary:</b>{intern.stipend ? intern.stipend : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Posted on:</b> {intern.createdAt?.substr(0, 10)}</li>
-                                            <li className="d-flex"><b className="mr-5">Experience:</b>{intern.experienceNeeded ? intern.experienceNeeded : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Experience:</b>{intern.experience ? intern.experience : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">Category:</b>{intern.category ? intern.category : "-"}</li>
-                                            <li className="d-flex"><b className="mr-5">Qualification:</b>{intern.qualificationNeeded ? intern.qualificationNeeded : "-"}</li>
+                                            <li className="d-flex"><b className="mr-5">Qualification:</b>{intern.qualification ? intern.qualification : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">position:</b>{intern.position ? intern.position : "-"}</li>
                                             <li className="d-flex"><b className="mr-5">no. of candidates hired:</b>{intern.users?.length}</li>
                                         </ul>
@@ -206,22 +207,22 @@ const Job_details = () => {
                                             </div>
                                             <div className="featured-content">
                                                 <div className="featured-title">
-                                                    <h3><Link a='/job_details'>{intern?.name}</Link></h3>
+                                                    <h3><Link exact to={`/job_details/${intern._id}`}>{intern?.title}</Link></h3>
                                                 </div>
                                                 <div className="featured-desc">
                                                     <p>Published on {intern.createdAt?.substr(0, 10)}</p>
                                                 </div>
-                                                <div className="view-block">
+                                                {status==="user" && <div className="view-block">
                                                 <button className=" ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
                                                 onClick={handleOpen}>Apply</button>
-                                                </div>
+                                                </div>}
                                                 <div className="featured-bottom">
                                                     <div className="job-meta">
-                                                        <span><i className="fa fa-map-marker-alt"></i>{company?.city}</span>
-                                                        <span><i className="fa fa-filter"></i>{company?.name}</span>
+                                                        <span><i className="fa fa-map-marker-alt"></i>{intern?.location}</span>
+                                                        <span><i className="fa fa-filter"></i>{intern?.category}</span>
                                                     </div>
                                                     <div className="job-time ml-0">
-                                                        <span className="green">{intern?.jobType}</span>
+                                                        <span className="green">{intern?.type}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,16 +240,16 @@ const Job_details = () => {
                                                     maecenas accumsan lacus vel facilisis.
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                                     labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                                    maecenas accumsan lacus vel facilisis. ”</p>}
+                                                maecenas accumsan lacus vel facilisis. ”</p>}
                                             </div>
                                         </div>
                                         <div className="overview-box" style={{ backgroundColor: '#ece3f4' }}>
                                             <div className="title">
-                                                <h5>Required Knowledge, Skills, and Abilities :</h5>
+                                                <h5>Required Knowledge and Abilities :</h5>
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    {(intern.knowledgeNeeded?.length === 0 && <p>No Prerequisites Reuired</p>) || (intern.knowledgeNeeded === undefined && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.knowledgeNeeded?.length === 0 && <p>No Prerequisites Reuired</p>}{intern.knowledgeNeeded === undefined && <p>No Prerequisites Reuired</p>}
                                                     {intern.knowledgeNeeded?.map((data) => (
                                                         <li>
                                                             <i className="ti ti-check-box"></i>
@@ -264,8 +265,8 @@ const Job_details = () => {
                                             </div>
                                             <div className="desc">
                                                 <ul className="ttm-list ttm-list-style-icon ttm-textcolor-darkgrey">
-                                                    {(intern.skillsNeeded?.length === 0 && <p>No Prerequisites Reuired</p>)}
-                                                    {intern.skillsNeeded?.map((data) => (
+                                                    {(intern.skills?.length === 0 && <p>No Prerequisites Reuired</p>)}
+                                                    {intern.skills?.map((data) => (
                                                         <li>
                                                             <i className="ti ti-check-box"></i>
                                                             <div className="ttm-list-li-content">{data}</div>
@@ -277,8 +278,8 @@ const Job_details = () => {
                                         <div className="justify-center mt-20 mb-60">
                                             <div className="col-lg-12">
                                                 <label className="mb-0">
-                                                    <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
-                                                        onClick={handleOpen}>Apply</button>
+                                                {status=="user" && <button className=" w-100 ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor"
+                                                        onClick={handleOpen}>Apply</button>}
                                                     <Modal
                                                         open={open}
                                                         onClose={handleClose}

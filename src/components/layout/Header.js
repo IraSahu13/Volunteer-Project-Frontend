@@ -200,7 +200,7 @@ const Header = () => {
                                                     </MenuItem>
                                                   </Link>}
                                                     <Divider />
-                                                    <Link>
+                                                    <Link exact to= {'/signup'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                         <PersonAdd fontSize="small" />
@@ -224,14 +224,13 @@ const Header = () => {
                                                       Post an Opportunity
                                                       </MenuItem>
                                                     </Link>}
-                                                    {status=="company" && <Link exact to= {'/edit_job'}>
+                                                    {/*status=="company" && <Link exact to= {'/edit_job'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                          {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                         Edit Job
                                                       </MenuItem>
-                                                    </Link>}
+                                                     </Link>*/}
                                                     {status==="user" && <Link exact to= {'/edit_resume'}>
                                                       <MenuItem>
                                                         <ListItemIcon>
@@ -248,28 +247,26 @@ const Header = () => {
                                                       Applications
                                                     </MenuItem>
                                                     </Link>}
-                                                    {status==="company" && <Link exact to= {'/applicants'}>
+                                                    {/*status==="company" && <Link exact to= {'/applicants'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                       Applications
                                                     </MenuItem>
-                                                    </Link>}
+                                                    </Link>*/}
                                                     {status==="company" && <Link exact to= {'/projects'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                       Projects
                                                     </MenuItem>
                                                     </Link>}
-                                                    {status==="company" && <Link exact to= {'/manage_recruitment '}>
+                                                    {/*status==="company" && <Link exact to= {'/manage_recruitment '}>
                                                     <MenuItem>
                                                     <ListItemIcon />
                                                       Manage Recruitment
                                                     </MenuItem>
-                                                     </Link>}
+                                                    </Link>*/}
                                                     {/*<MenuItem>
                                                       <ListItemIcon>
                                                         <Settings fontSize="small" />

@@ -27,13 +27,15 @@ const Posted_Jobs = () => {
             />
             <Card>
                 <div className="row m-4">
-                    {AllInterns?.map((data)=>(
-                        <Link exact to={`/edit_job/${data.id}`}>
+                    {AllInterns?.map((data, index) =>{console.log(data)})}
+                    {AllInterns?.map((data, index)=>(
+                        <Link exact to={`/edit_job/id=${data._id}`}>
                         <div className="col-lg-12">
                         <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
                             <div className="featured-content">
                                 <div className="featured-title">
-                                    <h3>{data?.name}</h3>
+                                    <h3>{data?.title}</h3>
+                                    <p>{data?.category}</p>
                                 </div>
                                 <div className="featured-bottom">
                                     <div className="job-skill">
@@ -43,7 +45,7 @@ const Posted_Jobs = () => {
                                     <div className="view-block">
                                         <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                             ttm-btn-color-dark"
-                                            exact to={`/applications/id=${data._id}`}>View Applications</Link>
+                                            exact to={'/edit_job'}>View Applications</Link>
                                     </div>
                                 </div>
                             </div>

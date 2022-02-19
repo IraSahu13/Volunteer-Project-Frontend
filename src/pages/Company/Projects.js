@@ -3,35 +3,64 @@ import Header from '../../components/layout/Header';
 import PageHeader from "../../components/layout/PageHeader";
 import { Footer } from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { allApplicants, allInterns, myAppliedJobs } from '../../api';
+import { allApplicants, allInterns, myAppliedJobs, offerIntern, userApplied, userOnBoard } from '../../api';
 import { CircularProgress, Divider } from '@material-ui/core';
 import ActionSection from '../../components/layout/ActionSection';
 
 
 // export class Job_list extends Component {
 const Projects = () => {
-    const [step, setStep]= useState(0);
+    const [step, setStep]= useState(null);
     const [AllInterns, setallInterns] = useState([]);
     const [loading, setloading] = useState(true);
     useEffect(() => {
         Promise.resolve(allInterns()).then((res) => {
             // console.log(res.data);
             setallInterns(res.data)
+            setStep(res.data[0]._id);
             setloading(false);
         }).catch((e) => {
             console.log(e);
         })
     }, [])
-    const [allApplications, setAllApplications] = useState([]);
+    const [applications, setApplications] = useState([]);
     useEffect(() => {
-    Promise.resolve(myAppliedJobs()).then((res) => {
+    Promise.resolve(userApplied(step)).then((res) => {
       console.log(res.data);
-      setAllApplications(res.data.response)
+      setApplications(res.data.response)
     }).catch((e) => {
       console.log({ e });
     })
     }, []);
-    
+    const [accepted, setaccepted] = useState([]);
+    useEffect(() => {
+    Promise.resolve(userOnBoard(step)).then((res) => {
+      console.log(res.data);
+      setaccepted(res.data.response)
+    }).catch((e) => {
+      console.log({ e });
+    })
+    }, []);
+    const [offers, setoffers] = useState([]);
+    useEffect(() => {
+    Promise.resolve(userApplied(step)).then((res) => {
+      console.log(res.data);
+      setoffers(res.data)
+    }).catch((e) => {
+      console.log({ e });
+    })
+    }, []);
+    const handleOffer= (e) => {
+        e.preventDefault();
+        console.log(e);
+        Promise.resolve(offerIntern(step)).then((res) => {
+            console.log(res);
+            setTimeout(() => {
+            }, 3000);
+        }).catch((e) => {
+            console.log({ e });
+        })
+    }
     return (
 
         <div className="site-main">
@@ -83,63 +112,16 @@ const Projects = () => {
                     <div className="row">
                         <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
                             <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
-                                <aside className="widget job-widget" onClick={() => ( setStep(0))}>
-                                    <h3 className="widget-title">Active Projects</h3>
+                                <aside className="widget job-widget" >
+                                    <h3 className="widget-title">Posted Projects</h3>
                                     <div className="col-lg-12 col-md-12">
-                                    <ul>
-                                                    
-                                                
+                                    <ul> 
                                       <li>
-                                      { AllInterns &&
-                                        AllInterns.map((intern, index) => (
-                                            index<5 && <div className="col-lg-12 col-md-12">
+                                      { AllInterns?.map((intern, index) => (
+                                            <div className="col-lg-12 col-md-12" onClick={() => ( setStep(intern._id))}>
                                                 <div className="featured-title">
-                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
-                                                   <p>{intern.jobType}</p>
-                                                </div>
-                                                <Divider style={{ color: 'black'}}/>
-                                            </div>
-                                        ))
-                                      }  
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </aside>
-                                <aside className="widget job-widget" onClick={() => ( setStep(1))}>
-                                    <h3 className="widget-title">Completed Projects</h3>
-                                    <div className="col-lg-12 col-md-12">
-                                    <ul>
-                                                    
-                                                
-                                      <li>
-                                      { AllInterns &&
-                                        AllInterns.map((intern, index) => (
-                                            index<5 && <div className="col-lg-12 col-md-12">
-                                                <div className="featured-title">
-                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
-                                                   <p>{intern.jobType}</p>
-                                                </div>
-                                                <Divider style={{ color: 'black'}}/>
-                                            </div>
-                                        ))
-                                      }  
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </aside>
-                                <aside className="widget job-widget" onClick={() => ( setStep(2))}>
-                                    <h3 className="widget-title">In Process Projects</h3>
-                                    <div className="col-lg-12 col-md-12">
-                                    <ul>
-                                                    
-                                                
-                                      <li>
-                                      { AllInterns &&
-                                        AllInterns.map((intern, index) => (
-                                            index<5 && <div className="col-lg-12 col-md-12">
-                                                <div className="featured-title">
-                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
-                                                   <p>{intern.jobType}</p>
+                                                   <Link to={`/job_details/${intern._id}`}><h6>{intern.title}</h6></Link>
+                                                   <p>{intern.type}</p>
                                                 </div>
                                                 <Divider style={{ color: 'black'}}/>
                                             </div>
@@ -175,161 +157,42 @@ const Projects = () => {
                                 {
                                     (loading) && <CircularProgress />
                                 }
-                                {(() => {
-                                    switch (step) {
-                                      case 0:
-                                        return( 
-                                        <>
-                                        <h6>Active Projects</h6>
-                                        {  allApplications &&
-                                            allApplications.map((intern, index) => (
-                                                <div className="col-lg-12 col-md-12">
-                                                    <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
-                                                        <div className="featured-content">
-                                                            <div className="featured-title">
-                                                                <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
-                                                            </div>
-                                                            <div className="featured-desc">
-                                                                <p>{intern.duration}</p>
-                                                                <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
-                                                            </div>
-                                                            <div className="featured-bottom">
-                                                                <div className="job-meta">
-                                                                    <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
-                                                                </div>
-                                                                {intern?.jobType && <div className="job-time">
-                                                                    <span className="green">{intern.jobType}</span>
-                                                                </div>}
-                                                            </div>
-                                                        </div>
-        
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                        </>
-                                        );
-                                      case 1:
-                                        return(
-                                        <>
-                                        <h6>Completed Projects</h6>
-                                        {  allApplications &&
-                                            allApplications.map((intern, index) => (
-                                                <div className="col-lg-12 col-md-12">
-                                                    <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
-                                                        <div className="featured-content">
-                                                            <div className="featured-title">
-                                                                <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
-                                                            </div>
-                                                            <div className="featured-desc">
-                                                                <p>{intern.duration}</p>
-                                                                <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
-                                                            </div>
-                                                            <div className="featured-bottom">
-                                                                <div className="job-meta">
-                                                                    <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
-                                                                </div>
-                                                                {intern?.jobType && <div className="job-time">
-                                                                    <span className="green">{intern.jobType}</span>
-                                                                </div>}
-                                                            </div>
-                                                        </div>
-        
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                        </>
-                                        );
-                                      case 2:
-                                        return(
-                                        <>
-                                        <h6>In Process Projects</h6>
-                                        {  allApplications &&
-                                            allApplications.map((intern, index) => (
-                                                <div className="col-lg-12 col-md-12">
-                                                    <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
-                                                        <div className="featured-content">
-                                                            <div className="featured-title">
-                                                                <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
-                                                            </div>
-                                                            <div className="featured-desc">
-                                                                <p>{intern.duration}</p>
-                                                                <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
-                                                            </div>
-                                                            <div className="featured-bottom">
-                                                                <div className="job-meta">
-                                                                    <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
-                                                                </div>
-                                                                {intern?.jobType && <div className="job-time">
-                                                                    <span className="green">{intern.jobType}</span>
-                                                                </div>}
-                                                            </div>
-                                                        </div>
-        
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                        </>)
-                                        ;
-                                      default:
-                                        return <CircularProgress />;
-                                    }
-                                  })()}
-                                
-                                {  allApplications &&
-                                    allApplications.map((intern, index) => (
-                                        <div className="col-lg-12 col-md-12">
-                                            <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
-                                                <div className="featured-content">
-                                                    <div className="featured-title">
-                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
-                                                    </div>
-                                                    <div className="featured-desc">
-                                                        <p>{intern.duration}</p>
-                                                        <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
-                                                    </div>
-                                                    <div className="featured-bottom">
-                                                        <div className="job-meta">
-                                                            <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
-                                                        </div>
-                                                        {intern?.jobType && <div className="job-time">
-                                                            <span className="green">{intern.jobType}</span>
-                                                        </div>}
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                <h6>Hired Volunteers/Interns</h6>
+                                { accepted?.map((intern, index) => (
+                                    <div className="col-lg-12 col-md-12" >
+                                        <div className="featured-title">
+                                           <Link to={`/candidate_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                           <p>{intern.title}</p>
                                         </div>
-                                    ))
+                                        <Divider style={{ color: 'black'}}/>
+                                    </div>
+                                ))
                                 }
-                                {  allApplications &&
-                                    allApplications.map((intern, index) => (
-                                        <div className="col-lg-12 col-md-12">
-                                            <div className="flex featured-imagebox featured-imagebox-job" style={{ backgroundColor: '#ece3f4' }}>
-                                                <div className="featured-content">
-                                                    <div className="featured-title">
-                                                        <h3><Link to={`/job_details/${intern._id}`}>{intern.name}</Link></h3>
-                                                    </div>
-                                                    <div className="featured-desc">
-                                                        <p>{intern.duration}</p>
-                                                        <p>{intern.description ? intern.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} </p>
-                                                    </div>
-                                                    <div className="featured-bottom">
-                                                        <div className="job-meta">
-                                                            <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
-                                                        </div>
-                                                        {intern?.jobType && <div className="job-time">
-                                                            <span className="green">{intern.jobType}</span>
-                                                        </div>}
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                <h6>Offered Volunteers/Interns</h6>
+                                {offers?.map((intern, index) => (
+                                    <div className="col-lg-12 col-md-12" >
+                                        <div className="featured-title">
+                                           <Link to={`/candidate_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                           <p>{intern.title}</p>
                                         </div>
-                                    ))
+                                        <Divider style={{ color: 'black'}}/>
+                                    </div>
+                                ))
                                 }
+                                <h6>Applications</h6>
+                                { applications?.map((intern, index) => (
+                                    <div className="col-lg-12 col-md-12" >
+                                        <div className="featured-title">
+                                           <Link to={`/candidate_details/${intern._id}`}><h6>{intern.name}</h6></Link>
+                                           <p>{intern.title}</p>
+                                        </div>
+                                        <div className="view-block"><button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                        ttm-btn-color-dark mr-20"
+                                        onClick={handleOffer}>Offer</button></div>
+                                        <Divider style={{ color: 'black'}}/>
+                                    </div>
+                                ))
+                                } 
                                 
                                 <div className="col-lg-12">
                                     <div className="job-pagination-block">

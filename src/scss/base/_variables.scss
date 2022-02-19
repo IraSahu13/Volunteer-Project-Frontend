@@ -6,13 +6,13 @@ $headingfont: 'Noto Sans JP', sans-serif;
 
 //== Theme Typo Colors
 $bodyfont-Color: black;
-$headingfont-Color: #B8B5FF;
-$border-Color: #20bf6b;
+$headingfont-Color: #120078;
+$border-Color: #120078;
 
 //== Theme Color
-$theme-SkinColor: #5f43b2;
-$theme-DarkColor: #5f43b2;
-$theme-GreyColor: #f7f7f7;
+$theme-SkinColor: #907FA4;
+$theme-DarkColor: #907FA4;
+$theme-GreyColor: #B80D57;
 $theme-WhiteColor: #FFFFFF;
 
 //== Social Media Icons Color
@@ -29,19 +29,19 @@ $linkedin: #0077B5;
 .bg {
 
     &-theme-SkinColor {
-      background-color: #907FA4;
+      background: linear-gradient(90deg, rgba(171,11,73,1) 0%, rgba(60,9,111,1) 50%, rgba(143,66,190,1) 100%);
     }
   
     &-theme-DarkColor {
-      background-color: #907FA4;
+      background: linear-gradient(90deg, rgba(171,11,73,1) 0%, rgba(60,9,111,1) 50%, rgba(143,66,190,1) 100%);
     }
   
     &-theme-GreyColor {
-      background-color: #907FA4;
+      background-color: $theme-GreyColor;
     }
 
     &-theme-WhiteColor {
-      background-color: #907FA4;
+      background-color: $theme-WhiteColor;
     }
 
   }

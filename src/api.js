@@ -16,6 +16,14 @@ export const signup=async (data)=>{
 }
 
 //****** user ******//
+export const allUsers=async ()=>{
+    return await axios.get(`/user/allusers`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
 export const myAppliedJobs=async ()=>{
     return await axios.get(`/user/getappliedjobs`, 
     {
@@ -26,6 +34,14 @@ export const myAppliedJobs=async ()=>{
 }
 export const userInfo=async ()=>{
     return await axios.get(`/user/getuser`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const acceptOffer=async (id)=>{
+    return await axios.put(`/user/acceptoffer/${id}`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -105,8 +121,16 @@ export const postJob=async (data)=>{
         }
     });
 }
-export const editJob=async ()=>{
-    return await axios.get(`/company/editjob`, 
+export const editJob=async (id, data)=>{
+    return await axios.put(`/company/editjob/${id}`,{credentials: data}, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const getJob=async (id)=>{
+    return await axios.get(`/intern/getintern/${id}`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
@@ -114,22 +138,55 @@ export const editJob=async ()=>{
     });
 }
 
-export const companyInfo=async (id)=>{
-    return await axios.get(`/company/getcompany/${id}`, 
+export const companyInfo=async ()=>{
+    return await axios.get(`/company/getcompany`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
         }
     });
 }
-export const editCompany=async ()=>{
-    return await axios.get(`/company/editcompany`, 
+export const offerIntern=async (id)=>{
+    return await axios.put(`intern/acceptapplicant/${id}`, 
     {
         headers:{ 
             token: localStorage.getItem("token")
         }
     });
 }
+export const editCompany=async (data, id)=>{
+    return await axios.put(`/company/editcompany/${id}`, {credentials: data}, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const userApplied = async (id)=>{
+    return await axios.get(`/intern/userapplied/${id}`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const userAccepted = async (id)=>{
+    return await axios.get(`/intern/useraccepted/${id}`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+export const userOnBoard = async (id)=>{
+    return await axios.get(`/intern/useronboard/${id}`, 
+    {
+        headers:{ 
+            token: localStorage.getItem("token")
+        }
+    });
+}
+
 
 //****** resume ******//
 export const PostResume=async (data)=>{
@@ -149,7 +206,7 @@ export const getResume=async ()=>{
     });
 }
 export const editResume=async (data)=>{
-    return await axios.put(`/resume/editresume`, data,
+    return await axios.put(`/resume/editresume`, {credentials:data},
     {
         headers:{ 
             token: localStorage.getItem("token") 

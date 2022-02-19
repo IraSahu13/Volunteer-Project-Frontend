@@ -94,7 +94,7 @@ const Applied_Jobs = () => {
                                             index<5 && <div className="col-lg-12 col-md-12">
                                                 <div className="featured-title">
                                                    <Link to={`/job_details/${intern._id}`}><h6>{intern.name}</h6></Link>
-                                                   <p>{intern.jobType}</p>
+                                                   <p>{intern.type}</p>
                                                 </div>
                                                 <Divider style={{ color: 'black'}}/>
                                             </div>
@@ -176,8 +176,8 @@ const Applied_Jobs = () => {
                                                         <div className="job-meta">
                                                             <span><i className="fa fa-map-marker-alt"></i>{intern.location}</span>
                                                         </div>
-                                                        {intern?.jobType && <div className="job-time">
-                                                            <span className="green">{intern.jobType}</span>
+                                                        {intern?.type && <div className="job-time">
+                                                            <span className="green">{intern.type}</span>
                                                         </div>}
                                                     </div>
                                                 </div>

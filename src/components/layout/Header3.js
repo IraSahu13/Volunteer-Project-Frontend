@@ -263,7 +263,7 @@ const Header = () => {
                                                     </MenuItem>
                                                   </Link>}
                                                     <Divider />
-                                                    <Link>
+                                                    <Link exact to= {'/signup'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
                                                         <PersonAdd fontSize="small" />
@@ -303,14 +303,13 @@ const Header = () => {
                                                       Applications
                                                     </MenuItem>
                                                     </Link>}
-                                                    {status==="company" && <Link exact to= {'/applicants'}>
+                                                    {/*status==="company" && <Link exact to= {'/applicants'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                       Applications
                                                     </MenuItem>
-                                                    </Link>}
+                                                    </Link>*/}
                                                     {status==="company" && <Link exact to= {'/projects'}>
                                                     <MenuItem>
                                                       <ListItemIcon>
@@ -319,14 +318,13 @@ const Header = () => {
                                                       Projects
                                                     </MenuItem>
                                                     </Link>}
-                                                    {status==="company" && <Link exact to= {'/manage_recruitment '}>
+                                                    {/*status==="company" && <Link exact to= {'/manage_recruitment '}>
                                                     <MenuItem>
                                                       <ListItemIcon>
-                                                        {/* <Settings fontSize="small" /> */}
                                                       </ListItemIcon>
                                                       Manage Recruitment
                                                     </MenuItem>
-                                                    </Link>}
+                                                    </Link>*/}
                                                       <MenuItem
                                                         onClick={()=>{
                                                            localStorage.removeItem("token");

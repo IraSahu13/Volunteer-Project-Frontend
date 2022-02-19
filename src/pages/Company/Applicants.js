@@ -55,13 +55,13 @@ const Applications = () => {
                         {/* row */}
                         <div className="row">
                             <div className="col-lg-4 widget-area sidebar-left job_list-widget-area">
-                                <div className="job_list-widget" style={{ backgroundColor: '#ece3f4' }}>
-                                    <aside className="widget job-widget">
-                                        <h3 className="widget-title">More Suggestions</h3>
-                                        <div className="col-lg-12 col-md-12">
-                                            <ul>
-                                                <li>
-                                                    {/* AllJobs &&
+                                <div className="job_list-widget bg-theme-SkinColor">
+                                <aside className="widget job-widget ">
+                                    <h3 className="widget-title">More Suggestions</h3>
+                                  <div className="col-lg-12 col-md-12">
+                                    <ul>    
+                                      <li>
+                                      {/* AllJobs &&
                                         AllJobs.map((jobs, index) => (
                                             index<5 && <div className="col-lg-12 col-md-12">
                                                 <div className="featured-title">
@@ -140,9 +140,9 @@ const Applications = () => {
                             </div>
                             <div className="col-lg-8 content-area">
                                 <div className="row">
-                                    <div className="col-md-12">
-                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between" style={{ backgroundColor: '#ece3f4' }}>
-                                            <span className="showing-result">Showing 1–10 of 50 Applicant Results :</span>
+                                    <div className="col-md-12 ">
+                                        <div className="showing-result-block d-sm-flex align-items-center justify-content-between bg-theme-SkinColor">
+                                            <span className="showing-result ">Showing 1–10 of 50 Applicant Results :</span>
                                             <form>
                                                 <div className="sort-by">Sort By:
                                                     <select defaultValue="">
@@ -201,7 +201,7 @@ const Applications = () => {
             </div>
                                                         ))*/}
                                 <div className="col-lg-12">
-                                    <div className="featured-imagebox featured-imagebox-candidate" style={{backgroundColor:'#ece3f4'}}>
+                                    <div className="featured-imagebox featured-imagebox-candidate">
                                         <div className="featured-thumbnail">
                                             <img src="https://via.placeholder.com/200x200?text=200x200+candidate-04.jpg" />
                                         </div>
