@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export class Footer extends Component {
     render() {
         return (
-            <footer className="footer widget-footer bg-theme-SkinColor clearfix">
+            <footer className="footer widget-footer bg-theme-SkinColor heading-theme-SkinColor clearfix">
                 <div className="second-footer">
                     <div className="container">
                         <div className="row">

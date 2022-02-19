@@ -15,7 +15,7 @@ const EditJob = () => {
   const [editjob, setEditjob]= useState([]);
   const l = useLocation();
   let id = l.pathname;
-  id = id.split('/id=')[1];
+  id = id.split('/edit_job/')[1];
   
   const [job, setJob] = useState({
    
@@ -92,9 +92,9 @@ const EditJob = () => {
     qualification,
 
     // Skills Required
-     skills: editjob.skills,
-     position: editjob.position,
-     perks: editjob.perks,
+     skills,
+     position,
+     perks,
     };
 
     const handleChange = (e) => {

@@ -45,7 +45,23 @@ $linkedin: #0077B5;
     }
 
   }
+  .heading {
+    &-theme-SkinColor {
+      font-color: white;
+    }
   
+    &-theme-DarkColor {
+      color: white;
+    }
+  
+    &-theme-GreyColor {
+      background-color: $theme-GreyColor;
+    }
+
+    &-theme-WhiteColor {
+      background-color: $theme-WhiteColor;
+    }
+  }
   // Text Colors
   .text {
 
