@@ -1,10 +1,10 @@
 import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { allApplicants, acceptApplicant } from '../api';
-import { Footer } from '../components/layout/Footer';
-import Header from '../components/layout/Header';
-import PageHeader from '../components/layout/PageHeader';
+import { allApplicants, acceptApplicant } from '../../api';
+import { Footer } from '../../components/layout/Footer';
+import Header from '../../components/layout/Header';
+import PageHeader from '../../components/layout/PageHeader';
 
 const Applications = () => {
     const [allcandidates, setallcandidates] = useState([]);
