@@ -11,7 +11,7 @@ const Posted_Jobs = () => {
     const [AllInterns, setallInterns] = useState([]);
     useEffect(() => {
         Promise.resolve(companyInterns()).then((res) => {
-            console.log(res.data.intern);
+            console.log(res.data);
             setallInterns(res.data.intern)
         }).catch((e) => {
             console.log({ e });
@@ -27,33 +27,33 @@ const Posted_Jobs = () => {
             />
             <Card>
                 <div className="row m-4">
-                    {AllInterns?.map((data, index) =>{console.log(data)})}
-                    {AllInterns?.map((data, index)=>(
+                    {AllInterns?.map((data, index) => { console.log(data) })}
+                    {AllInterns?.map((data, index) => (
                         <Link exact to={`/edit_job/id=${data._id}`}>
-                        <div className="col-lg-12">
-                        <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
-                            <div className="featured-content">
-                                <div className="featured-title">
-                                    <h3>{data?.title}</h3>
-                                    <p>{data?.category}</p>
-                                </div>
-                                <div className="featured-bottom">
-                                    <div className="job-skill">
-                                        <p>{data?.description?.slice(0,50)}...</p>
-                                    </div>
+                            <div className="col-lg-12">
+                                <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
+                                    <div className="featured-content">
+                                        <div className="featured-title">
+                                            <h3>{data?.title}</h3>
+                                            <p>{data?.category}</p>
+                                        </div>
+                                        <div className="featured-bottom">
+                                            <div className="job-skill">
+                                                <p>{data?.description?.slice(0, 50)}...</p>
+                                            </div>
 
-                                    <div className="view-block">
-                                        <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
+                                            <div className="view-block">
+                                                <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                             ttm-btn-color-dark"
-                                            exact to={'/edit_job'}>View Applications</Link>
+                                                    exact to={'/applicants'}>View Applications</Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    </Link>
+                        </Link>
                     ))}
-                    
+
                     <div className="col-lg-12">
                         <div className="featured-imagebox featured-imagebox-candidate" style={{ backgroundColor: '#ece3f4' }}>
                             {/* <div className="featured-thumbnail">

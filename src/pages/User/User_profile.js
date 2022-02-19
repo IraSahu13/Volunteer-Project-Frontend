@@ -11,7 +11,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { updateProfile } from "../../actions/userActions";
 import { Alerterror, Alertsuccess } from '../../components/layout/Alerts';
-import { userInfo, acceptOffer, getResume, myProjects, myOffers, editUser } from '../../api';
+import { userInfo, acceptOffer, getResume, myProjects, myOffers, editUser, offerAccept } from '../../api';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
