@@ -384,9 +384,10 @@ function CircularProgressWithLabel(props) {
 }
 
 const User_profile = () => {
-
+  
   const [user, setUser] = useState([]);
   const location = useLocation();
+  const [accept, setAccept]= useState(null);
   useEffect(() => {
     const id = location.pathname.substring(19,);
     Promise.resolve(userInfo(id)).then((res) => {
@@ -427,7 +428,7 @@ const User_profile = () => {
     }).catch((e) => {
       console.log({ e });
     })
-  }, [])
+  }, [accept])
   const [offers, setOffers] = useState([])
   useEffect(() => {
     Promise.resolve((myOffers())).then((res) => {
@@ -436,20 +437,19 @@ const User_profile = () => {
     }).catch((e) => {
       console.log({ e });
     })
-  }, [])
+  }, [accept])
   
-  // const [accept, setAccept]= useState(null);
-  const handleOffer= (e) => {
-    e.preventDefault();
-    console.log(e);
-    Promise.resolve(acceptOffer(e)).then((res) => {
-        console.log(res);
-        setTimeout(() => {
-        }, 3000);
-    }).catch((e) => {
-        console.log({ e });
-    })
-}     
+//   const handleOffer= (e) => {
+//     e.preventDefault();
+//     console.log(e);
+//     Promise.resolve(acceptOffer(e)).then((res) => {
+//         console.log(res);
+//         setTimeout(() => {
+//         }, 3000);
+//     }).catch((e) => {
+//         console.log({ e });
+//     })
+// }     
   return (
     <div className="site-main">
       <Header />
@@ -666,7 +666,8 @@ const User_profile = () => {
                                   <button className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
                                 ttm-btn-color-dark mr-20" onClick={()=>{
                                   Promise.resolve(offerAccept(offer._id)).then((res)=>{
-                                    console.log(res);
+                                    // console.log(res);
+                                    setAccept(!accept);
                                   }).catch((e)=>{
                                     console.log(e);
                                   })

@@ -95,9 +95,9 @@ const Login = () => {
             history.push('/');
             // window.location.reload();
         }).catch((e) => {
-            console.log(e.response);
+            console.log(e.response?.data?.error);
             setError(true);
-            setText(e.response);
+            setText(e.response?.data?.error);
         })
 
     }
@@ -125,7 +125,7 @@ const Login = () => {
             <div className="ttm-row login-section clearfix">
                 <div className="container">
                     <div className="row">
-                       <div className="col-lg-2"></div>
+                        <div className="col-lg-2"></div>
                         <div className="col-lg-8">
                             <div className="bg-theme-GreyColor ttm-col-bgcolor-yes ttm-bg rounded p-50 p-lg-20">
                                 <div className="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
@@ -319,7 +319,7 @@ const Login = () => {
                                     </div>
                                     <div className="login-social-buttons">
                                         <div className="row">
-                                            
+
                                             <div className="col-lg-6 flex">
                                                 <button id="login-with-facebook" className="social-account-button facebook-button ml-100 ml=5"
                                                 >
