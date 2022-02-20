@@ -48,8 +48,8 @@ import CompanyProfile from './pages/Company/CompanyProfile';
 import Projects from './pages/Company/Projects';
 import ManageRecruitment from './pages/Company/ManageRecruitment';
 
-axios.defaults.baseURL = 'http://localhost:4000';
-// axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
+// axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://volunteerproject.herokuapp.com';
 axios.defaults.params = {};
 
 
@@ -90,7 +90,7 @@ function App() {
         <Route exact path={`/post_job`} component={ PostJob } />
         <Route exact path={`/profile`} component={ User_profile } />
         <Route exact path={`/company_profile`} component={ CompanyProfile } />
-        <Route exact path={'/applicants'} component={Applications} />
+        <Route path={'/applicants'} component={Applications} />
         <Route exact path={'/application'} component={Apply} />
         <Route exact path={'/edit_resume'} component={EditResume} />
         <Route path={'/edit_job'} component={EditJob} />

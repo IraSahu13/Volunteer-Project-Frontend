@@ -49,6 +49,7 @@ export const acceptOffer=async (id)=>{
     });
 }
 export const editUser=async (data)=>{
+    console.log(data);
     return await axios.put(`/user/edituser`, {credentials: data}, 
     {
         headers:{ 

@@ -33,15 +33,7 @@ const styles = theme => ({
 const ProfileDetails = (props) => {
   const [user, setUser] = useState([]);
   const location = useLocation();
-  useEffect(() => {
-    const id = location.pathname.substring(19,);
-    Promise.resolve(userInfo(id)).then((res) => {
-      console.log(res.data);
-      setUser(res.data);
-    }).catch((e) => {
-      console.log({ e });
-    })
-  }, [])
+  
   const [userEdit, setUserEdit] = useState({
     name: user.name,
     email: user.email,
@@ -53,7 +45,15 @@ const ProfileDetails = (props) => {
     city: user.city,
     state: user.state,
   });
-
+  useEffect(() => {
+    const id = location.pathname.substring(19,);
+    Promise.resolve(userInfo(id)).then((res) => {
+      console.log(res.data);
+      setUser(res.data);
+    }).catch((e) => {
+      console.log({ e });
+    })
+  }, [])
   const {
     name,
     title,
@@ -64,19 +64,20 @@ const ProfileDetails = (props) => {
     zipcode,
     city,
     state,
-  } = userEdit;
+  } = user;
+
   const values = {
 
     // Profile-Information
-    name: user.name,
-    email: user.email,
-    phone: user.phone,
-    title: user.title,
-    address_line_1: user.address_line_1,
-    address_line_2: user.address_line_2,
-    zipcode: user.zipcode,
-    city: user.city,
-    state: user.state,
+    name,
+    email,
+    phone,
+    title,
+    address_line_1,
+    address_line_2,
+    zipcode,
+    city,
+    state,
     // Education Information
 
 
@@ -576,7 +577,7 @@ const User_profile = () => {
 
                         <div className="featured-content">
                           <div className="featured-title">
-                            <h3>{project.name}</h3>
+                            <h3>{project.title}</h3>
                             <p className="mt-2" style={{ color: 'grey' }}>{project.date}</p>
                           </div>
                           <div className="featured-bottom">
@@ -593,14 +594,9 @@ const User_profile = () => {
                             </div>
                             {open &&
                               <div className="mt-10">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                  labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                  maecenas accumsan lacus vel facilisis.
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                  labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                  maecenas accumsan lacus vel facilisis.</p>
+                                <p>{project.description}</p>
                                 <div style={{ position: 'relative' }}>
-                                  <span><CircularProgressWithLabel value={100} /></span>
+                                  <span><CircularProgressWithLabel value={20} /></span>
                                 </div>
                                 <div >
                                   <Link className="ttm-btn ttm-btn-size-sm ttm-btn-shape-rounded ttm-btn-style-border 
@@ -638,7 +634,7 @@ const User_profile = () => {
 
                         <div className="featured-content">
                           <div className="featured-title">
-                            <h3>{offer?.name}</h3>
+                            <h3>{offer?.title}</h3>
                             <p className="mt-2" style={{ color: 'grey' }}>{offer?.date}</p>
                           </div>
                           <div className="featured-bottom">
